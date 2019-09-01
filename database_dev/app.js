@@ -95,20 +95,32 @@ form.addEventListener('submit',
     }
 );
 
-// realtime update
+// reload upon update
 db.collection('cafes').orderBy('age').onSnapshot(
     (snapshot) => {
-        // check all the changes
-        let changes = snapshot.docChanges();
-        changes.forEach(
-            (change) => {
-                console.log(change.doc.data());
-                if (change.type == 'added') {
-                    renderCafe(change.doc);
-                } else if (change.type == 'removed') {
-                    let li = cafeList.querySelector('[data-id=' + change.doc.id + ']');
-                    cafeList.removeChild(li);
-            }
-        }
-    );
-});
+        // delete existing data
+        cafeList.innerHTML = '';
+        // reload
+        snapshot.docs.forEach(
+            (doc) => renderCafe(doc)
+        )
+    }
+); 
+
+// realtime update
+// db.collection('cafes').orderBy('age').onSnapshot(
+//     (snapshot) => {
+//         // check all the changes
+//         let changes = snapshot.docChanges();
+//         changes.forEach(
+//             (change) => {
+//                 console.log(change.doc.data());
+//                 if (change.type == 'added') {
+//                     renderCafe(change.doc);
+//                 } else if (change.type == 'removed') {
+//                     let li = cafeList.querySelector('[data-id=' + change.doc.id + ']');
+//                     cafeList.removeChild(li);
+//                 }
+//             }
+//         );
+//     });
