@@ -3,6 +3,11 @@ body {
     font-family: "Comic Sans MS";
 }
 
+p {
+    color: #88236f;
+    text-align: center;
+}
+
 h1 {
     color: #fff;
     font-size: 64px;
@@ -16,7 +21,7 @@ h1 {
     max-width: 960px;
     margin: 30px auto;
     padding: 20px 30px;
-    border-radius: 10px 120px 10px 10px;
+    border-radius: 10px;
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1)
 }
 
@@ -91,7 +96,7 @@ form:after {
 button {
     border: 0;
     background: rgb(207, 255, 165);
-    border-radius: 1px 50px 1px 1px;
+    border-radius: 3px;
     padding: 13px;
     width: 14%;
     box-shadow: -1px 0px 1px rgba(0, 0, 0, 0.1);
