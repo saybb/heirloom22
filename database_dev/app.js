@@ -39,7 +39,7 @@ function renderCafe(doc) {
     let cross = document.createElement('div');
 
     cross.textContent = 'x'
-    name.textContent = doc.data().first_name;
+    name.textContent = doc.data().name;
     age.textContent = doc.data().age;
     li.appendChild(name);
     li.appendChild(age);

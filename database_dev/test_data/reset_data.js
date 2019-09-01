@@ -1,18 +1,34 @@
 // frequent DOM access
-const form = document.querySelector('#reset');
+const reset = document.querySelector('#reset');
 
 // delete everything
+
+reset.addEventListener('click',
+    (e) => {
+        e.stopPropagation();
+        // get all the documents and delete all of them
+        db.collection('cafes').get().then(
+            (snapshot) => {
+                snapshot.docs.forEach(
+                    (doc) => {
+                        db.collection('cafes').doc(doc.id).delete();
+                    }
+                )
+            }
+        );
+    }
+)
+
 // reload everything
 
 // const list_json_file = [
 //     {
-//         first_name: "Amanda",
-//         second_name: "Gilbert"
+//         name: "Amanda",
 //         age: 40
 //     },
 //     {
 //         first_name: "Sam",
-//         second_name: "Gilbert" 
+//         second_name: "" 
 //     },
 //     {
 //         first_name: "Liam",
@@ -24,6 +40,6 @@ const form = document.querySelector('#reset');
 //     },
 //     {
 //         first_name: "Melanie",
-//         second_name: "Gilbert" 
+//         age: "Gilbert" 
 //     }
 // ]
