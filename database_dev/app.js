@@ -19,7 +19,7 @@ db.collection('cafes').get().then(
             }
         )
     }
-)
+);
 
 // create element and render them
 function renderCafe(doc) {
@@ -46,4 +46,29 @@ db.collection('cafes').get().then(
             (doc) => renderCafe(doc)
         )
     }
-)
+);
+
+// saving data
+// Link to the form on HTML
+// Listen to the submission button press
+const form = document.querySelector('#add-cafe-form');
+form.addEventListener('submit', 
+    (e) => {
+        // link to the form
+
+        // prevent reloading which stops program from executing
+        e.preventDefault();
+
+        // upload the document
+        db.collection('cafes').add({
+            // create a json object
+            name: form.name.value,
+            city: form.city.value
+        });
+        //TODO refresh page
+
+        // // reset the values of the form
+        form.name.value = '';
+        form.city.value = '';
+    }
+);
