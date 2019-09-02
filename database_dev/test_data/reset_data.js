@@ -3,21 +3,21 @@ const reset = document.querySelector('#reset');
 
 // delete everything
 
-reset.addEventListener('click',
-    (e) => {
-        e.stopPropagation();
-        // get all the documents and delete all of them
-        db.collection('cafes').get().then(
-            (snapshot) => {
-                snapshot.docs.forEach(
-                    (doc) => {
-                        db.collection('cafes').doc(doc.id).delete();
-                    }
-                )
-            }
-        );
-    }
-)
+// reset.addEventListener('click',
+//     (e) => {
+//         e.stopPropagation();
+//         // get all the documents and delete all of them
+//         db.collection('cafes').get().then(
+//             (snapshot) => {
+//                 snapshot.docs.forEach(
+//                     (doc) => {
+//                         db.collection('cafes').doc(doc.id).delete();
+//                     }
+//                 )
+//             }
+//         );
+//     }
+// )
 
 // reload everything
 
