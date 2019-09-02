@@ -7,7 +7,7 @@
 ## Test data
 
 - Test data is stored as javascript objects
-- path to test data `./test_data/data.js`
+- path to test data `./Test_data/data.js`
 
 ## Sprint 2 clarification (Database)
 
@@ -43,7 +43,7 @@ Document ID
 Fields
 
 - Lowercase
-- Words seperated by dash like `artifacts_link`
+- Words separated by dash like `artifacts_link`
 
 Database and subcollections
 
@@ -59,13 +59,14 @@ Database and subcollections
 
 Important fields
 
-- All documents exect User_authentication_files must have
-  - date_created : the date and time the document was created
-  - created_by : the name user who created the data
+- All documents except `User_authentication_files` must have
+  - `date_created` : the date and time the document was created
+  - `created_by` : the name user who created the data
 
 
-## Week 6 plan
+## Week 6-7 plan
 
 1. Create sample data and automate upload (For resetting)
-2. Get list of nessecery query from requirements and create them
-3. Every query will have its own buttons on an interactive consol
+2. Get a list of necessary queries from requirements 
+    2.1 Create queries
+3. Interactive webpage to display queries
