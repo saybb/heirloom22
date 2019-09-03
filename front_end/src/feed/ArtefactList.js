@@ -9,6 +9,7 @@
 import React from 'react';
 
 // components
+import ArtefactListElement from "./ArtefactListElement.js";
 
 // sample data. This is just here for testing. It's a list of artefact objects.
 const artefacts = [
@@ -126,7 +127,6 @@ const artefacts = [
     }
 ]
 
-// class
 class ArtefactList extends React.Component {
     state = {
         artefacts: artefacts
@@ -134,7 +134,13 @@ class ArtefactList extends React.Component {
 
     render() {
         return(
-            <div><p>Content Here :)</p></div> 
+            <div>
+                {
+                    artefacts.map((artefact) => (
+                        <ArtefactListElement artefact={artefact} />
+                    ))
+                }
+            </div> 
         );
     }
 }

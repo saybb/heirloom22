@@ -12,6 +12,6 @@ function App() {
       <ArtefactList />
     </div>
   );
-  }
+}
 
 export default App;
