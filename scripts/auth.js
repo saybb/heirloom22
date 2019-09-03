@@ -1,14 +1,34 @@
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
-    if(user){
-        db.collection('guides').get()
-        .then(snapshot => {
-            setupGuides(snapshot.docs);
-        });
+    if (user) {
+      db.collection('guides').onSnapshot(snapshot => {
+        setupGuides(snapshot.docs);
+        setupUI(user);
+      }, err => console.log(err.message));
     } else {
-        setupGuides([]);
+      setupUI();
+      setupGuides([]);
     }
-});
+  });
+
+// create new guide
+const createForm = document.querySelector('#create-form');
+createForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    //add data to db
+    db.collection('guides').add({
+        title: createForm['title'].value,
+        content: createForm['content'].value
+    }).then(() => {
+        // close the modal and reset form
+        const modal = document.querySelector('#modal-create');
+        M.Modal.getInstance(modal).close();
+        createForm.reset();
+    }).catch(err => {
+        console.log(err.message);
+    })
+})
 
 // sign up
 const signupForm = document.querySelector('#signup-form');
@@ -22,10 +42,15 @@ signupForm.addEventListener('submit', (e) =>{
     //sign up the user
     auth.createUserWithEmailAndPassword(email, password)
     .then(cred => {
+        return db.collection('users').doc(cred.user.uid).set({
+            email: email,
+            bio: signupForm['signup-bio'].value
+        });
+    }).then(() => {
         const modal = document.querySelector('#modal-signup');
         M.Modal.getInstance(modal).close();
         signupForm.reset();
-    }); //can add a catch here.
+    });
 });
 
 // log in
@@ -41,9 +66,8 @@ loginForm.addEventListener('submit', (e) =>{
     .then(cred =>{
         const modal = document.querySelector('#modal-login');
         M.Modal.getInstance(modal).close();
-        signupForm.reset();
-    })
-
+        loginForm.reset();
+    });
 });
 
 // logout
