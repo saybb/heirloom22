@@ -43,7 +43,7 @@ Document ID
 Fields
 
 - Lowercase
-- Words separated by dash like `artifacts_link`
+- Words separated by underscore like `artifacts_link`
 
 Database and subcollections
 
@@ -68,5 +68,5 @@ Important fields
 
 1. Create sample data and automate upload (For resetting)
 2. Get a list of necessary queries from requirements 
-    2.1 Create queries
+    1. Create queries
 3. Interactive webpage to display queries
