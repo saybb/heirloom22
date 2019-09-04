@@ -5,9 +5,18 @@
  */
 
 .ArtefactList {
-    margin: 2em auto;
+    margin: 0 auto;
 }
 
 .ArtefactListElement {
-    padding: 0 0.5em;
+    padding: 1.25em 0.5em;
+    transition: 0.5s;
+}
+
+.ArtefactListElement:hover {
+    background: #f8f8f8;
+}
+
+.ArtefactListElementDivider {
+    margin: 0;
 }

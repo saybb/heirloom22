@@ -6,10 +6,11 @@
  */
 
 import React from 'react';
-import './ArtefactList.css';
 
 // components
 import ArtefactListElement from "./ArtefactListElement.js";
+import './ArtefactList.css';
+
 
 // sample data. This is just here for testing. It's a list of artefact objects.
 const artefacts = [
