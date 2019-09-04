@@ -7,14 +7,31 @@
 
 // libs
 import React from 'react';
+import { Divider } from 'antd';
+import 'antd/dist/antd.css';
 
 function ArtefactListElement(props) {
-    const artefact = props.artefact;
+    // unpack for nicer code
+    const { artefact } = props;
 
+    //function firstN
+    /**
+     * For the list, we intend to show:
+     *   - name
+     *   - excerpt of description
+     */
     return(
-        <div>
-            <span>{ artefact.name } | { artefact.details }</span>
-        </div>
+        <React.Fragment>
+            <div className="ArtefactListElement">
+                <span>
+                    <b>{ artefact.name }</b>
+                    { // only show details section if it's not empty
+                        artefact.details ? " | " + artefact.details : ""
+                    }
+                </span>
+            </div>
+            <Divider />
+        </React.Fragment>
     );
 }
 

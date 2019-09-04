@@ -1,0 +1,13 @@
+/* * *
+ * ArtefactList :: CSS
+ * CSS styles for ArtefactList.js
+ * Created By: Lawson Wang-Wills
+ */
+
+.ArtefactList {
+    margin: 2em auto;
+}
+
+.ArtefactListElement {
+    padding: 0 0.5em;
+}

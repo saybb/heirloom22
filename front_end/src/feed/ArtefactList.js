@@ -5,8 +5,8 @@
  * Created By: Lawson Wang-Wills
  */
 
-// libs
 import React from 'react';
+import './ArtefactList.css';
 
 // components
 import ArtefactListElement from "./ArtefactListElement.js";
@@ -134,8 +134,8 @@ class ArtefactList extends React.Component {
 
     render() {
         return(
-            <div>
-                {
+            <div className="ArtefactList">
+                { // generates an ArtefactListElement for each artefact using map
                     artefacts.map((artefact) => (
                         <ArtefactListElement artefact={artefact} />
                     ))
