@@ -11,6 +11,8 @@ initialise firebase functions locally:
 npm init functions
 ```
 
+Recommend useing _index.html_ via __live server__.
+
 For security purposes, please set firebase db rules manually.
 ```
 service cloud.firestore {
