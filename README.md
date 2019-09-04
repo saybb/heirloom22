@@ -10,3 +10,22 @@ initialise firebase functions locally:
 ```
 npm init functions
 ```
+
+For security purposes, please set firebase db rules manually.
+```
+service cloud.firestore {
+match /databases/{database}/documents {
+    // match logged in user docs in user collection
+    match /users/{userId}{
+    	allow create: if request.auth.uid != null;
+      allow read: if request.auth.uid == userId;
+    }
+    
+    // match docs in the guids collection
+    match /guides/{guideId}{
+    	allow read: if request.auth.uid != null;
+      allow write: if request.auth.token == true;
+    }
+  }
+}
+```
