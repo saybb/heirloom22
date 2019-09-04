@@ -25,10 +25,11 @@ Aim
 Not supporting 
 
 1. No Multimedia 
+    - Will be done in the next sprint
 2. Can't determine which documents user can access
-   - Oliver is responsible for user access and authentication. 
-
-
+    - Oliver is responsible for user access and authentication. 
+3. Geospatial data 
+    - Currently there isn't a UI solution for input or output geospatial data
 
 ## Database conventions
 
