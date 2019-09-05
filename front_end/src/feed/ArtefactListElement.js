@@ -1,6 +1,6 @@
 /* * *
  * ArtefactListElement :: ReactJS Component
- * A simple representation of an artefact for a list.
+ * A simple representation of an artefact for ArtefactList.
  * The artefact should be passed to this component.
  * Created By: Lawson Wang-Wills
  */
