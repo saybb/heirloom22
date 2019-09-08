@@ -84,7 +84,7 @@ const Artifacts = {
             {
                 name: "moving in to the current family house",
                 relation: "moved to",
-                reference: "/Events/moveing_in_id"
+                reference: "/Events/moving_in_id"
             },
         ],
         people_links: [
@@ -150,14 +150,23 @@ const Artifacts = {
 }
 
 const Addendums = {
-    broke_vase = {
+    broken_vase_comment_id = {
         name: "I broke the vase",
         details : "I tripped and broke and tipped the table over",
         artifact_link : "/Artifacts/vase_id",
         created_by: "amanda",
         date_created: "01/04/2019",
+    },
+
+    event_comment_id = {
+        name: "test comment on event",
+        date_created: "08/04/2019",
+        created: "amanda",
+        artifact_link: "/making_crest_id"
     }
+    
 }
+
 
 const People = {
 
@@ -239,12 +248,94 @@ const People = {
     },
 }
 
-// TODO by week 7 Monday
 const Events = {
+    
+    moving_in_id = {
+        name: "moving in to the current family house",
+        date: "01/01/1985",
+        date_created: "29/05/2000",
+        crated_by: "liam",
+        artifacts_links: [
+            {
+                name: "Coat of arms of the Gilbert Monument",
+                relation: "moved to",
+                reference: "/Artifacts/family_crest_monument_id"
+            }, 
+        ]
+    },
 
+    making_crest_id = {
+        name: "Making the family crest",
+        date: "01/01/1980",
+        date_created: "29/05/2000",
+        crated_by: "amanda",
+        artifacts_links: [
+            {
+                name: "Coat of arms of the Gilbert Monument",
+                relation: "created during",
+                reference: "/Artifacts/family_crest_monument_id"
+            },
+            {
+                name: "family crest drawing",
+                relation: "created during",
+                reference: "/Artifacts/family_crest_drawing_id"
+            },
+            {
+                name: "Recording of grandpa John making a crestt",
+                relation: "recorded during",
+                reference: "/Artifacts/making_crest_id"
+            },,
+        ]
+    },
+
+
+    wedding_sarah_id  = {
+        name: "sarah and liam got married",
+        date: "01/01/1983",
+        date_created: "29/06/2000",
+        crated_by: "liam",
+        artifacts_links: [
+            {
+                name: "weeding ring",
+                relation: "used during",
+                reference: "/Artifacts/wedding_ring_id"
+            },
+        ], 
+    },
+
+    wedding_melanie_id  = {
+        name: "melanie and john got married",
+        date: "01/01/1952",
+        date_created: "29/06/2000",
+        crated_by: "liam",
+        artifacts_links: [
+            {
+                name: "weeding ring",
+                relation: "used during",
+                reference: "/Artifacts/wedding_ring_id"
+            },
+        ], 
+    },
 }
 
-// Unlikely to be completed this sprint
 const Users = {
+    amanda_user_id = {
+        username: "amanda",
+        reference: "People/amanda_gilbert_id",
+        password: "amanda123",
+        email: "amanda@gmail.com"
+    },
 
+    liam_user_id = {
+        username: "liam",
+        reference: "People/liam_gilbert_id",
+        password: "liam123",
+        email: "liam@gmail.com"
+    },
+
+    admin_user_id = {
+        username: "admin",
+        password: "amdin123",
+        email: "admin@gmail.com"
+    },
 }
