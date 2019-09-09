@@ -95,16 +95,17 @@ form.addEventListener('submit',
     }
 );
 
+function test(snapshot) {
+    // delete existing data
+    cafeList.innerHTML = '';
+    // reload
+    snapshot.docs.forEach(
+        (doc) => renderCafe(doc)
+    )
+}
 // reload upon update
 db.collection('cafes').orderBy('age').onSnapshot(
-    (snapshot) => {
-        // delete existing data
-        cafeList.innerHTML = '';
-        // reload
-        snapshot.docs.forEach(
-            (doc) => renderCafe(doc)
-        )
-    }
+    test
 ); 
 
 // realtime update

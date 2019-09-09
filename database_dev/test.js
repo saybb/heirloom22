@@ -7,7 +7,7 @@ function print_document(path) {
 
 
 // differences?
-function callback()
+function callback() {};
 // TODO Unexpected token function?
 function a(callback){
     callback()

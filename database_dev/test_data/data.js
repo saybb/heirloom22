@@ -24,14 +24,14 @@ const Artifacts = {
             {
                 name: "Making the famly crest",
                 relation: "created during",
-                reference:  "/Events/making_crest_id"
+                reference:  "Events/making_crest_id"
             }
         ],
         people_links : [
             {
                 name: "John Gilbert",
                 relation: "made by",
-                reference: "/People/john_gilbert_id"
+                reference: "People/john_gilbert_id"
             }
         ],
         created_by : "amanda",
@@ -47,14 +47,14 @@ const Artifacts = {
             {
                 name: "Making the famly crest",
                 relation: "created during",
-                reference:  "/Events/making_crest_id"
+                reference:  "Events/making_crest_id"
             }
         ],
         people_links: [
             {
                 name: "John Gilbert",
                 relation: "recording of",
-                reference: "/People/john_gilbert_id"
+                reference: "People/john_gilbert_id"
             }
         ],
         created_by: "amanda",
@@ -79,12 +79,12 @@ const Artifacts = {
             {
                 name: "Making the famly crest",
                 relation: "created during",
-                reference: "/Events/making_crest_id"
+                reference: "Events/making_crest_id"
             },
             {
                 name: "moving in to the current family house",
                 relation: "moved to",
-                reference: "/Events/moving_in_id"
+                reference: "Events/moving_in_id"
             },
         ],
         people_links: [
@@ -153,7 +153,7 @@ const Addendums = {
     broken_vase_comment_id : {
         name: "I broke the vase",
         details : "I tripped and broke and tipped the table over",
-        artifact_link : "/Artifacts/vase_id",
+        reference : "/Artifacts/vase_id",
         created_by: "amanda",
         date_created: "01/04/2019",
     },
@@ -162,7 +162,7 @@ const Addendums = {
         name: "test comment on event",
         date_created: "08/04/2019",
         created: "amanda",
-        artifact_link: "/making_crest_id"
+        reference: "/Artifacts/making_crest_id"
     }
     
 }
@@ -296,7 +296,7 @@ const Events = {
         crated_by: "liam",
         artifacts_links: [
             {
-                name: "weeding ring",
+                name: "wedding ring",
                 relation: "used during",
                 reference: "/Artifacts/wedding_ring_id"
             },
