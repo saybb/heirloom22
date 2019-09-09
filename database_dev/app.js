@@ -6,7 +6,7 @@ const form = document.querySelector('#add-cafe-form');
 // so I give it a call backfunctions that takes the turned scnapshot
 // I get a list of all current documents in the "cafe" collections
 // This includes a lot of meta data
-db.collection('cafes').get().then(
+db.collection('Tests').get().then(
     (snapshot) => {
         console.log(snapshot.docs)
     }

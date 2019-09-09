@@ -23,7 +23,6 @@ function server_time_stamp() {
 
 // convert string path to firebase document reference
 function convert_reference(text) {
-    console.log(text);
     if (empty(text)) return null
     return db.doc(text);
 }
@@ -85,10 +84,10 @@ upload_button.addEventListener('click',
         e.stopPropagation()
 
         upload_collection("Artifacts", Artifacts)
-        // upload_collection("Addendums", Addendums)
-        // upload_collection("People", People)
-        // upload_collection("Users", Users)
-        // upload_collection("Events", Events)
+        upload_collection("Addendums", Addendums)
+        upload_collection("People", People)
+        upload_collection("Users", Users)
+        upload_collection("Events", Events)
     }
 )
 
@@ -123,7 +122,6 @@ function upload_collection(path, javascript_object) {
     document.forEach(document => {
         let docId = document[0];
         let value = parse_object(document[1]);
-        console.log(value);
         // add to database
         db.doc(path + '/' + docId).set(value)
         .then(function () {
@@ -133,6 +131,7 @@ function upload_collection(path, javascript_object) {
         })
         .catch(function (error) {
             console.log(docId);
+            console.log(value);
             console.error("Error writing document: ", error);
         });
     });
