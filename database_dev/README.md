@@ -6,6 +6,7 @@
 
 ## Firebase API
 Currently using Heirloom22
+project-id: heirloom22-2b4a8
 
 ```javascript
 var firebaseConfig = {
