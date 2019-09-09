@@ -136,6 +136,7 @@ class ArtefactList extends React.Component {
     render() {
         return(
             <div className="ArtefactList">
+                <h2>Browsing your collection...</h2>
                 { // generates an ArtefactListElement for each artefact using map
                     artefacts.map((artefact) => (
                         <ArtefactListElement artefact={artefact} />

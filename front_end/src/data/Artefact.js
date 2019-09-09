@@ -1,9 +1,23 @@
-import React from 'react';
-import "./Artefact.css";
+/* * *
+ * Artefact :: ReactJS Component
+ * Page for the display of an Artefact.
+ * The artefact should be passed to this component as the prop "artefact".
+ * Created By: Lawson Wang-Wills
+ */
 
+import React from 'react';
+
+// components
+import "./Artefact.css";
 import {Divider} from "antd";
 
+/**
+ * Function element:
+ * Props:
+ *   - artefact : the artefact json object to display.
+ */
 function Artefact() {
+    // this is just sample data - in reality we will use props.artefact.
     const artefact = {
     name: "Statue of the Coat of Arms of Gilbert",
     details: "Amazing statue that is embedded with family history. Of course, the family crest has no official meaning or clerical relevance, but it still remains to be a symbol of what John thought the family should stand for. That's something we can understand just by looking at this creation. Moved to Liam's new house",
@@ -35,6 +49,15 @@ function Artefact() {
     image: "https://bit.ly/324CaHY"
     } 
  
+
+    /**
+     * For an artefact, we intend to show:
+     *   - image (will eventually be a gallery)
+     *   - name of the artefact
+     *   - description of the artefact
+     *   - people links to the artefact + their relevant descriptions
+     *   - event links to the artefact + their relevant descriptions
+     */
     return (
         <div className="Artefact">
             <div className="ArtefactImageContainer">
@@ -49,18 +72,42 @@ function Artefact() {
         </div>
     );
 
+
+    /**
+     * Function subcomponent: People.
+     * Renders a list of people links.
+     * 
+     * Props:
+     *   - people : list of people links to render
+     */
     function People(props) {
         const {people} = props;
+
+        // if no people links exist then don't render anything
+        if (!people) {
+            return null;
+        }
+
         return(
             <React.Fragment>
                 <h3>Related People</h3>
                 <div className="ArtefactRelations">
-                    { people.map((person) => <Person person={person}/>) }
+                    { // generates a person for each link
+                        people.map((person) => <Person person={person}/>)
+                    }
                 </div>
             </React.Fragment>
         );
     }
 
+
+    /**
+     * Function subcomponent: Person
+     * Renders a single person link.
+     * 
+     * Props:
+     *   - person : person link to render
+     */
     function Person(props) {
         const {person} = props;
 
@@ -75,19 +122,42 @@ function Artefact() {
         );
     }
 
+
+    /**
+     * Function subcomponent: Events.
+     * Renders a list of event links.
+     * 
+     * Props:
+     *   - events : list of event links to render
+     */
     function Events(props) {
         const {events} = props;
+        
+        // if no event links exist then don't render anything
+        if (!events) {
+            return null;
+        }
 
         return(
             <React.Fragment>
                 <h3>Related Events</h3>
                 <div className="ArtefactRelations">
-                    { events.map((event) => <Event event={event}/>) }
+                    { // generates an event for each link
+                        events.map((event) => <Event event={event}/>)
+                    }
                 </div>
             </React.Fragment>
         );
     }
 
+
+    /**
+     * Function subcomponent: Event
+     * Renders a single event link.
+     * 
+     * Props:
+     *   - event : event link to render
+     */
     function Event(props) {
         const {event} = props;
 

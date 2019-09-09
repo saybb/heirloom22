@@ -1,3 +1,9 @@
+/* * *
+ * Artefact :: CSS
+ * CSS styles for Artefact.js
+ * Created By: Lawson Wang-Wills
+ */
+
 .Artefact {
     display: flex;
     flex-direction: column;

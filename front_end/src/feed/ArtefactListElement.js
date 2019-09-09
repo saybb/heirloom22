@@ -15,7 +15,7 @@ import { Divider } from 'antd';
  *   - artefact : artefact json object to be represented
  */
 function ArtefactListElement(props) {
-    const { artefact } = props;    // unpack for nicer code
+    const { artefact } = props;
     const TITLE_LENGTH = 50;       // maximum length of title in chars
     const DESC_LENGTH = 100;       // maximum length of description in chars
 
@@ -46,9 +46,7 @@ function ArtefactListElement(props) {
                 <span>
                     <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
                     { // only show details section if it's not empty
-                        artefact.details
-                        ? " | " + excerpt(artefact.details, DESC_LENGTH)
-                        : ""
+                        artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
                     }
                 </span>
             </div>
