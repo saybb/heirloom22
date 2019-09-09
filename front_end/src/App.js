@@ -1,16 +1,19 @@
 import React from 'react';
 import './App.css';
+import 'antd/dist/antd.css';
 
 /* Components */
 import Navigation from "./Navigation.js";
 import ArtefactList from "./feed/ArtefactList.js";
+import Artefact from "./data/Artefact.js";
 
 class App extends React.Component {
   state = {
     // maintain a list of "pages" and which one is active
-    active: "artefactList",
+    active: "artefact",
     pages: {
-      artefactList: <ArtefactList />
+      artefactList: <ArtefactList />,
+      artefact: <Artefact />
     }
   }
 

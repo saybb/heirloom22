@@ -8,7 +8,6 @@
 // libs
 import React from 'react';
 import { Divider } from 'antd';
-import 'antd/dist/antd.css';
 
 /**
  * Function element.

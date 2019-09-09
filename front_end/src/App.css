@@ -1,4 +1,10 @@
 .App {
-  width: 65%;
+  width: 100%;
   margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .App {
+    width: 65%;
+  }
 }
