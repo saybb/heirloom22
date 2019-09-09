@@ -25,10 +25,11 @@ Aim
 Not supporting 
 
 1. No Multimedia 
+    - Will be done in the next sprint
 2. Can't determine which documents user can access
-   - Oliver is responsible for user access and authentication. 
-
-
+    - Oliver is responsible for user access and authentication. 
+3. Geospatial data 
+    - Currently there isn't a UI solution for input or output geospatial data
 
 ## Database conventions
 
@@ -43,7 +44,7 @@ Document ID
 Fields
 
 - Lowercase
-- Words separated by dash like `artifacts_link`
+- Words separated by underscore like `artifacts_link`
 
 Database and subcollections
 
@@ -68,5 +69,5 @@ Important fields
 
 1. Create sample data and automate upload (For resetting)
 2. Get a list of necessary queries from requirements 
-    2.1 Create queries
+    1. Create queries
 3. Interactive webpage to display queries

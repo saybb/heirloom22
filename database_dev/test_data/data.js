@@ -1,4 +1,6 @@
 /* 
+Visualization:  https://www.lucidchart.com/documents/view/d774e941-dcb7-4958-bd4a-319760d1d337/0_0
+
 I have simplified a few things in this representation
 1. reference 
     - from: a Firebase object 
@@ -41,6 +43,13 @@ const Artifacts = {
     making_crest_id = {
         name: "recording of grandpa John making a crest",
         details: "I found this old recording of grandpa",
+        event_links : [
+            {
+                name: "Making the famly crest",
+                relation: "created during",
+                reference:  "/Events/making_crest_id"
+            }
+        ],
         people_links: [
             {
                 name: "John Gilbert",
@@ -150,9 +159,84 @@ const Addendums = {
     }
 }
 
-// TODO by week 6 Thursday
 const People = {
 
+    amanda_gilbert_id = {
+        name: "Amanda",
+        lastname: "Gilbert",
+        dob: "01/01/1991",
+        details: "Daugther of Sam and Sarah"
+    },
+
+    sam_gilbert_id = {
+        name: "Sam",
+        lastname: "Gilbert",
+        details: "Brother to Amanda"
+    },
+
+    john_gilbert_id = {
+        name: "John",
+        lastname: "Gilbert",
+        dob: "01/01/1971",
+        details: "Great crafts men. Grandpa of Ananda and Sam, father of Liam",
+        artifacts_links: [
+            {
+                name: "Coat of arms of the Gilbert Monument",
+                relation: "made by",
+                reference: "/Artifacts/family_crest_monument_id"
+            },
+            {
+                name: "family crest drawing",
+                relation: "made by",
+                reference: "/Artifacts/family_crest_drawing_id"
+            },
+            {
+                name: "Recording of grandpa John making a crestt",
+                relation: "recording of",
+                reference: "/Artifacts/making_crest_id"
+            },
+        ],
+    },
+
+    sarah_gilbert_id = {
+        name: "Sarah",
+        lastname: "Gilbert",
+        details: "Mother of Sam and Amanda. Married to Liam",
+        artifacts_links: [
+            {
+                name: "weeding ring",
+                relation: "owned by",
+                reference: "/Artifacts/wedding_ring_id"
+            },
+        ],
+    },
+
+    melanie_gilbert_id = {
+        name: "Melanie",
+        lastname: "Gilbert",
+        dob: "01/01/1970",
+        details: "Mother of Liam. Married to John",
+        artifacts_links: [
+            {
+                name: "weeding ring",
+                relation: "owned by",
+                reference: "/Artifacts/wedding_ring_id"
+            },
+        ],
+    },
+
+    liam_gilbert_id = {
+        name: "Melanie",
+        lastname: "Gilbert",
+        details: "Father of Amanda and Sam",
+        artifacts_links: [
+            {
+                name: "family vase",
+                relation: "owned",
+                reference: "/Artifacts/vase_id"
+            },
+        ],
+    },
 }
 
 // TODO by week 7 Monday
