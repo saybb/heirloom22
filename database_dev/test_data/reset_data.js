@@ -71,7 +71,6 @@ delete_button.addEventListener('click',
     (e) => {
         e.stopPropagation()
 
-        delete_collection("cafes")
         delete_collection("Artifacts")
         delete_collection("Addendums")
         delete_collection("People")

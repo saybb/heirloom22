@@ -4,6 +4,29 @@
 
 - [Database design (Lucid chart)](https://www.lucidchart.com/invitations/accept/5273bef4-c7d5-441d-9155-24498632c760)
 
+## Firebase API
+Currently using Heirloom22
+
+```javascript
+var firebaseConfig = {
+    apiKey: "AIzaSyC1HQX45nzJr6SDRMsPkA_zAgAYM9iGjTg",
+    authDomain: "heirloom22-2b4a8.firebaseapp.com",
+    databaseURL: "https://heirloom22-2b4a8.firebaseio.com",
+    projectId: "heirloom22-2b4a8",
+    storageBucket: "heirloom22-2b4a8.appspot.com",
+    messagingSenderId: "323147351760",
+    appId: "1:323147351760:web:bf785136b38cb3a4d380d5"
+};
+```
+
+## Reset or Upload test data to firebase
+1. Open index.html in browser
+2. Delete the database (optional) 
+3. Upload the database (will overwrite exisiting data)
+
+![screen shot](./documentation/upload_sample_data.png)
+
+
 ## Test data
 
 - Test data is stored as javascript objects
