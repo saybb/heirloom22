@@ -17,21 +17,21 @@ Note
 
 const Artifacts = {
 
-    family_crest_drawing_id = {
+    family_crest_drawing_id: {
         name: "family crest drawing",
         details : "a very old drawing of family crest by grandpa",
-        event_links : [
+        events_links : [
             {
                 name: "Making the famly crest",
                 relation: "created during",
-                reference:  "/Events/making_crest_id"
+                reference:  "Events/making_crest_id"
             }
         ],
         people_links : [
             {
                 name: "John Gilbert",
                 relation: "made by",
-                reference: "/People/john_gilbert_id"
+                reference: "People/john_gilbert_id"
             }
         ],
         created_by : "amanda",
@@ -40,21 +40,21 @@ const Artifacts = {
                what it looks like https://bit.ly/2L7A4jB",
     },
 
-    making_crest_id = {
+    making_crest_id : { 
         name: "recording of grandpa John making a crest",
         details: "I found this old recording of grandpa",
-        event_links : [
+        events_links : [
             {
                 name: "Making the famly crest",
                 relation: "created during",
-                reference:  "/Events/making_crest_id"
+                reference:  "Events/making_crest_id"
             }
         ],
         people_links: [
             {
                 name: "John Gilbert",
                 relation: "recording of",
-                reference: "/People/john_gilbert_id"
+                reference: "People/john_gilbert_id"
             }
         ],
         created_by: "amanda",
@@ -64,27 +64,27 @@ const Artifacts = {
     },
 
 
-    random_photos_id = {
+    random_photos_id : {
         name: "random photos",
         created_by: "amanda",
         date_created: "02/09/2019",
         dev: "no links, no details"
     },
 
-    family_crest_monument_id = {
+    family_crest_monument_id : {
         name: "Statue of the Coat of Arms of Gilbert",
         details: "Amazing statue that is embedded with family history \n\
                   Moved to Liam's new house",
-        event_links: [
+        events_links: [
             {
                 name: "Making the famly crest",
                 relation: "created during",
-                reference: "/Events/making_crest_id"
+                reference: "Events/making_crest_id"
             },
             {
                 name: "moving in to the current family house",
                 relation: "moved to",
-                reference: "/Events/moveing_in_id"
+                reference: "Events/moving_in_id"
             },
         ],
         people_links: [
@@ -100,10 +100,10 @@ const Artifacts = {
                what it looks like https://bit.ly/324CaHY",
     }, 
 
-    wedding_ring_id = {
+    wedding_ring_id : {
         name: "wedding ring",
         details: "The wedding ring passed down through generations",
-        event_links: [
+        events_links: [
             {
                 name: "Sarah and Liam got married",
                 relation: "used during",
@@ -132,7 +132,7 @@ const Artifacts = {
         dev: "link to 2 events and 2 people" 
     }, 
 
-    vase_id = {
+    vase_id : {
         name: "traditional Chinese vase",
         details: "An vase I received as a gift from my student Bob in 1990 Christmas", 
         people_links: [
@@ -150,31 +150,40 @@ const Artifacts = {
 }
 
 const Addendums = {
-    broke_vase = {
+    broken_vase_comment_id : {
         name: "I broke the vase",
         details : "I tripped and broke and tipped the table over",
-        artifact_link : "/Artifacts/vase_id",
+        reference : "/Artifacts/vase_id",
         created_by: "amanda",
         date_created: "01/04/2019",
+    },
+
+    event_comment_id : {
+        name: "test comment on event",
+        date_created: "08/04/2019",
+        created: "amanda",
+        reference: "/Artifacts/making_crest_id"
     }
+    
 }
+
 
 const People = {
 
-    amanda_gilbert_id = {
+    amanda_gilbert_id : {
         name: "Amanda",
         lastname: "Gilbert",
         dob: "01/01/1991",
         details: "Daugther of Sam and Sarah"
     },
 
-    sam_gilbert_id = {
+    sam_gilbert_id : {
         name: "Sam",
         lastname: "Gilbert",
         details: "Brother to Amanda"
     },
 
-    john_gilbert_id = {
+    john_gilbert_id : {
         name: "John",
         lastname: "Gilbert",
         dob: "01/01/1971",
@@ -198,7 +207,7 @@ const People = {
         ],
     },
 
-    sarah_gilbert_id = {
+    sarah_gilbert_id : {
         name: "Sarah",
         lastname: "Gilbert",
         details: "Mother of Sam and Amanda. Married to Liam",
@@ -211,7 +220,7 @@ const People = {
         ],
     },
 
-    melanie_gilbert_id = {
+    melanie_gilbert_id : {
         name: "Melanie",
         lastname: "Gilbert",
         dob: "01/01/1970",
@@ -225,7 +234,7 @@ const People = {
         ],
     },
 
-    liam_gilbert_id = {
+    liam_gilbert_id : {
         name: "Melanie",
         lastname: "Gilbert",
         details: "Father of Amanda and Sam",
@@ -239,12 +248,94 @@ const People = {
     },
 }
 
-// TODO by week 7 Monday
 const Events = {
+    
+    moving_in_id : {
+        name: "moving in to the current family house",
+        date: "01/01/1985",
+        date_created: "29/05/2000",
+        crated_by: "liam",
+        artifacts_links: [
+            {
+                name: "Coat of arms of the Gilbert Monument",
+                relation: "moved to",
+                reference: "/Artifacts/family_crest_monument_id"
+            }, 
+        ]
+    },
 
+    making_crest_id : {
+        name: "Making the family crest",
+        date: "01/01/1980",
+        date_created: "29/05/2000",
+        crated_by: "amanda",
+        artifacts_links: [
+            {
+                name: "Coat of arms of the Gilbert Monument",
+                relation: "created during",
+                reference: "/Artifacts/family_crest_monument_id"
+            },
+            {
+                name: "family crest drawing",
+                relation: "created during",
+                reference: "/Artifacts/family_crest_drawing_id"
+            },
+            {
+                name: "Recording of grandpa John making a crestt",
+                relation: "recorded during",
+                reference: "/Artifacts/making_crest_id"
+            },
+        ]
+    },
+
+
+    wedding_sarah_id  : {
+        name: "sarah and liam got married",
+        date: "01/01/1983",
+        date_created: "29/06/2000",
+        crated_by: "liam",
+        artifacts_links: [
+            {
+                name: "wedding ring",
+                relation: "used during",
+                reference: "/Artifacts/wedding_ring_id"
+            },
+        ], 
+    },
+
+    wedding_melanie_id  : {
+        name: "melanie and john got married",
+        date: "01/01/1952",
+        date_created: "29/06/2000",
+        crated_by: "liam",
+        artifacts_links: [
+            {
+                name: "weeding ring",
+                relation: "used during",
+                reference: "/Artifacts/wedding_ring_id"
+            },
+        ], 
+    },
 }
 
-// Unlikely to be completed this sprint
 const Users = {
+    amanda_user_id : {
+        username: "amanda",
+        reference: "People/amanda_gilbert_id",
+        password: "amanda123",
+        email: "amanda@gmail.com"
+    },
 
+    liam_user_id : {
+        username: "liam",
+        reference: "People/liam_gilbert_id",
+        password: "liam123",
+        email: "liam@gmail.com"
+    },
+
+    admin_user_id : {
+        username: "admin",
+        password: "amdin123",
+        email: "admin@gmail.com"
+    },
 }

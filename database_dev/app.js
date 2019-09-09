@@ -6,7 +6,7 @@ const form = document.querySelector('#add-cafe-form');
 // so I give it a call backfunctions that takes the turned scnapshot
 // I get a list of all current documents in the "cafe" collections
 // This includes a lot of meta data
-db.collection('cafes').get().then(
+db.collection('Tests').get().then(
     (snapshot) => {
         console.log(snapshot.docs)
     }
@@ -95,16 +95,17 @@ form.addEventListener('submit',
     }
 );
 
+function test(snapshot) {
+    // delete existing data
+    cafeList.innerHTML = '';
+    // reload
+    snapshot.docs.forEach(
+        (doc) => renderCafe(doc)
+    )
+}
 // reload upon update
 db.collection('cafes').orderBy('age').onSnapshot(
-    (snapshot) => {
-        // delete existing data
-        cafeList.innerHTML = '';
-        // reload
-        snapshot.docs.forEach(
-            (doc) => renderCafe(doc)
-        )
-    }
+    test
 ); 
 
 // realtime update
