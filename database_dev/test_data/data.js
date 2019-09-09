@@ -20,7 +20,7 @@ const Artifacts = {
     family_crest_drawing_id: {
         name: "family crest drawing",
         details : "a very old drawing of family crest by grandpa",
-        event_links : [
+        events_links : [
             {
                 name: "Making the famly crest",
                 relation: "created during",
@@ -43,7 +43,7 @@ const Artifacts = {
     making_crest_id : { 
         name: "recording of grandpa John making a crest",
         details: "I found this old recording of grandpa",
-        event_links : [
+        events_links : [
             {
                 name: "Making the famly crest",
                 relation: "created during",
@@ -75,7 +75,7 @@ const Artifacts = {
         name: "Statue of the Coat of Arms of Gilbert",
         details: "Amazing statue that is embedded with family history \n\
                   Moved to Liam's new house",
-        event_links: [
+        events_links: [
             {
                 name: "Making the famly crest",
                 relation: "created during",
@@ -103,7 +103,7 @@ const Artifacts = {
     wedding_ring_id : {
         name: "wedding ring",
         details: "The wedding ring passed down through generations",
-        event_links: [
+        events_links: [
             {
                 name: "Sarah and Liam got married",
                 relation: "used during",
