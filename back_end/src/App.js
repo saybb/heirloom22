@@ -7,7 +7,7 @@ import Navigation from "./component/layout/Navigation";
 import ArtefactList from "./feed/ArtefactList.js";
 import SignIn from './component/auth/SignIn';
 import SignUp from './component/auth/SignUp';
-import userProfile from './component/Profile/userProfile';
+import userProfile from './component/profile/userProfile';
 
 
 

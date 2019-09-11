@@ -4,8 +4,9 @@ import { connect } from 'react-redux'
 
 
 const UserProfile = (props) => {
-    const { auth, profile } = props;
-    //if (user.isEmpty) { return <Redirect to='/signin' /> }
+    const { profile } = props;
+    console.log(profile);
+    if (profile.isEmpty) { return <Redirect to='/signin' /> }
     return (
         <div className="userProfile">
             <div className="container">
@@ -22,7 +23,6 @@ const UserProfile = (props) => {
 
 const mapStateToProps = (state) => {  
     return{
-      auth: state.firebase.auth,
       profile: state.firebase.profile
     }
   }
