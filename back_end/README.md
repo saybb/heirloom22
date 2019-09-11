@@ -12,7 +12,7 @@ In the project directory, you can run:
 
 - Installs all relevant module dependencies.
 - [**Yarn**](https://yarnpkg.com/en/) is fast, well-desgined, more importantly it supports some *Redux* libraries that npm doesn't (npm is rusty!!!)
-- [Yarn installation](https://yarnpkg.com/lang/en/docs/install/#mac-stable), [Yarn
+- [Yarn installation](https://yarnpkg.com/lang/en/docs/install/#mac-stable)
 
 ### `npm start`
 
