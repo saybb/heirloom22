@@ -1,16 +1,15 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-// something changed
 
 const UserProfile = (props) => {
-    const { profile } = props;
-    console.log(profile);
-    if (profile.isEmpty) { return <Redirect to='/signin' /> }
+    const { auth, profile } = props;
+    console.log(auth);
+    if (!auth.uid) { return <Redirect to='/signin' /> }
     return (
         <div className="userProfile">
             <div className="container">
-                <h2>{profile.firstName + ' ' + profile.lastName}</h2>
+                <h2>{profile.firstName} {profile.lastName}</h2>
                 <ul>
                     <li>{profile.email}</li>
                     <li>{profile.location? profile.location : '(Please add your location)'}</li>
@@ -23,7 +22,8 @@ const UserProfile = (props) => {
 
 const mapStateToProps = (state) => {  
     return{
-      profile: state.firebase.profile 
+      auth: state.firebase.auth,
+      profile: state.firebase.profile
     }
   }
 

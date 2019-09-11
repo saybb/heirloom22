@@ -24,7 +24,7 @@ class Navigation extends Component {
             :
             <div>
               <ul className="right">
-                <li><NavLink to='/'>Hello, {!auth.displayName ? profile.firstName : auth.displayName}</NavLink></li>
+                <li><NavLink to='/profile'>Hello, {!auth.displayName ? profile.firstName : auth.displayName}</NavLink></li>
                 <li><Button onClick={this.props.signOut}>Log out</Button></li>
               </ul>
             </div>
