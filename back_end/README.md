@@ -1,5 +1,10 @@
 # Heirloom22 Back End (Redux & Firebase)
 
+## What's updated?
+11/9: User profile (http://localhost:3000/profile)
+10/9: Signin / Signup with **Redux**
+9/9: Add **Redux** 
+
 ## Description
 
 Project front end functionailties with Firebase support
