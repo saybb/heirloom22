@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signIn } from '../../store/Actions/authActions'
+import { signIn } from '../../store/Actions/userActions'
 import { Redirect } from 'react-router-dom'
 
 class SignIn extends Component {
@@ -46,7 +46,7 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
   return{
-    authError: state.auth.authError,
+    authError: state.user.authError,
     auth: state.firebase.auth
   }
 }

@@ -32,7 +32,9 @@ export const signIn = (credentials) => {
         return firestore.collection('users').doc(resp.user.uid).set({
                   firstName: newUser.firstName,
                   lastName: newUser.lastName,
-                  email: newUser.email 
+                  email: newUser.email,
+                  location: '',
+                  bio: '',
         }).then(() => {
           var user = auth.currentUser;
           user.updateProfile({ displayName: newUser.firstName});
