@@ -1,16 +1,18 @@
-# Heirloom22 Front End!
+# Heirloom22 Back End (Redux & Firebase)
 
 ## Description
 
-Front end for Heirloom22 developed using ReactJS.
+Project front end functionailties with Firebase support
 
 ## Useful Commands
 
 In the project directory, you can run:
 
-### `npm install`
+### `yarn install`
 
 - Installs all relevant module dependencies.
+- [**Yarn**](https://yarnpkg.com/en/) is fast, well-desgined, more importantly it supports some *Redux* libraries that npm doesn't (npm is rusty!!!)
+- [Yarn installation](https://yarnpkg.com/lang/en/docs/install/#mac-stable), [Yarn
 
 ### `npm start`
 
