@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-
+// something changed
 
 const UserProfile = (props) => {
     const { profile } = props;
@@ -23,7 +23,7 @@ const UserProfile = (props) => {
 
 const mapStateToProps = (state) => {  
     return{
-      profile: state.firebase.profile
+      profile: state.firebase.profile 
     }
   }
 
