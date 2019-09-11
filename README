@@ -1,8 +1,0 @@
-UNIMELB COMP30022 IT Project 2019
-
-`dev` branch is for development.
-- Changes made should pass a code review!
-
-Folders:
-  - database_dev :: database development (Chuan)
-  - front_end :: front end development (Angela, Lawson)
