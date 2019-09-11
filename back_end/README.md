@@ -2,6 +2,7 @@
 
 ## What's updated?
 11/9: User profile (http://localhost:3000/profile)
+
 (If you are doing front-end and see this sweet message, **congras!**, please do me a favour, add some buttons on the right hand side of each listed items on _./src/component/profile/userProfile.js_ )
 
 10/9: Signin / Signup with **Redux**
