@@ -6,7 +6,7 @@ Below you will find some information on how to perform common tasks.
 - [Updates](#updates)
 - [Available Scripts](#available-scripts)
     - [yarn start](#yarn-start)
-    - [yarn test] (#yarn-test)
+    - [yarn test](#yarn-test)
     - [yarn run build](#yarn-run-build)
 - [Folder Structure](#folder-structure)
 - [Supported Browsers](#supported-browsers)
