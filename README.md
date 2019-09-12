@@ -13,8 +13,11 @@ Below you will find some information on how to perform common tasks.
 
 ## Updates
 12/9 Frontend & Backend integration by Luoming
+
 11/9 User profile prototype by Luoming
+
 9/9  User Authentication (login/logout/signin) by Luoming
+
 
 README last update 12/9 by Luoming
 
