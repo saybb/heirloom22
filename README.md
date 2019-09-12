@@ -19,7 +19,7 @@ Below you will find some information on how to perform common tasks.
 9/9  User Authentication (login/logout/signin) by Luoming
 
 
-README last update 12/9 by Luoming
+README last updated 12/9 by Luoming
 
 ## Available Scripts
 
@@ -101,4 +101,4 @@ my-app/
 
 By default, the generated project uses the latest version of React.
 
-You can refer [to the React documentation](https://reactjs.org/docs/react-dom.html#browser-support) for more information about supported browsers.
+You can refer to the [React documentation](https://reactjs.org/docs/react-dom.html#browser-support) for more information about supported browsers.
