@@ -10,6 +10,7 @@ Below you will find some information on how to perform common tasks.
     - [yarn run build](#yarn-run-build)
 - [Folder Structure](#folder-structure)
 - [Supported Browsers](#supported-browsers)
+- [Supported Language Features and Polyfills](#supported-language-features-and-polyfills)
 
 ## Updates
 12/9 Frontend & Backend integration by Luoming
@@ -48,13 +49,12 @@ You will also see any lint errors in the console.
 
 ## Folder Structure
 
-After creation, your project should look like this:
-
 ```
-my-app/
+Heirloom22/
   README.md
   node_modules/
   package.json
+  package-lock.json
   yarn.lock
   firebase.json
   public/
@@ -102,3 +102,19 @@ my-app/
 By default, the generated project uses the latest version of React.
 
 You can refer to the [React documentation](https://reactjs.org/docs/react-dom.html#browser-support) for more information about supported browsers.
+
+## Supported Language Features and Polyfills
+
+This project supports a superset of the latest JavaScript standard.<br>
+In addition to [ES6](https://github.com/lukehoban/es6features) syntax features, it also supports:
+
+* [Exponentiation Operator](https://github.com/rwaldron/exponentiation-operator) (ES2016).
+* [Async/await](https://github.com/tc39/ecmascript-asyncawait) (ES2017).
+* [Object Rest/Spread Properties](https://github.com/sebmarkbage/ecmascript-rest-spread) (stage 3 proposal).
+* [Dynamic import()](https://github.com/tc39/proposal-dynamic-import) (stage 3 proposal)
+* [Class Fields and Static Properties](https://github.com/tc39/proposal-class-public-fields) (part of stage 3 proposal).
+* [JSX](https://facebook.github.io/react/docs/introducing-jsx.html) and [Flow](https://flowtype.org/) syntax.
+
+Learn more about [different proposal stages](https://babeljs.io/docs/plugins/#presets-stage-x-experimental-presets-).
+
+While we recommend using experimental proposals with some caution, Facebook heavily uses these features in the product code, so we intend to provide [codemods](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) if any of these proposals change in the future.
