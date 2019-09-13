@@ -21,7 +21,7 @@ Below you will find some information on how to perform common tasks.
 9/9  User Authentication (login/logout/signin) by Luoming
 
 
-README last update 12/9 by Luoming
+README last update 13/9 by Luoming
 
 ## Available Scripts
 
