@@ -20,7 +20,7 @@ Below you will find some information on how to perform common tasks.
 9/9  User Authentication (login/logout/signin) by Luoming
 
 
-README last updated 12/9 by Luoming
+README last update 12/9 by Luoming
 
 ## Available Scripts
 
@@ -29,7 +29,7 @@ In the project directory, you can run:
 ### `yarn install`
 
 - Installs all relevant module dependencies.
-- [**YARN**](https://yarnpkg.com/lang/en/) is a dependency manager just like _npm_
+- [**YARN**](https://yarnpkg.com/lang/en/) is a dependency manager just like _npm_, if you are interested in **YARN** vs **npm**, [Here](https://www.sitepoint.com/yarn-vs-npm/) provides insight.
 - To install **YARN**, please click [**Here**](https://yarnpkg.com/lang/en/docs/install/#mac-stable)
 
 ### `yarn start`
