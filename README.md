@@ -9,6 +9,7 @@ Below you will find some information on how to perform common tasks.
     - [yarn test](#yarn-test)
     - [yarn run build](#yarn-run-build)
 - [Folder Structure](#folder-structure)
+- [Application Structure](#Application-structure)
 - [Supported Browsers](#supported-browsers)
 - [Supported Language Features and Polyfills](#supported-language-features-and-polyfills)
 
@@ -96,6 +97,12 @@ Heirloom22/
                 userReducer.js
 
 ```
+
+## Application Structure
+
+![Component Leve Diagram](./public/Component_level_diagram.png)
+
+![App component diagram](./public/App_component_diagram.png)
 
 ## Supported Browsers
 
