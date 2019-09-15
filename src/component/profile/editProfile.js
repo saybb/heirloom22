@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 //import profile_image from './coughing-emoji.png'
 
-const UserProfile = (props) => {
+const EditProfile = (props) => {
     const { auth, profile } = props;
     console.log(auth);
     if (!auth.uid) { return <Redirect to='/signin' /> }
@@ -29,4 +29,4 @@ const mapStateToProps = (state) => {
     }
   }
 
-export default connect(mapStateToProps)(UserProfile)
+export default connect(mapStateToProps)(EditProfile)

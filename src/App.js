@@ -7,7 +7,7 @@ import Navigation from "./component/layout/Navigation";
 import Artefact from "./component/artefacts/Artefact.js"
 import SignIn from './component/auth/SignIn';
 import SignUp from './component/auth/SignUp';
-import userProfile from './component/profile/userProfile';
+//import userProfile from './component/profile/userProfile';
 
 class App extends Component {
   render() {
@@ -19,7 +19,7 @@ class App extends Component {
             <Route exact path="/" component={Artefact} />
             <Route path='/signin' component={SignIn} />
             <Route path='/signup' component={SignUp} />
-            <Route path='/profile' component={userProfile} />
+            {/* <Route path='/profile' component={userProfile} /> */}
           </Switch>
         </div>
       </BrowserRouter>
