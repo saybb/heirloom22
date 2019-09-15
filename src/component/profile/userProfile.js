@@ -1,7 +1,7 @@
 import React, { Fragment} from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-//import profile_image from './coughing-emoji.png'
+
 
 const UserProfile = (props) => {
     const { auth, profile } = props;

@@ -15,7 +15,13 @@ Below you will find some information on how to perform common tasks.
 
 ## Updates
 
-15/9 Antd applied in project, re-designed **User Profile** into a modal by Luoming
+15/9 Antd is enabled in project now, re-designed **User Profile** into a modal by Luoming
+
+To use Antd component, can **import 'antd'** (see example below):
+
+```javascript
+import { Button } from 'antd';
+```
 
 12/9 Frontend & Backend integration by Luoming
 
