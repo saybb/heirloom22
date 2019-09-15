@@ -65,8 +65,17 @@ function parse_object(javascript_object) {
 // buttons
 const delete_button = document.querySelector('#delete')
 const upload_button = document.querySelector('#upload')
+const delete_test_button = document.querySelector('#delete-test')
 
 // trigger
+delete_test_button.addEventListener('click',
+    (e) => {
+        e.stopPropagation()
+
+        delete_collection("Tests")
+    }
+)
+
 delete_button.addEventListener('click',
     (e) => {
         e.stopPropagation()
@@ -93,6 +102,7 @@ upload_button.addEventListener('click',
 
 // delete everything
 function delete_collection(path) {
+    console.log("Deleting ......")
     db.collection(path).get()
     .then(
         (snapshot) => {

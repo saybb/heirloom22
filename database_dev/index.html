@@ -11,22 +11,25 @@
 </head>
 <body>
 
-    <p>01/09/2019</p>
-    <h1>Sorting by age</h1>
+    <p>16/09/2019</p>
+    <h1>Artifact data sorted by date </h1>
 
     <div class="content">
         <!-- We use the id of the form as reference in app.js -->
         <!-- We also use the name of input as reference in app.js -->
-        <form id="add-cafe-form">
+        <form id="add-artifacts-form">
             <input type="text" name="name" placeholder="name">
             <input type="text" name="age" placeholder="age">
             <button>Add</button>
         </form>
-        <ul id="cafe-list"></ul>
+
+        <!-- Where we display all the artifact data -->
+        <ul id="artifacts-list"></ul>
     </div>
 
     <button id="delete">Delete Database</button>
     <button id="upload">Upload Sample Data</button>
+    <button id="delete-test">Delete Test</button>
 
     <script>
         // Your web app's Firebase configuration

@@ -1,32 +1,15 @@
 // DOM objects that we will refer to frequently
-const cafeList = document.querySelector('#cafe-list');
-const form = document.querySelector('#add-cafe-form');
+const showList = document.getElementById('artifacts-list');
+const createForm = document.getElementById('add-artifacts-form');
 
-// asyn request that returns a promise
-// so I give it a call backfunctions that takes the turned scnapshot
-// I get a list of all current documents in the "cafe" collections
-// This includes a lot of meta data
-db.collection('Tests').get().then(
-    (snapshot) => {
-        console.log(snapshot.docs)
-    }
-)
+// The name of the collection we will be accessing
+const collection_name = "Tests";
 
-// get the data for each document
-// docs is an array of documents that belongs to that collection
-// doc.data extracts data for that documents
-// db.collection('cafes').get().then(
-//     (snapshot) => {
-//         snapshot.docs.forEach(
-//             (doc) => {
-//                 console.log(doc.data())
-//             }
-//         )
-//     }
-// );
+// create artifacts form
 
-// create element and render them
-function renderCafe(doc) {
+
+// create each element and render them
+function renderArtifacts(doc) {
     // crate a list element
     // save document id to the list
     // we need data id for deleting things
@@ -46,7 +29,7 @@ function renderCafe(doc) {
     li.appendChild(cross)
 
     // save the list element to a list we selected
-    cafeList.appendChild(li);
+    showList.appendChild(li);
 
     // when the cross is clicked
     // delete data function associated to each list item
@@ -56,72 +39,45 @@ function renderCafe(doc) {
             // get the id of the parent which is the list element
             // let id = e.target.parentElement.getAttribute('data-id');
             // query the database to delete it
-            // db.collection('cafes').doc(id).delete();
-            db.collection('cafes').doc(doc.id).delete();
+            db.collection(collection_name).doc(doc.id).delete();
         }
     )
 
 }
 
-// render each document once only
-// db.collection('cafes').get().then(
-//     (snapshot) => {
-//         snapshot.docs.forEach(
-//             (doc) => renderCafe(doc)
-//         )
-//     }
-// );
-
 // saving data
-// Link to the form on HTML
+// Link to the createForm on HTML
 // Listen to the submission button press
-form.addEventListener('submit', 
+createForm.addEventListener('submit', 
     (e) => {
-        // link to the form
+        // link to the createForm
 
         // prevent reloading which stops program from executing
         e.preventDefault();
 
         // upload the document
-        db.collection('cafes').add({
+        db.collection(collection_name).add({
             // create a json object
-            name: form.name.value,
-            age: Number(form.age.value)
+            name: createForm.name.value,
+            age: Number(createForm.age.value)
         });
 
-        // // reset the values of the form
-        form.name.value = '';
-        form.age.value = '';
+        // // reset the values of the createForm
+        createForm.name.value = '';
+        createForm.age.value = '';
     }
 );
 
-function test(snapshot) {
+function reload(snapshot) {
     // delete existing data
-    cafeList.innerHTML = '';
+    showList.innerHTML = '';
     // reload
     snapshot.docs.forEach(
-        (doc) => renderCafe(doc)
+        (doc) => renderArtifacts(doc)
     )
 }
-// reload upon update
-db.collection('cafes').orderBy('age').onSnapshot(
-    test
-); 
 
-// realtime update
-// db.collection('cafes').orderBy('age').onSnapshot(
-//     (snapshot) => {
-//         // check all the changes
-//         let changes = snapshot.docChanges();
-//         changes.forEach(
-//             (change) => {
-//                 console.log(change.doc.data());
-//                 if (change.type == 'added') {
-//                     renderCafe(change.doc);
-//                 } else if (change.type == 'removed') {
-//                     let li = cafeList.querySelector('[data-id=' + change.doc.id + ']');
-//                     cafeList.removeChild(li);
-//                 }
-//             }
-//         );
-//     });
+// reload upon update
+db.collection(collection_name).onSnapshot(
+    reload
+); 
