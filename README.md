@@ -15,6 +15,8 @@ Below you will find some information on how to perform common tasks.
 
 ## Updates
 
+16/9 **User Profile** modal is now swithable, it has additional content: [Edit Profile]
+
 15/9 Antd is enabled in project now, re-designed **User Profile** into a modal by Luoming
 
 To use Antd component, can **import 'antd'** (see example below):
@@ -30,7 +32,7 @@ import { Button } from 'antd';
 9/9  User Authentication (login/logout/signin) by Luoming
 
 
-README last update 15/9 by Luoming
+README last update 16/9 by Luoming
 
 ## Available Scripts
 
@@ -79,6 +81,7 @@ Heirloom22/
     index.css
     index.js
     logo.svg
+    img/
     component/
         artefacts/
             Artefact.js
@@ -95,6 +98,7 @@ Heirloom22/
             SignedIn.js (unused)
             SignedOut.js (unused)
         profile/
+            editProfile.js
             userProfile.js
         firebase/
             config.js
