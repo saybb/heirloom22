@@ -35,6 +35,20 @@ const initState = {
           ...state,
           authError: action.err.message
         }
+
+      case 'PROFILE_UPDATE_SUCCESS':
+        console.log('profile update success')
+        return {
+          ...state,
+          authError: null
+        }
+
+      case 'PROFILE_UPDATE_ERROR':
+        console.log('profile update error')
+        return {
+          ...state,
+          authError: 'Profile update failed'
+        }
   
       default:
         return state

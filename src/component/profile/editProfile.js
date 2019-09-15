@@ -2,22 +2,22 @@ import React, { Fragment} from 'react'
 import { connect } from 'react-redux'
 import { Form, Input } from 'antd';
 
-const EditProfile = (props) => {
+const EditProfile = ({handleChange, state}) => {
 
     return (
       <Fragment>
         <Form >
-        <Form.Item label="firstName" {...'inline'}>
-            <Input placeholder="first name" />
+        <Form.Item label="firstName" >
+            <Input id="firstName" placeholder="first name" onChange={handleChange}/>
           </Form.Item>
-          <Form.Item label="lastName" {...'inline'}>
-            <Input placeholder="last name" />
+          <Form.Item label="lastName" >
+            <Input id="lastName" placeholder="last name" onChange={handleChange}/>
           </Form.Item>
           <Form.Item label="location" >
-            <Input placeholder="where you are?" />
+            <Input id="location" placeholder="where you are?" onChange={handleChange}/>
           </Form.Item>
           <Form.Item label="bio" >
-            <Input placeholder="tell them about yourself" />
+            <Input id="bio" placeholder="tell them about yourself" onChange={handleChange}/>
           </Form.Item>
         </Form>
       </Fragment>

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Modal, Button } from 'antd';
-import { signOut } from '../../store/Actions/userActions'
+import { updateUserProfile } from '../../store/Actions/userActions'
 import UserProfile from '../profile/userProfile'
 import EditProfile from '../profile/editProfile'
 
@@ -13,6 +13,10 @@ class Navigation extends Component {
     editMode: false,
     visible: false,
     confirmLoading: false,
+    firstName: '',
+    lastName: '',
+    location: '',
+    bio: '',
   };
 
   showModal = () => {
@@ -27,9 +31,11 @@ class Navigation extends Component {
     });
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
     console.log('updating user profile');
     this.setState({ loading: true });
+    console.log('update: ',this.state.firstName, this.state.lastName, this.state.location, this.state.bio);
+    this.props.updateUserProfile(this.state);
     setTimeout(() => {
       this.setState({ loading: false, visible: false });
     }, 3000);
@@ -45,7 +51,13 @@ class Navigation extends Component {
     this.setState({
       editMode: false,
     });
-  };
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.id]: e.target.value
+    })
+  }
 
   render() {
     const { visible, confirmLoading } = this.state;
@@ -97,7 +109,7 @@ class Navigation extends Component {
                     {!this.state.editMode ? 
                       <UserProfile/>
                       :
-                      <EditProfile/>
+                      <EditProfile handleChange={this.handleChange} />
                     }
                     
                   </Modal>
@@ -122,7 +134,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    signOut: () => dispatch(signOut())
+    updateUserProfile: (info) => dispatch(updateUserProfile(info))
   }
 }
 

@@ -46,3 +46,19 @@ export const signIn = (credentials) => {
       });
     }
   }
+
+  export const updateUserProfile = (info) => {
+    return (dispatch, state, {auth, firestore}) => {
+      var user = auth.currentUser;
+      firestore.collection('users').doc(user.uid).set({
+              firstName: info.firstName,
+              lastName: info.lastName,
+              location: info.location,
+              bio: info.bio,
+      }).then(() => {
+        dispatch({ type: 'PROFILE_UPDATE_SUCCESS'});
+      }).catch((err) => {
+        dispatch({ type: 'PROFILE_UPDATE_ERROR'});
+      });
+    }
+  }
