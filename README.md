@@ -14,6 +14,9 @@ Below you will find some information on how to perform common tasks.
 - [Supported Language Features and Polyfills](#supported-language-features-and-polyfills)
 
 ## Updates
+
+15/9 Antd applied in project, re-designed **User Profile** into a modal by Luoming
+
 12/9 Frontend & Backend integration by Luoming
 
 11/9 User profile prototype by Luoming
@@ -21,7 +24,7 @@ Below you will find some information on how to perform common tasks.
 9/9  User Authentication (login/logout/signin) by Luoming
 
 
-README last update 13/9 by Luoming
+README last update 15/9 by Luoming
 
 ## Available Scripts
 
