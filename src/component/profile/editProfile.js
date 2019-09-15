@@ -1,26 +1,29 @@
 import React, { Fragment} from 'react'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-//import profile_image from './coughing-emoji.png'
+import { Form, Input } from 'antd';
 
 const EditProfile = (props) => {
-    const { auth, profile } = props;
-    console.log(auth);
-    if (!auth.uid) { return <Redirect to='/signin' /> }
+
     return (
-        <Fragment>
-            <img src="/img/coughing-emoji.png" alt="" 
-                style={{width: 200,
-                    height: 200,
-                    objectFit: 'cover',
-                    maxWidth: '100%',
-                    borderRadius: '50%'}}/>
-            <p>{profile.email}</p>
-            <p>{profile.location? profile.location : '(Please add your location)'}</p>
-            <p>{profile.bio? profile.bio : '(Please edit your bio)'}</p>
-        </Fragment>
-    )
+      <Fragment>
+        <Form >
+        <Form.Item label="firstName" {...'inline'}>
+            <Input placeholder="first name" />
+          </Form.Item>
+          <Form.Item label="lastName" {...'inline'}>
+            <Input placeholder="last name" />
+          </Form.Item>
+          <Form.Item label="location" >
+            <Input placeholder="where you are?" />
+          </Form.Item>
+          <Form.Item label="bio" >
+            <Input placeholder="tell them about yourself" />
+          </Form.Item>
+        </Form>
+      </Fragment>
+    );
 }
+
 
 const mapStateToProps = (state) => {  
     return{

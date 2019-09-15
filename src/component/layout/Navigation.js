@@ -4,13 +4,13 @@ import { NavLink } from 'react-router-dom'
 import { Modal, Button } from 'antd';
 import { signOut } from '../../store/Actions/userActions'
 import UserProfile from '../profile/userProfile'
-
-
+import EditProfile from '../profile/editProfile'
 
 class Navigation extends Component {
 
   state = {
-    ModalText: 'Content of the modal',
+    //ModalText: 'Content of the modal',
+    editMode: false,
     visible: false,
     confirmLoading: false,
   };
@@ -21,30 +21,35 @@ class Navigation extends Component {
     });
   };
 
-  handleOk = () => {
+  handleEditMode = () => {
     this.setState({
-      ModalText: 'The modal will be closed after two seconds',
-      confirmLoading: true,
+      editMode: true,
     });
-    setTimeout(() => {
-      this.setState({
-        visible: false,
-        confirmLoading: false,
-      });
-    }, 2000);
-  };
+  }
 
-  handleCancel = () => {
-    console.log('Clicked cancel button');
+  handleSubmit = () => {
+    console.log('updating user profile');
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.setState({ loading: false, visible: false });
+    }, 3000);
+  }
+
+  handleBack = () => {
     this.setState({
       visible: false,
+    });
+  }
+
+  handleCancel = () => {
+    this.setState({
+      editMode: false,
     });
   };
 
   render() {
-    const { visible, confirmLoading, ModalText } = this.state;
+    const { visible, confirmLoading } = this.state;
     const { auth, profile } = this.props;
-    console.log(profile);
 
     return(
       <nav className="Navigation">
@@ -64,21 +69,37 @@ class Navigation extends Component {
                     Hello, {!auth.displayName ? profile.firstName : auth.displayName}
                   </Button>
                   <Modal
-                    title="Edit your profile"
+                    title="Profile"
                     visible={visible}
-                    onOk={this.handleOk}
+                    onOk={this.handleSubmit}
                     confirmLoading={confirmLoading}
-                    onCancel={this.handleCancel}
-                    footer={[
-                      <Button key="back" onClick={this.handleCancel}>
-                        Return
-                      </Button>,
-                      <Button key="submit" type="primary" onClick={this.handleOk}>
-                        Submit
-                      </Button>,
-                    ]}
+                    onCancel={this.handleBack}
+                    footer={!this.state.editMode ? 
+                      [
+                        <Button key="close" onClick={this.handleBack}>
+                          Back
+                        </Button>,
+                        <Button key="edit" type="primary" onClick={this.handleEditMode}>
+                          Edit Profile
+                        </Button>,
+                      ]
+                      :
+                      [
+                        <Button key="cancle" onClick={this.handleCancel}>
+                          Return
+                        </Button>,
+                        <Button key="submit" type="primary" onClick={this.handleSubmit}>
+                          Submit
+                        </Button>,
+                      ]
+                    }
                   >
-                    <UserProfile/>
+                    {!this.state.editMode ? 
+                      <UserProfile/>
+                      :
+                      <EditProfile/>
+                    }
+                    
                   </Modal>
                 </div>
                 <div>

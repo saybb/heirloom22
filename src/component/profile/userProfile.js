@@ -14,7 +14,8 @@ const UserProfile = (props) => {
                     height: 200,
                     objectFit: 'cover',
                     maxWidth: '100%',
-                    borderRadius: '50%'}}/>
+                    borderRadius: '50%',
+                    verticalAlign: 'middle'}}/>
             <p>{profile.email}</p>
             <p>{profile.location? profile.location : '(Please add your location)'}</p>
             <p>{profile.bio? profile.bio : '(Please edit your bio)'}</p>
