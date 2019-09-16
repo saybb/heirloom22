@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Modal, Button } from 'antd';
-import { updateUserProfile } from '../../store/Actions/userActions'
+import { updateUserProfile, signOut } from '../../store/Actions/userActions'
 import UserProfile from '../profile/userProfile'
 import EditProfile from '../profile/editProfile'
 
@@ -72,8 +72,11 @@ class Navigation extends Component {
           { !auth.uid ?
               <div>
                 <ul className="right">
+                  <li><NavLink to='/'>Home</NavLink></li>
+                  <li><NavLink to='/feed'>List View</NavLink></li>
                   <li><NavLink to='/signup'>Sign up</NavLink></li>
                   <li><NavLink to='/signin'>Log in</NavLink></li>
+                  <li><NavLink to='/view/artefact'>Sample Artefact View</NavLink></li>
                 </ul>
               </div>
             :
@@ -136,7 +139,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateUserProfile: (info) => dispatch(updateUserProfile(info))
+    updateUserProfile: (info) => dispatch(updateUserProfile(info)),
+    signOut: () => dispatch(signOut())
   }
 }
 

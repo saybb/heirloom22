@@ -1,30 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import 'antd/dist/antd.css';
 
 /* Components */
-import Navigation from "./component/layout/Navigation";
-import Artefact from "./component/artefacts/Artefact.js"
+import Navigation from "./component/layout/Navigation.js";
+import ArtefactList from "./component/feed/ArtefactList.js";
+import Artefact from "./component/objects/Artefact.js";
 import SignIn from './component/auth/SignIn';
 import SignUp from './component/auth/SignUp';
-//import userProfile from './component/profile/userProfile';
 
-class App extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div className="App">
-          <Navigation />
-          <Switch>
-            <Route exact path="/" component={Artefact} />
-            <Route path='/signin' component={SignIn} />
-            <Route path='/signup' component={SignUp} />
-            {/* <Route path='/profile' component={userProfile} /> */}
-          </Switch>
-        </div>
-      </BrowserRouter>
-    );
-  };
+class App extends React.Component {
+    render() {
+        return (
+            <Router>
+                <div className="App">
+                    <Navigation />
+
+                    <Switch>
+                        <Route path="/" exact component={ArtefactList}/>
+                        <Route path="/feed" component={ArtefactList}/>
+                        <Route path="/view/artefact" component={Artefact}/>
+
+                        <Route path='/signin' component={SignIn} />
+                        <Route path='/signup' component={SignUp} />
+
+                        {/* default to "/" if unrecognised route. */}
+                        <Route render={() => <Redirect to="/"/>}/>
+                    </Switch>
+                </div>
+            </Router>
+        );
+    };
 }
 
 export default App;

@@ -1,3 +1,14 @@
+UNIMELB COMP30022 IT Project 2019
+
+Branches:
+`dev` branch is for development.
+- Changes made should pass a code review!
+	  
+`front_end` is for front_end development and testing.
+
+Architecture
+![](./images/architecture.svg)
+
 # Heirloom22 Project!
 this project is developed using [ReactJs](https://reactjs.org/), [Redux](https://redux.js.org/) & [Firebase](https://firebase.google.com).
 Below you will find some information on how to perform common tasks.

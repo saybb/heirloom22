@@ -6,20 +6,17 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux'
 
 // components
 import "./Artefact.css";
 import {Divider} from "antd";
-import ArtefactList from "./ArtefactList.js"
 
 /**
  * Function element:
  * Props:
  *   - artefact : the artefact json object to display.
  */
-const Artefact = (props) => {
-
+function Artefact() {
     // this is just sample data - in reality we will use props.artefact.
     const artefact = {
     name: "Statue of the Coat of Arms of Gilbert",
@@ -53,8 +50,6 @@ const Artefact = (props) => {
     } 
  
 
-    const { auth } = props;
-
     /**
      * For an artefact, we intend to show:
      *   - image (will eventually be a gallery)
@@ -64,21 +59,17 @@ const Artefact = (props) => {
      *   - event links to the artefact + their relevant descriptions
      */
     return (
-        !auth.uid ?       
-            <div className="Artefact">
-                <div className="ArtefactImageContainer">
-                    <img src={artefact.image} alt={artefact.name} />
-                </div>
-                <div className="ArtefactContent">
-                    <h2>{artefact.name}</h2>
-                    <p>{artefact.details}</p>
-                    <People people={artefact.people_links}/>
-                    <Events events={artefact.event_links}/>
-                </div>
+        <div className="Artefact">
+            <div className="ArtefactImageContainer">
+                <img src={artefact.image} alt={artefact.name} />
             </div>
-            :
-            <ArtefactList />
-        
+            <div className="ArtefactContent">
+                <h2>{artefact.name}</h2>
+                <p>{artefact.details}</p>
+                <People people={artefact.people_links}/>
+                <Events events={artefact.event_links}/>
+            </div>
+        </div>
     );
 
 
@@ -183,13 +174,4 @@ const Artefact = (props) => {
 
 }
 
-
-
-const mapStateToProps = (state) => {  
-  return{
-    auth: state.firebase.auth,
-  }
-}
-
-
-export default connect(mapStateToProps, null)(Artefact)
+export default Artefact;
