@@ -16,6 +16,8 @@ const UserProfile = (props) => {
                     maxWidth: '100%',
                     borderRadius: '50%',
                     verticalAlign: 'middle'}}/>
+            <p> {auth.email}</p>
+            <p>{profile.firstName}  {profile.lastName} </p>
             <p>{profile.email}</p>
             <p>{profile.location? profile.location : '(Please add your location)'}</p>
             <p>{profile.bio? profile.bio : '(Please edit your bio)'}</p>
