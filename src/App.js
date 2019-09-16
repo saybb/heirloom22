@@ -3,9 +3,9 @@ import './App.css';
 import 'antd/dist/antd.css';
 
 /* Components */
-import Navigation from "./Navigation.js";
-import ArtefactList from "./feed/ArtefactList.js";
-import Artefact from "./data/Artefact.js";
+import Navigation from "./component/layout/Navigation.js";
+import ArtefactList from "./component/feed/ArtefactList.js";
+import Artefact from ".component/objects/Artefact.js";
 
 class App extends React.Component {
   state = {
