@@ -25,7 +25,7 @@ var firebaseConfig = {
 2. Delete the database (optional) 
 3. Upload the database (will overwrite exisiting data)
 
-![screen shot](/images/upload_sample_data.png)
+![screen shot](./images/upload_sample_data.png)
 
 
 ## Test data
@@ -101,7 +101,7 @@ Important fields
 
 by Chuanyuan Liu
 
-![image-20190908232504728](/Images/firestore.png)
+![image-20190908232504728](./Images/firestore.png)
 
 
 
@@ -404,7 +404,7 @@ function convert_reference(text) {
 
 - For query, you can't access data because it is too computationally expensive
 
-![image](/Images/request.png)
+![image](./Images/request.png)
 
 
 
@@ -444,7 +444,7 @@ function convert_reference(text) {
   - `{wildcard=**}`
   - Very bad because it matches evreything and removes all rules
 
-![path](/Images/path.png)
+![path](./Images/path.png)
 
 
 
