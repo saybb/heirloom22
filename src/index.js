@@ -11,7 +11,6 @@ import logger from 'redux-logger'
 import { Provider } from 'react-redux'
 import rootReducer from './store/Reducer/rootReducer'
 import config, {auth, firestore} from './firebase/config'
-import 'antd/dist/antd.css';
 
 const store = createStore(rootReducer,
     compose(
