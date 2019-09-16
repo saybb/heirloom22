@@ -25,7 +25,7 @@ var firebaseConfig = {
 2. Delete the database (optional) 
 3. Upload the database (will overwrite exisiting data)
 
-![screen shot](./images/upload_sample_data.png)
+![screen shot](./Images/upload_sample_data.png)
 
 
 ## Test data
