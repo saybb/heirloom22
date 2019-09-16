@@ -1,28 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import { BrowserRouter, Switch, Route} from 'react-router-dom';
+import 'antd/dist/antd.css';
 
 /* Components */
-import Navigation from "./component/layout/Navigation";
-import Artefact from "./component/artefacts/Artefact.js"
-import SignIn from './component/auth/SignIn';
-import SignUp from './component/auth/SignUp';
-//import userProfile from './component/profile/userProfile';
+import Navigation from "./Navigation.js";
+import ArtefactList from "./feed/ArtefactList.js";
+import Artefact from "./data/Artefact.js";
 
-class App extends Component {
+class App extends React.Component {
+  state = {
+    // maintain a list of "pages" and which one is active
+    active: "artefact",
+    pages: {
+      artefactList: <ArtefactList />,
+      artefact: <Artefact />
+    }
+  }
+
   render() {
+    const {active, pages} = this.state;
+
     return (
-      <BrowserRouter>
-        <div className="App">
-          <Navigation />
-          <Switch>
-            <Route exact path="/" component={Artefact} />
-            <Route path='/signin' component={SignIn} />
-            <Route path='/signup' component={SignUp} />
-            {/* <Route path='/profile' component={userProfile} /> */}
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <div className="App">
+        <Navigation />
+        { // show only the active component
+          pages[active]
+        }
+      </div>
     );
   };
 }
