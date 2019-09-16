@@ -54,9 +54,10 @@ createForm.addEventListener('submit',
 
         // prevent reloading which stops program from executing
         e.preventDefault();
+        id = createForm.name.value;
 
         // upload the document
-        db.collection(collection_name).add({
+        db.doc(collection_name + "/" + id).set({
             // create a json object
             name: createForm.name.value,
             age: Number(createForm.age.value)
@@ -76,8 +77,7 @@ function reload(snapshot) {
         (doc) => renderArtifacts(doc)
     )
 }
-
 // reload upon update
-db.collection(collection_name).onSnapshot(
+db.collection(collection_name).Orderby("date").onSnapshot(
     reload
 ); 
