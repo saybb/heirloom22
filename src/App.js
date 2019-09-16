@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
 import 'antd/dist/antd.css';
 
@@ -24,6 +24,9 @@ class App extends React.Component {
 
                         <Route path='/signin' component={SignIn} />
                         <Route path='/signup' component={SignUp} />
+
+                        {/* default to "/" if unrecognised route. */}
+                        <Route render={() => <Redirect to="/"/>}/>
                     </Switch>
                 </div>
             </Router>

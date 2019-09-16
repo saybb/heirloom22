@@ -72,8 +72,11 @@ class Navigation extends Component {
           { !auth.uid ?
               <div>
                 <ul className="right">
+                  <li><NavLink to='/'>Home</NavLink></li>
+                  <li><NavLink to='/feed'>List View</NavLink></li>
                   <li><NavLink to='/signup'>Sign up</NavLink></li>
                   <li><NavLink to='/signin'>Log in</NavLink></li>
+                  <li><NavLink to='/view/artefact'>Sample Artefact View</NavLink></li>
                 </ul>
               </div>
             :
