@@ -1,23 +1,20 @@
-/* 
-Visualization:  https://www.lucidchart.com/documents/view/d774e941-dcb7-4958-bd4a-319760d1d337/0_0
+/* * *
+ * ArtefactList :: ReactJS Component
+ * A simple list view for browsing artefacts.
+ * Requests for relevant content will be made from this component.
+ * Created By: Lawson Wang-Wills
+ */
 
-I have simplified a few things in this representation
-1. reference 
-    - from: a Firebase object 
-    - to: "path/to/document"
-2. date_created 
-    - from: a Time object
-    - to: a string
+import React from 'react';
 
-Note
-1. I am using dev keyward to save JSON comment 
-2. I have included some links to multimedia in dev for reference.
-   I am not working on multimedia support for this sprint.
-*/
+// components
+import ArtefactListElement from "./ArtefactListElement.js";
+import './ArtefactList.css';
 
-const Artifacts = {
 
-    family_crest_drawing_id: {
+// sample data. This is just here for testing. It's a list of artefact objects.
+const artefacts = [
+    {
         name: "family crest drawing",
         details : "a very old drawing of family crest by grandpa",
         events_links : [
@@ -36,11 +33,9 @@ const Artifacts = {
         ],
         created_by : "amanda",
         date_created : "02/09/2019",
-        dev : "link to 1 event and 1 person \n\
-               what it looks like https://bit.ly/2L7A4jB",
+        dev : "link to 1 event and 1 person \nwhat it looks like https://bit.ly/2L7A4jB",
     },
-
-    making_crest_id : { 
+    {
         name: "recording of grandpa John making a crest",
         details: "I found this old recording of grandpa",
         events_links : [
@@ -59,23 +54,18 @@ const Artifacts = {
         ],
         created_by: "amanda",
         date_created: "02/09/2019",
-        dev: "link to 0 event and 1 person \n\
-               what it looks like https://bit.ly/2ZhlArh",
+        dev: "link to 0 event and 1 person \nwhat it looks like https://bit.ly/2ZhlArh",
     },
-
-
-    random_photos_id : {
+    {
         name: "random photos",
         created_by: "amanda",
         date_created: "02/09/2019",
         dev: "no links, no details"
     },
-
-    family_crest_monument_id : {
+    {
         name: "Statue of the Coat of Arms of Gilbert",
-        details: "Amazing statue that is embedded with family history \n\
-                  Moved to Liam's new house",
-        events_links: [
+        details: "Amazing statue that is embedded with family history \nMoved to Liam's new house",
+        event_links: [
             {
                 name: "Making the famly crest",
                 relation: "created during",
@@ -96,11 +86,9 @@ const Artifacts = {
         ],
         created_by: "liam",
         date_created: "02/09/2018",
-        dev: "link to 2 events and 1 person \n\
-               what it looks like https://bit.ly/324CaHY",
+        dev: "link to 2 events and 1 person \nwhat it looks like https://bit.ly/324CaHY",
     }, 
-
-    wedding_ring_id : {
+    {
         name: "wedding ring",
         details: "The wedding ring passed down through generations",
         events_links: [
@@ -131,8 +119,7 @@ const Artifacts = {
         date_created: "02/09/2019",
         dev: "link to 2 events and 2 people" 
     }, 
-
-    vase_id : {
+    {
         name: "traditional Chinese vase",
         details: "An vase I received as a gift from my student Bob in 1990 Christmas", 
         people_links: [
@@ -144,10 +131,9 @@ const Artifacts = {
         ],
         created_by: "liam",
         date_created: "01/10/2018",
-        dev: "link to 0 event and 1 person \n\
-              test addendums" 
+        dev: "link to 0 event and 1 person \ntest addendums" 
     }
-}
+]
 
 const Addendums = {
     broken_vase_comment_id : {
@@ -339,3 +325,25 @@ const Users = {
         email: "admin@gmail.com"
     },
 }
+
+
+class ArtefactList extends React.Component {
+    state = {
+        artefacts: artefacts
+    }
+
+    render() {
+        return(
+            <div className="ArtefactList">
+                <h2>Browsing your collection...</h2>
+                { // generates an ArtefactListElement for each artefact using map
+                    artefacts.map((artefact) => (
+                        <ArtefactListElement artefact={artefact} />
+                    ))
+                }
+            </div> 
+        );
+    }
+}
+
+export default ArtefactList;
