@@ -6,14 +6,11 @@
  */
 
 import React from 'react';
+import ItemLinks from './ItemLinks.js';
+import "./Objects.css";
 
-// components
-import "./Artefact.css";
-import {Divider} from "antd";
-
-function Artefact() {
-    // this is just sample data - in reality we will use props.artefact.
-    const artefact = {
+// this is just sample data - in reality we will use props.artefact.
+const artefact = {
     name: "Statue of the Coat of Arms of Gilbert",
     details: "Amazing statue that is embedded with family history. Of course, the family crest has no official meaning or clerical relevance, but it still remains to be a symbol of what John thought the family should stand for. That's something we can understand just by looking at this creation. Moved to Liam's new house",
     event_links: [
@@ -42,9 +39,9 @@ function Artefact() {
     date_created: "02/09/2018",
     dev: "link to 2 events and 1 person \nwhat it looks like https://bit.ly/324CaHY",
     image: "https://bit.ly/324CaHY"
-    } 
- 
-
+} 
+    
+function Artefact() {
     /**
      * For an artefact, we intend to show:
      *   - image (will eventually be a gallery)
@@ -54,119 +51,18 @@ function Artefact() {
      *   - event links to the artefact + their relevant descriptions
      */
     return (
-        <div className="Artefact">
-            <div className="ArtefactImageContainer">
+        <div className="object">
+            <div className="object-image-container">
                 <img src={artefact.image} alt={artefact.name} />
             </div>
-            <div className="ArtefactContent">
+            <div className="object-content">
                 <h2>{artefact.name}</h2>
                 <p>{artefact.details}</p>
-                <People people={artefact.people_links}/>
-                <Events events={artefact.event_links}/>
+                {/* ItemLinks will render links as items with names and relation descriptors */}
+                <ItemLinks title="Related People" items={artefact.people_links}/>
+                <ItemLinks title="Related Events" items={artefact.event_links}/>
             </div>
         </div>
     );
-
-
-    /**
-     * Function subcomponent: People.
-     * Renders a list of people links.
-     * 
-     * Props:
-     *   - people : list of people links to render
-     */
-    function People(props) {
-        const {people} = props;
-
-        // if no people links exist then don't render anything
-        if (!people) {
-            return null;
-        }
-
-        return(
-            <React.Fragment>
-                <h3>Related People</h3>
-                <div className="ArtefactRelations">
-                    { // generates a person for each link
-                        people.map((person) => <Person person={person}/>)
-                    }
-                </div>
-            </React.Fragment>
-        );
-    }
-
-
-    /**
-     * Function subcomponent: Person
-     * Renders a single person link.
-     * 
-     * Props:
-     *   - person : person link to render
-     */
-    function Person(props) {
-        const {person} = props;
-
-        return(
-            <React.Fragment>
-                <div className="ArtefactRelation">
-                    <h4>{person.name}</h4>
-                    <p>{person.relation}</p>
-                </div>
-                <Divider className="ArtefactRelationDivider"/>
-            </React.Fragment>
-        );
-    }
-
-
-    /**
-     * Function subcomponent: Events.
-     * Renders a list of event links.
-     * 
-     * Props:
-     *   - events : list of event links to render
-     */
-    function Events(props) {
-        const {events} = props;
-        
-        // if no event links exist then don't render anything
-        if (!events) {
-            return null;
-        }
-
-        return(
-            <React.Fragment>
-                <h3>Related Events</h3>
-                <div className="ArtefactRelations">
-                    { // generates an event for each link
-                        events.map((event) => <Event event={event}/>)
-                    }
-                </div>
-            </React.Fragment>
-        );
-    }
-
-
-    /**
-     * Function subcomponent: Event
-     * Renders a single event link.
-     * 
-     * Props:
-     *   - event : event link to render
-     */
-    function Event(props) {
-        const {event} = props;
-
-        return(
-            <React.Fragment>
-                <div className="ArtefactRelation">
-                    <h4>{event.name}</h4>
-                    <p>{event.relation}</p>
-                </div>
-                <Divider className="ArtefactRelationDivider"/>
-            </React.Fragment>
-        );
-    }
-
 }
-
 export default Artefact;

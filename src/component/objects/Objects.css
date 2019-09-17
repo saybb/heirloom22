@@ -1,16 +1,16 @@
 /* * *
- * Artefact :: CSS
- * CSS styles for Artefact.js
+ * Objects :: CSS
+ * CSS styles for display of objects, such as artefacts, people and events.
  * Created By: Lawson Wang-Wills
  */
 
-.Artefact {
+.object {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-.ArtefactContent {
+.object-content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -18,51 +18,23 @@
     margin: 0 1em;
 }
 
-.ArtefactImageContainer {
+.object-image-container {
     width: 100%;
     margin: 1em 0;
 }
-.ArtefactImageContainer img {
+.object-image-container img {
     width: 100%;
     object-fit: contain;
 }
 
 @media screen and (min-width: 768px) {
     /* limit how much space an image can take up on large devices */
-    .ArtefactImageContainer img {
+    .object-image-container img {
         max-height: 500px;
     }
 
     /* on larger screens, remove extra margin whitespace for content, since we already have some */
-    .ArtefactContent {
+    .object-content {
         margin: 0;
     }
-}
-
-.ArtefactRelations {
-    width: 100%;
-    padding: 0em 1em 0.5em 1em;
-}
-
-.ArtefactRelation {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-
-    width: 100%;
-    padding: 0.5em 0;
-
-    transition: 0.5s;
-}
-
-.ArtefactRelation:hover {
-    background: #f8f8f8;
-}
-
-.ArtefactRelation p {
-    margin: 0 0.5rem;
-}
-
-.ArtefactRelationDivider {
-    margin: 0;
 }
