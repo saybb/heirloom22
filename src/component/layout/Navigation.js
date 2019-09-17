@@ -77,6 +77,7 @@ class Navigation extends Component {
                   <li><NavLink to='/signup'>Sign up</NavLink></li>
                   <li><NavLink to='/signin'>Log in</NavLink></li>
                   <li><NavLink to='/view/artefact'>Sample Artefact View</NavLink></li>
+                  <li><NavLink to='/view/event'>Sample Event View</NavLink></li>
                 </ul>
               </div>
             :
