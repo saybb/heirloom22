@@ -9,6 +9,7 @@ import ArtefactList from "./component/feed/ArtefactList.js";
 import Artefact from "./component/objects/Artefact.js";
 import SignIn from './component/auth/SignIn';
 import SignUp from './component/auth/SignUp';
+import CreateArtefact from './component/objects/CreateArtefact';
 
 class App extends React.Component {
     render() {
@@ -18,7 +19,7 @@ class App extends React.Component {
                     <Navigation />
 
                     <Switch>
-                        <Route path="/" exact component={ArtefactList}/>
+                        <Route path="/" exact component={CreateArtefact}/>
                         <Route path="/feed" component={ArtefactList}/>
                         <Route path="/view/artefact" component={Artefact}/>
 

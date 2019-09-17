@@ -33,7 +33,10 @@ class Navigation extends Component {
 
   handleSubmit = (e) => {
     console.log('updating user profile');
-    this.setState({ loading: true });
+    this.setState({ 
+      loading: true,  
+      editMode: false
+    });
     console.log('update: ',this.state.firstName, this.state.lastName, this.state.location, this.state.bio);
     this.props.updateUserProfile(this.state);
     setTimeout(() => {
