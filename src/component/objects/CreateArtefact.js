@@ -1,3 +1,9 @@
+/* * *
+ * CreateArtefact :: ReactJS Component
+ * Button and Modal with Form to facilitate creation of an Artefact.
+ * Created By: Lawson Wang-Wills
+ */
+
 import React from "react";
 import { Modal, Button } from "antd";
 import CreateArtefactForm from "./CreateArtefactForm.js";
@@ -19,7 +25,9 @@ class CreateArtefact extends React.Component {
         });
     }
 
+    // we'll initiate the post to database from here
     handleSubmit = (values) => {
+        console.log(values);
         this.setState({
             visible: false
         });

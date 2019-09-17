@@ -11,11 +11,6 @@ import React from 'react';
 import "./Artefact.css";
 import {Divider} from "antd";
 
-/**
- * Function element:
- * Props:
- *   - artefact : the artefact json object to display.
- */
 function Artefact() {
     // this is just sample data - in reality we will use props.artefact.
     const artefact = {

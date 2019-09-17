@@ -1,14 +1,21 @@
+/* * *
+ * CreateArtefactForm :: ReactJS Component
+ * Form allowing user to input relevant information to create an artefact.
+ * Created By: Lawson Wang-Wills
+ */
+
 import React from "react";
 import { Form, Input, Select, Button } from "antd";
-
 const { TextArea } = Input;
 
+// temporary sample data
 const peopleoptions = [
     <Select.Option key="Liam Gilbert">Liam Gilbert</Select.Option>,
     <Select.Option key="Amanda Gilbert">Amanda Gilbert</Select.Option>,
     <Select.Option key="Sarah Gilbert">Sarah Gilbert</Select.Option>
 ];
 
+// temporary sample data
 const eventoptions = [
     <Select.Option key="Birth of Amanda Gilbert">Birth of Amanda Gilbert</Select.Option>,
     <Select.Option key="Liam and Sarah's Marriage">Liam and Sarah's Marriage</Select.Option>
@@ -16,9 +23,13 @@ const eventoptions = [
 
 class CreateArtefactForm extends React.Component {
     handleSubmit = e => {
+        // stops the page from refreshing
         e.preventDefault();
+
+        // fields must pass validation before submission
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                // pass form data to parent
                 this.props.handleSubmit(values);
             }
         });
@@ -71,5 +82,6 @@ class CreateArtefactForm extends React.Component {
     }
 };
 
+// use wrapper
 CreateArtefactForm = Form.create({name: "createArtefactForm"})(CreateArtefactForm);
 export default CreateArtefactForm;
