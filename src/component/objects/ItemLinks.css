@@ -1,0 +1,33 @@
+/* * *
+ * ItemLinks :: CSS
+ * CSS styles for ItemLinks.js
+ * Created By: Lawson Wang-Wills
+ */
+
+ .item-links {
+    width: 100%;
+    padding: 0em 0em 0.5em 0em;
+}
+
+.item-link {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+
+    width: 100%;
+    padding: 0.5em 1em;
+
+    transition: 0.5s;
+}
+
+.item-link:hover {
+    background: #f8f8f8;
+}
+
+.item-link p {
+    margin: 0 0.5rem;
+}
+
+.item-divider {
+    margin: 0;
+}

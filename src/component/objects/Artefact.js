@@ -4,6 +4,8 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 import moment from 'moment'
+import ItemLinks from './ItemLinks.js';
+import "./Objects.css";
 
 // components
 import "./Artefact.css";
@@ -15,11 +17,12 @@ const Artefact = (props) => {
   if (artefact) {
     return (
         <div className="Artefact">
-            <div className="ArtefactContent">
+            <div className="object-content">
                 <h2>{artefact.title}</h2>
                 <p>{artefact.description}</p>
-                {/* <People people={artefact.people_links}/>
-                <Events events={artefact.event_links}/> */}
+                {/* ItemLinks will render links as items with names and relation descriptors */}
+                {/* <ItemLinks title="Related People" items={artefact.people_links}/>
+                <ItemLinks title="Related Events" items={artefact.event_links}/> */}
             </div>
             <div className="ArtefactImageContainer">
                 <img src='https://bit.ly/324CaHY' alt={artefact.title} />
