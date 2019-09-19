@@ -2,24 +2,30 @@
  * An independent fireabase database component
  */
 
-/******************* Generic Class ************************/
+/******************* Document Class ************************/
 /**
  * A class that makes it easier to access information
+ * - id 
+ *      the document id
+ * - data 
+ *      the data we are intested in
+ * - raw 
+ *      the document ref
  */
 class Document{
-    constructor(raw) {
+    constructor(ref) {
         this.id = raw.id
         this.data = raw.data()
-        this.raw = raw
+        this.ref = ref
     }
 }
 
 /******************* Generic Class ************************/
 /**
  * 1. get all the data
- *      returns: an objects {id1 : data1, id2 : data2, ....}
+ *      returns: an objects [Document, .... ]
  * 2. get a single data
- *      returns: an object {id : data}
+ *      returns: an object Document
  */
 class Collection{
 
