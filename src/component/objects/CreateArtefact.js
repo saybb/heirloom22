@@ -1,8 +1,13 @@
+/* * *
+ * CreateArtefact :: ReactJS Component
+ * Button and Modal with Form to facilitate creation of an Artefact.
+ */
+
 import React from "react";
 import { Modal, Button } from "antd";
-import CreateArtefactForm from "./CreateArtefactForm.js";
 import { connect } from 'react-redux'
 import { createArtefact } from "../../store/Actions/artefactActions"
+import CreateArtefactForm from "./CreateArtefactForm.js";
 
 class CreateArtefact extends React.Component {
     state = {

@@ -26,6 +26,8 @@ Below you will find some information on how to perform common tasks.
 
 ## Updates
 
+16/9 **CreateArtefact** component is implemented, showing the layout and ui for creating an artefact (by Lawson)
+
 16/9 **User Profile** modal is now swithable, it has additional content: [Edit Profile] for user inputs new profile data by Luoming
 
 15/9 Antd is enabled in project now, re-designed **User Profile** into a modal by Luoming

@@ -4,7 +4,7 @@
  * Created By: Lawson Wang-Wills
  */
 
- .object {
+.object {
     display: flex;
     flex-direction: column;
     align-items: flex-start;

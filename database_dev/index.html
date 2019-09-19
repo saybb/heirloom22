@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Database</title>    
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Load the main app (Mandatory) -->
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+    <!-- Load the firestore library only -->
+    <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-firestore.js"></script>
+</head>
+<body>
+
+    <p>01/09/2019</p>
+    <h1>Sorting by age</h1>
+
+    <div class="content">
+        <!-- We use the id of the form as reference in app.js -->
+        <!-- We also use the name of input as reference in app.js -->
+        <form id="add-cafe-form">
+            <input type="text" name="name" placeholder="name">
+            <input type="text" name="age" placeholder="age">
+            <button>Add</button>
+        </form>
+        <ul id="cafe-list"></ul>
+    </div>
+
+    <button id="delete">Delete Database</button>
+    <button id="upload">Upload Sample Data</button>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyC1HQX45nzJr6SDRMsPkA_zAgAYM9iGjTg",
+            authDomain: "heirloom22-2b4a8.firebaseapp.com",
+            databaseURL: "https://heirloom22-2b4a8.firebaseio.com",
+            projectId: "heirloom22-2b4a8",
+            storageBucket: "heirloom22-2b4a8.appspot.com",
+            messagingSenderId: "323147351760",
+            appId: "1:323147351760:web:bf785136b38cb3a4d380d5"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+       
+        // Link to database
+        const db = firebase.firestore();
+
+    </script>
+
+    <script src="app.js"></script>
+    <script src="test.js"></script>
+    <script src="test_data/data.js"></script>
+    <script src="test_data/reset_data.js"></script>
+</body>
+</html>
