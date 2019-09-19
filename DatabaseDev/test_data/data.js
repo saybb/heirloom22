@@ -73,32 +73,31 @@ const Artifacts = {
 
     family_crest_monument_id : {
         name: "Statue of the Coat of Arms of Gilbert",
-        details: "Amazing statue that is embedded with family history \n\
-                  Moved to Liam's new house",
-        events_links: [
+        details: "Amazing statue that is embedded with family history. Of course, the family crest has no official meaning or clerical relevance, but it still remains to be a symbol of what John thought the family should stand for. That's something we can understand just by looking at this creation. Moved to Liam's new house",
+        event_links: [
             {
-                name: "Making the famly crest",
-                relation: "created during",
-                reference: "Events/making_crest_id"
+                name: "Making of the Family Crest",
+                relation: "This is when the family crest was created.",
+                reference: "/Events/making_crest_id"
             },
             {
-                name: "moving in to the current family house",
-                relation: "moved to",
-                reference: "Events/moving_in_id"
+                name: "We moved into the current family house.",
+                relation: "The family crest was moved into our family house when we moved. It was stored in the attic, among our other historical items.",
+                reference: "/Events/moveing_in_id"
             },
         ],
         people_links: [
             {
                 name: "John Gilbert",
-                relation: "made by",
+                relation: "John Gilbert crafted the family crest in his own time.",
                 reference: "/People/john_gilbert_id"
             }
         ],
         created_by: "liam",
         date_created: "02/09/2018",
-        dev: "link to 2 events and 1 person \n\
-               what it looks like https://bit.ly/324CaHY",
-    }, 
+        dev: "link to 2 events and 1 person \nwhat it looks like https://bit.ly/324CaHY",
+        image: "https://bit.ly/324CaHY"
+    } , 
 
     wedding_ring_id : {
         name: "wedding ring",
