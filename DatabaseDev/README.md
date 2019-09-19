@@ -1,8 +1,112 @@
 # Overview
 
-## Links
+## Database design
 
 - [Database design (Lucid chart)](https://www.lucidchart.com/invitations/accept/5273bef4-c7d5-441d-9155-24498632c760)
+- [Firestore console](https://console.firebase.google.com/u/0/project/heirloom22-2b4a8/database/firestore/)
+
+
+
+## Data types
+
+- string
+- number
+- boolean
+- map (javascript obejct)
+- array
+- null
+- timestamp
+- geopoint
+- reference
+
+
+
+## Schema
+
+### Terminology
+
+- UID 
+  - User Identity 
+  - From Firebase Authentiation module
+  - Unique for every user
+- map
+  - What firestore call an a javascript object
+
+### Addendums
+
+![](./Images/addendums.png)
+
+| Field name   | Type      | Description                                     | Constraint                                                   | Example                              |
+| ------------ | --------- | ----------------------------------------------- | ------------------------------------------------------------ | ------------------------------------ |
+| created_by   | string    | UID                                             | Required and valid                                           | AiKUMgHhMohdDyC9zHJfkMNH3u72         |
+| date_created | timestamp | the time created at the server side             | Required and should be  generated using `server_time_stamp()` helper function | 19 September 2019 at 11:58:41 UTC+10 |
+| name         | string    | the title                                       | Required                                                     | I borke the vase                     |
+| details      | string    | additional information                          |                                                              | I am sorry                           |
+| reference    | reference | refer to the artifact that the comment is about | Required                                                     | /Artifacts/vase_id                   |
+
+### Artifacts
+
+![image-20190919211819821](./Images/artifacts.png)
+
+| Field name                | Type      | Description                                     | Constraint                                                   | Example                                                      |
+| ------------------------- | --------- | ----------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| created_by                | string    | UID                                             | Required and valid                                           | AiKUMgHhMohdDyC9zHJfkMNH3u72                                 |
+| date_created              | timestamp | the time created at the server side             | Required and should be  generated using `server_time_stamp()` helper function | 19 September 2019 at 11:58:41 UTC+10                         |
+| name                      | string    | the title                                       | Required                                                     | family crest drawing                                         |
+| date                      | timestamp | the time the artifact was created               | Optional                                                     | 10 August 1972 at 00:00:00 UTC                               |
+| details                   | string    | additional information                          | Optional                                                     | a very old drawing of family crest by grandpa                |
+| events_links              | array     | refer to the artifact that the comment is about | Required                                                     | /Artifacts/vase_id                                           |
+| events_links[i]           | map       | an object that contains the following 3 fields  | If you link an event then you must have `events_links[i].name` and `events_link[i].reference` | {<br />name: "Making the family crest"<br />reference: /Events/making_crest_id<br />relation: "created during"<br />} |
+| events_links[i].name      | string    | name of the event                               | Required if linked to an event                               | Making the famly crest                                       |
+| events_links[i].reference | reference | reference to the event document                 | Required if linked to an event                               | /Events/making_crest_id                                      |
+| events_links[i].relation  | string    | a description of what the relation is           | Optional                                                     | created during                                               |
+| people_links              | array     | refer to the artifact that the comment is about | Required                                                     | {<br />name: "John Gilbertt"<br />reference: /People/john_gilbert_id<br />relation: "made by"<br />} |
+| people_links[i].name      | string    | name of the person                              | Required if linked to an person                              | John Gilbert                                                 |
+| people_links[i].reference | reference | reference to the people document                | Required if linked to an person                              | /People/john_gilbert_id                                      |
+| people_links[i].relation  | string    | a description of what the relation is           | Optional                                                     | made by                                                      |
+|                           |           |                                                 |                                                              |                                                              |
+
+### Events
+
+![image-20190919213514361](./Images/events.png)
+
+### People
+
+![image-20190919213933536](/Users/chuan/Project/heirloom22/DatabaseDev/Images/people.png)
+
+### Users
+
+![image-20190919213414621](./Images/users.png)
+
+
+
+## Helper functions
+
+```javascript
+// convert date from string to firebase object
+function convert_date(text) {
+    if (empty(text)) return null
+    return new firebase.firestore.Timestamp.fromDate(new Date(text))
+}
+
+// generate server time stamp
+function server_time_stamp() {
+    return new firebase.firestore.FieldValue.serverTimestamp()
+}
+
+// convert firebase document path to firebase document reference
+// example 
+// input: /Artifacts/vase_id
+// output: {...} a firestore object
+function convert_reference(text) {
+    if (empty(text)) return null
+    return db.doc(text);
+}
+```
+
+
+
+
 
 ## Firebase API
 Currently using Heirloom22
@@ -28,10 +132,11 @@ var firebaseConfig = {
 ![screen shot](./Images/upload_sample_data.png)
 
 
+
 ## Test data
 
 - Test data is stored as javascript objects
-- path to test data `./Test_data/data.js`
+- path to test data `./TestData/data.js`
 
 ## Sprint 2 clarification (Database)
 
