@@ -18,7 +18,7 @@ function ArtefactListElement(props) {
     const { artefact } = props;
     const TITLE_LENGTH = 50;       // maximum length of title in chars
     const DESC_LENGTH = 100;       // maximum length of description in chars
-
+    
 
     /**
      * Simple function that shortens a string if it's longer than given length
@@ -44,9 +44,9 @@ function ArtefactListElement(props) {
         <React.Fragment>
             <div className="ArtefactListElement">
                 <span>
-                    <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
+                    <b>{ excerpt(artefact.title, TITLE_LENGTH) }</b>
                     { // only show details section if it's not empty
-                        artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
+                        artefact.description && " | " + excerpt(artefact.description, DESC_LENGTH)
                     }
                 </span>
             </div>
