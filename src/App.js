@@ -13,6 +13,7 @@ import Navigation from "./component/layout/Navigation.js";
 import ArtefactList from "./component/feed/ArtefactList.js";
 import Artefact from "./component/objects/Artefact.js";
 import Event from "./component/objects/Event.js";
+import Person from "./component/objects/Person.js";
 import SignIn from './component/auth/SignIn';
 import SignUp from './component/auth/SignUp';
 import Avatar from './component/objects/Avatar';
@@ -29,6 +30,7 @@ class App extends React.Component {
                         <Route path="/feed" component={ArtefactList}/>
                         <Route path="/view/artefact/:id" component={Artefact}/>
                         <Route path="/view/event" component={Event}/>
+                        <Route path="/view/person" component={Person}/>
 
                         <Route path='/signin' component={SignIn} />
                         <Route path='/signup' component={SignUp} />
