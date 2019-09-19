@@ -5,8 +5,6 @@ export const createArtefact = (artefact) => {
         console.log(artefact, authorId, profile);
         firestore.collection('artefacts').add({
             ...artefact,
-            // title: artefact.title,
-            // description: artefact.description,
             authorFirstName: profile.firstName,
             authorLastName: profile.lastName,
             authorId: authorId,

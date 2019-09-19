@@ -66,7 +66,6 @@ class Navigation extends Component {
   render() {
     const { visible, confirmLoading } = this.state;
     const { auth, profile } = this.props;
-    console.log(auth, profile);
 
     return(
       <nav className="Navigation">

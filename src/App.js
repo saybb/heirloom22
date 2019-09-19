@@ -10,6 +10,7 @@ import Artefact from "./component/objects/Artefact.js";
 import SignIn from './component/auth/SignIn';
 import SignUp from './component/auth/SignUp';
 import CreateArtefact from './component/objects/CreateArtefact';
+import Avatar from './component/objects/Avatar';
 
 class App extends React.Component {
     render() {
@@ -25,6 +26,7 @@ class App extends React.Component {
 
                         <Route path='/signin' component={SignIn} />
                         <Route path='/signup' component={SignUp} />
+                        <Route path='/upload' component={Avatar} />
 
                         {/* default to "/" if unrecognised route. */}
                         <Route render={() => <Redirect to="/"/>}/>
