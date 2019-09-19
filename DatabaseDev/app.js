@@ -4,6 +4,7 @@ const createForm = document.getElementById('add-artifacts-form');
 
 // The name of the collection we will be accessing
 const collection_name = "Tests";
+const field_of_interst = "age";
 
 // create artifacts form
 
@@ -57,7 +58,7 @@ createForm.addEventListener('submit',
         id = createForm.name.value;
 
         // upload the document
-        db.doc(collection_name + "/" + id).set({
+        db.collection(collection_name).add({
             // create a json object
             name: createForm.name.value,
             age: Number(createForm.age.value)
@@ -78,6 +79,6 @@ function reload(snapshot) {
     )
 }
 // reload upon update
-db.collection(collection_name).Orderby("date").onSnapshot(
+db.collection(collection_name).orderBy(field_of_interst).onSnapshot(
     reload
 ); 

@@ -101,11 +101,11 @@ upload_button.addEventListener('click',
 
 
 // delete everything
-function delete_collection(path) {
+async function delete_collection(path) {
     console.log("Deleting ......")
     try {
-        documents = await db.collection(path).get()
-        for (doc of documents) {
+        snapshot = await db.collection(path).get()
+        for (doc of snapshot.docs) {
             console.log(">>>> Deleting")
             console.log(doc.id)
             db.collection(path).doc(doc.id).delete()

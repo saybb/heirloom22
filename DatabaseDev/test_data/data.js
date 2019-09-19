@@ -151,7 +151,7 @@ const Artifacts = {
 
 const Addendums = {
     broken_vase_comment_id : {
-        name: "I broke the vase",
+        name: "I broke the vase, I am sorry",
         details : "I tripped and broke and tipped the table over",
         reference : "/Artifacts/vase_id",
         created_by: "amanda",
@@ -254,7 +254,7 @@ const Events = {
         name: "moving in to the current family house",
         date: "01/01/1985",
         date_created: "29/05/2000",
-        crated_by: "liam",
+        created_by: "liam",
         artifacts_links: [
             {
                 name: "Coat of arms of the Gilbert Monument",
@@ -268,7 +268,7 @@ const Events = {
         name: "Making the family crest",
         date: "01/01/1980",
         date_created: "29/05/2000",
-        crated_by: "amanda",
+        created_by: "amanda",
         artifacts_links: [
             {
                 name: "Coat of arms of the Gilbert Monument",
@@ -293,7 +293,7 @@ const Events = {
         name: "sarah and liam got married",
         date: "01/01/1983",
         date_created: "29/06/2000",
-        crated_by: "liam",
+        created_by: "liam",
         artifacts_links: [
             {
                 name: "wedding ring",
@@ -307,7 +307,7 @@ const Events = {
         name: "melanie and john got married",
         date: "01/01/1952",
         date_created: "29/06/2000",
-        crated_by: "liam",
+        created_by: "liam",
         artifacts_links: [
             {
                 name: "weeding ring",
@@ -320,21 +320,21 @@ const Events = {
 
 const Users = {
     amanda_user_id : {
-        username: "amanda",
+        uid: "amanda",
         reference: "People/amanda_gilbert_id",
         password: "amanda123",
         email: "amanda@gmail.com"
     },
 
     liam_user_id : {
-        username: "liam",
+        uid: "liam",
         reference: "People/liam_gilbert_id",
         password: "liam123",
         email: "liam@gmail.com"
     },
 
     admin_user_id : {
-        username: "admin",
+        uid: "admin",
         password: "amdin123",
         email: "admin@gmail.com"
     },
