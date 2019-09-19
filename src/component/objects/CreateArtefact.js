@@ -1,11 +1,12 @@
 /* * *
  * CreateArtefact :: ReactJS Component
  * Button and Modal with Form to facilitate creation of an Artefact.
- * Created By: Lawson Wang-Wills
  */
 
 import React from "react";
 import { Modal, Button } from "antd";
+import { connect } from 'react-redux'
+import { createArtefact } from "../../store/Actions/artefactActions"
 import CreateArtefactForm from "./CreateArtefactForm.js";
 
 class CreateArtefact extends React.Component {
@@ -25,12 +26,11 @@ class CreateArtefact extends React.Component {
         });
     }
 
-    // we'll initiate the post to database from here
-    handleSubmit = (values) => {
-        console.log(values);
-        this.setState({
-            visible: false
-        });
+    handleSubmit = (artefact) => {
+        this.props.createArtefact(artefact)
+        setTimeout(() => {
+            this.setState({ visible: false });
+          }, 3000);
     }
 
     render() {
@@ -53,4 +53,16 @@ class CreateArtefact extends React.Component {
     }
 }
 
-export default CreateArtefact;
+const mapStateToProps = (state) => {
+    return {
+      auth: state.firebase.auth,
+    }
+  }
+  
+  const mapDispatchToProps = (dispatch)=> {
+    return {
+      createArtefact: (artefact) => dispatch(createArtefact(artefact))
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateArtefact);

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Modal, Button } from 'antd';
-import { updateUserProfile } from '../../store/Actions/userActions'
+import { updateUserProfile, signOut } from '../../store/Actions/userActions'
 import UserProfile from '../profile/userProfile'
 import EditProfile from '../profile/editProfile'
 
@@ -33,7 +33,10 @@ class Navigation extends Component {
 
   handleSubmit = (e) => {
     console.log('updating user profile');
-    this.setState({ loading: true });
+    this.setState({ 
+      loading: true,  
+      editMode: false
+    });
     console.log('update: ',this.state.firstName, this.state.lastName, this.state.location, this.state.bio);
     this.props.updateUserProfile(this.state);
     setTimeout(() => {
@@ -63,7 +66,6 @@ class Navigation extends Component {
   render() {
     const { visible, confirmLoading } = this.state;
     const { auth, profile } = this.props;
-    console.log(auth, profile);
 
     return(
       <nav className="Navigation">
@@ -140,7 +142,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateUserProfile: (info) => dispatch(updateUserProfile(info))
+    updateUserProfile: (info) => dispatch(updateUserProfile(info)),
+    signOut: () => dispatch(signOut())
   }
 }
 
