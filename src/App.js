@@ -15,7 +15,6 @@ import Artefact from "./component/objects/Artefact.js";
 import Event from "./component/objects/Event.js";
 import SignIn from './component/auth/SignIn';
 import SignUp from './component/auth/SignUp';
-import CreateArtefact from './component/objects/CreateArtefact';
 import Avatar from './component/objects/Avatar';
 
 class App extends React.Component {
@@ -26,7 +25,7 @@ class App extends React.Component {
                     <Navigation />
 
                     <Switch>
-                        <Route path="/" exact component={CreateArtefact}/>
+                        <Route path="/" exact component={ArtefactList}/>
                         <Route path="/feed" component={ArtefactList}/>
                         <Route path="/view/artefact/:id" component={Artefact}/>
                         <Route path="/view/event" component={Event}/>
