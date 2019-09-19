@@ -160,7 +160,7 @@ const Addendums = {
     event_comment_id : {
         name: "test comment on event",
         date_created: "08/04/2019",
-        created: "amanda",
+        created_by: "amanda",
         reference: "/Artifacts/making_crest_id"
     }
     
@@ -170,6 +170,8 @@ const Addendums = {
 const People = {
 
     amanda_gilbert_id : {
+        date_created: "29/06/2000",
+        created_by: "liam",
         name: "Amanda",
         lastname: "Gilbert",
         dob: "01/01/1991",
@@ -177,12 +179,16 @@ const People = {
     },
 
     sam_gilbert_id : {
+        date_created: "29/06/2000",
+        created_by: "liam",
         name: "Sam",
         lastname: "Gilbert",
         details: "Brother to Amanda"
     },
 
     john_gilbert_id : {
+        date_created: "29/06/2000",
+        created_by: "liam",
         name: "John",
         lastname: "Gilbert",
         dob: "01/01/1971",
@@ -207,6 +213,8 @@ const People = {
     },
 
     sarah_gilbert_id : {
+        date_created: "29/06/2000",
+        created_by: "liam",
         name: "Sarah",
         lastname: "Gilbert",
         details: "Mother of Sam and Amanda. Married to Liam",
@@ -220,6 +228,8 @@ const People = {
     },
 
     melanie_gilbert_id : {
+        date_created: "29/06/2000",
+        created_by: "liam",
         name: "Melanie",
         lastname: "Gilbert",
         dob: "01/01/1970",
@@ -234,6 +244,8 @@ const People = {
     },
 
     liam_gilbert_id : {
+        date_created: "29/06/2000",
+        created_by: "liam",
         name: "Melanie",
         lastname: "Gilbert",
         details: "Father of Amanda and Sam",

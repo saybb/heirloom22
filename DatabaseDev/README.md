@@ -7,20 +7,6 @@
 
 
 
-## Data types
-
-- string
-- number
-- boolean
-- map (javascript obejct)
-- array
-- null
-- timestamp
-- geopoint
-- reference
-
-
-
 ## Schema
 
 ### Terminology
@@ -61,10 +47,9 @@
 | events_links[i].reference | reference | reference to the event document                 | Required if linked to an event                               | /Events/making_crest_id                                      |
 | events_links[i].relation  | string    | a description of what the relation is           | Optional                                                     | created during                                               |
 | people_links              | array     | refer to the artifact that the comment is about | Required                                                     | {<br />name: "John Gilbertt"<br />reference: /People/john_gilbert_id<br />relation: "made by"<br />} |
-| people_links[i].name      | string    | name of the person                              | Required if linked to an person                              | John Gilbert                                                 |
-| people_links[i].reference | reference | reference to the people document                | Required if linked to an person                              | /People/john_gilbert_id                                      |
+| people_links[i].name      | string    | name of the person                              | Required if linked to a person                               | John Gilbert                                                 |
+| people_links[i].reference | reference | reference to the people document                | Required if linked to a person                               | /People/john_gilbert_id                                      |
 | people_links[i].relation  | string    | a description of what the relation is           | Optional                                                     | made by                                                      |
-|                           |           |                                                 |                                                              |                                                              |
 
 ### Events
 
@@ -72,7 +57,7 @@
 
 ### People
 
-![image-20190919213933536](/Users/chuan/Project/heirloom22/DatabaseDev/Images/people.png)
+![image-20190919215401022](/Users/chuan/Project/heirloom22/DatabaseDev/Images/people.png)
 
 ### Users
 
@@ -137,6 +122,22 @@ var firebaseConfig = {
 
 - Test data is stored as javascript objects
 - path to test data `./TestData/data.js`
+
+
+
+## Data types
+
+- string
+- number
+- boolean
+- map (javascript obejct)
+- array
+- null
+- timestamp
+- geopoint
+- reference
+
+
 
 ## Sprint 2 clarification (Database)
 
