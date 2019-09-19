@@ -1,9 +1,18 @@
 /**
- * An independent database component
+ * An independent fireabase database component
  */
 
-/******************* Configuration ************************/
-import "./config.js";
+/******************* Generic Class ************************/
+/**
+ * A class that makes it easier to access information
+ */
+class Document{
+    constructor(raw) {
+        this.id = raw.id
+        this.data = raw.data()
+        this.raw = raw
+    }
+}
 
 /******************* Generic Class ************************/
 /**
@@ -12,12 +21,6 @@ import "./config.js";
  * 2. get a single data
  *      returns: an object {id : data}
  */
-class Document{
-    constructor(data) {
-        this.data = data
-    }
-}
-
 class Collection{
 
     constructor(firestore, name) {
@@ -41,44 +44,52 @@ class Collection{
     async get_document_by_id(document_id) {
         console.log("get_document_by_id from " + this.name + " using " + document_id)
         try {
-            var snapshot = await this.db.collection(this.name).get(document_id)
-            var data = snapshot.data 
+            var doc = await this.db.collection(this.name).doc(document_id).get()
+            var data = new Document(doc)
             return data
         } catch (error) {
             console.error("ERROR")
             return error
         }
     }
+
     async upload_document() {}
     async upload_document_by_id(document_id) {}
 
     grab_data(documents) {
         var data = []
         for (const doc of documents) {
-            data.push(doc.data())
+            data.push(new Document(doc))
         }
         return data
     }
 }
 
-class artifacts_collection extends collection {
+/******************* Individual Collections ************************/
+class Artifacts_collection extends Collection {
     constructor(firestore){
         super(firestore, "Artifacts")
     }
-
 }
-
-async function get_all() {
-    collection = new artifacts_collection(db)
-    result = await collection.get_all_document() 
-    console.log(result)
+class Appendums_collection extends Collection {
+    constructor(firestore){
+        super(firestore, "Addendums")
+    }
 }
-
-async function get() {
-    collection = new artifacts_collection(db)
-    document = ""
-    result = await collection.get_all_document() 
-    console.log(result)
+class Users_collection extends Collection {
+    constructor(firestore){
+        super(firestore, "Users")
+    }
+}
+class People_collection extends Collection {
+    constructor(firestore){
+        super(firestore, "People")
+    }
+}
+class Events_collection extends Collection {
+    constructor(firestore){
+        super(firestore, "Events")
+    }
 }
 
 
@@ -102,6 +113,34 @@ function convert_reference(text) {
     return db.doc(text);
 }
 
-// artifacts
-// people
-// events
+
+
+
+/******************* Test Functions ************************/
+
+
+
+async function get_all() {
+    collection = new Artifacts_collection(firestore)
+    result = await collection.get_all_document()
+    console.log(result)
+    collection = new Appendums_collection(firestore)
+    result = await collection.get_all_document()
+    console.log(result)
+    collection = new Users_collection(firestore)
+    result = await collection.get_all_document()
+    console.log(result)
+    collection = new Events_collection(firestore)
+    result = await collection.get_all_document()
+    console.log(result)
+    collection = new People_collection(firestore)
+    result = await collection.get_all_document()
+    console.log(result)
+}
+
+async function get() {
+    collection = new Artifacts_collection(firestore)
+    document_id = "wedding_ring_id"
+    result = await collection.get_document_by_id(document_id)
+    console.log(result)
+}

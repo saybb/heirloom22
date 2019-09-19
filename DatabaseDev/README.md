@@ -57,7 +57,7 @@
 
 ### People
 
-![image-20190919215401022](/Users/chuan/Project/heirloom22/DatabaseDev/Images/people.png)
+![image-20190919215401022](./Images/people.png)
 
 ### Users
 
@@ -396,6 +396,10 @@ db.collection("Artifacts").get()
 ```
 
 ### Read a document by its ID
+
+```javascript
+var snapshot = await this.db.collection(this.name).doc(document_id)
+```
 
 ```javascript
 db.doc("Artifacts/random_photos_id").get()
