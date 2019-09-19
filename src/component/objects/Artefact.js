@@ -8,6 +8,7 @@
 import React from 'react';
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
+import Addendum from "./Addendum";
 
 // this is just sample data - in reality we will use props.artefact.
 const artefact = {
@@ -61,6 +62,7 @@ function Artefact() {
                 {/* ItemLinks will render links as items with names and relation descriptors */}
                 <ItemLinks title="Related People" items={artefact.people_links}/>
                 <ItemLinks title="Related Events" items={artefact.event_links}/>
+                <Addendum />
             </div>
         </div>
     );
