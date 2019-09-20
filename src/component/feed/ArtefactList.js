@@ -139,18 +139,10 @@ class ArtefactList extends React.Component {
             return(
                 <div className="ArtefactList">
                     <h2>Browsing your collection...</h2>
-                    { artefacts && Object.values(artefacts).map(artefact => {
-                        console.log(artefact)
-                        return (
-                            <div>
-                                <h3>{artefact.title}</h3>
-                                <p>{artefact.description}</p>
-                            </div>
-                        )          
-                    })}  
+                    { artefacts && Object.values(artefacts).map(artefact => <ArtefactListElement artefact={artefact}/>)}  
                 </div> 
             );
-        }else {
+        } else {
             return (
                 <div className="container center">
                     <p>Loading artefact...</p>
@@ -166,13 +158,11 @@ const mapStateToProps = (state) => {
       artefacts: artefacts,
       auth: state.firebase.auth
     }
-  }
+}
   
-  export default compose(
+export default compose(
     connect(mapStateToProps),
     firestoreConnect([{
-      collection: 'artefacts'
+        collection: 'artefacts'
     }])
-  )(ArtefactList)
-
-// export default ArtefactList;
+)(ArtefactList)
