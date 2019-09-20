@@ -23,12 +23,12 @@ const Artefact = (props) => {
   if (artefact) {
     return (
         <div className="object">
-            <div className="object-image-container">
+            {/* <div className="object-image-container">
             <img src='https://bit.ly/324CaHY' alt={artefact.title} />
-            </div>
+            </div> */}
             <div className="object-content">
-                <h2>{artefact.name}</h2>
-                <p>{artefact.details}</p>
+                <h2>{artefact.title}</h2>
+                <p>{artefact.description}</p>
                 {/* ItemLinks will render links as items with names and relation descriptors */}
                 <ItemLinks title="Related People" items={artefact.people_links}/>
                 <ItemLinks title="Related Events" items={artefact.event_links}/>
@@ -45,18 +45,31 @@ const Artefact = (props) => {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const id = ownProps.match.params.id;
-  const artefacts = state.firestore.data.artefacts;
-  const artefact = artefacts ? artefacts[id] : null
-  return {
-    artefact: artefact,
-    auth: state.firebase.auth
-  }
+    const id = ownProps.match.params.id;
+    const artefact = state.firestore.data.artefacts;
+    if (state.firestore.data.artefacts){
+        
+        return {
+            artefact: artefact[id],
+            auth: state.firebase.auth,
+        }
+    }else{
+        return {
+            artefact: null,
+            auth: state.firebase.auth,
+        }
+    }
 }
 
 export default compose(
   connect(mapStateToProps),
-  firestoreConnect([{
-    collection: 'artefacts'
+  firestoreConnect((props) =>[{
+    collection: 'artefacts', 
+    doc: props.match.params.id,
   }])
 )(Artefact)
+
+
+
+
+
