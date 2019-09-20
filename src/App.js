@@ -22,9 +22,8 @@ class App extends React.Component {
     render() {
         return (
             <Router>
+                <Navigation />
                 <div className="App">
-                    <Navigation />
-
                     <Switch>
                         <Route path="/" exact component={ArtefactList}/>
                         <Route path="/feed" component={ArtefactList}/>

@@ -1,45 +1,81 @@
 /**
  * Navigation :: ReactJS Component
  * Renders the navigation bar for the site.
- * Provides global access to Top-Level links, and allows sign-in and sign-out.
+ * Provides sitewide navigation, and access to account features.
  */
 
 import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { Button } from 'antd';
+import { Menu, Button } from 'antd';
 import { signOut } from '../../store/Actions/userActions'
-
 import logo from '../../heirloom22_logo.svg';
 import UserModal from '../profile/UserModal.js';
+import './Navigation.css'
 
 class Navigation extends React.Component {
-
     render() {
+        return(
+            <nav className="nav-bar">
+                <this.MainMenu />
+                <this.UserMenu />
+            </nav>
+        );
+    }
+
+    // menu for site navigation
+    MainMenu = () => {
         const { auth } = this.props;
 
-        
-        return(
-            <nav className="Navigation">
-                <img src={logo} alt="logo"/>
-                { !auth.uid ?
-                    <ul>
-                        <li><NavLink to='/signup'>Sign up</NavLink></li>
-                        <li><NavLink to='/signin'>Log in</NavLink></li>
-                    </ul>
-                    :
-                    <ul>
-                        <li><NavLink to='/'>Home</NavLink></li>
-                        <li><NavLink to='/feed'>List View</NavLink></li>
-                        <li><NavLink to='/view/artefact/family_crest_monument_idnpm '>Sample Artefact View</NavLink></li>
-                        <li><NavLink to='/view/event'>Sample Event View</NavLink></li>
-                        <li><NavLink to='/view/person'>Sample Person View</NavLink></li>
-                        <li><UserModal /></li>
-                        <li><Button type="danger" onClick={this.props.signOut}>Log out</Button></li>
-                    </ul>
-                }
-            </nav>
-      )
+        if (auth.uid) {
+            return(
+                <Menu className="menu-main" mode="horizontal">
+                    <Menu.Item key="logo">
+                        <NavLink to='/'>
+                            <img className="nav-logo" src={logo} alt="logo"/>
+                        </NavLink>
+                    </Menu.Item>
+                    <Menu.Item key="home"><NavLink to='/'>Home</NavLink></Menu.Item>
+                    <Menu.Item key="list"><NavLink to='/feed'>List View</NavLink></Menu.Item>
+                    <Menu.Item key="artefact"><NavLink to='/view/artefact/family_crest_monument_id'>Sample Artefact View</NavLink></Menu.Item>
+                    <Menu.Item key="event"><NavLink to='/view/event'>Sample Event View</NavLink></Menu.Item>
+                    <Menu.Item key="person"><NavLink to='/view/person'>Sample Person View</NavLink></Menu.Item>
+                </Menu>
+            );
+        } else {
+            return(
+                <Menu className="menu-main" mode="horizontal">
+                    <Menu.Item key="logo">
+                        <NavLink to='/'>
+                            <img className="nav-logo" src={logo} alt="logo"/>
+                        </NavLink>
+                    </Menu.Item>
+                </Menu>
+            );
+        }
+    }
+
+    // menu for account-related functions
+    UserMenu = () => {
+        const { auth, signOut } = this.props;
+
+        if (auth.uid) {
+            return(
+                <Menu className="menu-user" mode="horizontal">
+                    <Menu.Item key="profile"><UserModal /></Menu.Item>
+                    <Menu.Item key="logout"><Button type="danger" onClick={signOut}>Log out</Button></Menu.Item>
+                </Menu>
+            );
+        } else {
+            return(
+                <Menu className="menu-user" mode="horizontal">
+                    <Menu.Item key="login"><NavLink to='/signin'>Log in</NavLink></Menu.Item>
+                    <Menu.Item key="signup"><NavLink to='/signup'>Sign up</NavLink></Menu.Item>
+                </Menu>
+            );
+
+        }
+
     }
 }
 
