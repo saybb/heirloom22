@@ -10,6 +10,7 @@ import { NavLink } from 'react-router-dom'
 import { Button } from 'antd';
 import { signOut } from '../../store/Actions/userActions'
 
+import logo from '../../heirloom22_logo.svg';
 import UserModal from '../profile/UserModal.js';
 
 class Navigation extends React.Component {
@@ -20,6 +21,7 @@ class Navigation extends React.Component {
         
         return(
             <nav className="Navigation">
+                <img src={logo} alt="logo"/>
                 { !auth.uid ?
                     <ul>
                         <li><NavLink to='/signup'>Sign up</NavLink></li>
