@@ -1,26 +1,36 @@
 /******************* Test Functions ************************/
+import {firestore} from "./pure_config.js"
+import * as db from "./database.js"
 
 async function get_all() {
-    collection = new Artifacts_collection(firestore)
+    var collection 
+    var result
+    collection = new db.Artifacts_collection(firestore)
     result = await collection.get_all_document()
     console.log(result)
-    collection = new Appendums_collection(firestore)
+    collection = new db.Appendums_collection(firestore)
     result = await collection.get_all_document()
     console.log(result)
-    collection = new Users_collection(firestore)
+    collection = new db.Users_collection(firestore)
     result = await collection.get_all_document()
     console.log(result)
-    collection = new Events_collection(firestore)
+    collection = new db.Events_collection(firestore)
     result = await collection.get_all_document()
     console.log(result)
-    collection = new People_collection(firestore)
+    collection = new db.People_collection(firestore)
     result = await collection.get_all_document()
     console.log(result)
 }
 
 async function get() {
-    collection = new Artifacts_collection(firestore)
-    document_id = "wedding_ring_id"
-    result = await collection.get_document_by_id(document_id)
+    var collection = new db.Artifacts_collection(firestore)
+    var document_id = "wedding_ring_id"
+    var result = await collection.get_document_by_id(document_id)
     console.log(result)
 }
+
+// console.log(db.server_time_stamp())
+// console.log(db.convert_reference("Tests/a", firestore))
+// console.log(db.convert_date("123"))
+// get_all()
+// get()

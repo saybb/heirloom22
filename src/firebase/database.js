@@ -12,10 +12,10 @@
  * - raw 
  *      the document ref
  */
-class Document{
+export class Document{
     constructor(ref) {
-        this.id = raw.id
-        this.data = raw.data()
+        this.id = ref.id
+        this.data = ref.data()
         this.ref = ref
     }
 }
@@ -27,7 +27,7 @@ class Document{
  * 2. get a single data
  *      returns: an object Document
  */
-class Collection{
+export class Collection{
 
     constructor(firestore, name) {
         this.db = firestore
@@ -72,50 +72,57 @@ class Collection{
 }
 
 /******************* Individual Collections ************************/
-class Artifacts_collection extends Collection {
+export class Artifacts_collection extends Collection {
     constructor(firestore){
         super(firestore, "Artifacts")
     }
 }
-class Appendums_collection extends Collection {
+export class Appendums_collection extends Collection {
     constructor(firestore){
         super(firestore, "Addendums")
     }
 }
-class Users_collection extends Collection {
+export class Users_collection extends Collection {
     constructor(firestore){
         super(firestore, "Users")
     }
 }
-class People_collection extends Collection {
+export class People_collection extends Collection {
     constructor(firestore){
         super(firestore, "People")
     }
 }
-class Events_collection extends Collection {
+export class Events_collection extends Collection {
     constructor(firestore){
         super(firestore, "Events")
     }
 }
 
-
-
 /******************* Convert data ************************/
+function empty(thing) {
+    if (thing === null) {
+        return true
+    }
+    if (thing === undefined) {
+        return true
+    }
+    return false
+}
 
 // convert date from string to firebase object
-function convert_date(text) {
+export function convert_date(text) {
     if (empty(text)) return null
     return new firebase.firestore.Timestamp.fromDate(new Date(text))
 }
 
 // convert datecreated to server time stamp
-function server_time_stamp() {
+export function server_time_stamp() {
     return new firebase.firestore.FieldValue.serverTimestamp()
 }
 
 // convert string path to firebase document reference
-function convert_reference(text) {
+export function convert_reference(text, firestore) {
     if (empty(text)) return null
-    return db.doc(text);
+    return firestore.doc(text);
 }
 
