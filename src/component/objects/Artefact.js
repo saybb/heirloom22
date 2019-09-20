@@ -6,7 +6,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
+import { firestoreConnect, isEmpty  } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 
@@ -19,6 +19,14 @@ const Artefact = (props) => {
 
   // must be signed in to see this
   if (!auth.uid) return <Redirect to='/signin' /> 
+
+  if(isEmpty(artefact)){
+    return (
+        <div className="object-content">
+          <h2>Artefact is loading...</h2>
+        </div>
+      )
+  }
   
   if (artefact) {
     return (
@@ -34,12 +42,6 @@ const Artefact = (props) => {
                 <ItemLinks title="Related Events" items={artefact.event_links}/>
             </div>
         </div>
-    )
-  } else {
-    return (
-      <div className="object-content">
-        <p>Loading artefact...</p>
-      </div>
     )
   }
 }
