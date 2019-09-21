@@ -2,7 +2,6 @@
  * ArtefactList :: ReactJS Component
  * A simple list view for browsing artefacts.
  * Requests for relevant content will be made from this component.
- * Created By: Lawson Wang-Wills
  */
 
 import React from 'react';
