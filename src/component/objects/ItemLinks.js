@@ -7,6 +7,7 @@
 
 import React from 'react';
 import { Divider } from 'antd';
+import { NavLink } from 'react-router-dom';
 
 import './ItemLinks.css';
 
@@ -35,10 +36,12 @@ function ItemLink(props) {
 
     return(
         <React.Fragment>
-            <div className="item-link">
-                <h4>{item.name}</h4>
-                <p>{item.relation}</p>
-            </div>
+            <NavLink to={"/view" + item.reference}>
+                <div className="item-link">
+                    <h4>{item.name}</h4>
+                    <p>{item.relation}</p>
+                </div>
+            </NavLink>
             <Divider className="item-divider"/>
         </React.Fragment>
     );
