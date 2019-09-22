@@ -16,8 +16,7 @@ import './ArtefactList.css';
 class ArtefactList extends React.Component {
 
     render() {
-        const { artefacts, profile } = this.props;
-        console.log(this.props.auth);
+        const { artefacts } = this.props;
 
         if(!isLoaded(artefacts)){
             return (
