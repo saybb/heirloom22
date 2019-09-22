@@ -8,6 +8,7 @@
 // libs
 import React from 'react';
 import { Divider } from 'antd';
+import { Link } from 'react-router-dom';
 
 /**
  * Function element.
@@ -15,7 +16,7 @@ import { Divider } from 'antd';
  *   - artefact : artefact json object to be represented
  */
 function ArtefactListElement(props) {
-    const { artefact } = props;
+    const { artefact, reference } = props;
     const TITLE_LENGTH = 50;       // maximum length of title in chars
     const DESC_LENGTH = 100;       // maximum length of description in chars
     
@@ -43,12 +44,12 @@ function ArtefactListElement(props) {
     return(
         <React.Fragment>
             <div className="ArtefactListElement">
-                <span>
-                    <b>{ excerpt(artefact.title, TITLE_LENGTH) }</b>
+                <Link to={"/view/artefacts/" + reference}>
+                    <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
                     { // only show details section if it's not empty
-                        artefact.description && " | " + excerpt(artefact.description, DESC_LENGTH)
+                        artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
                     }
-                </span>
+                </Link>
             </div>
             <Divider className="ArtefactListElementDivider" />
         </React.Fragment>

@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
+import { firestoreConnect, isEmpty, isLoaded } from 'react-redux-firebase'
 import { compose } from 'redux'
 
 // components
@@ -17,27 +17,36 @@ class ArtefactList extends React.Component {
     
     render() {
         const { artefacts } = this.props;
-        if(artefacts){
-            return(
-                <div className="ArtefactList">
-                    <h2>Browsing your collection...</h2>
-                    { artefacts && Object.values(artefacts).map(artefact => <ArtefactListElement artefact={artefact}/>)}  
-                </div> 
-            );
-        } else {
+        console.log(artefacts)
+
+        if(!isLoaded(artefacts)){
             return (
                 <div className="container center">
-                    <p>Loading artefact...</p>
+                    <h2>Loading artefacts...</h2>
                 </div>
             )
         }
+        if(isEmpty(artefacts)){
+            return (
+                <div className="container center">
+                    <h2>Nothing found.</h2>
+                </div>
+            )
+        }
+        return(
+            <div className="ArtefactList">
+                <h2>Browsing your collection...</h2>
+                { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
+            </div> 
+        )
     }
 }
 
 const mapStateToProps = (state) => {
-    const artefacts = state.firestore.data.artefacts;
+    //const artefacts = state.firestore.data.artefacts;
+    //console.log(artefacts)
     return {
-      artefacts: artefacts,
+      artefacts: state.firestore.data.Artefacts,
       auth: state.firebase.auth
     }
 }
@@ -45,6 +54,6 @@ const mapStateToProps = (state) => {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([{
-        collection: 'artefacts'
+        collection: 'Artefacts'
     }])
 )(ArtefactList)

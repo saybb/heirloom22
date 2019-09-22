@@ -10,23 +10,23 @@ import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
 
 const person = {
-    artefact_links: [
+    artefacts_links: [
         {
             key: 0,
             name: "Coat of arms of the Gilbert Monument", 
-            reference: "/Artifacts/family_crest_monument_id",
+            reference: "Artefacts/family_crest_monument_id",
             relation: "made by"
         },
         {
             key: 1,
             name: "family crest drawing",
-            reference: "/Artifacts/family_crest_drawing_id",
+            reference: "Artefacts/family_crest_drawing_id",
             relation: "made by",
         },
         {
             key: 2,
             name: "Recording of grandpa John making a crest",
-            reference: "/Artifacts/making_crest_id",
+            reference: "Artefacts/making_crest_id",
             relation: "recording of"
         }
     ],
@@ -44,7 +44,7 @@ function Person() {
             <h2>{person.name + " " + person.lastname}</h2>
             <p>Born: {person.dob}</p>
             <p>{person.details}</p>
-            <ItemLinks title="Related Artefacts" items={person.artefact_links}/>
+            <ItemLinks title="Related Artefacts" items={person.artefacts_links}/>
         </div>
     );
 } 
