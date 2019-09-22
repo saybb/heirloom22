@@ -74,7 +74,7 @@ const Artefacts = {
     family_crest_monument_id : {
         name: "Statue of the Coat of Arms of Gilbert",
         details: "Amazing statue that is embedded with family history. Of course, the family crest has no official meaning or clerical relevance, but it still remains to be a symbol of what John thought the family should stand for. That's something we can understand just by looking at this creation. Moved to Liam's new house",
-        event_links: [
+        events_links: [
             {
                 name: "Making of the Family Crest",
                 relation: "This is when the family crest was created.",
@@ -83,7 +83,7 @@ const Artefacts = {
             {
                 name: "We moved into the current family house.",
                 relation: "The family crest was moved into our family house when we moved. It was stored in the attic, among our other historical items.",
-                reference: "/Events/moveing_in_id"
+                reference: "/Events/moving_in_id"
             },
         ],
         people_links: [
