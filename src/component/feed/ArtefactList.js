@@ -17,7 +17,7 @@ class ArtefactList extends React.Component {
 
     render() {
         const { artefacts, profile } = this.props;
-        console.log(this.props.profile.name);
+        console.log(this.props.auth);
 
         if(!isLoaded(artefacts)){
             return (
@@ -54,5 +54,8 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [{
         collection: 'Artefacts',
+        where: [
+            'created_by', '==', (props.profile.name? props.profile.name : '')
+        ]
     }])
 )(ArtefactList)
