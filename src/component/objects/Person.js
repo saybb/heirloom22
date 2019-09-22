@@ -14,19 +14,19 @@ const person = {
         {
             key: 0,
             name: "Coat of arms of the Gilbert Monument", 
-            reference: "/Artefacts/family_crest_monument_id",
+            reference: "Artefacts/family_crest_monument_id",
             relation: "made by"
         },
         {
             key: 1,
             name: "family crest drawing",
-            reference: "/Artefacts/family_crest_drawing_id",
+            reference: "Artefacts/family_crest_drawing_id",
             relation: "made by",
         },
         {
             key: 2,
             name: "Recording of grandpa John making a crest",
-            reference: "/Artefacts/making_crest_id",
+            reference: "Artefacts/making_crest_id",
             relation: "recording of"
         }
     ],

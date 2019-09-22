@@ -19,17 +19,17 @@ const event = {
         {
             name: "Coat of arms of the Gilbert Monument",
             relation: "created during",
-            reference: "/Artefacts/family_crest_monument_id"
+            reference: "Artefacts/family_crest_monument_id"
         },
         {
             name: "family crest drawing",
             relation: "created during",
-            reference: "/Artefacts/family_crest_drawing_id"
+            reference: "Artefacts/family_crest_drawing_id"
         },
         {
             name: "Recording of grandpa John making a crestt",
             relation: "recorded during",
-            reference: "/Artefacts/making_crest_id"
+            reference: "Artefacts/making_crest_id"
         },
     ]
 }

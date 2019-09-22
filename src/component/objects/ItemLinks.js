@@ -36,7 +36,7 @@ function ItemLink(props) {
 
     return(
         <React.Fragment>
-            <Link to={"/view" + item.reference}>
+            <Link to={"/view/" + item.reference.path}>
                 <div className="item-link">
                     <h4>{item.name}</h4>
                     <p>{item.relation}</p>

@@ -44,7 +44,7 @@ function ArtefactListElement(props) {
     return(
         <React.Fragment>
             <div className="ArtefactListElement">
-                <Link to={"/view" + reference}>
+                <Link to={"/view/artefacts/" + reference}>
                     <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
                     { // only show details section if it's not empty
                         artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
