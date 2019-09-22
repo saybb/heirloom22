@@ -27,9 +27,9 @@ class App extends React.Component {
                     <Switch>
                         <Route path="/" exact component={ArtefactList}/>
                         <Route path="/feed" component={ArtefactList}/>
-                        <Route path="/view/artefact/:id" component={Artefact}/>
-                        <Route path="/view/event" component={Event}/>
-                        <Route path="/view/person" component={Person}/>
+                        <Route path="/view/artefacts/:id" component={Artefact}/>
+                        <Route path="/view/events" component={Event}/>
+                        <Route path="/view/people" component={Person}/>
 
                         <Route path='/signin' component={SignIn} />
                         <Route path='/signup' component={SignUp} />
