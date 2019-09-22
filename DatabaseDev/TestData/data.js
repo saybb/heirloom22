@@ -24,14 +24,14 @@ const Artefacts = {
             {
                 name: "Making the famly crest",
                 relation: "created during",
-                reference:  "Events/making_crest_id"
+                reference:  "/Events/making_crest_id"
             }
         ],
         people_links : [
             {
                 name: "John Gilbert",
                 relation: "made by",
-                reference: "People/john_gilbert_id"
+                reference: "/People/john_gilbert_id"
             }
         ],
         created_by : "amanda",
@@ -47,14 +47,14 @@ const Artefacts = {
             {
                 name: "Making the famly crest",
                 relation: "created during",
-                reference:  "Events/making_crest_id"
+                reference:  "/Events/making_crest_id"
             }
         ],
         people_links: [
             {
                 name: "John Gilbert",
                 relation: "recording of",
-                reference: "People/john_gilbert_id"
+                reference: "/People/john_gilbert_id"
             }
         ],
         created_by: "amanda",
@@ -332,14 +332,14 @@ const Events = {
 const Users = {
     amanda_user_id : {
         uid: "amanda",
-        reference: "People/amanda_gilbert_id",
+        reference: "/People/amanda_gilbert_id",
         password: "amanda123",
         email: "amanda@gmail.com"
     },
 
     liam_user_id : {
         uid: "liam",
-        reference: "People/liam_gilbert_id",
+        reference: "/People/liam_gilbert_id",
         password: "liam123",
         email: "liam@gmail.com"
     },
