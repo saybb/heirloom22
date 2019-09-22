@@ -39,7 +39,7 @@ class Navigation extends React.Component {
                     <Menu.Item key="list"><NavLink to='/feed'>List View</NavLink></Menu.Item>
                     <Menu.Item key="artefact"><NavLink to='/view/artefact/family_crest_monument_id'>Sample Artefact View</NavLink></Menu.Item>
                     <Menu.Item key="event"><NavLink to='/view/event'>Sample Event View</NavLink></Menu.Item>
-                    <Menu.Item key="person"><NavLink to='/view/person'>Sample Person View</NavLink></Menu.Item>
+                    <Menu.Item key="person"><NavLink to='/view/person/john_gilbert_id'>Sample Person View</NavLink></Menu.Item>
                 </Menu>
             );
         } else {

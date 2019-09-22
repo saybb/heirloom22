@@ -6,7 +6,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { firestoreConnect, isLoaded  } from 'react-redux-firebase'
+import { firestoreConnect, isEmpty, isLoaded  } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 
@@ -28,10 +28,18 @@ const Artefact = (props) => {
       </div>
     )
   }
+
+  if(isEmpty(artefact)){
+    return (
+        <div className="object-content">
+          <h2>Artefact is NOT FOUND</h2>
+        </div>
+      )
+  }
   
   if (artefact) {
     if(artefact[id] == null){
-      return (
+          return (
         <div className="object-content">
           <h2>Artefact is NOT FOUND</h2>
         </div>
@@ -43,8 +51,8 @@ const Artefact = (props) => {
             <img src='https://bit.ly/324CaHY' alt={artefact.title} />
             </div> */}
             <div className="object-content">
-                <h2>{artefact[id].title}</h2>
-                <p>{artefact[id].description}</p>
+                <h2>{artefact[id].name}</h2>
+                <p>{artefact[id].details}</p>
                 {/* ItemLinks will render links as items with names and relation descriptors */}
                 <ItemLinks title="Related People" items={artefact[id].people_links}/>
                 <ItemLinks title="Related Events" items={artefact[id].event_links}/>
@@ -55,7 +63,7 @@ const Artefact = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    const artefact = state.firestore.data.artefacts;   
+    const artefact = state.firestore.data.Artefacts;   
       return {
           artefact: artefact,
           auth: state.firebase.auth,
@@ -65,7 +73,7 @@ const mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps),
   firestoreConnect((props) =>[{
-    collection: 'artefacts', 
+    collection: 'Artefacts', 
     doc: props.match.params.id,
   }])
 )(Artefact)
