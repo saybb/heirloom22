@@ -50,7 +50,6 @@ const Person = (props) => {
 } 
 
 const mapStateToProps = (state) => {
-    console.log(state.firestore.data.People);
     const person = state.firestore.data.People;  
       return {
           person: person,
