@@ -53,14 +53,9 @@ const Artefact = (props) => {
                 <h2>{artefact[id].name}</h2>
                 <p>{artefact[id].details}</p>
                 {/* ItemLinks will render links as items with names and relation descriptors */}
-<<<<<<< HEAD
-                <ItemLinks title="Related People" items={artefact.people_links}/>
-                <ItemLinks title="Related Events" items={artefact.event_links}/>
-                <Addendum />
-=======
                 <ItemLinks title="Related People" items={artefact[id].people_links}/>
                 <ItemLinks title="Related Events" items={artefact[id].events_links}/>
->>>>>>> c8eeb480dce97c5420bff9444362a0ba9588c946
+                <Addendum />
             </div>
         </div>
     )
