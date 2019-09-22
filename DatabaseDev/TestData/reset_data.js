@@ -52,8 +52,8 @@ function parse_object(javascript_object) {
             link.reference = convert_reference(link.reference)
         }
     }
-    if (object.artifacts_links) {
-        for (link of object.artifacts_links) {
+    if (object.artefacts_links) {
+        for (link of object.artefacts_links) {
             link.reference = convert_reference(link.reference)
         }
     }
@@ -80,7 +80,7 @@ delete_button.addEventListener('click',
     (e) => {
         e.stopPropagation()
 
-        delete_collection("Artifacts")
+        delete_collection("Artefacts")
         delete_collection("Addendums")
         delete_collection("People")
         delete_collection("Users")
@@ -91,7 +91,7 @@ upload_button.addEventListener('click',
     (e) => {
         e.stopPropagation()
 
-        upload_collection("Artifacts", Artifacts)
+        upload_collection("Artefacts", Artefacts)
         upload_collection("Addendums", Addendums)
         upload_collection("People", People)
         upload_collection("Users", Users)

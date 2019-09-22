@@ -15,7 +15,7 @@ Note
    I am not working on multimedia support for this sprint.
 */
 
-const Artifacts = {
+const Artefacts = {
 
     family_crest_drawing_id: {
         name: "family crest drawing",
@@ -152,7 +152,7 @@ const Addendums = {
     broken_vase_comment_id : {
         name: "I broke the vase, I am sorry",
         details : "I tripped and broke and tipped the table over",
-        reference : "/Artifacts/vase_id",
+        reference : "/Artefacts/vase_id",
         created_by: "amanda",
         date_created: "01/04/2019",
     },
@@ -161,7 +161,7 @@ const Addendums = {
         name: "test comment on event",
         date_created: "08/04/2019",
         created_by: "amanda",
-        reference: "/Artifacts/making_crest_id"
+        reference: "/Artefacts/making_crest_id"
     }
     
 }
@@ -193,21 +193,21 @@ const People = {
         lastname: "Gilbert",
         dob: "01/01/1971",
         details: "Great crafts men. Grandpa of Ananda and Sam, father of Liam",
-        artifacts_links: [
+        Artefacts_links: [
             {
                 name: "Coat of arms of the Gilbert Monument",
                 relation: "made by",
-                reference: "/Artifacts/family_crest_monument_id"
+                reference: "/Artefacts/family_crest_monument_id"
             },
             {
                 name: "family crest drawing",
                 relation: "made by",
-                reference: "/Artifacts/family_crest_drawing_id"
+                reference: "/Artefacts/family_crest_drawing_id"
             },
             {
                 name: "Recording of grandpa John making a crestt",
                 relation: "recording of",
-                reference: "/Artifacts/making_crest_id"
+                reference: "/Artefacts/making_crest_id"
             },
         ],
     },
@@ -218,11 +218,11 @@ const People = {
         name: "Sarah",
         lastname: "Gilbert",
         details: "Mother of Sam and Amanda. Married to Liam",
-        artifacts_links: [
+        Artefacts_links: [
             {
                 name: "weeding ring",
                 relation: "owned by",
-                reference: "/Artifacts/wedding_ring_id"
+                reference: "/Artefacts/wedding_ring_id"
             },
         ],
     },
@@ -234,11 +234,11 @@ const People = {
         lastname: "Gilbert",
         dob: "01/01/1970",
         details: "Mother of Liam. Married to John",
-        artifacts_links: [
+        Artefacts_links: [
             {
                 name: "weeding ring",
                 relation: "owned by",
-                reference: "/Artifacts/wedding_ring_id"
+                reference: "/Artefacts/wedding_ring_id"
             },
         ],
     },
@@ -249,11 +249,11 @@ const People = {
         name: "Melanie",
         lastname: "Gilbert",
         details: "Father of Amanda and Sam",
-        artifacts_links: [
+        Artefacts_links: [
             {
                 name: "family vase",
                 relation: "owned",
-                reference: "/Artifacts/vase_id"
+                reference: "/Artefacts/vase_id"
             },
         ],
     },
@@ -266,11 +266,11 @@ const Events = {
         date: "01/01/1985",
         date_created: "29/05/2000",
         created_by: "liam",
-        artifacts_links: [
+        Artefacts_links: [
             {
                 name: "Coat of arms of the Gilbert Monument",
                 relation: "moved to",
-                reference: "/Artifacts/family_crest_monument_id"
+                reference: "/Artefacts/family_crest_monument_id"
             }, 
         ]
     },
@@ -280,21 +280,21 @@ const Events = {
         date: "01/01/1980",
         date_created: "29/05/2000",
         created_by: "amanda",
-        artifacts_links: [
+        Artefacts_links: [
             {
                 name: "Coat of arms of the Gilbert Monument",
                 relation: "created during",
-                reference: "/Artifacts/family_crest_monument_id"
+                reference: "/Artefacts/family_crest_monument_id"
             },
             {
                 name: "family crest drawing",
                 relation: "created during",
-                reference: "/Artifacts/family_crest_drawing_id"
+                reference: "/Artefacts/family_crest_drawing_id"
             },
             {
                 name: "Recording of grandpa John making a crestt",
                 relation: "recorded during",
-                reference: "/Artifacts/making_crest_id"
+                reference: "/Artefacts/making_crest_id"
             },
         ]
     },
@@ -305,11 +305,11 @@ const Events = {
         date: "01/01/1983",
         date_created: "29/06/2000",
         created_by: "liam",
-        artifacts_links: [
+        Artefacts_links: [
             {
                 name: "wedding ring",
                 relation: "used during",
-                reference: "/Artifacts/wedding_ring_id"
+                reference: "/Artefacts/wedding_ring_id"
             },
         ], 
     },
@@ -319,11 +319,11 @@ const Events = {
         date: "01/01/1952",
         date_created: "29/06/2000",
         created_by: "liam",
-        artifacts_links: [
+        Artefacts_links: [
             {
                 name: "weeding ring",
                 relation: "used during",
-                reference: "/Artifacts/wedding_ring_id"
+                reference: "/Artefacts/wedding_ring_id"
             },
         ], 
     },
