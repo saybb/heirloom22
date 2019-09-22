@@ -23,4 +23,6 @@ export const firestore = firebase.firestore();
 
 export const firebasestore = firebase.firestore;
 
+export const storage = firebase.storage().ref();
+
 export default firebase 

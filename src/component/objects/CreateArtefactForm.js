@@ -84,4 +84,5 @@ class CreateArtefactForm extends React.Component {
 
 // use wrapper
 CreateArtefactForm = Form.create({name: "createArtefactForm"})(CreateArtefactForm);
-export default CreateArtefactForm;
+
+export default CreateArtefactForm 
