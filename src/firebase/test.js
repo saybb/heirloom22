@@ -1,6 +1,7 @@
 /******************* Test Functions ************************/
-import {firestore} from "./pure_config.js"
+import {firestore, storage} from "./pure_config.js"
 import * as db from "./database.js"
+import * as fs from "./storage.js"
 
 async function get_all() {
     var collection 
@@ -28,6 +29,9 @@ async function get() {
     var result = await collection.get_document_by_id(document_id)
     console.log(result)
 }
+
+
+
 
 // console.log(db.server_time_stamp())
 // console.log(db.convert_reference("Tests/a", firestore))

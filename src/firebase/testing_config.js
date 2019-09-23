@@ -11,8 +11,6 @@ var config = {
 
 firebase.initializeApp(config);
 
-export const firestore = firebase.firestore();
+const firestore = firebase.firestore();
 
-export const storage = firebase.storage();
-
-// const firestorage = firebase.
+const storage = firebase.storage();

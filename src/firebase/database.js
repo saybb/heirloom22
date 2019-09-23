@@ -10,7 +10,7 @@
  * - data 
  *      the data we are intested in
  * - raw 
- *      the document ref
+ *      the document reference
  */
 export class Document{
     constructor(ref) {
