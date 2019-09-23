@@ -52,8 +52,8 @@ function parse_object(javascript_object) {
             link.reference = convert_reference(link.reference)
         }
     }
-    if (object.artifacts_links) {
-        for (link of object.artifacts_links) {
+    if (object.artefacts_links) {
+        for (link of object.artefacts_links) {
             link.reference = convert_reference(link.reference)
         }
     }
@@ -65,13 +65,22 @@ function parse_object(javascript_object) {
 // buttons
 const delete_button = document.querySelector('#delete')
 const upload_button = document.querySelector('#upload')
+const delete_test_button = document.querySelector('#delete-test')
 
 // trigger
+delete_test_button.addEventListener('click',
+    (e) => {
+        e.stopPropagation()
+
+        delete_collection("Tests")
+    }
+)
+
 delete_button.addEventListener('click',
     (e) => {
         e.stopPropagation()
 
-        delete_collection("Artifacts")
+        delete_collection("Artefacts")
         delete_collection("Addendums")
         delete_collection("People")
         delete_collection("Users")
@@ -82,7 +91,7 @@ upload_button.addEventListener('click',
     (e) => {
         e.stopPropagation()
 
-        upload_collection("Artifacts", Artifacts)
+        upload_collection("Artefacts", Artefacts)
         upload_collection("Addendums", Addendums)
         upload_collection("People", People)
         upload_collection("Users", Users)
@@ -92,22 +101,18 @@ upload_button.addEventListener('click',
 
 
 // delete everything
-function delete_collection(path) {
-    db.collection(path).get()
-    .then(
-        (snapshot) => {
-            snapshot.docs.forEach(
-                (doc) => {
-                    console.log(">>>> Deleting");
-                    console.log(doc.id);
-                    db.collection(path).doc(doc.id).delete();
-                }
-            )
-        }
-    )
-    .catch(function (error) {
+async function delete_collection(path) {
+    console.log("Deleting ......")
+    try {
+        snapshot = await db.collection(path).get()
+        for (doc of snapshot.docs) {
+            console.log(">>>> Deleting")
+            console.log(doc.id)
+            db.collection(path).doc(doc.id).delete()
+        } 
+    } catch (error) {
         console.error("Error deleteing document: ", error);
-    });
+    }
 };
 
 // upload test data
