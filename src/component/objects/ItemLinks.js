@@ -22,19 +22,12 @@ function ItemLinks(props) {
 
     return(
         <React.Fragment>
-
-
-        <h3>{title}</h3>
-
-
-
+            <h3>{title}</h3>
             <div className="text">
                 { // generates an item for each link
                     items.map((item) => <ItemLink key={item.name} item={item}/>)
                 }
             </div>
-
-
         </React.Fragment>
     );
 }
@@ -45,16 +38,15 @@ function ItemLink(props) {
     return(
         <React.Fragment>
             <div className="ui raised very padded text container segment">
-
                 <div className="content">
-                <Link to={"/view /" + item.reference.path}>
-                <div className="content">
-                    <a href="/" className="author">{item.name}</a>
-                    <p>{item.relation}</p>
+                    <Link to={"/view/" + item.reference.path}>
+                        <div className="content">
+                            <h4>{item.name}</h4>
+                            <p>{item.relation}</p>
+                        </div>
+                    </Link>
                 </div>
-            </Link>
-                </div>
-            <Divider className="item-divider"/>
+                <Divider className="item-divider"/>
             </div>
         </React.Fragment>
     );

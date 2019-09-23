@@ -55,12 +55,9 @@ const Artefact = (props) => {
                 <img src={faker.image.abstract()}/>
                 <p>{artefact[id].details}</p>
                 {/* ItemLinks will render links as items with names and relation descriptors */}
-                <ItemLinks title="Related People" items={artefact.people_links}/>
-                <ItemLinks title="Related Events" items={artefact.event_links}/>
-
-                <Addendum />
                 <ItemLinks title="Related People" items={artefact[id].people_links}/>
                 <ItemLinks title="Related Events" items={artefact[id].events_links}/>
+                <Addendum />
             </div>
         </div>
     )
