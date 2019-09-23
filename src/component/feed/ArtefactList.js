@@ -35,7 +35,7 @@ class ArtefactList extends React.Component {
         return(
             <div className="ArtefactList">
                 <h2>Browsing your collection...</h2>
-                { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
+                { artefacts && Object.values(artefacts).map(artefact => <ArtefactListElement artefact={artefact}/>)}  
             </div> 
         )
     }

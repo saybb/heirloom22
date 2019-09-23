@@ -13,8 +13,6 @@ import { Redirect } from 'react-router-dom'
 // components
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
-import Addendum from "./Addendum";
-import faker from "faker";
 
 const Artefact = (props) => {
   const { artefact, auth } = props;
@@ -47,25 +45,17 @@ const Artefact = (props) => {
         </div>
       )
     }
-
-    
-    console.log(artefact);
-
     return (
         <div className="object">
-            {/*
-            <div className="object-image-container">
-              <img src='https://bit.ly/324CaHY' alt={artefact[id].name} />
-            </div>
-            */}
+            {/* <div className="object-image-container">
+            <img src='https://bit.ly/324CaHY' alt={artefact.title} />
+            </div> */}
             <div className="object-content">
                 <h2>{artefact[id].name}</h2>
-                <img src={faker.image.abstract()}/>
                 <p>{artefact[id].details}</p>
                 {/* ItemLinks will render links as items with names and relation descriptors */}
                 <ItemLinks title="Related People" items={artefact[id].people_links}/>
-                <ItemLinks title="Related Events" items={artefact[id].events_links}/>
-                <Addendum />
+                <ItemLinks title="Related Events" items={artefact[id].event_links}/>
             </div>
         </div>
     )
