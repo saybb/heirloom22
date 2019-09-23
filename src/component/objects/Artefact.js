@@ -6,7 +6,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { firestoreConnect, isEmpty, isLoaded  } from 'react-redux-firebase'
+import { firestoreConnect, isLoaded  } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Redirect } from 'react-router-dom'
 
@@ -30,18 +30,10 @@ const Artefact = (props) => {
       </div>
     )
   }
-
-  if(isEmpty(artefact)){
-    return (
-        <div className="object-content">
-          <h2>Artefact is NOT FOUND</h2>
-        </div>
-      )
-  }
   
   if (artefact) {
     if(artefact[id] == null){
-          return (
+      return (
         <div className="object-content">
           <h2>Artefact is NOT FOUND</h2>
         </div>

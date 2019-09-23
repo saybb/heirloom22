@@ -44,13 +44,12 @@ function ArtefactListElement(props) {
     return(
         <React.Fragment>
             <div className="ArtefactListElement">
-                <span>
+                <Link to={"/view/artefacts/" + reference}>
                     <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
                     { // only show details section if it's not empty
                         artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
                     }
-                </span>
-                <p><b>{artefact.created_by}</b></p>
+                </Link>
             </div>
             <Divider className="ArtefactListElementDivider" />
         </React.Fragment>
