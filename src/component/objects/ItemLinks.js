@@ -8,7 +8,6 @@
 import React from 'react';
 import { Divider } from 'antd';
 import { Link } from 'react-router-dom';
-import faker from 'faker';
 
 import './ItemLinks.css';
 

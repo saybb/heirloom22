@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signIn } from '../../store/Actions/userActions'
 import { Redirect } from 'react-router-dom'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 class SignIn extends Component {
   state = {
@@ -19,7 +19,7 @@ class SignIn extends Component {
     this.props.signIn(this.state)
   }
   render() {
-    const { authError, auth } = this.props;
+    const { /*authError,*/ auth } = this.props;
     if (auth.uid) return <Redirect to='/' /> 
     return (
         <Form onSubmit={this.handleSubmit}>

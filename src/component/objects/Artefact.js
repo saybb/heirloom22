@@ -45,14 +45,11 @@ const Artefact = (props) => {
 
     return (
         <div className="object">
-            {/*
             <div className="object-image-container">
-              <img src='https://bit.ly/324CaHY' alt={artefact[id].name} />
+              <img src={faker.image.abstract()} alt={artefact[id].title}/>
             </div>
-            */}
             <div className="object-content">
                 <h2>{artefact[id].name}</h2>
-                <img src={faker.image.abstract()}/>
                 <p>{artefact[id].details}</p>
                 {/* ItemLinks will render links as items with names and relation descriptors */}
                 <ItemLinks title="Related People" items={artefact[id].people_links}/>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { signUp } from '../../store/Actions/userActions'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 
 
 class SignUp extends Component {
@@ -22,7 +22,7 @@ class SignUp extends Component {
     this.props.signUp(this.state);
   }
   render() {
-    const { auth, authError } = this.props;
+    const { auth /*, authError*/ } = this.props;
     if (auth.uid) return <Redirect to='/' /> 
      return (
 
@@ -48,9 +48,6 @@ class SignUp extends Component {
               <input type="password" placeholder='password' id='password' onChange={this.handleChange} />
           </Form.Field>
 
-          <Form.Field>
-              <Checkbox label='I agree to the Terms and Conditions' />
-          </Form.Field>
           <Button type='submit'>Submit</Button>
       </Form>
 
