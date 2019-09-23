@@ -14,22 +14,21 @@ import ArtefactListElement from "./ArtefactListElement.js";
 import './ArtefactList.css';
 
 class ArtefactList extends React.Component {
-    
+
     render() {
         const { artefacts } = this.props;
-        console.log(artefacts)
 
         if(!isLoaded(artefacts)){
             return (
                 <div className="container center">
-                    <h2>Loading artefacts...</h2>
+                    <h2>Loading artefact list...</h2>
                 </div>
             )
         }
         if(isEmpty(artefacts)){
             return (
                 <div className="container center">
-                    <h2>Nothing found.</h2>
+                    <h2>No artefact list...</h2>
                 </div>
             )
         }
@@ -43,17 +42,19 @@ class ArtefactList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    //const artefacts = state.firestore.data.artefacts;
-    //console.log(artefacts)
     return {
       artefacts: state.firestore.data.Artefacts,
-      auth: state.firebase.auth
+      auth: state.firebase.auth,
+      profile: state.firebase.profile,
     }
 }
   
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([{
-        collection: 'Artefacts'
+    firestoreConnect((props) => [{
+        collection: 'Artefacts',
+        where: [
+            'created_by', '==', (props.profile.name? props.profile.name : '')
+        ]
     }])
 )(ArtefactList)
