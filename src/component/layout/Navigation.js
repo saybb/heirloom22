@@ -38,8 +38,8 @@ class Navigation extends React.Component {
                     <Menu.Item key="home"><NavLink to='/'>Home</NavLink></Menu.Item>
                     <Menu.Item key="list"><NavLink to='/feed'>List View</NavLink></Menu.Item>
                     <Menu.Item key="artefact"><NavLink to='/view/artefacts/family_crest_monument_id'>Sample Artefact View</NavLink></Menu.Item>
-                    <Menu.Item key="event"><NavLink to='/view/events'>Sample Event View</NavLink></Menu.Item>
-                    <Menu.Item key="person"><NavLink to='/view/people'>Sample Person View</NavLink></Menu.Item>
+                    <Menu.Item key="event"><NavLink to='/view/events/tmp'>Sample Event View</NavLink></Menu.Item>
+                    <Menu.Item key="person"><NavLink to='/view/people/john_gilbert_id'>Sample Person View</NavLink></Menu.Item>
                 </Menu>
             );
         } else {
@@ -50,6 +50,7 @@ class Navigation extends React.Component {
                             <img className="nav-logo" src={logo} alt="logo"/>
                         </NavLink>
                     </Menu.Item>
+                    <Menu.Item key="home"><NavLink to='/'>Home</NavLink></Menu.Item>
                 </Menu>
             );
         }
@@ -64,13 +65,13 @@ class Navigation extends React.Component {
                 <Menu className="menu-user" mode="horizontal">
                     <Menu.Item key="profile"><UserModal /></Menu.Item>
                     <Menu.Item key="logout"><Button type="danger" onClick={signOut}>Log out</Button></Menu.Item>
+                    <Menu.Item key="signup"><NavLink to='/signup'>Sign up</NavLink></Menu.Item>
                 </Menu>
             );
         } else {
             return(
                 <Menu className="menu-user" mode="horizontal">
                     <Menu.Item key="login"><NavLink to='/signin'>Log in</NavLink></Menu.Item>
-                    <Menu.Item key="signup"><NavLink to='/signup'>Sign up</NavLink></Menu.Item>
                 </Menu>
             );
 
