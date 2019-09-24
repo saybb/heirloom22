@@ -17,8 +17,6 @@ class ArtefactList extends React.Component {
 
     render() {
         const { artefacts } = this.props;
-        console.log(artefacts)
-
 
         if(!isLoaded(artefacts)){
             return (
