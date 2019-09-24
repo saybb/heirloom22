@@ -6,61 +6,47 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux'
-import { firestoreConnect, isLoaded  } from 'react-redux-firebase'
-import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
 
-
-const Person = (props) => {
-    const { person, auth } = props;
-    const id = props.match.params.id;
-  
-    // must be signed in to see this
-    if (!auth.uid) return <Redirect to='/signin' /> 
-  
-    if (!isLoaded(person)){
-      return (
-        <div className="object-content">
-          <h2>Person is loading...</h2>
-        </div>
-      )
-    }
-    
-    if (person) {
-      if(person[id] == null){
-        return (
-          <div className="object-content">
-            <h2>Person is NOT FOUND</h2>
-          </div>
-        )
-      }
-      
-      return (
-        <div className="object-content">
-            <h2>{person[id].name + " " + person[id].lastname}</h2>
-            <p>{"Born: " + person[id].dob.toDate()}</p>
-            <p>{person[id].details}</p>
-            {/* <ItemLinks title="Related Artefacts" items={person.artefact_links}/> */}
-        </div>
-      )
-    }
-} 
-
-const mapStateToProps = (state) => {
-    const person = state.firestore.data.People;  
-      return {
-          person: person,
-          auth: state.firebase.auth,
-      }
+const person = {
+    artefacts_links: [
+        {
+            key: 0,
+            name: "Coat of arms of the Gilbert Monument", 
+            reference: "Artefacts/family_crest_monument_id",
+            relation: "made by"
+        },
+        {
+            key: 1,
+            name: "family crest drawing",
+            reference: "Artefacts/family_crest_drawing_id",
+            relation: "made by",
+        },
+        {
+            key: 2,
+            name: "Recording of grandpa John making a crest",
+            reference: "Artefacts/making_crest_id",
+            relation: "recording of"
+        }
+    ],
+    date: null,
+    date_created: "September 19, 2019 at 11:58:41 AM UTC+10",
+    details: "Great crafts men. Grandpa of Ananda and Sam, father of Liam",
+    dob: "January 1, 1971 at 12:00:00 AM UTC+10",
+    lastname: "Gilbert",
+    name: "John"
 }
 
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect((props) =>[{
-      collection: 'People', 
-      doc: props.match.params.id,
-    }])
-  )(Person)
+function Person() {
+    return(
+        <div className="object-content">
+            <h2>{person.name + " " + person.lastname}</h2>
+            <p>Born: {person.dob}</p>
+            <p>{person.details}</p>
+            <ItemLinks title="Related Artefacts" items={person.artefacts_links}/>
+        </div>
+    );
+} 
+
+export default Person;
