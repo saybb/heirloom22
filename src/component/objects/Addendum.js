@@ -1,5 +1,4 @@
 import React from 'react';
-//import './index.css';
 import faker from 'faker';
 import CommentDetail from './CommentDetail';
 

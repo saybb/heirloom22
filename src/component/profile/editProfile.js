@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Form, Input } from 'antd';
 
 const EditProfile = ({handleChange, state}) => {
-
     return (
       <Fragment>
         <Form >
