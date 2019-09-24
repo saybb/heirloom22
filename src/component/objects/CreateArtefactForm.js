@@ -1,7 +1,6 @@
 /* * *
  * CreateArtefactForm :: ReactJS Component
  * Form allowing user to input relevant information to create an artefact.
- * Created By: Lawson Wang-Wills
  */
 
 import React from "react";

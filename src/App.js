@@ -1,4 +1,3 @@
-
 /* * *
  * App :: ReactJS Component
  * Main component for the project.

@@ -2,7 +2,6 @@
  * Event :: ReactJS Component
  * Page for the display of an Event.
  * The event should be passed to this component as the prop "event".
- * Created By: Lawson Wang-Wills
  */
 
 import React from 'react';

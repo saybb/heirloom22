@@ -2,7 +2,6 @@
  * ItemLinks :: ReactJS Component
  * Page for the display of a link to an item.
  * Shows the item name and its relation.
- * Created By: Lawson Wang-Wills
  */
 
 import React from 'react';

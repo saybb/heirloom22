@@ -1,10 +1,8 @@
 /**
  * UserModal :: ReactJS Component
  * Button and modal to access user-related features.
- * Created by: Oliver
  */
 
- 
 import React from 'react'
 import { Modal, Button } from 'antd';
 import { connect } from 'react-redux'

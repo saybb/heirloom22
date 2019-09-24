@@ -2,7 +2,6 @@
  * Person :: ReactJS Component
  * Page for the display of a Person.
  * The person should be passed to this component as the prop "person".
- * Created By: Lawson Wang-Wills
  */
 
 import React from 'react';
