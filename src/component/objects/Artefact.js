@@ -40,9 +40,6 @@ const Artefact = (props) => {
       )
     }
 
-    
-    console.log(artefact);
-
     return (
         <div className="object">
             <div className="object-image-container">
@@ -62,7 +59,7 @@ const Artefact = (props) => {
 }
 
 const mapStateToProps = (state) => {
-    const artefact = state.firestore.data.Artefacts;   
+    const artefact = state.firestore.data.Artefacts;
       return {
           artefact: artefact,
           auth: state.firebase.auth,
