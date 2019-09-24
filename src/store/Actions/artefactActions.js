@@ -1,3 +1,8 @@
+import {artifacts_collection} from '../../firebase/database';
+
+const db = new artifacts_collection();
+const ARTEFACT = 'Artefacts';
+
 export const createArtefact = (artefact) => {
     return (dispatch, getState, {auth, firestore}) => {
         const profile = getState().firebase.profile;
@@ -17,3 +22,4 @@ export const createArtefact = (artefact) => {
         });
     }
 }
+

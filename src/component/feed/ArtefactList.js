@@ -53,7 +53,10 @@ const mapStateToProps = (state) => {
   
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect([{
-        collection: 'Artefacts'
+    firestoreConnect((props) => [{
+        collection: 'Artefacts',
+        // where: [
+        //     'created_by', '==', (props.profile.name? props.profile.name : '')
+        // ]
     }])
 )(ArtefactList)

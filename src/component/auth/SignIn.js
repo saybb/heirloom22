@@ -19,12 +19,10 @@ class SignIn extends Component {
     this.props.signIn(this.state)
   }
   render() {
-    const { /*authError,*/ auth } = this.props;
+    const { auth, authError } = this.props;
     if (auth.uid) return <Redirect to='/' /> 
     return (
         <Form onSubmit={this.handleSubmit}>
-
-
           <Form.Field>
             <label>Email</label>
             <input type="email" placeholder='email' id='email' onChange={this.handleChange} />
@@ -34,13 +32,13 @@ class SignIn extends Component {
             <label>Password</label>
             <input type="password" placeholder='password' id='password' onChange={this.handleChange} />
           </Form.Field>
+
           <Button type='submit'>Log In</Button>
 
+          <div className="center red-text">
+              { authError ? <p>{authError}</p> : null }
+          </div>
         </Form>
-
-
-
-
     )
   }
 }
