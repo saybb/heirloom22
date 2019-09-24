@@ -34,14 +34,11 @@ const Artefact = (props) => {
               </div>
         );
     }
-
     
-    console.log(artefact);
-
     return (
         <div className="object">
             <div className="object-image-container">
-                <img src={faker.image.abstract()} alt={artefact[id].title}/>
+                <img src={faker.image.abstract()} alt={artefact[id].name}/>
             </div>
             <div className="object-content">
                 <h2>{artefact[id].name}</h2>

@@ -7,7 +7,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { firestoreConnect, isLoaded  } from 'react-redux-firebase';
+import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import { compose } from 'redux';
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
@@ -24,26 +24,22 @@ const Person = (props) => {
         )
     }
     
-    if (person) {
-        if(person[id] == null){
-            return (
-                <div className="object-content">
-                    <h2>Person is NOT FOUND</h2>
-                </div>
-            );
-        }
-
-        console.log(person);
-        
+    if (isEmpty(person)) {
         return(
             <div className="object-content">
-                <h2>{person[id].name + " " + person[id].lastname}</h2>
-                <p>{"Born: " + person[id].dob.toDate()}</p>
-                <p>{person[id].details}</p>
-                <ItemLinks title="Related Artefacts" items={person[id].Artefacts_links}/>
-            </div>
+            <h2>Person is NOT FOUND</h2>
+        </div>
         );
     }
+        
+    return(
+        <div className="object-content">
+            <h2>{person[id].name + " " + person[id].lastname}</h2>
+            <p>{"Born: " + person[id].dob.toDate()}</p>
+            <p>{person[id].details}</p>
+            <ItemLinks title="Related Artefacts" items={person[id].artefacts_links}/>
+        </div>
+    );
 } 
 
 const mapStateToProps = (state) => {
