@@ -1,7 +1,6 @@
 /* * *
  * Person :: ReactJS Component
  * Page for the display of a Person.
- * The person should be passed to this component as the prop "person".
  */
 
 import React from 'react';
@@ -14,7 +13,7 @@ import "./Objects.css";
 const Person = (props) => {
     const { person } = props;
     const id = props.match.params.id;
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     
     if (!isLoaded(person)){
         return (
@@ -27,8 +26,8 @@ const Person = (props) => {
     if (isEmpty(person)) {
         return(
             <div className="object-content">
-            <h2>Person is NOT FOUND</h2>
-        </div>
+                <h2>Person is NOT FOUND</h2>
+            </div>
         );
     }
         
