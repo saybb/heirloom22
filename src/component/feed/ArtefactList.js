@@ -43,11 +43,10 @@ class ArtefactList extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    //const artefacts = state.firestore.data.artefacts;
-    //console.log(artefacts)
     return {
       artefacts: state.firestore.data.Artefacts,
-      auth: state.firebase.auth
+      auth: state.firebase.auth,
+      // profile: state.firebase.profile,
     }
 }
   
