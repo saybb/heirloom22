@@ -24,7 +24,6 @@ class ArtefactList extends React.Component {
     render() {
         const { auth, artefacts } = this.props;
         if (!auth.uid) return <Redirect to='/signin' /> 
-        console.log(typeof artefacts.artefacts);
         
         if(artefacts.isLoading){
             return (
