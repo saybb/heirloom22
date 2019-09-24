@@ -58,10 +58,9 @@ const Artefact = (props) => {
 
 const mapStateToProps = (state) => {
     const artefact = state.firestore.data.Artefacts;   
-        return {
-            artefact: artefact,
-            auth: state.firebase.auth,
-        }
+    return {
+        artefact: artefact
+    }
 }
 
 export default compose(

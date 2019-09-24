@@ -32,6 +32,8 @@ const Person = (props) => {
                 </div>
             );
         }
+
+        console.log(person);
         
         return(
             <div className="object-content">
