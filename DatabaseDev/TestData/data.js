@@ -193,7 +193,7 @@ const People = {
         lastname: "Gilbert",
         dob: "01/01/1971",
         details: "Great crafts men. Grandpa of Ananda and Sam, father of Liam",
-        Artefacts_links: [
+        artefacts_links: [
             {
                 name: "Coat of arms of the Gilbert Monument",
                 relation: "made by",
@@ -218,7 +218,7 @@ const People = {
         name: "Sarah",
         lastname: "Gilbert",
         details: "Mother of Sam and Amanda. Married to Liam",
-        Artefacts_links: [
+        artefacts_links: [
             {
                 name: "weeding ring",
                 relation: "owned by",
@@ -234,7 +234,7 @@ const People = {
         lastname: "Gilbert",
         dob: "01/01/1970",
         details: "Mother of Liam. Married to John",
-        Artefacts_links: [
+        artefacts_links: [
             {
                 name: "weeding ring",
                 relation: "owned by",
@@ -249,7 +249,7 @@ const People = {
         name: "Melanie",
         lastname: "Gilbert",
         details: "Father of Amanda and Sam",
-        Artefacts_links: [
+        artefacts_links: [
             {
                 name: "family vase",
                 relation: "owned",
@@ -266,7 +266,7 @@ const Events = {
         date: "01/01/1985",
         date_created: "29/05/2000",
         created_by: "liam",
-        Artefacts_links: [
+        artefacts_links: [
             {
                 name: "Coat of arms of the Gilbert Monument",
                 relation: "moved to",
@@ -280,7 +280,7 @@ const Events = {
         date: "01/01/1980",
         date_created: "29/05/2000",
         created_by: "amanda",
-        Artefacts_links: [
+        artefacts_links: [
             {
                 name: "Coat of arms of the Gilbert Monument",
                 relation: "created during",
@@ -305,7 +305,7 @@ const Events = {
         date: "01/01/1983",
         date_created: "29/06/2000",
         created_by: "liam",
-        Artefacts_links: [
+        artefacts_links: [
             {
                 name: "wedding ring",
                 relation: "used during",
@@ -319,7 +319,7 @@ const Events = {
         date: "01/01/1952",
         date_created: "29/06/2000",
         created_by: "liam",
-        Artefacts_links: [
+        artefacts_links: [
             {
                 name: "weeding ring",
                 relation: "used during",
