@@ -7,8 +7,6 @@
 
 import React from 'react';
 import { Divider } from 'antd';
-import { Link } from 'react-router-dom';
-import faker from 'faker';
 
 import './ItemLinks.css';
 
@@ -23,7 +21,7 @@ function ItemLinks(props) {
     return(
         <React.Fragment>
             <h3>{title}</h3>
-            <div className="text">
+            <div className="item-links">
                 { // generates an item for each link
                     items.map((item) => <ItemLink key={item.name} item={item}/>)
                 }
@@ -37,17 +35,11 @@ function ItemLink(props) {
 
     return(
         <React.Fragment>
-            <div className="ui raised very padded text container segment">
-                <div className="content">
-                    <Link to={"/view/" + item.reference.path}>
-                        <div className="content">
-                            <h4>{item.name}</h4>
-                            <p>{item.relation}</p>
-                        </div>
-                    </Link>
-                </div>
-                <Divider className="item-divider"/>
+            <div className="item-link">
+                <h4>{item.name}</h4>
+                <p>{item.relation}</p>
             </div>
+            <Divider className="item-divider"/>
         </React.Fragment>
     );
 }

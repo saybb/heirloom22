@@ -15,21 +15,21 @@ const event = {
     details: "This is when the family crest was made.",
     date_created: "29/05/2000",
     crated_by: "amanda",
-    artefacts_links: [
+    artefact_links: [
         {
             name: "Coat of arms of the Gilbert Monument",
             relation: "created during",
-            reference: "Artefacts/family_crest_monument_id"
+            reference: "/Artifacts/family_crest_monument_id"
         },
         {
             name: "family crest drawing",
             relation: "created during",
-            reference: "Artefacts/family_crest_drawing_id"
+            reference: "/Artifacts/family_crest_drawing_id"
         },
         {
             name: "Recording of grandpa John making a crestt",
             relation: "recorded during",
-            reference: "Artefacts/making_crest_id"
+            reference: "/Artifacts/making_crest_id"
         },
     ]
 }
@@ -40,7 +40,7 @@ function Event() {
             <h2>{event.name}</h2>
             <p>Occurred on: {event.date}</p>
             <p>{event.details}</p>
-            <ItemLinks title="Related Artefacts" items={event.artefacts_links}/>
+            <ItemLinks title="Related Artefacts" items={event.artefact_links}/>
         </div>
     );
 } 

@@ -8,7 +8,6 @@
 // libs
 import React from 'react';
 import { Divider } from 'antd';
-import { Link } from 'react-router-dom';
 
 /**
  * Function element.
@@ -16,7 +15,7 @@ import { Link } from 'react-router-dom';
  *   - artefact : artefact json object to be represented
  */
 function ArtefactListElement(props) {
-    const { artefact, reference } = props;
+    const { artefact } = props;
     const TITLE_LENGTH = 50;       // maximum length of title in chars
     const DESC_LENGTH = 100;       // maximum length of description in chars
     
