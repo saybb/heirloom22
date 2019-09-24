@@ -23,14 +23,3 @@ export const createArtefact = (artefact) => {
     }
 }
 
-export const fetechArtefacts = () => {
-    return (dispatch, getState, {auth, firestore}) => {
-        dispatch({ type: 'ARTEFACTS_LOADING' });
-
-        return db.get_all_documents()
-        .then((artefacts) => {
-            dispatch({ type: 'FETCH_ARTEFACTS_SUCCESS', payload: artefacts})
-        })
-        .catch(error => dispatch({ type: 'FETCH_ARTEFACTS_ERROR', payload: error.message}))
-    }
-}

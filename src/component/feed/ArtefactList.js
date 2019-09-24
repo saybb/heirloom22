@@ -6,67 +6,57 @@
 
 import React from 'react';
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-
+import { firestoreConnect, isEmpty, isLoaded } from 'react-redux-firebase'
+import { compose } from 'redux'
 
 // components
 import ArtefactListElement from "./ArtefactListElement.js";
 import './ArtefactList.css';
-import { fetechArtefacts } from "../../store/Actions/artefactActions";
-
-
 
 class ArtefactList extends React.Component {
-    componentDidMount() {
-        this.props.fetechArtefacts();
-     }
 
     render() {
-        const { auth, artefacts } = this.props;
-        if (!auth.uid) return <Redirect to='/signin' /> 
-        
-        if(artefacts.isLoading){
+        const { artefacts } = this.props;
+        console.log(artefacts)
+
+
+        if(!isLoaded(artefacts)){
             return (
-                <div className="ArtefactList">
-                    <div className="container center">
-                        <h2>Loading artefact list...</h2>
-                    </div>
-                </div> 
-            )
-        }
-        // ERROR occurs
-        if (artefacts.errMess) {
-            return (
-                <div className="ArtefactList">
-                    <div className="container center">
-                        <h2>{artefacts.errMess}</h2>
-                    </div>
+                <div className="container center">
+                    <h2>Loading artefact list...</h2>
                 </div>
             )
         }
-
+        if(isEmpty(artefacts)){
+            return (
+                <div className="container center">
+                    <h2>No artefact list...</h2>
+                </div>
+            )
+        }
         return(
             <div className="ArtefactList">
-            <h2>Browsing your collection...</h2>
-            { Object.entries(artefacts.artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
-        </div> 
+                <h2>Browsing your collection...</h2>
+                { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
+            </div> 
         )
-
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-      artefacts: state.artefacts,
+      artefacts: state.firestore.data.Artefacts,
       auth: state.firebase.auth,
+      profile: state.firebase.profile,
     }
 }
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetechArtefacts: () => {dispatch(fetechArtefacts())},
-    }
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(ArtefactList)
+  
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect((props) => [{
+        collection: 'Artefacts',
+        // where: [
+        //     'created_by', '==', (props.profile.name? props.profile.name : '')
+        // ]
+    }])
+)(ArtefactList)
