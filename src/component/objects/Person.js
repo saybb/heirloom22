@@ -15,6 +15,7 @@ import "./Objects.css";
 const Person = (props) => {
     const { person } = props;
     const id = props.match.params.id;
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
     
     if (!isLoaded(person)){
         return (
@@ -35,7 +36,7 @@ const Person = (props) => {
     return(
         <div className="object-content">
             <h2>{person[id].name + " " + person[id].lastname}</h2>
-            <p>{"Born: " + person[id].dob.toDate()}</p>
+            <p>{"Born: " + person[id].dob.toDate().toLocaleDateString("en-AU", options)}</p>
             <p>{person[id].details}</p>
             <ItemLinks title="Related Artefacts" items={person[id].artefacts_links}/>
         </div>
