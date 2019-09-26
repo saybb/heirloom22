@@ -34,6 +34,10 @@
 
 ![image-20190919211819821](./Images/artifacts.png)
 
+All media links would be in this form
+
+![image-20190926124632103](./Images/media_links.png)
+
 | Field name                | Type      | Description                                     | Constraint                                                   | Example                                                      |
 | ------------------------- | --------- | ----------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | created_by                | string    | UID                                             | Required and valid                                           | AiKUMgHhMohdDyC9zHJfkMNH3u72                                 |

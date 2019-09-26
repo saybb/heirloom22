@@ -86,6 +86,16 @@ const Artifacts = {
                 reference: "/Events/moveing_in_id"
             },
         ],
+        media_links: [
+            {
+                url: "https://firebasestorage.googleapis.com/v0/b/testing-e1ec1.appspot.com/o/family_crest_1_photo.jpeg?alt=media&token=1763c69b-b894-40ea-9cf8-abe89589d42c",
+                date_created: "02/09/2019"
+            },
+            {
+                url: "https://firebasestorage.googleapis.com/v0/b/testing-e1ec1.appspot.com/o/family_crest_2_photo.jpeg?alt=media&token=c2bdfb8b-5162-4a56-b397-d2a0391b689e",
+                date_created: "04/09/2019"
+            }
+        ],
         people_links: [
             {
                 name: "John Gilbert",
@@ -96,7 +106,6 @@ const Artifacts = {
         created_by: "liam",
         date_created: "02/09/2018",
         dev: "link to 2 events and 1 person \nwhat it looks like https://bit.ly/324CaHY",
-        image: "https://bit.ly/324CaHY"
     } , 
 
     wedding_ring_id : {
@@ -150,20 +159,38 @@ const Artifacts = {
 
 const Addendums = {
     broken_vase_comment_id : {
-        name: "I broke the vase, I am sorry",
-        details : "I tripped and broke and tipped the table over",
+        details : "I tripped and broke the vase",
         reference : "/Artifacts/vase_id",
         created_by: "amanda",
         date_created: "01/04/2019",
+        media_links: [
+            {
+                url: "https://firebasestorage.googleapis.com/v0/b/testing-e1ec1.appspot.com/o/broken_vase.jpg?alt=media&token=305964ec-097d-4168-a52c-361595ed6322",
+                date_created: "02/09/2019"
+            }
+        ]
     },
 
     event_comment_id : {
-        name: "test comment on event",
+        details: "test comment on event",
         date_created: "08/04/2019",
         created_by: "amanda",
         reference: "/Artifacts/making_crest_id"
-    }
+    },
+
+    family_crest_monument_comment_1_id :{
+        details: "In up so discovery my middleton eagerness dejection explained. Estimating excellence ye contrasted insensible as. Oh up unsatiable advantages decisively as at interested. Present suppose in esteems in demesne colonel it to. End horrible she landlord screened stanhill. Repeated offended you opinions off dissuade ask packages screened. She alteration everything sympathize impossible his get compliment. Collected few extremity suffering met had sportsman.",
+        reference: "/Artifacts/family_crest_monument_id",
+        created_by: "amanda",
+        date_created: "20/09/2019",
+    },
     
+    family_crest_monument_comment_2_id: {
+        details: "Cordially convinced did incommode existence put out suffering certainly. Besides another and saw ferrars limited ten say unknown. On at tolerably depending do perceived. Luckily eat joy see own shyness minuter. So before remark at depart. Did son unreserved themselves indulgence its. Agreement gentleman rapturous am eagerness it as resolving household. Direct wicket little of talked lasted formed or it. Sweetness consulted may prevailed for bed out sincerity.",
+        reference: "/Artifacts/family_crest_monument_id",
+        created_by: "amanda",
+        date_created: "01/10/2019",
+    }  
 }
 
 
