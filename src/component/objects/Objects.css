@@ -1,0 +1,40 @@
+/* * *
+ * Objects :: CSS
+ * CSS styles for display of objects, such as artefacts, people and events.
+ * Created By: Lawson Wang-Wills
+ */
+
+.object {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.object-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin: 0 1em;
+}
+
+.object-image-container {
+    width: 100%;
+    margin: 1em 0;
+}
+.object-image-container img {
+    width: 100%;
+    object-fit: contain;
+}
+
+@media screen and (min-width: 768px) {
+    /* limit how much space an image can take up on large devices */
+    .object-image-container img {
+        max-height: 500px;
+    }
+
+    /* on larger screens, remove extra margin whitespace for content, since we already have some */
+    .object-content {
+        margin: 0;
+    }
+}
