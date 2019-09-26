@@ -4,15 +4,11 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
-import { compose } from 'redux';
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
 import { connect } from 'react-redux'
-import { firestoreConnect, isLoaded  } from 'react-redux-firebase'
+import { firestoreConnect, isEmpty, isLoaded  } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { Redirect } from 'react-router-dom'
 
 const Event = (props) => {
     const { event } = props;
