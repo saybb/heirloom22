@@ -39,39 +39,43 @@ class CreateArtefactForm extends React.Component {
 
         return(
             <Form onSubmit={ this.handleSubmit } className="CreateArtefactForm">
-                <Form.Item label="Title">{getFieldDecorator('title',
+                <Form.Item label="Name">{getFieldDecorator('name',
                     { rules : [
                         { required: true,
-                          message: "Please give your Artefact a title!"
+                          message: "Please give your Artefact a name!"
                         }
                     ]})(
-                    <Input placeholder="Give your Artefact a title!"/>
+                    <Input placeholder="Give your Artefact a name."/>
                 )}</Form.Item>
 
                 <Form.Item label="Description">{getFieldDecorator('description')(
                     <TextArea
-                        placeholder={"Tell us about your artefact!\ne.g., why it is important, or about its history"}
+                        placeholder={"Tell us about your artefact.\ne.g., why it is important, or about its history"}
                         autosize={{minRows: 3}}
                     />
                 )}</Form.Item>
 
-                <Form.Item label="Related People">{getFieldDecorator('people', {})(
-                    <Select
-                        mode="multiple"
-                        placeholder="Select the People related to this Artefact!"
-                    >
-                        {peopleoptions}
-                    </Select>
-                )}</Form.Item>
+                <Form.Item label="Related People">
+                    {getFieldDecorator('people', {})(
+                        <Select
+                            mode="multiple"
+                            placeholder="Select the People related to this Artefact."
+                        >
+                            {peopleoptions}
+                        </Select>
+                    )}
+                </Form.Item>
                 
-                <Form.Item label="Related Events">{getFieldDecorator('events', {})(
-                    <Select
+                <Form.Item label="Related Events">
+                    {getFieldDecorator('events', {})(
+                        <Select
                         mode="multiple"
                         placeholder="Select the Events related to this Artefact!"
-                    >
-                        {eventoptions}
-                    </Select>
-                )}</Form.Item>
+                        >
+                            {eventoptions}
+                        </Select>
+                    )}
+                </Form.Item>
 
                 <Form.Item>
                     <Button type="primary" htmlType="submit">Submit</Button>
