@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { signUp } from '../../store/Actions/userActions'
 import { Button, Form } from 'semantic-ui-react'
@@ -22,8 +21,6 @@ class SignUp extends Component {
     this.props.signUp(this.state);
   }
   render() {
-    const { auth /*, authError*/ } = this.props;
-    if (auth.uid) return <Redirect to='/' /> 
      return (
 
 

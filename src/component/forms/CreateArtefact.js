@@ -8,6 +8,8 @@ import { Modal, Button } from "antd";
 import { connect } from 'react-redux'
 import { createArtefact } from "../../store/Actions/artefactActions"
 import CreateArtefactForm from "./CreateArtefactForm.js";
+import CreateEvent from "./CreateEvent.js";
+import CreatePerson from "./CreatePerson.js";
 
 class CreateArtefact extends React.Component {
     state = {
@@ -30,7 +32,7 @@ class CreateArtefact extends React.Component {
         this.props.createArtefact(artefact)
         setTimeout(() => {
             this.setState({ visible: false });
-          }, 3000);
+          }, 1000);
     }
 
     render() {
@@ -46,6 +48,8 @@ class CreateArtefact extends React.Component {
                         <Button key="cancel" type="default" onClick={this.handleCancel}>Cancel</Button>,
                     ]}
                 >
+                    <CreatePerson/>
+                    <CreateEvent/>
                     <CreateArtefactForm handleSubmit={this.handleSubmit}/>
                 </Modal>
             </React.Fragment>
