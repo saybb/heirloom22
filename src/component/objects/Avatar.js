@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { Upload, Icon, message } from 'antd';
 import { auth, storage } from '../../firebase/config'
 
@@ -13,14 +13,14 @@ function beforeUpload(file) {
   if (!isJpgOrPng) {
     message.error('You can only upload JPG/PNG file!');
   }
-  const isLt2M = file.size / 1024 / 1024 < 2;
-  if (!isLt2M) {
-    message.error('Image must smaller than 2MB!');
+  const isLt5M = file.size / 1024 / 1024 < 5;
+  if (!isLt5M) {
+    message.error('Image must smaller than 5MB!');
   }
-  return isJpgOrPng && isLt2M;
+  return isJpgOrPng && isLt5M;
 }
 
-class Avatar extends React.Component {
+class Avatar extends Component {
   state = {
     loading: false,
   };
@@ -50,7 +50,6 @@ class Avatar extends React.Component {
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log('Upload is ' + progress + '% done');
     })
-    return 'https://www.mocky.io/v2/5cc8019d300000980a055e76'
   }
 
   render() {
@@ -69,7 +68,6 @@ class Avatar extends React.Component {
         className="avatar-uploader"
         showUploadList={false}
         action={this.handleUpload}
-        //action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
         beforeUpload={beforeUpload}
         onChange={this.handleChange}
       >

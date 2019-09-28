@@ -12,7 +12,7 @@ import { compose } from 'redux'
 // components
 import ArtefactListElement from "./ArtefactListElement.js";
 import './ArtefactList.css';
-import CreateArtefact from "../forms/CreateArtefact.js";
+import ArtefactHandler from "../forms/ArtefactHandler.js";
 
 class ArtefactList extends React.Component {
     
@@ -36,7 +36,7 @@ class ArtefactList extends React.Component {
         return(
             <div className="ArtefactList">
                 <h2>Browsing your collection...</h2>
-                <CreateArtefact />
+                <ArtefactHandler type={"create"} />
                 { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
             </div> 
         )
@@ -55,8 +55,5 @@ export default compose(
     connect(mapStateToProps),
     firestoreConnect((props) => [{
         collection: 'Artefacts',
-        // where: [
-        //     'created_by', '==', (props.profile.name? props.profile.name : '')
-        // ]
     }])
 )(ArtefactList)

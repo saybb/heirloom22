@@ -11,6 +11,24 @@ const artefactReducer = (state = initState, action) => {
         console.log('create artefact success');
         return state;
 
+      case 'CREATE_ARTEFACT_ERROR':
+          console.log('create error');
+          return {
+            ...state,
+            errMess: 'Create failed'
+          }
+      
+      case 'EDIT_ARTEFACT_SUCCESS':
+          console.log('edit artefact success');
+          return state;
+  
+        case 'EDIT_ARTEFACT_ERROR':
+            console.log('edit error');
+            return {
+              ...state,
+              errMess: 'Edit failed'
+            }
+      
       default:
         return state;
     }

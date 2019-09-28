@@ -62,17 +62,3 @@ export const signIn = (credentials) => {
       });
     }
   }
-
-
-  // export const uploadFile = (file) => {
-  //   console.log(file);
-  //   return (dispatch, state, { auth, storage }) => {
-  //     storage.child('users/' + auth.currentUser.uid + '/' + file.name).put(file)
-  //     .then((snapshot) => {
-  //       console.log(snapshot);
-  //       dispatch({ type: 'UPLOAD_SUCCESS'});
-  //     }).catch((err) => {
-  //       dispatch({ type: 'UPLOAD_ERROR' });
-  //     })
-  //   }
-  // }

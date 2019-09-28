@@ -28,8 +28,12 @@ class CreateArtefactForm extends React.Component {
         // fields must pass validation before submission
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                // pass form data to parent
-                this.props.handleSubmit(values);
+                if(this.props.type === "edit"){
+                    this.props.handleSubmit(this.props.docId, values);
+                }else{
+                    // pass form data to parent
+                    this.props.handleSubmit(values);
+                }
             }
         });
     }
