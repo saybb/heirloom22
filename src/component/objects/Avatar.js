@@ -44,12 +44,12 @@ class Avatar extends React.Component {
   handleUpload = file => {
     console.log(file)
     //uploadFile(file);
-    storage.child('users/' + auth.currentUser.uid + '/' + file.name).put(file)
+    var uploadTask = storage.child('users/' + auth.currentUser.uid + '/' + file.name).put(file)
+    //storage.child('users/' + auth.currentUser.uid + '/' + file.name).put(file)
     .then((snapshot) => {
         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log('Upload is ' + progress + '% done');
     })
-    //uploadFile(file);
     return 'https://www.mocky.io/v2/5cc8019d300000980a055e76'
   }
 
