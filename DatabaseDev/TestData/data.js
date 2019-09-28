@@ -15,11 +15,11 @@ Note
    I am not working on multimedia support for this sprint.
 */
 
-const Artifacts = {
+const Artefacts = {
 
     family_crest_drawing_id: {
         name: "family crest drawing",
-        details : "a very old drawing of family crest by grandpa",
+        descriptions : "a very old drawing of family crest by grandpa",
         events_links : [
             {
                 name: "Making the famly crest",
@@ -42,7 +42,7 @@ const Artifacts = {
 
     making_crest_id : { 
         name: "recording of grandpa John making a crest",
-        details: "I found this old recording of grandpa",
+        descriptions: "I found this old recording of grandpa",
         events_links : [
             {
                 name: "Making the famly crest",
@@ -73,7 +73,7 @@ const Artifacts = {
 
     family_crest_monument_id : {
         name: "Statue of the Coat of Arms of Gilbert",
-        details: "Amazing statue that is embedded with family history. Of course, the family crest has no official meaning or clerical relevance, but it still remains to be a symbol of what John thought the family should stand for. That's something we can understand just by looking at this creation. Moved to Liam's new house",
+        descriptions: "Amazing statue that is embedded with family history. Of course, the family crest has no official meaning or clerical relevance, but it still remains to be a symbol of what John thought the family should stand for. That's something we can understand just by looking at this creation. Moved to Liam's new house",
         event_links: [
             {
                 name: "Making of the Family Crest",
@@ -110,7 +110,7 @@ const Artifacts = {
 
     wedding_ring_id : {
         name: "wedding ring",
-        details: "The wedding ring passed down through generations",
+        descriptions: "The wedding ring passed down through generations",
         events_links: [
             {
                 name: "Sarah and Liam got married",
@@ -142,7 +142,7 @@ const Artifacts = {
 
     vase_id : {
         name: "traditional Chinese vase",
-        details: "An vase I received as a gift from my student Bob in 1990 Christmas", 
+        descriptions: "An vase I received as a gift from my student Bob in 1990 Christmas", 
         people_links: [
             {
                 name: "Liam Gilbert",
