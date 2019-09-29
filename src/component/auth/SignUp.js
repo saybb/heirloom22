@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signUp } from '../../store/Actions/userActions'
+import { signUp } from '../../store/Actions/authActions'
 import { Button, Form } from 'semantic-ui-react'
 
 

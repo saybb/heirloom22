@@ -1,64 +1,37 @@
-export const signIn = (credentials) => {
-    return (dispatch, state, {auth}) => {
-            
-      auth.signInWithEmailAndPassword(
-        credentials.email,
-        credentials.password
-      ).then(() => {
-        dispatch({ type: 'LOGIN_SUCCESS' });
-      }).catch((err) => {
-        dispatch({ type: 'LOGIN_ERROR', err });
-      });
-  
-    }
-  }
-  
-  export const signOut = () => {
-    return (dispatch, state, {auth}) => {
-  
-      auth.signOut().then(() => {
-        dispatch({ type: 'SIGNOUT_SUCCESS' })
-      });
-    }
-  }
-  
-  export const signUp = (newUser) => {
-    return (dispatch, state, {auth, firestore}) => {
-  
-      auth.createUserWithEmailAndPassword(
-        newUser.email, 
-        newUser.password
-      ).then(resp => {
-        return firestore.collection('users').doc(resp.user.uid).set({
-                  firstName: newUser.firstName,
-                  lastName: newUser.lastName,
-                  email: newUser.email,
-                  location: '',
-                  bio: '',
-        }).then(() => {
-          var user = auth.currentUser;
-          user.updateProfile({ displayName: newUser.firstName});
-        }).catch(err => { console.log('Set up user profile ERROR')});
-      }).then(() => {
-        dispatch({ type: 'SIGNUP_SUCCESS' });
-      }).catch((err) => {
-        dispatch({ type: 'SIGNUP_ERROR', err});
-      });
-    }
-  }
+const ARTEFACTS = 'Artefacts';
 
-  export const updateUserProfile = (info) => {
-    return (dispatch, state, {auth, firestore}) => {
-      var user = auth.currentUser;
-      firestore.collection('users').doc(user.uid).set({
-              firstName: info.firstName,
-              lastName: info.lastName,
-              location: info.location,
-              bio: info.bio,
-      }).then(() => {
-        dispatch({ type: 'PROFILE_UPDATE_SUCCESS'});
-      }).catch((err) => {
-        dispatch({ type: 'PROFILE_UPDATE_ERROR'});
-      });
+export const createArtefact = (artefact) => {
+    return (dispatch, getState, { auth, firestore }) => {
+        const profile = getState().firebase.profile;
+        const authorId = getState().firebase.auth.uid;
+        console.log(artefact, authorId, profile);
+        firestore.collection(ARTEFACTS).doc(artefact.name + '_id').set({
+            ...artefact,
+            created_by: profile.name,
+            authorId: authorId,
+            date_created: new Date(),
+            last_modified: new Date()
+        }).then(() => {
+            dispatch({ type: 'CREATE_ARTEFACT_SUCCESS' });
+        }).catch(err => {
+            console.log(err);
+            dispatch({ type: 'CREATE_ARTEFACT_ERROR' }, err);
+        });
     }
-  }
+}
+
+export const editArtefact = (docId, artefact) => {
+    return (dispatch, getState, { firestore }) => {
+        var ref = firestore.collection(ARTEFACTS).doc(docId)
+        ref.update({
+            ...artefact,
+            last_modified: new Date()
+        }).then(() => {
+            dispatch({ type: 'EDIT_ARTEFACT_SUCCESS' });
+        }).catch(err => {
+            console.log(err);
+            dispatch({ type: 'EDIT_ARTEFACT_ERROR' }, err);
+        });
+    }
+}
+

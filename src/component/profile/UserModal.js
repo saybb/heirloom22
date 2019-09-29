@@ -6,7 +6,7 @@
 import React from 'react'
 import { Modal, Button } from 'antd';
 import { connect } from 'react-redux'
-import { updateUserProfile } from '../../store/Actions/userActions'
+import { updateUserProfile } from '../../store/Actions/authActions'
 import UserProfile from '../profile/userProfile'
 import EditProfile from '../profile/editProfile'
 

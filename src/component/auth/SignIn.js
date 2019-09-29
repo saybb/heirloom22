@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signIn } from '../../store/Actions/userActions'
+import { signIn } from '../../store/Actions/authActions'
 import { Redirect } from 'react-router-dom'
 import { Button, Form } from 'semantic-ui-react'
 

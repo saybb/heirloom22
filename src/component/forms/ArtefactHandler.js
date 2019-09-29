@@ -6,7 +6,7 @@
 import React from "react";
 import { Modal, Button } from "antd";
 import { connect } from 'react-redux'
-import { createArtefact, editArtefact } from "../../store/Actions/artefactActions"
+import { createArtefact, editArtefact } from "../../store/Actions/userActions"
 import ArtefactForm from "./ArtefactForm.js";
 import CreateEvent from "./CreateEvent.js";
 import CreatePerson from "./CreatePerson.js";

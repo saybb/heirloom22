@@ -8,7 +8,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Menu, Button } from 'antd';
-import { signOut } from '../../store/Actions/userActions'
+import { signOut } from '../../store/Actions/authActions'
 import logo from '../../heirloom22_logo.svg';
 import UserModal from '../profile/UserModal.js';
 import './Navigation.css'
