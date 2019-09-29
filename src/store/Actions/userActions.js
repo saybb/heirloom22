@@ -2,8 +2,6 @@ export const createArtefact = (objType, obj) => {
     return (dispatch, getState, { auth, firestore }) => {
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
-        console.log(getState().firebase);
-        console.log(obj, profile, authorId);
         firestore.collection(objType).add({
             ...obj,
             created_by: profile.name,
