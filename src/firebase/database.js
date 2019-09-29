@@ -3,7 +3,7 @@
  */
 
 /******************* Configuration ************************/
-import "./config.js";
+import {auth, firestore, storage} from './config';
 
 /******************* Generic Class ************************/
 /**
@@ -20,12 +20,12 @@ class Document{
 
 class Collection{
 
-    constructor(firestore, name) {
-        this.db = firestore
+    constructor( name ) {
+        this.db = firestore;
         this.name = name
     }
 
-    async get_all_document() {
+    async get_all_documents() {
         console.log("get_all_documents from " + this.name)
         try {
             var snapshot = await this.db.collection(this.name).get()
@@ -49,35 +49,45 @@ class Collection{
             return error
         }
     }
+
     async upload_document() {}
     async upload_document_by_id(document_id) {}
 
-    grab_data(documents) {
-        var data = []
-        for (const doc of documents) {
-            data.push(doc.data())
-        }
-        return data
+    grab_data(snapshot) {
+        let dishes = [];
+        snapshot.forEach(doc => {
+            const data = doc.data()
+            const _id = doc.id
+            dishes.push({_id, ...data });
+        });
+        return dishes;
     }
 }
 
-class artifacts_collection extends collection {
-    constructor(firestore){
-        super(firestore, "Artifacts")
+// class artifacts_collection extends collection {
+//     constructor(firestore){
+//         super(firestore, "Artifacts")
+//     }
+
+// }
+
+export class artifacts_collection extends Collection {
+    constructor(){
+        super("Artefacts")
     }
 
 }
 
 async function get_all() {
-    collection = new artifacts_collection(db)
-    result = await collection.get_all_document() 
+    let collection = new artifacts_collection()
+    let result = await collection.get_all_document() 
     console.log(result)
 }
 
 async function get() {
-    collection = new artifacts_collection(db)
-    document = ""
-    result = await collection.get_all_document() 
+    let collection = new artifacts_collection()
+    let document = ""
+    let result = await collection.get_all_document() 
     console.log(result)
 }
 
@@ -85,23 +95,27 @@ async function get() {
 
 /******************* Convert data ************************/
 
-// convert date from string to firebase object
-function convert_date(text) {
-    if (empty(text)) return null
-    return new firebase.firestore.Timestamp.fromDate(new Date(text))
-}
+// // convert date from string to firebase object
+// function convert_date(text) {
+//     if (empty(text)) return null
+//     return new firebase.firestore.Timestamp.fromDate(new Date(text))
+// }
 
-// convert datecreated to server time stamp
-function server_time_stamp() {
-    return new firebase.firestore.FieldValue.serverTimestamp()
-}
+// // convert datecreated to server time stamp
+// function server_time_stamp() {
+//     return new firebase.firestore.FieldValue.serverTimestamp()
+// }
 
-// convert string path to firebase document reference
-function convert_reference(text) {
-    if (empty(text)) return null
-    return db.doc(text);
-}
+// // convert string path to firebase document reference
+// function convert_reference(text) {
+//     if (empty(text)) return null
+//     return db.doc(text);
+// }
 
 // artifacts
 // people
 // events
+
+// module.exports = {
+//     artifacts_collection : artefact_collection
+// }

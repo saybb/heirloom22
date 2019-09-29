@@ -5,8 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
-import { reduxFirestore, getFirestore } from 'redux-firestore';
-import { reactReduxFirebase, getFirebase, reduxFirebase } from 'react-redux-firebase'
+import { reduxFirestore } from 'redux-firestore';
+import { reactReduxFirebase } from 'react-redux-firebase'
 import logger from 'redux-logger'
 import { Provider } from 'react-redux'
 import rootReducer from './store/Reducer/rootReducer'
