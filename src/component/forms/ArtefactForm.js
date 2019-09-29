@@ -27,8 +27,12 @@ class CreateArtefactForm extends React.Component {
 
         // fields must pass validation before submission
         this.props.form.validateFields((err, values) => {
+            //clean up null attributes
+            Object.keys(values).forEach(key => (values[key] == null || !values[key] ) && delete values[key]);
+            console.log(values)
             if (!err) {
                 if(this.props.type === "edit"){
+                    
                     this.props.handleSubmit(this.props.docId, values);
                 }else{
                     // pass form data to parent
