@@ -32,6 +32,9 @@
 
 ### Artifacts
 
+- Update 29/09/2019
+  - `details` became `description`
+
 ![image-20190919211819821](./Images/artifacts.png)
 
 All media links would be in this form
@@ -44,7 +47,7 @@ All media links would be in this form
 | date_created              | timestamp | the time created at the server side             | Required and should be  generated using `server_time_stamp()` helper function | 19 September 2019 at 11:58:41 UTC+10                         |
 | name                      | string    | the title                                       | Required                                                     | family crest drawing                                         |
 | date                      | timestamp | the time the artifact was created               | Optional                                                     | 10 August 1972 at 00:00:00 UTC                               |
-| details                   | string    | additional information                          | Optional                                                     | a very old drawing of family crest by grandpa                |
+| description               | string    | additional information                          | Optional                                                     | a very old drawing of family crest by grandpa                |
 | events_links              | array     | refer to the artifact that the comment is about | Required                                                     | /Artifacts/vase_id                                           |
 | events_links[i]           | map       | an object that contains the following 3 fields  | If you link an event then you must have `events_links[i].name` and `events_link[i].reference` | {<br />name: "Making the family crest"<br />reference: /Events/making_crest_id<br />relation: "created during"<br />} |
 | events_links[i].name      | string    | name of the event                               | Required if linked to an event                               | Making the famly crest                                       |

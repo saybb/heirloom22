@@ -19,7 +19,7 @@ const Artefacts = {
 
     family_crest_drawing_id: {
         name: "family crest drawing",
-        descriptions : "a very old drawing of family crest by grandpa",
+        description : "a very old drawing of family crest by grandpa",
         events_links : [
             {
                 name: "Making the famly crest",
@@ -42,7 +42,7 @@ const Artefacts = {
 
     making_crest_id : { 
         name: "recording of grandpa John making a crest",
-        descriptions: "I found this old recording of grandpa",
+        description: "I found this old recording of grandpa",
         events_links : [
             {
                 name: "Making the famly crest",
@@ -73,7 +73,7 @@ const Artefacts = {
 
     family_crest_monument_id : {
         name: "Statue of the Coat of Arms of Gilbert",
-        descriptions: "Amazing statue that is embedded with family history. Of course, the family crest has no official meaning or clerical relevance, but it still remains to be a symbol of what John thought the family should stand for. That's something we can understand just by looking at this creation. Moved to Liam's new house",
+        description: "Amazing statue that is embedded with family history. Of course, the family crest has no official meaning or clerical relevance, but it still remains to be a symbol of what John thought the family should stand for. That's something we can understand just by looking at this creation. Moved to Liam's new house",
         event_links: [
             {
                 name: "Making of the Family Crest",
@@ -110,7 +110,7 @@ const Artefacts = {
 
     wedding_ring_id : {
         name: "wedding ring",
-        descriptions: "The wedding ring passed down through generations",
+        description: "The wedding ring passed down through generations",
         events_links: [
             {
                 name: "Sarah and Liam got married",
@@ -142,7 +142,7 @@ const Artefacts = {
 
     vase_id : {
         name: "traditional Chinese vase",
-        descriptions: "An vase I received as a gift from my student Bob in 1990 Christmas", 
+        description: "An vase I received as a gift from my student Bob in 1990 Christmas", 
         people_links: [
             {
                 name: "Liam Gilbert",
