@@ -18,6 +18,7 @@ import Addendum from "./Addendum";
 import faker from "faker";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import { deleteArtefact } from "../../store/Actions/userActions";
+import { ARTEFACTS } from "../../store/objectTypes";
 
 const Artefact = (props) => {
     const { artefact } = props;
@@ -33,7 +34,7 @@ const Artefact = (props) => {
     
     function handleDelete() {
         console.log(id);
-        props.deleteArtefact(id);
+        props.deleteArtefact(ARTEFACTS, id);
     }
 
     if (!isLoaded(artefact)){
@@ -86,7 +87,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch)=> {
     return {
-        deleteArtefact: (docId) => dispatch(deleteArtefact(docId)),
+        deleteArtefact: (objType, docId) => dispatch(deleteArtefact(objType, docId)),
     }
   }
 

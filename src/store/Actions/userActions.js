@@ -1,49 +1,48 @@
-const ARTEFACTS = 'Artefacts';
-
-export const createArtefact = (artefact) => {
+export const createArtefact = (objType, obj) => {
     return (dispatch, getState, { auth, firestore }) => {
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
-        console.log(artefact, authorId, profile);
-        firestore.collection(ARTEFACTS).doc(artefact.name + '_id').set({
-            ...artefact,
+        console.log(getState().firebase);
+        console.log(obj, profile, authorId);
+        firestore.collection(objType).add({
+            ...obj,
             created_by: profile.name,
             authorId: authorId,
             date_created: new Date(),
             last_modified: new Date()
         }).then(() => {
-            dispatch({ type: 'CREATE_ARTEFACT_SUCCESS' });
+            dispatch({ type: 'CREATE_SUCCESS' });
         }).catch(err => {
             console.log(err);
-            dispatch({ type: 'CREATE_ARTEFACT_ERROR' }, err);
+            dispatch({ type: 'CREATE_ERROR' }, err);
         });
     }
 }
 
-export const editArtefact = (docId, artefact) => {
+export const editArtefact = (objType, docId, obj) => {
     return (dispatch, getState, { firestore }) => {
-        var ref = firestore.collection(ARTEFACTS).doc(docId)
+        var ref = firestore.collection(objType).doc(docId)
         ref.update({
-            ...artefact,
+            ...obj,
             last_modified: new Date()
         }).then(() => {
-            dispatch({ type: 'EDIT_ARTEFACT_SUCCESS' });
+            dispatch({ type: 'EDIT_SUCCESS' });
         }).catch(err => {
             console.log(err);
-            dispatch({ type: 'EDIT_ARTEFACT_ERROR' }, err);
+            dispatch({ type: 'EDIT_ERROR' }, err);
         });
     }
 }
 
-export const deleteArtefact = (docId) => {
+export const deleteArtefact = (objType, docId) => {
     return (dispatch, getState, { firestore }) => {
-        firestore.collection(ARTEFACTS).doc(docId)
+        firestore.collection(objType).doc(docId)
         .delete()
         .then(() => {
-            dispatch({ type: 'DELETE_ARTEFACT_SUCCESS' });
+            dispatch({ type: 'DELETE_SUCCESS' });
         }).catch(err => {
             console.log(err);
-            dispatch({ type: 'DELETE_ARTEFACT_ERROR'});
+            dispatch({ type: 'DELETE_ERROR'});
         })
     }
 }

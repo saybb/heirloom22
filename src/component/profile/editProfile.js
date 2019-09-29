@@ -7,7 +7,7 @@ const EditProfile = ({handleChange, state}) => {
       <Fragment>
         <Form >
         <Form.Item label="firstName" >
-            <Input id="firstName" placeholder="first name" onChange={handleChange}/>
+            <Input id="name" placeholder="first name" onChange={handleChange}/>
           </Form.Item>
           <Form.Item label="lastName" >
             <Input id="lastName" placeholder="last name" onChange={handleChange}/>

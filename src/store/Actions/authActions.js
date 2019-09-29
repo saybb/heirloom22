@@ -29,15 +29,13 @@ export const signUp = (newUser) => {
       newUser.email, 
       newUser.password
     ).then(resp => {
-      return firestore.collection('users').doc(resp.user.uid).set({
-                firstName: newUser.firstName,
-                lastName: newUser.lastName,
-                email: newUser.email,
-                location: '',
-                bio: '',
-      }).then(() => {
+      delete newUser['password'];
+      console.log(newUser);
+      return firestore.collection('users').doc(resp.user.uid).set(newUser)
+      .then(() => {
         var user = auth.currentUser;
-        user.updateProfile({ displayName: newUser.firstName});
+        user.updateProfile({ displayName: newUser.name});
+        console.log(auth.currentUser);
       }).catch(err => { console.log('Set up user profile ERROR')});
     }).then(() => {
       dispatch({ type: 'SIGNUP_SUCCESS' });
@@ -51,7 +49,7 @@ export const updateUserProfile = (info) => {
   return (dispatch, state, {auth, firestore}) => {
     var user = auth.currentUser;
     firestore.collection('users').doc(user.uid).set({
-            firstName: info.firstName,
+            name: info.name,
             lastName: info.lastName,
             location: info.location,
             bio: info.bio,
