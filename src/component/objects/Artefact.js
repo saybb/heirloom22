@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect, isEmpty, isLoaded  } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Button, Menu, Dropdown, Icon } from 'antd';
+import { Link } from 'react-router-dom';
 
 // components
 import ItemLinks from './ItemLinks.js';
@@ -16,17 +17,24 @@ import "./Objects.css";
 import Addendum from "./Addendum";
 import faker from "faker";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
+import { deleteArtefact } from "../../store/Actions/userActions";
 
 const Artefact = (props) => {
     const { artefact } = props;
     const id = props.match.params.id;
+    console.log(id);
 
     const menu = (
         <Menu>
           <Menu.Item key="1"><ArtefactHandler docId={id}/></Menu.Item>
-          <Menu.Item key="2">Delete</Menu.Item>
+          <Menu.Item key="2" onClick={handleDelete} ><Link to={"/feed"}>Delete</Link></Menu.Item>
         </Menu>
       );
+    
+    function handleDelete() {
+        console.log(id);
+        props.deleteArtefact(id);
+    }
 
     if (!isLoaded(artefact)){
         return (
@@ -76,8 +84,14 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = (dispatch)=> {
+    return {
+        deleteArtefact: (docId) => dispatch(deleteArtefact(docId)),
+    }
+  }
+
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect((props) =>[{
         collection: 'Artefacts', 
         doc: props.match.params.id,

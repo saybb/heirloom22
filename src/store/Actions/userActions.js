@@ -35,3 +35,16 @@ export const editArtefact = (docId, artefact) => {
     }
 }
 
+export const deleteArtefact = (docId) => {
+    return (dispatch, getState, { firestore }) => {
+        firestore.collection(ARTEFACTS).doc(docId)
+        .delete()
+        .then(() => {
+            dispatch({ type: 'DELETE_ARTEFACT_SUCCESS' });
+        }).catch(err => {
+            console.log(err);
+            dispatch({ type: 'DELETE_ARTEFACT_ERROR'});
+        })
+    }
+}
+

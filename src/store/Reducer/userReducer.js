@@ -22,13 +22,24 @@ const userReducer = (state = initState, action) => {
           console.log('edit artefact success');
           return state;
   
-        case 'EDIT_ARTEFACT_ERROR':
-            console.log('edit error');
-            return {
-              ...state,
-              errMess: 'Edit failed'
-            }
+      case 'EDIT_ARTEFACT_ERROR':
+          console.log('edit error');
+          return {
+            ...state,
+            errMess: 'Edit failed'
+          }
       
+      case 'DELETE_ARTEFACT_SUCCESS':
+          console.log('delete artefact success');
+          return state;
+      
+      case 'DELETE_ARTEFACT_ERROR':
+          console.log('delete error');
+          return {
+            ...state,
+            errMess: 'Delete failed'
+          }
+
       default:
         return state;
     }
