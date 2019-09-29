@@ -42,15 +42,12 @@ class Avatar extends Component {
   };
 
   handleUpload = file => {
-    console.log(file)
-    //uploadFile(file);
     var uploadTask = storage.child('users/' + auth.currentUser.uid + '/' + file.name).put(file)
-    //storage.child('users/' + auth.currentUser.uid + '/' + file.name).put(file)
-    .then((snapshot) => {
-        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-    })
-  }
+    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+      console.log('File available at', downloadURL);
+    });
+    return 'https://www.mocky.io/v2/5cc8019d300000980a055e76' // <= why?
+}
 
   render() {
     const uploadButton = (
