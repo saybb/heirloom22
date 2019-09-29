@@ -71,7 +71,7 @@ delete_button.addEventListener('click',
     (e) => {
         e.stopPropagation()
 
-        delete_collection("Artifacts")
+        delete_collection("Artefacts")
         delete_collection("Addendums")
         delete_collection("People")
         delete_collection("Users")
@@ -82,7 +82,7 @@ upload_button.addEventListener('click',
     (e) => {
         e.stopPropagation()
 
-        upload_collection("Artifacts", Artifacts)
+        upload_collection("Artefacts", Artefacts)
         upload_collection("Addendums", Addendums)
         upload_collection("People", People)
         upload_collection("Users", Users)
