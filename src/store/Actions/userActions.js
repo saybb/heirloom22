@@ -1,4 +1,4 @@
-export const createArtefact = (objType, obj) => {
+export const createObj = (objType, obj) => {
     return (dispatch, getState, { auth, firestore }) => {
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
@@ -17,7 +17,7 @@ export const createArtefact = (objType, obj) => {
     }
 }
 
-export const editArtefact = (objType, docId, obj) => {
+export const editObj = (objType, docId, obj) => {
     return (dispatch, getState, { firestore }) => {
         var ref = firestore.collection(objType).doc(docId)
         ref.update({
@@ -32,7 +32,7 @@ export const editArtefact = (objType, docId, obj) => {
     }
 }
 
-export const deleteArtefact = (objType, docId) => {
+export const deleteObj = (objType, docId) => {
     return (dispatch, getState, { firestore }) => {
         firestore.collection(objType).doc(docId)
         .delete()

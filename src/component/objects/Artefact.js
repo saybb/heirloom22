@@ -17,13 +17,12 @@ import "./Objects.css";
 import Addendum from "./Addendum";
 import faker from "faker";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
-import { deleteArtefact } from "../../store/Actions/userActions";
+import { deleteObj } from "../../store/Actions/userActions";
 import { ARTEFACTS } from "../../store/objectTypes";
 
 const Artefact = (props) => {
     const { artefact } = props;
     const id = props.match.params.id;
-    console.log(id);
 
     const menu = (
         <Menu>
@@ -33,8 +32,7 @@ const Artefact = (props) => {
       );
     
     function handleDelete() {
-        console.log(id);
-        props.deleteArtefact(ARTEFACTS, id);
+        props.deleteObj(ARTEFACTS, id);
     }
 
     if (!isLoaded(artefact)){
@@ -87,7 +85,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch)=> {
     return {
-        deleteArtefact: (objType, docId) => dispatch(deleteArtefact(objType, docId)),
+        deleteObj: (objType, docId) => dispatch(deleteObj(objType, docId)),
     }
   }
 

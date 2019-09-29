@@ -6,7 +6,7 @@
 import React from "react";
 import { Modal, Button } from "antd";
 import { connect } from 'react-redux'
-import { createArtefact, editArtefact } from "../../store/Actions/userActions"
+import { createObj, editObj} from "../../store/Actions/userActions"
 import { ARTEFACTS } from "../../store/objectTypes"
 import ArtefactForm from "./ArtefactForm.js";
 import CreateEvent from "./CreateEvent.js";
@@ -38,7 +38,7 @@ class ArtefactHandler extends React.Component {
     }
 
     handleCreateSubmit = (artefact) => {
-        this.props.createArtefact(ARTEFACTS, artefact)
+        this.props.createObj(ARTEFACTS, artefact)
         setTimeout(() => {
             this.setState({ visible: false });
           }, 1000);
@@ -46,7 +46,7 @@ class ArtefactHandler extends React.Component {
     }
 
     handleEditSubmit = (artefact) => {
-        this.props.editArtefact(ARTEFACTS, this.props.docId, artefact)
+        this.props.editObj(ARTEFACTS, this.props.docId, artefact)
         setTimeout(() => {
             this.setState({ visible: false });
         }, 1000);
@@ -91,8 +91,8 @@ const mapStateToProps = (state) => {
   
   const mapDispatchToProps = (dispatch)=> {
     return {
-      createArtefact: (objType, artefact) => dispatch(createArtefact(objType, artefact)),
-      editArtefact: (objType, id, artefact) => dispatch(editArtefact(objType, id, artefact))
+      createObj: (objType, artefact) => dispatch(createObj(objType, artefact)),
+      editObj: (objType, id, artefact) => dispatch(editObj(objType, id, artefact))
     }
   }
 

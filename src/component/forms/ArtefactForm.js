@@ -29,7 +29,6 @@ class CreateArtefactForm extends React.Component {
         this.props.form.validateFields((err, values) => {
             //clean up null attributes
             Object.keys(values).forEach(key => (values[key] == null || !values[key] ) && delete values[key]);
-            console.log(values)
             if (!err) {
                 if(this.props.type === "edit"){
                     
