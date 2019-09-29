@@ -6,8 +6,11 @@
 import React from "react";
 import { Modal, Button } from "antd";
 import { connect } from 'react-redux'
+import { firestoreConnect } from 'react-redux-firebase'
+import { compose } from 'redux'
+
 import { createObj, editObj} from "../../store/Actions/userActions"
-import { ARTEFACTS } from "../../store/objectTypes"
+import { ARTEFACTS, EVENTS, PEOPLE } from "../../store/objectTypes"
 import ArtefactForm from "./ArtefactForm.js";
 import CreateEvent from "./CreateEvent.js";
 import CreatePerson from "./CreatePerson.js";
@@ -86,6 +89,8 @@ class ArtefactHandler extends React.Component {
 const mapStateToProps = (state) => {
     return {
       auth: state.firebase.auth,
+      events: state.firestore.data.Events,
+      people: state.firestore.data.People,
     }
   }
   
@@ -96,4 +101,10 @@ const mapStateToProps = (state) => {
     }
   }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArtefactHandler);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    firestoreConnect(() => [
+        {collection: PEOPLE},
+        {collection: EVENTS},
+    ])
+)(ArtefactHandler)

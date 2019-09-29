@@ -13,6 +13,7 @@ import { compose } from 'redux'
 import ArtefactListElement from "./ArtefactListElement.js";
 import './ArtefactList.css';
 import ArtefactHandler from "../forms/ArtefactHandler.js";
+import { ARTEFACTS } from "../../store/objectTypes";
 
 class ArtefactList extends React.Component {
     
@@ -53,7 +54,7 @@ const mapStateToProps = (state) => {
   
 export default compose(
     connect(mapStateToProps),
-    firestoreConnect((props) => [{
-        collection: 'Artefacts',
+    firestoreConnect(() => [{
+        collection: ARTEFACTS,
     }])
 )(ArtefactList)
