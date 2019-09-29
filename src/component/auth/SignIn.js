@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signIn } from '../../store/Actions/userActions'
+import { signIn } from '../../store/Actions/authActions'
 import { Redirect } from 'react-router-dom'
+import { Button, Form } from 'semantic-ui-react'
 
 class SignIn extends Component {
   state = {
@@ -18,28 +19,26 @@ class SignIn extends Component {
     this.props.signIn(this.state)
   }
   render() {
-    const { authError, auth } = this.props;
+    const { auth, authError } = this.props;
     if (auth.uid) return <Redirect to='/' /> 
     return (
-      <div className="container">
-        <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Sign In</h5>
-          <div className="input-field">
-            <label htmlFor="email">Email</label>
-            <input type="email" id='email' onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <label htmlFor="password">Password</label>
-            <input type="password" id='password' onChange={this.handleChange} />
-          </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Login</button>
-            <div className="center red-text">
+        <Form onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>Email</label>
+            <input type="email" placeholder='email' id='email' onChange={this.handleChange} />
+          </Form.Field>
+
+          <Form.Field>
+            <label>Password</label>
+            <input type="password" placeholder='password' id='password' onChange={this.handleChange} />
+          </Form.Field>
+
+          <Button type='submit'>Log In</Button>
+
+          <div className="center red-text">
               { authError ? <p>{authError}</p> : null }
-            </div>
           </div>
-        </form>
-      </div>
+        </Form>
     )
   }
 }

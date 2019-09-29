@@ -1,14 +1,4 @@
 UNIMELB COMP30022 IT Project 2019
-
-Branches:
-`dev` branch is for development.
-- Changes made should pass a code review!
-	  
-`front_end` is for front_end development and testing.
-
-Architecture
-![](./images/architecture.svg)
-
 # Heirloom22 Project!
 this project is developed using [ReactJs](https://reactjs.org/), [Redux](https://redux.js.org/) & [Firebase](https://firebase.google.com).
 Below you will find some information on how to perform common tasks.
@@ -25,6 +15,12 @@ Below you will find some information on how to perform common tasks.
 - [Supported Language Features and Polyfills](#supported-language-features-and-polyfills)
 
 ## Updates
+
+20/9 Fetching data now has 3 states: 1. Loading state: waiting for data fetching, returns “xxx is loading”, 2. Display state: just display the artefact’s details 3. Empty state: No data is in our database, returns “xxx is not found”.
+
+20/9 **Artefact** and **ArtefactList** fetch data from firestore
+
+16/9 **CreateArtefact** component is implemented, showing the layout and ui for creating an artefact (by Lawson)
 
 16/9 **User Profile** modal is now swithable, it has additional content: [Edit Profile] for user inputs new profile data by Luoming
 

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Database</title>    
+    <title>Database</title>
     <link href="style.css" rel="stylesheet">
 
     <!-- Load the main app (Mandatory) -->
@@ -9,13 +10,17 @@
     <!-- Load the firestore library only -->
     <script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-firestore.js"></script>
 </head>
+
 <body>
 
     <p>16/09/2019</p>
     <h1>Sort name by age</h1>
+    <h1>Using test database</h1>
     <p>name must exsits and age must be greater >= 0</p>
     <p>However the front end auto populates an empty string "" and 0 for no inputs</p>
-
+    <p> <a target="_blank" href="./test.html">
+            main page
+        </a></p>
     <div class="content">
         <!-- We use the id of the form as reference in app.js -->
         <!-- We also use the name of input as reference in app.js -->
@@ -39,4 +44,3 @@
     <script src="TestData/data.js"></script>
     <script src="TestData/reset_data.js"></script>
 </body>
-</html>

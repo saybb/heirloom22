@@ -3,7 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 // Firebase configuration
-var config = {
+const config = {
     apiKey: "AIzaSyD1XO5L2AYwpimMVN6pzl2OtFRJE2yE9Zc",
     authDomain: "testing-e1ec1.firebaseapp.com",
     databaseURL: "https://testing-e1ec1.firebaseio.com",
@@ -22,5 +22,7 @@ export const fireauth = firebase.auth;
 export const firestore = firebase.firestore();
 
 export const firebasestore = firebase.firestore;
+
+export const storage = firebase.storage().ref();
 
 export default firebase 
