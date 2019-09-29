@@ -12,6 +12,7 @@ import { compose } from 'redux'
 // components
 import ArtefactListElement from "./ArtefactListElement.js";
 import './ArtefactList.css';
+import './FlipCard.css'
 import CreateArtefact from "../forms/CreateArtefact.js";
 
 class ArtefactList extends React.Component {

@@ -8,7 +8,9 @@ import React from 'react';
 import { Divider } from 'antd';
 import { Link } from 'react-router-dom';
 
+
 import './ItemLinks.css';
+import './ListCard.css'
 
 function ItemLinks(props) {
     const {title, items} = props;
@@ -35,8 +37,9 @@ function ItemLink(props) {
 
     return(
         <React.Fragment>
-            <div className="ui raised very padded text container segment">
-                <div className="content">
+
+            <div className="polaroid">
+                <div className="container">
                     <Link to={"/view/" + item.reference.path}>
                         <div className="content">
                             <h4>{item.name}</h4>
@@ -46,6 +49,7 @@ function ItemLink(props) {
                 </div>
                 <Divider className="item-divider"/>
             </div>
+
         </React.Fragment>
     );
 }

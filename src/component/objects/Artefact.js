@@ -12,6 +12,7 @@ import { compose } from 'redux'
 // components
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
+import "./Gallery.css"
 import Addendum from "./Addendum";
 import faker from "faker";
 
@@ -36,10 +37,14 @@ const Artefact = (props) => {
     }
     
     return (
-        <div className="object">
-            <div className="object-image-container">
-                <img src={faker.image.abstract()} alt={artefact[id].name}/>
+        <div>
+            <div className="tech-slideshow">
+                <div className="mover-1"></div>
+                <div className="mover-2"></div>
             </div>
+
+        <div className="object">
+
             <div className="object-content">
                 <h2>{artefact[id].name}</h2>
                 <p>{artefact[id].details}</p>
@@ -47,7 +52,9 @@ const Artefact = (props) => {
                 <ItemLinks title="Related People" items={artefact[id].people_links}/>
                 <ItemLinks title="Related Events" items={artefact[id].events_links}/>
                 <Addendum />
+
             </div>
+        </div>
         </div>
     )
 }

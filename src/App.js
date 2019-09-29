@@ -22,12 +22,14 @@ import Avatar from './component/objects/Avatar';
 class App extends React.Component {
     render() {
         return (
+
             <Router>
                 <Navigation />
                 <div className="App">
                     <this.HomeRoutes />
                 </div>
             </Router>
+
         );
     };
 
@@ -40,11 +42,13 @@ class App extends React.Component {
                     <Route path="/" exact component={ArtefactList}/>
                     <Route path="/feed" component={ArtefactList}/>
                     <Route path="/view/artefacts/:id" component={Artefact}/>
+
                     <Route path="/view/events/:id" component={Event}/>
                     <Route path="/view/people/:id" component={Person}/>
 
                     <Route path='/signup' component={SignUp} />
                     <Route path='/upload' component={Avatar} />
+
 
                     {/* default to "/" if unrecognised route. */}
                     <Route render={() => <Redirect to="/"/>}/>
@@ -65,7 +69,7 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {   
+const mapStateToProps = (state) => {
       return {
           auth: state.firebase.auth,
       }

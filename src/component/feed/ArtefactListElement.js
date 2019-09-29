@@ -7,6 +7,8 @@
 import React from 'react';
 import { Divider } from 'antd';
 import { Link } from 'react-router-dom';
+import "./FlipCard.css";
+import faker from 'faker';
 
 /**
  * Function element.
@@ -41,8 +43,10 @@ function ArtefactListElement(props) {
      */
     return(
         <React.Fragment>
+            <div className="card">
             <div className="ArtefactListElement">
                 <Link to={"/view/artefacts/" + reference}>
+
                     <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
                     { // only show details section if it's not empty
                         artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
@@ -50,6 +54,7 @@ function ArtefactListElement(props) {
                 </Link>
             </div>
             <Divider className="ArtefactListElementDivider" />
+            </div>
         </React.Fragment>
     );
 }
