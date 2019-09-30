@@ -9,6 +9,7 @@ function getBase64(img, callback) {
   reader.readAsDataURL(img);
 }
 
+// file restriction.
 function beforeUpload(file) {
   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
   if (!isJpgOrPng) {
@@ -29,6 +30,7 @@ class Avatar extends Component {
     loading: false,
   };
 
+  // upload status, downloadURL generated after upload success.
   handleChange = info => {
     if (!this.props.downloadURL) {
       this.setState({ loading: true });
@@ -41,8 +43,12 @@ class Avatar extends Component {
     );
   };
 
+  // error here, uploader's action requirs a return of upload URL, but we doesn't have any.
+  // 
   handleUpload = file => {
     this.props.uploadFile('image/'+this.props.auth.uid+ '/' + file.name ,file)
+    //return 'https://www.mocky.io/v2/5cc8019d300000980a055e76' // <- return a irrelavent upload path can be a workaround, 
+                                                                //    but it will cause a security/data breach.
   }
 
   render() {
@@ -61,11 +67,11 @@ class Avatar extends Component {
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action={this.handleUpload}
+        action={this.handleUpload} // <- here's the action call
         beforeUpload={beforeUpload}
         onChange={this.handleChange}
       >
-        {downloadURL ? <img src={downloadURL} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+        {downloadURL ? <img src={downloadURL} alt="avatar" style={{ width: '100%' }} /> : uploadButton} 
       </Upload>
     );
   }
@@ -86,5 +92,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Avatar)
-
-// export default Avatar;
