@@ -31,6 +31,8 @@ const Event = (props) => {
         );
     }
 
+    console.log(event);
+
     return(
         <div className="object-content">
             <h2>{event[id].name}</h2>

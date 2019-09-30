@@ -22,7 +22,7 @@ class ArtefactHandler extends React.Component {
         this.state = {
             visible: false,
             type: this.props.type,
-            title: this.props.type === "create" ? "Create an Artefact" : "Edit an Artefact",
+            title: this.props.type === "create" ? "Create an Artefact" : "Edit Artefact",
             handleSubmit: this.props.type === "create" ? this.handleCreateSubmit : this.handleEditSubmit,
             docId: this.props.docId ? this.props.docId : null
         };

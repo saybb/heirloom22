@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import { Divider } from 'antd';
 import { Link } from 'react-router-dom';
 
 
@@ -23,11 +22,9 @@ function ItemLinks(props) {
     return(
         <React.Fragment>
             <h3>{title}</h3>
-            <div className="text">
-                { // generates an item for each link
-                    items.map((item) => <ItemLink key={item.name} item={item}/>)
-                }
-            </div>
+            { // generates an item for each link
+                items.map((item) => <ItemLink key={item.name} item={item}/>)
+            }
         </React.Fragment>
     );
 }
@@ -36,21 +33,14 @@ function ItemLink(props) {
     const {item} = props;
 
     return(
-        <React.Fragment>
-
-            <div className="polaroid">
-                <div className="container">
-                    <Link to={"/view/" + item.reference.path}>
-                        <div className="content">
-                            <h4>{item.name}</h4>
-                            <p>{item.relation}</p>
-                        </div>
-                    </Link>
-                </div>
-                <Divider className="item-divider"/>
+        <div className="polaroid">
+            <div className="container">
+                <Link to={"/view/" + item.reference.path}>
+                        <h4>{item.name}</h4>
+                        <p>{item.relation}</p>
+                </Link>
             </div>
-
-        </React.Fragment>
+        </div>
     );
 }
 

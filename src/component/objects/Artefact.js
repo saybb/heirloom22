@@ -48,6 +48,8 @@ const Artefact = (props) => {
               </div>
         );
     }
+
+    console.log(artefact);
     
     return (
         <div>
@@ -55,9 +57,6 @@ const Artefact = (props) => {
                 <div className="mover-1"></div>
                 <div className="mover-2"></div>
             </div>
-
-        <div className="object">
-
             <div className="object-content">
                 <h2>{artefact[id].name}</h2>
                 <p>{artefact[id].details}</p>
@@ -73,7 +72,6 @@ const Artefact = (props) => {
                 <Addendum />
 
             </div>
-        </div>
         </div>
     )
 }

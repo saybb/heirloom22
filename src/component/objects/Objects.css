@@ -3,12 +3,6 @@
  * CSS styles for display of objects, such as artefacts, people and events.
  */
 
-.object {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
 .object-content {
     display: flex;
     flex-direction: column;
