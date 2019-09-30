@@ -1,7 +1,6 @@
 const initState = {
   isLoading: true,
   errMess: null,
-  objs: [],
 }
 
 const userReducer = (state = initState, action) => {
@@ -38,6 +37,20 @@ const userReducer = (state = initState, action) => {
           return {
             ...state,
             errMess: 'Delete failed'
+          }
+      
+      case 'UPLOAD_SUCCESS':
+        console.log('upload success');
+        return {
+          ...state,
+          downloadURL: action.downloadURL,
+        };
+
+      case 'UPDATE_ERROR':
+          console.log('update error');
+          return {
+            ...state,
+            errMess: 'update failed'
           }
 
       default:

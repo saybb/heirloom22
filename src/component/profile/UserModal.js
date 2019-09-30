@@ -71,7 +71,6 @@ class UserModal extends React.Component {
     render() {
         const { visible, confirmLoading } = this.state;
         const { profile, auth } = this.props;
-        console.log(this.state.imageUrl);
         return(
             <div>
                 <Button type="primary" onClick={this.showModal}>
