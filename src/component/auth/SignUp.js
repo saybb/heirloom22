@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signUp } from '../../store/Actions/userActions'
+import { signUp } from '../../store/Actions/authActions'
 import { Button, Form } from 'semantic-ui-react'
 
 
@@ -8,7 +8,7 @@ class SignUp extends Component {
   state = {
     email: '',
     password: '',
-    firstName: '',
+    name: '',
     lastName: '',
   }
   handleChange = (e) => {
@@ -27,7 +27,7 @@ class SignUp extends Component {
       <Form onSubmit={this.handleSubmit}>
           <Form.Field>
               <label>First Name</label>
-              <input type="text" placeholder='First Name' id='firstName' onChange={this.handleChange} />
+              <input type="text" placeholder='First Name' id='name' onChange={this.handleChange} />
           </Form.Field>
 
           <Form.Field>

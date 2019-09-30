@@ -1,78 +1,47 @@
-export const signIn = (credentials) => {
-    return (dispatch, state, {auth}) => {
-            
-      auth.signInWithEmailAndPassword(
-        credentials.email,
-        credentials.password
-      ).then(() => {
-        dispatch({ type: 'LOGIN_SUCCESS' });
-      }).catch((err) => {
-        dispatch({ type: 'LOGIN_ERROR', err });
-      });
-  
-    }
-  }
-  
-  export const signOut = () => {
-    return (dispatch, state, {auth}) => {
-  
-      auth.signOut().then(() => {
-        dispatch({ type: 'SIGNOUT_SUCCESS' })
-      });
-    }
-  }
-  
-  export const signUp = (newUser) => {
-    return (dispatch, state, {auth, firestore}) => {
-  
-      auth.createUserWithEmailAndPassword(
-        newUser.email, 
-        newUser.password
-      ).then(resp => {
-        return firestore.collection('users').doc(resp.user.uid).set({
-                  firstName: newUser.firstName,
-                  lastName: newUser.lastName,
-                  email: newUser.email,
-                  location: '',
-                  bio: '',
+export const createObj = (objType, obj) => {
+    return (dispatch, getState, { auth, firestore }) => {
+        const profile = getState().firebase.profile;
+        const authorId = getState().firebase.auth.uid;
+        firestore.collection(objType).add({
+            ...obj,
+            created_by: profile.name,
+            authorId: authorId,
+            date_created: new Date(),
+            last_modified: new Date()
         }).then(() => {
-          var user = auth.currentUser;
-          user.updateProfile({ displayName: newUser.firstName});
-        }).catch(err => { console.log('Set up user profile ERROR')});
-      }).then(() => {
-        dispatch({ type: 'SIGNUP_SUCCESS' });
-      }).catch((err) => {
-        dispatch({ type: 'SIGNUP_ERROR', err});
-      });
+            dispatch({ type: 'CREATE_SUCCESS' });
+        }).catch(err => {
+            console.log(err);
+            dispatch({ type: 'CREATE_ERROR' }, err);
+        });
     }
-  }
+}
 
-  export const updateUserProfile = (info) => {
-    return (dispatch, state, {auth, firestore}) => {
-      var user = auth.currentUser;
-      firestore.collection('users').doc(user.uid).set({
-              firstName: info.firstName,
-              lastName: info.lastName,
-              location: info.location,
-              bio: info.bio,
-      }).then(() => {
-        dispatch({ type: 'PROFILE_UPDATE_SUCCESS'});
-      }).catch((err) => {
-        dispatch({ type: 'PROFILE_UPDATE_ERROR'});
-      });
+export const editObj = (objType, docId, obj) => {
+    return (dispatch, getState, { firestore }) => {
+        var ref = firestore.collection(objType).doc(docId)
+        ref.update({
+            ...obj,
+            last_modified: new Date()
+        }).then(() => {
+            dispatch({ type: 'EDIT_SUCCESS' });
+        }).catch(err => {
+            console.log(err);
+            dispatch({ type: 'EDIT_ERROR' }, err);
+        });
     }
-  }
+}
 
+export const deleteObj = (objType, docId) => {
+    return (dispatch, getState, { firestore }) => {
+        firestore.collection(objType).doc(docId)
+        .delete()
+        .then(() => {
+            dispatch({ type: 'DELETE_SUCCESS' });
+        }).catch(err => {
+            console.log(err);
+            dispatch({ type: 'DELETE_ERROR'});
+        })
+    }
+}
 
-  // export const uploadFile = (file) => {
-  //   console.log(file);
-  //   return (dispatch, state, { auth, storage }) => {
-  //     storage.child('users/' + auth.currentUser.uid + '/' + file.name).put(file)
-  //     .then((snapshot) => {
-  //       console.log(snapshot);
-  //       dispatch({ type: 'UPLOAD_SUCCESS'});
-  //     }).catch((err) => {
-  //       dispatch({ type: 'UPLOAD_ERROR' });
-  //     })
-  //   }
-  // }

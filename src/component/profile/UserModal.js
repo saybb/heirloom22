@@ -6,7 +6,7 @@
 import React from 'react'
 import { Modal, Button } from 'antd';
 import { connect } from 'react-redux'
-import { updateUserProfile } from '../../store/Actions/userActions'
+import { updateUserProfile } from '../../store/Actions/authActions'
 import UserProfile from '../profile/userProfile'
 import EditProfile from '../profile/editProfile'
 
@@ -16,10 +16,11 @@ class UserModal extends React.Component {
         editMode: false,
         visible: false,
         confirmLoading: false,
-        firstName: '',
+        name: '',
         lastName: '',
         location: '',
         bio: '',
+        imageUrl: '',
     };
 
     showModal = () => {
@@ -40,7 +41,8 @@ class UserModal extends React.Component {
             loading: true,  
             editMode: false
         });
-        console.log('update: ',this.state.firstName, this.state.lastName, this.state.location, this.state.bio);
+        
+        console.log('update: ',this.state.name, this.state.lastName, this.state.location, this.state.bio);
         this.props.updateUserProfile(this.state);
         setTimeout(() => {
             this.setState({ loading: false, visible: false });
@@ -69,11 +71,11 @@ class UserModal extends React.Component {
     render() {
         const { visible, confirmLoading } = this.state;
         const { profile, auth } = this.props;
-
+        console.log(this.state.imageUrl);
         return(
             <div>
                 <Button type="primary" onClick={this.showModal}>
-                    Hello, {!auth.displayName ? profile.firstName : auth.displayName}
+                    Hello, {!auth.displayName ? profile.name : auth.displayName}
                 </Button>
                 <Modal
                     title="Profile"

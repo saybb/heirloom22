@@ -8,6 +8,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { firestoreConnect, isEmpty, isLoaded  } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { Button, Menu, Dropdown, Icon } from 'antd';
+import { Link } from 'react-router-dom';
 
 // components
 import ItemLinks from './ItemLinks.js';
@@ -15,10 +17,24 @@ import "./Objects.css";
 import "./Gallery.css"
 import Addendum from "./Addendum";
 import faker from "faker";
+import ArtefactHandler from "../forms/ArtefactHandler.js";
+import { deleteObj } from "../../store/Actions/userActions";
+import { ARTEFACTS } from "../../store/objectTypes";
 
 const Artefact = (props) => {
     const { artefact } = props;
     const id = props.match.params.id;
+
+    const menu = (
+        <Menu>
+          <Menu.Item key="1"><ArtefactHandler docId={id}/></Menu.Item>
+          <Menu.Item key="2" onClick={handleDelete} ><Link to={"/feed"}>Delete</Link></Menu.Item>
+        </Menu>
+      );
+    
+    function handleDelete() {
+        props.deleteObj(ARTEFACTS, id);
+    }
 
     if (!isLoaded(artefact)){
         return (
@@ -48,6 +64,12 @@ const Artefact = (props) => {
             <div className="object-content">
                 <h2>{artefact[id].name}</h2>
                 <p>{artefact[id].details}</p>
+                <p>{artefact[id].description}</p>
+                <Dropdown overlay={menu}>
+                    <Button>
+                        Actions <Icon type="down" />
+                    </Button>
+                </Dropdown>
                 {/* ItemLinks will render links as items with names and relation descriptors */}
                 <ItemLinks title="Related People" items={artefact[id].people_links}/>
                 <ItemLinks title="Related Events" items={artefact[id].events_links}/>
@@ -67,8 +89,14 @@ const mapStateToProps = (state) => {
     }
 }
 
+const mapDispatchToProps = (dispatch)=> {
+    return {
+        deleteObj: (objType, docId) => dispatch(deleteObj(objType, docId)),
+    }
+  }
+
 export default compose(
-    connect(mapStateToProps),
+    connect(mapStateToProps, mapDispatchToProps),
     firestoreConnect((props) =>[{
         collection: 'Artefacts', 
         doc: props.match.params.id,
