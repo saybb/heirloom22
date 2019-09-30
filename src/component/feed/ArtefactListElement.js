@@ -8,7 +8,6 @@ import React from 'react';
 import { Divider } from 'antd';
 import { Link } from 'react-router-dom';
 import "./FlipCard.css";
-import faker from 'faker';
 
 /**
  * Function element.

@@ -10,13 +10,10 @@ import { firestoreConnect, isEmpty, isLoaded  } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Button, Menu, Dropdown, Icon } from 'antd';
 import { Link } from 'react-router-dom';
-
-// components
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
 import "./Gallery.css"
 import Addendum from "./Addendum";
-import faker from "faker";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import { deleteObj } from "../../store/Actions/userActions";
 import { ARTEFACTS } from "../../store/objectTypes";
