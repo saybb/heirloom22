@@ -1,3 +1,17 @@
+// DOM objects that we will refer to frequently
+const output_list = document.getElementById("output-list");
+
+// create each element and render them
+function render_output(string) {
+   // crate a list element
+   // save document id to the list
+   let li = document.createElement("li");
+   // display the data
+   li.textContent = string;
+   // save the list element to a list we selected
+   output_list.appendChild(li);
+}
+
 ///////////////// Tools /////////////////////
 // Parse test data to the appropriate data format
 function empty(thing) {
@@ -52,8 +66,8 @@ function parse_object(javascript_object) {
          link.reference = convert_reference(link.reference);
       }
    }
-   if (object.artifacts_links) {
-      for (link of object.artifacts_links) {
+   if (object.artefacts_links) {
+      for (link of object.artefacts_links) {
          link.reference = convert_reference(link.reference);
       }
    }
@@ -124,11 +138,13 @@ function upload_collection(path, javascript_object) {
       db.doc(path + "/" + docId)
          .set(value)
          .then(function() {
+            render_output("Success:" + docId);
             console.log(">>>> Uploading");
             console.log(docId);
             console.log("Document successfully written!");
          })
          .catch(function(error) {
+            render_output("Error:" + docId);
             console.log(docId);
             console.log(value);
             console.error("Error writing document: ", error);
