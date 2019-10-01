@@ -36,13 +36,13 @@ class UserModal extends React.Component {
     }
 
     handleSubmit = (e) => {
-        console.log('updating user profile');
+        //console.log('updating user profile');
         this.setState({ 
             loading: true,  
             editMode: false
         });
         
-        console.log('update: ',this.state.name, this.state.lastName, this.state.location, this.state.bio);
+        //console.log('update: ',this.state.name, this.state.lastName, this.state.location, this.state.bio);
         this.props.updateUserProfile(this.state);
         setTimeout(() => {
             this.setState({ loading: false, visible: false });
@@ -71,7 +71,7 @@ class UserModal extends React.Component {
     render() {
         const { visible, confirmLoading } = this.state;
         const { profile, auth } = this.props;
-        console.log(this.state.imageUrl);
+        //console.log(this.state.imageUrl);
         return(
             <div>
                 <Button type="primary" onClick={this.showModal}>
