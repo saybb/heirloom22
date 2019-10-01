@@ -6,11 +6,10 @@
 import React from "react";
 import { Modal, Button } from "antd";
 import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 
 import { createObj, editObj} from "../../store/Actions/userActions"
-import { ARTEFACTS, EVENTS, PEOPLE } from "../../store/objectTypes"
+import { ARTEFACTS } from "../../store/objectTypes"
 import ArtefactForm from "./ArtefactForm.js";
 import CreateEvent from "./CreateEvent.js";
 import CreatePerson from "./CreatePerson.js";
@@ -23,7 +22,6 @@ class ArtefactHandler extends React.Component {
             visible: false,
             type: this.props.type,
             title: this.props.type === "create" ? "Create an Artefact" : "Edit Artefact",
-            handleSubmit: this.props.type === "create" ? this.handleCreateSubmit : this.handleEditSubmit,
             docId: this.props.docId ? this.props.docId : null
         };
     }
@@ -40,21 +38,19 @@ class ArtefactHandler extends React.Component {
         });
     }
 
-    handleCreateSubmit = (artefact) => {
-        this.props.createObj(ARTEFACTS, artefact)
-        setTimeout(() => {
-            this.setState({ visible: false });
-          }, 1000);
-          
-    }
+    handleSubmit = (artefact) => {
+        console.log(artefact);
 
-    handleEditSubmit = (artefact) => {
-        this.props.editObj(ARTEFACTS, this.props.docId, artefact)
+        if (this.state.type === "create") {
+            this.props.createObj(ARTEFACTS, artefact)
+        } else {
+            this.props.editObj(ARTEFACTS, this.props.docId, artefact)
+        }
+
         setTimeout(() => {
             this.setState({ visible: false });
         }, 1000);
     }
-
 
     render() {
         return (
@@ -63,48 +59,37 @@ class ArtefactHandler extends React.Component {
                 <Modal
                     visible={this.state.visible}
                     title={this.state.title}
-                    onOk={this.state.handleSubmit}
                     onCancel={this.handleCancel}
                     footer={[
                         <Button key="cancel" type="default" onClick={this.handleCancel}>Cancel</Button>,
                     ]}
                 >
-                {this.state.type === "create"? 
-                <React.Fragment>
-                    <CreatePerson/> 
-                    <CreateEvent/> 
-                </React.Fragment>
-                : null}
+                    { this.state.type === "create" ? 
+                        <React.Fragment>
+                            <CreatePerson/> 
+                            <CreateEvent/> 
+                        </React.Fragment>
+                    : null}
+
                     <ArtefactForm 
-                        handleSubmit={this.state.handleSubmit} 
+                        handleSubmit={this.handleSubmit} 
                         type={this.state.type}
                         docId={this.state.docId}
-                        />
+                    />
                 </Modal>
             </React.Fragment>
         );
     }
 }
 
-const mapStateToProps = (state) => {
+
+const mapDispatchToProps = (dispatch) => {
     return {
-      auth: state.firebase.auth,
-      events: state.firestore.data.Events,
-      people: state.firestore.data.People,
+        createObj: (objType, artefact) => dispatch(createObj(objType, artefact)),
+        editObj: (objType, id, artefact) => dispatch(editObj(objType, id, artefact))
     }
-  }
-  
-  const mapDispatchToProps = (dispatch)=> {
-    return {
-      createObj: (objType, artefact) => dispatch(createObj(objType, artefact)),
-      editObj: (objType, id, artefact) => dispatch(editObj(objType, id, artefact))
-    }
-  }
+}
 
 export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    firestoreConnect(() => [
-        {collection: PEOPLE},
-        {collection: EVENTS},
-    ])
+    connect(mapDispatchToProps),
 )(ArtefactHandler)
