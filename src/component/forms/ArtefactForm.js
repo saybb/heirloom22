@@ -11,7 +11,7 @@ import { EVENTS, PEOPLE } from "../../store/objectTypes"
 import { Form, Input, Select, Button } from "antd";
 const { TextArea } = Input;
 
-class CreateArtefactForm extends React.Component {
+class ArtefactForm extends React.Component {
     state = {
         events_selected: [],
         people_selected: [],
@@ -183,7 +183,7 @@ class CreateArtefactForm extends React.Component {
 };
 
 // use wrapper
-CreateArtefactForm = Form.create({name: "createArtefactForm"})(CreateArtefactForm);
+ArtefactForm = Form.create({name: "createArtefactForm"})(ArtefactForm);
 
 const mapStateToProps = (state) => {
     return {
@@ -198,4 +198,4 @@ export default compose(
         {collection: PEOPLE},
         {collection: EVENTS},
     ])
-)(CreateArtefactForm);
+)(ArtefactForm);
