@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { firestoreConnect, isLoaded, isEmpty } from 'react-redux-firebase';
+import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
@@ -15,7 +15,7 @@ const Person = (props) => {
     const id = props.match.params.id;
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     
-    if (!isLoaded(person)){
+    if (!person){
         return (
             <div className="object-content">
                 <h2>Person is loading...</h2>
@@ -23,7 +23,7 @@ const Person = (props) => {
         )
     }
     
-    if (isEmpty(person)) {
+    if (person && !person[id]) {
         return(
             <div className="object-content">
                 <h2>Person is NOT FOUND</h2>

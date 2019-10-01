@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux'
-import { firestoreConnect, isEmpty, isLoaded } from 'react-redux-firebase'
+import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 
 // components

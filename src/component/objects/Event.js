@@ -7,7 +7,7 @@ import React from 'react';
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
 import { connect } from 'react-redux'
-import { firestoreConnect, isEmpty, isLoaded  } from 'react-redux-firebase'
+import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 
 const Event = (props) => {
@@ -15,7 +15,7 @@ const Event = (props) => {
     const id = props.match.params.id;
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
-    if (!isLoaded(event)){
+    if (!event){
         return (
             <div className="object-content">
                 <h2>Event is loading...</h2>
@@ -23,7 +23,7 @@ const Event = (props) => {
         );
     }
     
-    if (isEmpty(event)) {
+    if (event && !event[id]) {
         return(
             <div className="object-content">
                 <h2>Event is NOT FOUND</h2>

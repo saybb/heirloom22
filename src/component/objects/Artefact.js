@@ -42,15 +42,12 @@ const Artefact = (props) => {
     }
     
     if(artefact && !artefact[id]){
-        
         return (
               <div className="object-content">
                   <h2>Artefact is NOT FOUND</h2>
               </div>
         );
     }
-
-    console.log(artefact);
     
     return (
         <div>
