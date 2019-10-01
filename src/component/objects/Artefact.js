@@ -6,7 +6,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { firestoreConnect, isEmpty, isLoaded  } from 'react-redux-firebase'
+import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { Button, Menu, Dropdown, Icon } from 'antd';
 import { Link } from 'react-router-dom';
@@ -33,15 +33,16 @@ const Artefact = (props) => {
         props.deleteObj(ARTEFACTS, id);
     }
 
-    if (!isLoaded(artefact)){
+    if (!artefact){
         return (
             <div className="object-content">
-                <h2>Artefact is loading...</h2>
+                <h2>loading...</h2>
             </div>
         )
     }
     
-    if(isEmpty(artefact)){
+    if(artefact && !artefact[id]){
+        
         return (
               <div className="object-content">
                   <h2>Artefact is NOT FOUND</h2>

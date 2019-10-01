@@ -17,7 +17,7 @@ import Event from "./component/objects/Event.js";
 import Person from "./component/objects/Person.js";
 import SignIn from './component/auth/SignIn';
 import SignUp from './component/auth/SignUp';
-import Avatar from './component/objects/Avatar';
+import Avatar from './component/util/Avatar';
 
 class App extends React.Component {
     render() {

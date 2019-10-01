@@ -40,7 +40,21 @@ export const deleteObj = (objType, docId) => {
             dispatch({ type: 'DELETE_SUCCESS' });
         }).catch(err => {
             console.log(err);
-            dispatch({ type: 'DELETE_ERROR'});
+            dispatch({ type: 'DELETE_ERROR'}, err);
+        })
+    }
+}
+
+export const uploadFile = (path, file) => {
+    return (dispatch, getState, { storageRef }) => {
+        storageRef.child(path).put(file)
+        .then((snapshot) => {
+            snapshot.ref.getDownloadURL().then((downloadURL) => {
+                dispatch({ type: 'UPLOAD_SUCCESS', downloadURL: downloadURL});
+              }).catch(err => {
+                  console.log(err);
+                  dispatch({ type: 'UPLOAD_ERROR' })
+              })
         })
     }
 }

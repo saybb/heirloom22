@@ -21,17 +21,17 @@ class ArtefactList extends React.Component {
     render() {
         const { artefacts } = this.props;
 
-        if(!isLoaded(artefacts)){
+        if(!artefacts){
             return (
                 <div className="container center">
                     <h2>Loading artefacts...</h2>
                 </div>
             )
         }
-        if(isEmpty(artefacts)){
+        if(artefacts && !Object.keys(artefacts)){
             return (
                 <div className="container center">
-                    <h2>Nothing found.</h2>
+                    <h2>No artefact found.</h2>
                 </div>
             )
         }
