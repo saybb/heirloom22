@@ -5,64 +5,72 @@ import { Button, Form } from 'semantic-ui-react'
 
 
 class SignUp extends Component {
-  state = {
-    email: '',
-    password: '',
-    name: '',
-    lastName: '',
-  }
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
-    })
-  }
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.signUp(this.state);
-  }
-  render() {
-     return (
+    state = {
+        email: '',
+        password: '',
+        name: '',
+        lastName: ''
+    }
 
+    handleChange = (e) => {
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    }
 
-      <Form onSubmit={this.handleSubmit}>
-          <Form.Field>
-              <label>First Name</label>
-              <input type="text" placeholder='First Name' id='name' onChange={this.handleChange} />
-          </Form.Field>
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const { email, password, name, lastName } = this.state;
+        const signup = {
+            email: email,
+            password: password,
+            name: name,
+            lastName: lastName
+        }
 
-          <Form.Field>
-              <label>Last Name</label>
-              <input type="text" placeholder='Last Name' id='lastName' onChange={this.handleChange} />
-          </Form.Field>
+        this.props.signUp(signup);
+    }
 
-          <Form.Field>
-              <label>Email</label>
-              <input type="email" placeholder='email' id='email' onChange={this.handleChange} />
-          </Form.Field>
+    render() {
+        return (
+            <Form onSubmit={this.handleSubmit}>
+                <Form.Field>
+                    <label>First Name</label>
+                    <input type="text" placeholder='First Name' id='name' onChange={this.handleChange} />
+                </Form.Field>
 
-          <Form.Field>
-              <label>Password</label>
-              <input type="password" placeholder='password' id='password' onChange={this.handleChange} />
-          </Form.Field>
+                <Form.Field>
+                    <label>Last Name</label>
+                    <input type="text" placeholder='Last Name' id='lastName' onChange={this.handleChange} />
+                </Form.Field>
 
-          <Button type='submit'>Submit</Button>
-      </Form>
+                <Form.Field>
+                    <label>Email</label>
+                    <input type="email" placeholder='email' id='email' onChange={this.handleChange} />
+                </Form.Field>
 
-    )
-  }
+                <Form.Field>
+                    <label>Password</label>
+                    <input type="password" placeholder='password' id='password' onChange={this.handleChange} />
+                </Form.Field>
+
+                <Button type='submit'>Submit</Button>
+            </Form>
+        )
+    }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    auth: state.firebase.auth,
-    authError: state.user.authError
-  }
+    return {
+        auth: state.firebase.auth,
+        authError: state.user.authError
+    }
 }
 
-const mapDispatchToProps = (dispatch)=> {
-  return {
-    signUp: (creds) => dispatch(signUp(creds))
-  }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUp: (creds) => dispatch(signUp(creds))
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
