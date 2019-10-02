@@ -214,6 +214,7 @@ const People = {
       date_created: "29/06/2000",
       created_by: "liam",
       name: "Sam",
+      dob: "01/01/1999",
       lastname: "Gilbert",
       details: "Brother to Amanda"
    },
@@ -223,7 +224,7 @@ const People = {
       created_by: "liam",
       name: "John",
       lastname: "Gilbert",
-      dob: "01/01/1971",
+      dob: "01/01/1961",
       details: "Great crafts men. Grandpa of Ananda and Sam, father of Liam",
       artifacts_links: [
          {
@@ -277,6 +278,7 @@ const People = {
 
    liam_gilbert_id: {
       date_created: "29/06/2000",
+      dob: "01/01/1961",
       created_by: "liam",
       name: "Melanie",
       lastname: "Gilbert",

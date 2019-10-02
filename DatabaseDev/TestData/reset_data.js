@@ -33,11 +33,16 @@ function parse_object(javascript_object) {
    // deep copy
    object = Object.assign(javascript_object);
 
-   // change time
+   // must have items change time
    object.date_created = server_time_stamp();
-   object.date = convert_date(object.date);
-   object.dob = convert_date(object.dob);
 
+   if (object.data) {
+      object.date = convert_date(object.date);
+   }
+
+   if (object.dob) {
+      object.dob = convert_date(object.dob);
+   }
    // change reference
    if (object.reference) {
       object.reference = convert_reference(object.reference);
