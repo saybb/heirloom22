@@ -10,7 +10,7 @@
 .tech-slideshow > div {
     height: 200px;
     width: 2526px;
-    background: url(http://www.webhek.com/wordpress/wp-content/uploads/2018/03/collage.jpg);
+    background: url(https://i.imgur.com/a2rG8oP.jpg);
     position: absolute;
     top: 0;
     left: 0;
@@ -24,7 +24,7 @@
     opacity: 0;
     transition: opacity 0.5s ease-out;
     background-position: 0 -200px;
-    animation: moveSlideshow 20s linear infinite;
+    animation: moveSlideshow 50s linear infinite;
 }
 .tech-slideshow:hover .mover-2 {
     opacity: 1;
@@ -35,3 +35,7 @@
         transform: translateX(-66.6666%);
     }
 }
+
+
+
+

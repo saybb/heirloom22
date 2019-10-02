@@ -17,6 +17,7 @@ import Addendum from "./Addendum";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import { deleteObj } from "../../store/Actions/userActions";
 import { ARTEFACTS } from "../../store/objectTypes";
+import Carousel from 'react-bootstrap/Carousel';
 
 const Artefact = (props) => {
     const { artefact } = props;
@@ -51,10 +52,7 @@ const Artefact = (props) => {
     
     return (
         <div>
-            <div className="tech-slideshow">
-                <div className="mover-1"></div>
-                <div className="mover-2"></div>
-            </div>
+
             <div className="object-content">
                 <h2>{artefact[id].name}</h2>
                 <p>{artefact[id].details}</p>
