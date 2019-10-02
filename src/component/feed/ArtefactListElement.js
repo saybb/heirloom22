@@ -5,9 +5,10 @@
  */
 
 import React from 'react';
+import faker from 'faker';
 import { Divider } from 'antd';
 import { Link } from 'react-router-dom';
-import "./FlipCard.css";
+import "./FlipCard.scss";
 
 /**
  * Function element.
@@ -42,17 +43,50 @@ function ArtefactListElement(props) {
      */
     return(
         <React.Fragment>
-            <div className="card">
-                <div className="ArtefactListElement">
-                    <Link to={"/view/artefacts/" + reference}>
+        {/*    <div className="card">*/}
+        {/*        <img src={faker.image.abstract()} width="100%" height="auto"/>*/}
+        {/*        <div className="ArtefactListElement">*/}
+        {/*            <Link to={"/view/artefacts/" + reference}>*/}
 
-                        <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
-                        { // only show details section if it's not empty
-                            artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
-                        }
-                    </Link>
+        {/*                <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>*/}
+        {/*                { // only show details section if it's not empty*/}
+        {/*                    artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)*/}
+        {/*                }*/}
+        {/*            </Link>*/}
+        {/*        </div>*/}
+        {/*    </div>*/}
+
+            <div className="card__collection clear-fix">
+                <div className="cards cards--two">
+                    <img src={faker.image.abstract()} onresize="width:319 height:479"/>
+                        <span className="cards--two__rect"></span>
+                        <span className="cards--two__tri"></span>
+                    <p>
+                        <Link to={"/view/artefacts/" + reference}>
+
+                            <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
+                            { // only show details section if it's not empty
+                                artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
+                            }
+                        </Link>
+                    </p>
+
                 </div>
-                <Divider className="ArtefactListElementDivider" />
+                <div className="cards cards--three">
+                    <img
+                        src="https://images.unsplash.com/photo-1480408144303-d874c5e12201?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=575213599ae24b3dbdfd84be79425c50&auto=format&fit=crop&w=634&q=80"
+                        className="img-responsive" alt=""/>
+    <span className="cards--three__rect-1">
+      <span className="shadow-1"></span>
+      <p>Chris Levnon</p>
+    </span>
+                        <span className="cards--three__rect-2">
+      <span className="shadow-2"></span>
+    </span>
+                        <span className="cards--three__circle"></span>
+
+
+                </div>
             </div>
         </React.Fragment>
     );

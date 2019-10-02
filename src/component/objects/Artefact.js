@@ -17,7 +17,6 @@ import Addendum from "./Addendum";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import { deleteObj } from "../../store/Actions/userActions";
 import { ARTEFACTS } from "../../store/objectTypes";
-import Carousel from 'react-bootstrap/Carousel';
 
 const Artefact = (props) => {
     const { artefact } = props;
