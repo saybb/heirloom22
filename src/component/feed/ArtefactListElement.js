@@ -2,12 +2,12 @@
  * ArtefactListElement :: ReactJS Component
  * A simple representation of an artefact for ArtefactList.
  * The artefact should be passed to this component.
- * Created By: Lawson Wang-Wills
  */
 
-// libs
 import React from 'react';
 import { Divider } from 'antd';
+import { Link } from 'react-router-dom';
+import "./FlipCard.css";
 
 /**
  * Function element.
@@ -15,10 +15,10 @@ import { Divider } from 'antd';
  *   - artefact : artefact json object to be represented
  */
 function ArtefactListElement(props) {
-    const { artefact } = props;
+    const { artefact, reference } = props;
     const TITLE_LENGTH = 50;       // maximum length of title in chars
     const DESC_LENGTH = 100;       // maximum length of description in chars
-
+    
 
     /**
      * Simple function that shortens a string if it's longer than given length
@@ -42,15 +42,18 @@ function ArtefactListElement(props) {
      */
     return(
         <React.Fragment>
-            <div className="ArtefactListElement">
-                <span>
-                    <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
-                    { // only show details section if it's not empty
-                        artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
-                    }
-                </span>
+            <div className="card">
+                <div className="ArtefactListElement">
+                    <Link to={"/view/artefacts/" + reference}>
+
+                        <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
+                        { // only show details section if it's not empty
+                            artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
+                        }
+                    </Link>
+                </div>
+                <Divider className="ArtefactListElementDivider" />
             </div>
-            <Divider className="ArtefactListElementDivider" />
         </React.Fragment>
     );
 }

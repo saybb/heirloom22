@@ -1,146 +1,125 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import { Modal, Button } from 'antd';
-import { updateUserProfile } from '../../store/Actions/userActions'
-import UserProfile from '../profile/userProfile'
-import EditProfile from '../profile/editProfile'
+/**
+ * Navigation :: ReactJS Component
+ * Renders the navigation bar for the site.
+ * Provides sitewide navigation, and access to account features.
+ */
 
-class Navigation extends Component {
+import React from "react";
+import { connect } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { Menu, Button } from "antd";
+import { signOut } from "../../store/Actions/authActions";
+import logo from "../../heirloom22_logo.svg";
+import UserModal from "../profile/UserModal.js";
+import "./Navigation.css";
 
-  state = {
-    //ModalText: 'Content of the modal',
-    editMode: false,
-    visible: false,
-    confirmLoading: false,
-    firstName: '',
-    lastName: '',
-    location: '',
-    bio: '',
-  };
+class Navigation extends React.Component {
+   render() {
+      return (
+         <nav className="nav-bar">
+            <this.MainMenu />
+            <this.UserMenu />
+         </nav>
+      );
+   }
 
-  showModal = () => {
-    this.setState({
-      visible: true,
-    });
-  };
+   // menu for site navigation
+   MainMenu = () => {
+      const { auth } = this.props;
 
-  handleEditMode = () => {
-    this.setState({
-      editMode: true,
-    });
-  }
+      // use auth.uid to check if we can show the signup page
+      if (auth.uid) {
+         return (
+            <Menu className="menu-main" mode="horizontal">
+               <Menu.Item key="logo">
+                  <NavLink to="/">
+                     <img className="nav-logo" src={logo} alt="logo" />
+                  </NavLink>
+               </Menu.Item>
+               <Menu.Item key="home">
+                  <NavLink to="/">Home</NavLink>
+               </Menu.Item>
+               <Menu.Item key="list">
+                  <NavLink to="/feed">List View</NavLink>
+               </Menu.Item>
+               <Menu.Item key="artefact">
+                  <NavLink to="/view/artefacts/family_crest_monument_id">
+                     Sample Artefact View
+                  </NavLink>
+               </Menu.Item>
+               <Menu.Item key="event">
+                  <NavLink to="/view/events/making_crest_id">
+                     Sample Event View
+                  </NavLink>
+               </Menu.Item>
+               <Menu.Item key="person">
+                  <NavLink to="/view/people/john_gilbert_id">
+                     Sample Person View
+                  </NavLink>
+               </Menu.Item>
+            </Menu>
+         );
+      } else {
+         return (
+            <Menu className="menu-main" mode="horizontal">
+               <Menu.Item key="logo">
+                  <NavLink to="/">
+                     <img className="nav-logo" src={logo} alt="logo" />
+                  </NavLink>
+               </Menu.Item>
+               <Menu.Item key="home">
+                  <NavLink to="/">Home</NavLink>
+               </Menu.Item>
+            </Menu>
+         );
+      }
+   };
 
-  handleSubmit = (e) => {
-    console.log('updating user profile');
-    this.setState({ loading: true });
-    console.log('update: ',this.state.firstName, this.state.lastName, this.state.location, this.state.bio);
-    this.props.updateUserProfile(this.state);
-    setTimeout(() => {
-      this.setState({ loading: false, visible: false });
-    }, 3000);
-  }
+   // menu for account-related functions
+   UserMenu = () => {
+      const { auth, signOut } = this.props;
 
-  handleBack = () => {
-    this.setState({
-      visible: false,
-      editMode: false
-    });
-  }
-
-  handleCancel = () => {
-    this.setState({
-      editMode: false,
-    });
-  }
-
-  handleChange = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value
-    })
-  }
-
-  render() {
-    const { visible, confirmLoading } = this.state;
-    const { auth, profile } = this.props;
-    console.log(auth, profile);
-
-    return(
-      <nav className="Navigation">
-        <div className="container">
-          <h1>Heirloom22 Title Here</h1>
-          { !auth.uid ?
-              <div>
-                <ul className="right">
-                  <li><NavLink to='/'>Home</NavLink></li>
-                  <li><NavLink to='/feed'>List View</NavLink></li>
-                  <li><NavLink to='/signup'>Sign up</NavLink></li>
-                  <li><NavLink to='/signin'>Log in</NavLink></li>
-                  <li><NavLink to='/view/artefact'>Sample Artefact View</NavLink></li>
-                </ul>
-              </div>
-            :
-            <Fragment>
-                <div>
-                  <Button type="primary" onClick={this.showModal}>
-                    Hello, {!auth.displayName ? profile.firstName : auth.displayName}
+      if (auth.uid) {
+         return (
+            <Menu className="menu-user" mode="horizontal">
+               <Menu.Item key="profile">
+                  <UserModal />
+               </Menu.Item>
+               <Menu.Item key="logout">
+                  <Button type="danger" onClick={signOut}>
+                     Log out
                   </Button>
-                  <Modal
-                    title="Profile"
-                    visible={visible}
-                    onOk={this.handleSubmit}
-                    confirmLoading={confirmLoading}
-                    onCancel={this.handleBack}
-                    footer={!this.state.editMode ? 
-                      [
-                        <Button key="close" onClick={this.handleBack}>
-                          Back
-                        </Button>,
-                        <Button key="edit" type="primary" onClick={this.handleEditMode}>
-                          Edit Profile
-                        </Button>,
-                      ]
-                      :
-                      [
-                        <Button key="cancle" onClick={this.handleCancel}>
-                          Return
-                        </Button>,
-                        <Button key="submit" type="primary" onClick={this.handleSubmit}>
-                          Submit
-                        </Button>,
-                      ]
-                    }
-                  >
-                    {!this.state.editMode ? 
-                      <UserProfile/>
-                      :
-                      <EditProfile handleChange={this.handleChange} />
-                    }
-                    
-                  </Modal>
-                </div>
-                <div>
-                  <Button type="danger" onClick={this.props.signOut}>Log out</Button>
-                </div>
-              </Fragment>
-          }
-        </div>
-      </nav>
-    )
-  }
+               </Menu.Item>
+               <Menu.Item key="signup">
+                  <NavLink to="/signup">Sign up</NavLink>
+               </Menu.Item>
+            </Menu>
+         );
+      } else {
+         return (
+            <Menu className="menu-user" mode="horizontal">
+               <Menu.Item key="login">
+                  <NavLink to="/signin">Log in</NavLink>
+               </Menu.Item>
+            </Menu>
+         );
+      }
+   };
 }
 
-const mapStateToProps = (state) => {  
-  return{
-    auth: state.firebase.auth,
-    profile: state.firebase.profile
-  }
-}
+const mapStateToProps = state => {
+   return {
+      auth: state.firebase.auth
+   };
+};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateUserProfile: (info) => dispatch(updateUserProfile(info))
-  }
-}
+const mapDispatchToProps = dispatch => {
+   return {
+      signOut: () => dispatch(signOut())
+   };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(Navigation);

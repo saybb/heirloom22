@@ -1,37 +1,79 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import './App.css';
-import 'antd/dist/antd.css';
+/* * *
+ * App :: ReactJS Component
+ * Main component for the project.
+ */
+import React from "react";
+import {
+   BrowserRouter as Router,
+   Route,
+   Switch,
+   Redirect
+} from "react-router-dom";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import "./App.css";
+import "antd/dist/antd.css";
 
 /* Components */
 import Navigation from "./component/layout/Navigation.js";
 import ArtefactList from "./component/feed/ArtefactList.js";
 import Artefact from "./component/objects/Artefact.js";
-import SignIn from './component/auth/SignIn';
-import SignUp from './component/auth/SignUp';
+import Event from "./component/objects/Event.js";
+import Person from "./component/objects/Person.js";
+import SignIn from "./component/auth/SignIn";
+import SignUp from "./component/auth/SignUp";
+import Avatar from "./component/util/Avatar";
 
 class App extends React.Component {
-    render() {
-        return (
-            <Router>
-                <div className="App">
-                    <Navigation />
+   render() {
+      return (
+         <Router>
+            <Navigation />
+            <div className="App">
+               <this.HomeRoutes />
+            </div>
+         </Router>
+      );
+   }
 
-                    <Switch>
-                        <Route path="/" exact component={ArtefactList}/>
-                        <Route path="/feed" component={ArtefactList}/>
-                        <Route path="/view/artefact" component={Artefact}/>
+   HomeRoutes = () => {
+      const { auth } = this.props;
 
-                        <Route path='/signin' component={SignIn} />
-                        <Route path='/signup' component={SignUp} />
+      if (auth.uid) {
+         return (
+            <Switch>
+               <Route path="/" exact component={ArtefactList} />
+               <Route path="/feed" component={ArtefactList} />
+               <Route path="/view/artefacts/:id" component={Artefact} />
 
-                        {/* default to "/" if unrecognised route. */}
-                        <Route render={() => <Redirect to="/"/>}/>
-                    </Switch>
-                </div>
-            </Router>
-        );
-    };
+               <Route path="/view/events/:id" component={Event} />
+               <Route path="/view/people/:id" component={Person} />
+
+               <Route path="/signup" component={SignUp} />
+               <Route path="/upload" component={Avatar} />
+
+               {/* default to "/" if unrecognised route. */}
+               <Route render={() => <Redirect to="/" />} />
+            </Switch>
+         );
+      } else {
+         return (
+            <Switch>
+               {/* Welcome page goes here... */}
+               <Route path="/" exact component={SignIn} />
+               <Route path="/signin" component={SignIn} />
+
+               {/* default to "/" if unrecognised route. */}
+               <Route render={() => <Redirect to="/" />} />
+            </Switch>
+         );
+      }
+   };
 }
 
-export default App;
+const mapStateToProps = state => {
+   return {
+      auth: state.firebase.auth
+   };
+};
+export default compose(connect(mapStateToProps))(App);
