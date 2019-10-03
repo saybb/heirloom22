@@ -11,8 +11,8 @@ import { compose } from 'redux'
 import { createObj, editObj} from "../../store/Actions/userActions"
 import { ARTEFACTS } from "../../store/objectTypes"
 import ArtefactForm from "./ArtefactForm.js";
-import CreateEvent from "./CreateEvent.js";
-import CreatePerson from "./CreatePerson.js";
+import EventHandler from "./EventHandler.js";
+import PersonHandler from "./PersonHandler.js";
 
 
 class ArtefactHandler extends React.Component {
@@ -66,8 +66,8 @@ class ArtefactHandler extends React.Component {
                 >
                     { this.state.type === "create" ? 
                         <React.Fragment>
-                            <CreatePerson/> 
-                            <CreateEvent/> 
+                            <PersonHandler/> 
+                            <EventHandler/> 
                         </React.Fragment>
                     : null}
 
