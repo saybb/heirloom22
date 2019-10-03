@@ -50,32 +50,60 @@ class Welcome extends Component {
                      <Icon type='home' />
                   </Col>
                   <Col span={12}>
-                     Click on
-                     <Button>
-                        <NavLink to='/'>Home</NavLink>
-                     </Button>
-                     to come back to this page
+                     <Row className='title'>Homepage</Row>
+                     <Row>
+                        Click on
+                        <Button>
+                           <NavLink to='/'>Home</NavLink>
+                        </Button>
+                        to come back to this page
+                     </Row>
                   </Col>
-                  <Col>
-                     Click on
-                     <Button>
-                        <NavLink to='/feed'>List View</NavLink>
-                     </Button>
-                     to go to Gallery
+               </Row>
+               <Row type='flex' justify='center'>
+                  <Col span={4}>
+                     <Icon type='picture' />
                   </Col>
-                  <Col>
-                     Click on
-                     <Button type='danger'>
-                        <NavLink to='/signup'>Log out</NavLink>
-                     </Button>
-                     to exit this application
+                  <Col span={12}>
+                     <Row className='title'>Gallery</Row>
+                     <Row>
+                        Click on
+                        <Button>
+                           <NavLink to='/feed'>List View</NavLink>
+                        </Button>
+                        to go to Gallery where you can view all the artefacts
+                        and its related people and events
+                     </Row>
                   </Col>
-                  <Col>
-                     Click on
-                     <Button>
-                        <NavLink to='/signup'>Sign up</NavLink>
-                     </Button>
-                     create new accounts
+               </Row>
+               <Row type='flex' justify='center'>
+                  <Col span={4}>
+                     <Icon type='logout' />
+                  </Col>
+                  <Col span={12}>
+                     <Row className='title'>Log out</Row>
+                     <Row>
+                        Click on
+                        <Button type='danger'>
+                           <NavLink to='/signup'>Log out</NavLink>
+                        </Button>
+                        to exit this application correctly
+                     </Row>
+                  </Col>
+               </Row>
+               <Row type='flex' justify='center'>
+                  <Col span={4}>
+                     <Icon type='user-add' />
+                  </Col>
+                  <Col span={12}>
+                     <Row className='title'>Create new accounts</Row>
+                     <Row>
+                        Click on
+                        <Button>
+                           <NavLink to='/signup'>Sign up</NavLink>
+                        </Button>
+                        create new accounts for your family members
+                     </Row>
                   </Col>
                </Row>
             </div>

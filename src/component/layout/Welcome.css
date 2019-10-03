@@ -4,8 +4,24 @@ h1 {
    margin: 20px;
 }
 
-.header {
-   background-color: darkturquoise;
+.Tutorial {
+   font-size: 15px;
+}
+
+.ant-row-flex-center {
+   padding: 10px;
+}
+
+.title {
+   font-weight: bold;
+   font-size: 17px;
+}
+
+.ant-col-4 {
+   font-size: 40px;
+   text-align: right;
+   vertical-align: top;
+   padding: 0 20px 0 0;
 }
 
 .logo {
@@ -20,5 +36,6 @@ h1 {
 }
 
 button {
-   margin: 10px;
+   margin: 0 10px 0 10px;
+   padding: 0;
 }
