@@ -67,7 +67,7 @@ class ArtefactHandler extends React.Component {
                     { this.state.type === "create" ? 
                         <React.Fragment>
                             <PersonHandler/> 
-                            <EventHandler/> 
+                            <EventHandler type={"create"}/> 
                         </React.Fragment>
                     : null}
 
@@ -91,5 +91,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default compose(
-    connect(mapDispatchToProps),
+    connect(null, mapDispatchToProps),
 )(ArtefactHandler)

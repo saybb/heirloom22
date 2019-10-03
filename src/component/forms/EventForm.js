@@ -5,6 +5,7 @@
 
 import React from "react";
 import { Form, Input, Button, DatePicker } from "antd";
+import moment from 'moment';
 const { TextArea } = Input;
 
 class EventForm extends React.Component {
@@ -15,6 +16,8 @@ class EventForm extends React.Component {
         // fields must pass validation before submission
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                //convert moment to string
+                values.date = moment(values.date).format('L');
                 // pass form data to parent
                 this.props.handleSubmit(values);
             }
