@@ -1,0 +1,24 @@
+h1 {
+   text-align: center;
+   font-weight: bold;
+   margin: 20px;
+}
+
+.header {
+   background-color: darkturquoise;
+}
+
+.logo {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width: 50%;
+}
+
+.Welcome {
+   padding: 10px;
+}
+
+button {
+   margin: 10px;
+}

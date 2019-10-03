@@ -17,6 +17,7 @@ import "antd/dist/antd.css";
 /* Components */
 import Navigation from "./component/layout/Navigation.js";
 import ArtefactList from "./component/feed/ArtefactList.js";
+import Welcome from "./component/layout/Welcome";
 import Artefact from "./component/objects/Artefact.js";
 import Event from "./component/objects/Event.js";
 import Person from "./component/objects/Person.js";
@@ -42,7 +43,7 @@ class App extends React.Component {
       if (auth.uid) {
          return (
             <Switch>
-               <Route path="/" exact component={ArtefactList} />
+               <Route path="/" exact component={Welcome} />
                <Route path="/feed" component={ArtefactList} />
                <Route path="/view/artefacts/:id" component={Artefact} />
 
@@ -60,7 +61,7 @@ class App extends React.Component {
          return (
             <Switch>
                {/* Welcome page goes here... */}
-               <Route path="/" exact component={SignIn} />
+               <Route path="/" exact component={Welcome} />
                <Route path="/signin" component={SignIn} />
 
                {/* default to "/" if unrecognised route. */}
