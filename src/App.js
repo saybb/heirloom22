@@ -9,8 +9,8 @@ import {
    Switch,
    Redirect
 } from "react-router-dom";
-import { connect } from "react-redux";
-import { compose } from "redux";
+import {connect} from "react-redux";
+import {compose} from "redux";
 import "./App.css";
 import "antd/dist/antd.css";
 
@@ -26,11 +26,26 @@ import SignUp from "./component/auth/SignUp";
 import Avatar from "./component/util/Avatar";
 
 class App extends React.Component {
+   constructor(props, context) {
+      super(props, context);
+      this.state = {
+         width: "65%"
+      };
+   }
+
+   // Rational:
+   // I want to customize the style of App.js contain based on the component
+   remove_width_constraint_handler = () => {
+      this.setState({width: "100%"});
+   };
+   reset_width_constraint_handler = () => {
+      this.setState({width: "65%"});
+   };
    render() {
       return (
          <Router>
             <Navigation />
-            <div className="App">
+            <div className='App' style={{width: this.state.width}}>
                <this.HomeRoutes />
             </div>
          </Router>
@@ -38,34 +53,46 @@ class App extends React.Component {
    }
 
    HomeRoutes = () => {
-      const { auth } = this.props;
+      const {auth} = this.props;
 
       if (auth.uid) {
          return (
             <Switch>
-               <Route path="/" exact component={Welcome} />
-               <Route path="/feed" component={ArtefactList} />
-               <Route path="/view/artefacts/:id" component={Artefact} />
+               <Route
+                  path='/'
+                  exact
+                  // a trick to pase handler to children
+                  // https://stackoverflow.com/questions/27864720/react-router-pass-props-to-handler-component
+                  render={props => (
+                     <Welcome
+                        onMount={this.remove_width_constraint_handler}
+                        unMount={this.reset_width_constraint_handler}
+                        {...props}
+                     />
+                  )}
+               />
+               <Route path='/feed' component={ArtefactList} />
+               <Route path='/view/artefacts/:id' component={Artefact} />
 
-               <Route path="/view/events/:id" component={Event} />
-               <Route path="/view/people/:id" component={Person} />
+               <Route path='/view/events/:id' component={Event} />
+               <Route path='/view/people/:id' component={Person} />
 
-               <Route path="/signup" component={SignUp} />
-               <Route path="/upload" component={Avatar} />
+               <Route path='/signup' component={SignUp} />
+               <Route path='/upload' component={Avatar} />
 
                {/* default to "/" if unrecognised route. */}
-               <Route render={() => <Redirect to="/" />} />
+               <Route render={() => <Redirect to='/' />} />
             </Switch>
          );
       } else {
          return (
             <Switch>
                {/* Welcome page goes here... */}
-               <Route path="/" exact component={Welcome} />
-               <Route path="/signin" component={SignIn} />
+               <Route path='/' exact component={Welcome} />
+               <Route path='/signin' component={SignIn} />
 
                {/* default to "/" if unrecognised route. */}
-               <Route render={() => <Redirect to="/" />} />
+               <Route render={() => <Redirect to='/' />} />
             </Switch>
          );
       }

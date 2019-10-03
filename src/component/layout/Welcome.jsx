@@ -30,33 +30,47 @@ class Welcome extends Component {
       return this.capitalize(name);
    };
 
+   // a little function that
+   componentWillMount() {
+      this.props.onMount();
+   }
+
+   //
+   componentWillUnmount() {
+      this.props.unMount();
+   }
+
    render() {
       // return the webpage
+
       return (
          <div className='Welcome'>
-            <div className='Intro'>
-               <img className='logo' src={logo} alt='logo' />
-               <h1>Welcome to Heirloom22!</h1>
-               {/* Display name */}
-               <h2>
-                  Hi, {this.grabName()}. Here is an overview of how you can
-                  navigate through your family artefacts and find out more about
-                  your family history
-               </h2>
+            <div className='Background'>
+               <div className='Intro'>
+                  <img className='logo' src={logo} alt='logo' />
+                  <h1>Welcome to Heirloom22!</h1>
+                  {/* Display name */}
+                  <h2>
+                     Hi, {this.grabName()}. Here is an overview of how you can
+                     navigate through your family artefacts and find out more
+                     about your family history.
+                  </h2>
+                  <div className='Hidden'>.</div>
+               </div>
             </div>
             <div className='Tutorial'>
-               <Row type='flex' justify='center'>
+               <Row type='flex'>
                   <Col span={4}>
                      <Icon type='home' />
                   </Col>
-                  <Col span={12}>
+                  <Col span={20}>
                      <Row className='title'>Homepage</Row>
                      <Row>
                         Click on
                         <Button>
                            <NavLink to='/'>Home</NavLink>
                         </Button>
-                        to come back to this page
+                        to come back to this page.
                      </Row>
                   </Col>
                </Row>
@@ -64,7 +78,7 @@ class Welcome extends Component {
                   <Col span={4}>
                      <Icon type='picture' />
                   </Col>
-                  <Col span={12}>
+                  <Col span={20}>
                      <Row className='title'>Gallery</Row>
                      <Row>
                         Click on
@@ -72,7 +86,7 @@ class Welcome extends Component {
                            <NavLink to='/feed'>List View</NavLink>
                         </Button>
                         to go to Gallery where you can view all the artefacts
-                        and its related people and events
+                        and its related people and events.
                      </Row>
                   </Col>
                </Row>
@@ -80,14 +94,14 @@ class Welcome extends Component {
                   <Col span={4}>
                      <Icon type='logout' />
                   </Col>
-                  <Col span={12}>
+                  <Col span={20}>
                      <Row className='title'>Log out</Row>
                      <Row>
                         Click on
                         <Button type='danger'>
                            <NavLink to='/signup'>Log out</NavLink>
                         </Button>
-                        to exit this application correctly
+                        to exit this application correctly.
                      </Row>
                   </Col>
                </Row>
@@ -95,14 +109,14 @@ class Welcome extends Component {
                   <Col span={4}>
                      <Icon type='user-add' />
                   </Col>
-                  <Col span={12}>
+                  <Col span={20}>
                      <Row className='title'>Create new accounts</Row>
                      <Row>
                         Click on
                         <Button>
                            <NavLink to='/signup'>Sign up</NavLink>
                         </Button>
-                        create new accounts for your family members
+                        create new accounts for your family members.
                      </Row>
                   </Col>
                </Row>

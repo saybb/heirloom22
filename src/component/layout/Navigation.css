@@ -4,17 +4,17 @@
  */
 
 .nav-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 100%;
-    margin: 0 auto 24px auto;
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+   width: 100%;
+   margin: 0 auto 0 auto;
 }
 
 .nav-logo {
-    margin: 0.25em;
+   margin: 0.25em;
 }
 
 .menu-main {
-    width: 100%
+   width: 100%;
 }
