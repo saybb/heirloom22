@@ -40,7 +40,7 @@ class EventHandler extends React.Component {
         if (this.state.type === "create") {
             this.props.createObj(EVENTS, event);
         } else {
-            // this.props.editObj(EVENTS, this.props.docId, event)
+            this.props.editObj(EVENTS, this.props.docId, event)
         }
         setTimeout(() => {
             this.setState({ visible: false });
@@ -70,7 +70,7 @@ class EventHandler extends React.Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         createObj: (objType, event) => dispatch(createObj(objType, event)),
-        //editObj: (objType, id, event) => dispatch(editObj(objType, id, event))
+        editObj: (objType, id, event) => dispatch(editObj(objType, id, event))
     }
 }
 

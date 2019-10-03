@@ -5,11 +5,22 @@
  
 import React from "react";
 import { Modal, Button } from "antd";
+import { connect } from 'react-redux'
+import { compose } from 'redux'
+
 import PersonForm from "./PersonForm.js";
+import { createObj, editObj} from "../../store/Actions/userActions"
+import { PEOPLE } from "../../store/objectTypes.js";
 
 class PersonHandler extends React.Component {
-    state = {
-        visible: false
+    constructor(props){
+        super(props);
+        this.state = {
+            visible: false,
+            type: this.props.type,
+            title: this.props.type === "create" ? "Create an Event" : "Edit Event",
+            docId: this.props.docId ? this.props.docId : null
+        }
     }
 
     showModal = () => {
@@ -24,8 +35,12 @@ class PersonHandler extends React.Component {
         });
     }
 
-    handleSubmit = (event) => {
-        console.log(event);
+    handleSubmit = (person) => {
+        if (this.state.type === "create") {
+            this.props.createObj(PEOPLE, person);
+        } else {
+            this.props.editObj(PEOPLE, this.props.docId, person)
+        }
         setTimeout(() => {
             this.setState({ visible: false });
           }, 1000);
@@ -51,4 +66,13 @@ class PersonHandler extends React.Component {
     }
 }
 
-export default PersonHandler;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createObj: (objType, event) => dispatch(createObj(objType, event)),
+        editObj: (objType, id, event) => dispatch(editObj(objType, id, event))
+    }
+}
+
+export default compose(
+    connect(null, mapDispatchToProps),
+)(PersonHandler)

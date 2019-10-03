@@ -66,7 +66,7 @@ class ArtefactHandler extends React.Component {
                 >
                     { this.state.type === "create" ? 
                         <React.Fragment>
-                            <PersonHandler/> 
+                            <PersonHandler type={"create"}/> 
                             <EventHandler type={"create"}/> 
                         </React.Fragment>
                     : null}

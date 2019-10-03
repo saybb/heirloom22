@@ -16,10 +16,14 @@ class EventForm extends React.Component {
         // fields must pass validation before submission
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                //convert moment to string
-                values.date = moment(values.date).format('L');
+                const event = {
+                    name: values.name,
+                    details: values.description || "",
+                    date: moment(values.date).format('L'),
+                }
+                
                 // pass form data to parent
-                this.props.handleSubmit(values);
+                this.props.handleSubmit(event);
             }
         });
     }

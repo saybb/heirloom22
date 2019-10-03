@@ -5,6 +5,7 @@
 
 import React from "react";
 import { Form, Input, Button, DatePicker } from "antd";
+import moment from 'moment';
 const { TextArea } = Input;
 
 class PersonForm extends React.Component {
@@ -15,8 +16,14 @@ class PersonForm extends React.Component {
         // fields must pass validation before submission
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                const person = {
+                    name: values.name,
+                    details: values.description || "",
+                    dob: moment(values.date).format('L'),
+                }
                 // pass form data to parent
-                this.props.handleSubmit(values);
+                
+                this.props.handleSubmit(person);
             }
         });
     }
