@@ -54,6 +54,11 @@ export const updateUserProfile = (info) => {
             location: info.location,
             bio: info.bio,
     }).then(() => {
+      var user = auth.currentUser;
+      user.updateProfile({ displayName: info.name});
+      console.log(auth.currentUser);
+    }).catch(err => { console.log('Set up user profile ERROR')})
+    .then(() => {
       dispatch({ type: 'PROFILE_UPDATE_SUCCESS'});
     }).catch((err) => {
       dispatch({ type: 'PROFILE_UPDATE_ERROR'});
