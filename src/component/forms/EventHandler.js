@@ -5,9 +5,9 @@
  
 import React from "react";
 import { Modal, Button } from "antd";
-import CreateEventForm from "./CreateEventForm.js";
+import EventForm from "./EventForm.js";
 
-class CreateEvent extends React.Component {
+class EventHandler extends React.Component {
     state = {
         visible: false
     }
@@ -44,11 +44,11 @@ class CreateEvent extends React.Component {
                         <Button key="cancel" type="default" onClick={this.handleCancel}>Cancel</Button>,
                     ]}
                 >
-                    <CreateEventForm handleSubmit={this.handleSubmit}/>
+                    <EventForm handleSubmit={this.handleSubmit}/>
                 </Modal>
             </React.Fragment>
         );
     }
 }
 
-export default CreateEvent;
+export default EventHandler;

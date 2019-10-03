@@ -5,9 +5,9 @@
  
 import React from "react";
 import { Modal, Button } from "antd";
-import CreatePersonForm from "./CreatePersonForm.js";
+import PersonForm from "./PersonForm.js";
 
-class CreatePerson extends React.Component {
+class PersonHandler extends React.Component {
     state = {
         visible: false
     }
@@ -44,11 +44,11 @@ class CreatePerson extends React.Component {
                         <Button key="cancel" type="default" onClick={this.handleCancel}>Cancel</Button>,
                     ]}
                 >
-                    <CreatePersonForm handleSubmit={this.handleSubmit}/>
+                    <PersonForm handleSubmit={this.handleSubmit}/>
                 </Modal>
             </React.Fragment>
         );
     }
 }
 
-export default CreatePerson;
+export default PersonHandler;
