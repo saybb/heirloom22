@@ -30,19 +30,17 @@ class Welcome extends Component {
       return this.capitalize(name);
    };
 
-   // a little function that
+   // onMount and unMount are handlers passed from App.js
    componentWillMount() {
       this.props.onMount();
    }
-
-   //
    componentWillUnmount() {
       this.props.unMount();
    }
 
+   // I am using a lot of div containers to achieve the desired UI
    render() {
       // return the webpage
-
       return (
          <div className='Welcome'>
             <div className='Background'>
@@ -55,10 +53,12 @@ class Welcome extends Component {
                      navigate through your family artefacts and find out more
                      about your family history.
                   </h2>
+                  {/* A trick to draw an "empty" box */}
                   <div className='Hidden'>.</div>
                </div>
             </div>
             <div className='Tutorial'>
+               {/* use ant-design grid layout */}
                <Row type='flex'>
                   <Col span={4}>
                      <Icon type='home' />
