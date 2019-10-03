@@ -1,13 +1,13 @@
 /* * *
- * CreatePersonForm :: ReactJS Component
- * Form allowing user to input relevant information to create a Person.
+ * CreateEventForm :: ReactJS Component
+ * Form allowing user to input relevant information to create an event.
  */
 
 import React from "react";
 import { Form, Input, Button, DatePicker } from "antd";
 const { TextArea } = Input;
 
-class CreatePersonForm extends React.Component {
+class EventForm extends React.Component {
     handleSubmit = e => {
         // stops the page from refreshing
         e.preventDefault();
@@ -30,16 +30,16 @@ class CreatePersonForm extends React.Component {
                 <Form.Item label="Name">{getFieldDecorator('name',
                     { rules : [
                         { required: true,
-                          message: "Please input this person's name."
+                          message: "Please give your event a name!"
                         }
                     ]})(
-                    <Input placeholder="What is this person's name?"/>
+                    <Input placeholder="Give your event a name."/>
                 )}</Form.Item>
 
-                <Form.Item label="Date of Birth">{getFieldDecorator('date',
+                <Form.Item label="Date">{getFieldDecorator('date',
                     { rules : [
                         { required: true,
-                          message: "Please input this"
+                          message: "Please give your event a date!"
                         }
                     ]})(
                     <DatePicker placeholder="dd/mm/yyyy" format={dateFormat}/>
@@ -48,7 +48,7 @@ class CreatePersonForm extends React.Component {
 
                 <Form.Item label="Description">{getFieldDecorator('description')(
                     <TextArea
-                        placeholder={"Tell us about this person.\ne.g. what did they do, or how they are a part of the family."}
+                        placeholder={"Tell us about this event.\ne.g., why it is important, or what happened at it."}
                         autosize={{minRows: 3}}
                     />
                 )}</Form.Item>
@@ -62,6 +62,6 @@ class CreatePersonForm extends React.Component {
 };
 
 // use wrapper
-CreatePersonForm = Form.create({name: "createPersonForm"})(CreatePersonForm);
+EventForm = Form.create({name: "eventForm"})(EventForm);
 
-export default CreatePersonForm 
+export default EventForm 
