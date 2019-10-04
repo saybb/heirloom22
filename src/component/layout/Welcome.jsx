@@ -21,15 +21,33 @@ class Welcome extends Component {
       return string.charAt(0).toUpperCase() + string.slice(1);
    }
 
-   grabName = () => {
+   welcomeMessage = () => {
       // the profile information
       const {profile, auth} = this.props;
       let name;
       if (auth && auth.displayName) name = auth.displayName;
       if (profile && profile.name) name = profile.name;
       else name = "Visiter";
-      // capalize
-      return this.capitalize(name);
+      name = this.capitalize(name);
+
+      // Welcome message
+      if (!auth.id) {
+         return (
+            <h2>
+               Hi {name}. Please log in to start using this application.
+               <p>
+                  If you don't can't login you can try (1) reset the password
+                  (2) ask a family member to create a new account for you
+               </p>
+            </h2>
+         );
+      }
+      return (
+         <h2>
+            Hi {name}. Here is an overview of how you can navigate through your
+            family artefacts and find out more about your family history
+         </h2>
+      );
    };
 
    // onMount and unMount are handlers passed from App.js
@@ -145,13 +163,7 @@ class Welcome extends Component {
                <div className='Intro'>
                   <img className='logo' src={logo} alt='logo' />
                   <h1>Welcome to Heirloom22!</h1>
-                  {/* Display name */}
-                  <h2>
-                     Hi, {this.grabName()}. Here is an overview of how you can
-                     navigate through your family artefacts and find out more
-                     about your family history.
-                  </h2>
-                  {/* A trick to draw an "empty" box */}
+                  {this.welcomeMessage()}.{/* A trick to draw an "empty" box */}
                   <div className='Hidden'>.</div>
                </div>
             </div>
