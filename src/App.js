@@ -88,7 +88,19 @@ class App extends React.Component {
          return (
             <Switch>
                {/* Welcome page goes here... */}
-               <Route path='/' exact component={Welcome} />
+               <Route
+                  path='/'
+                  exact
+                  // a trick to pase handler to children
+                  // https://stackoverflow.com/questions/27864720/react-router-pass-props-to-handler-component
+                  render={props => (
+                     <Welcome
+                        onMount={this.remove_width_constraint_handler}
+                        unMount={this.reset_width_constraint_handler}
+                        {...props}
+                     />
+                  )}
+               />
                <Route path='/signin' component={SignIn} />
 
                {/* default to "/" if unrecognised route. */}
