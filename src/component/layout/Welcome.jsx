@@ -114,8 +114,8 @@ class Welcome extends Component {
                      <Button>
                         <NavLink to='/feed'>List View</NavLink>
                      </Button>
-                     to go to Gallery where you can view all the artefacts and
-                     its related people and events.
+                     to go to the Gallery where you can view all the artefacts
+                     and its related people and events.
                   </Row>
                </Col>
             </Row>
