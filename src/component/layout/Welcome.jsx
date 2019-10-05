@@ -9,7 +9,6 @@ import {connect} from "react-redux";
 import {Button, Row, Col, Icon} from "antd";
 import "./Welcome.css";
 import logo from "../../heirloom22_logo.svg";
-import {thisExpression} from "@babel/types";
 
 class Welcome extends Component {
    style = {
@@ -26,12 +25,12 @@ class Welcome extends Component {
       const {profile, auth} = this.props;
       let name;
       if (auth && auth.displayName) name = auth.displayName;
-      if (profile && profile.name) name = profile.name;
+      else if (profile && profile.name) name = profile.name;
       else name = "Visiter";
       name = this.capitalize(name);
 
       // Welcome message
-      if (!auth.id) {
+      if (!auth.uid) {
          return (
             <h2>
                Hi {name}. Please log in to start using this application.
@@ -51,7 +50,7 @@ class Welcome extends Component {
    };
 
    // onMount and unMount are handlers passed from App.js
-   componentWillMount() {
+   componentDidMount() {
       this.props.onMount();
    }
    componentWillUnmount() {
@@ -163,8 +162,10 @@ class Welcome extends Component {
                <div className='Intro'>
                   <img className='logo' src={logo} alt='logo' />
                   <h1>Welcome to Heirloom22!</h1>
-                  {this.welcomeMessage()}.{/* A trick to draw an "empty" box */}
-                  <div className='Hidden'>.</div>
+                  {this.welcomeMessage()}.
+                  <div className='Hidden'>
+                     .{/* A trick to draw an "empty" box */}
+                  </div>
                </div>
             </div>
             <this.tutorial />
