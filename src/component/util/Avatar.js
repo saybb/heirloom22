@@ -56,11 +56,11 @@ class Avatar extends Component {
          file
       );
       //return 'https://www.mocky.io/v2/5cc8019d300000980a055e76' // <- return a irrelavent upload path can be a workaround,
-      //    but it will cause a security/data brach.
+      //    but it will cause a security/data breach.
    };
 
    // constantly checking if downloadURL was generated
-   componentWillUpdate = () => {
+   componentDidUpdate = () => {
       const {downloadURL} = this.props;
       console.log("url", downloadURL);
       if (this.props.returnUrl) {
