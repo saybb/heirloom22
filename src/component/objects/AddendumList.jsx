@@ -11,22 +11,48 @@
  */
 
 import React, {Component} from "react";
+import {Button} from "antd";
 // connect to backend
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
+import {deleteObj} from "../../store/Actions/userActions";
 import {ADDENDUMS} from "../../store/objectTypes";
 // components
 import Addendum from "./Addendum";
-import {deleteObj} from "../../store/Actions/userActions";
+import AddendumForm from "./AddendumForm";
 
 export class AddendumList extends Component {
+   constructor(props) {
+      super(props);
+      this.state = {
+         visible: false
+      };
+   }
+
+   showModal = () => {
+      this.setState({
+         visible: true
+      });
+   };
+
+   handleCancel = () => {
+      this.setState({
+         visible: false
+      });
+   };
+
    render() {
       const {addendums} = this.props;
-      console.log(addendums);
+      console.log("List of addendums", addendums);
       return (
          <div>
             <h2>Addendums</h2>
+            <Button onClick={this.showModal}> Add an addendum </Button>
+            <AddendumForm
+               visible={this.state.visible}
+               onCancel={this.handleCancel}
+            />
             <Addendum />
          </div>
       );
