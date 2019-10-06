@@ -24,6 +24,18 @@ function beforeUpload(file) {
    return isJpgOrPng && isLt5M;
 }
 
+// from https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+function makeid(length) {
+   var result = "";
+   var characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+   var charactersLength = characters.length;
+   for (var i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+   }
+   return result;
+}
+
 /**
  * Props:
  *    - downloadURL
@@ -51,10 +63,10 @@ class Avatar extends Component {
    // error here, uploader's action requirs a return of upload URL, but we doesn't have any.
    //
    handleUpload = file => {
-      this.props.uploadFile(
-         "image/" + this.props.auth.uid + "/" + file.name,
-         file
-      );
+      // generate a random name
+      let name = makeid(10) + file.name;
+
+      this.props.uploadFile("image/" + this.props.auth.uid + "/" + name, file);
       //return 'https://www.mocky.io/v2/5cc8019d300000980a055e76' // <- return a irrelavent upload path can be a workaround,
       //    but it will cause a security/data breach.
    };
