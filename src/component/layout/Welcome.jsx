@@ -1,3 +1,16 @@
+/* 
+Almost static welcome page that links to other components
+* Backend Dependency
+   1. auth 
+      - uid checking for authentication
+      - name
+   2. profile
+      - name
+* Purpose
+   1. Welcomes page
+   2. Manual page
+ */
+
 // react
 import React, {Component} from "react";
 import {NavLink} from "react-router-dom";

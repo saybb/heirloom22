@@ -13,11 +13,10 @@ import {Link} from "react-router-dom";
 import ItemLinks from "./ItemLinks.js";
 import "./Objects.css";
 import "./Gallery.css";
-import Addendum from "./Addendum.jsx";
+import AddendumList from "./AddendumList.jsx";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {deleteObj} from "../../store/Actions/userActions";
 import {ARTEFACTS} from "../../store/objectTypes";
-import Carousel from "react-bootstrap/Carousel";
 
 const Artefact = props => {
    const {artefact} = props;
@@ -54,6 +53,7 @@ const Artefact = props => {
       );
    }
 
+   console.log(artefact);
    return (
       <div>
          <div className='object-content'>
@@ -74,7 +74,7 @@ const Artefact = props => {
                title='Related Events'
                items={artefact[id].events_links}
             />
-            <Addendum />
+            <AddendumList />
          </div>
       </div>
    );
