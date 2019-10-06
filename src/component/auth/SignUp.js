@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { signUp } from '../../store/Actions/authActions'
 import { Button, Form } from 'semantic-ui-react'
+import {Redirect} from 'react-router-dom'
 
 
 class SignUp extends Component {
@@ -9,7 +10,10 @@ class SignUp extends Component {
         email: '',
         password: '',
         name: '',
-        lastName: ''
+        lastName: '',
+        submission: {
+            email: ''
+        }
     }
 
     handleChange = (e) => {
@@ -20,6 +24,7 @@ class SignUp extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        
         const { email, password, name, lastName } = this.state;
         const signup = {
             email: email,
@@ -29,9 +34,21 @@ class SignUp extends Component {
         }
 
         this.props.signUp(signup);
+
+        this.setState({submission: signup});
     }
 
     render() {
+        const { submission } = this.state;
+        const { auth } = this.props;
+
+        // check if already submitted and signed up
+        if ( submission && submission.email && submission.email === auth.email ) {
+            return (
+                <Redirect to="/" />
+            )
+        }
+
         return (
             <Form onSubmit={this.handleSubmit}>
                 <Form.Field>
