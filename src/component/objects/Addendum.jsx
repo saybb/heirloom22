@@ -1,6 +1,7 @@
 import React from "react";
 import {Divider, Button} from "antd";
 import "../feed/FlipCard.css";
+import ImageDisplay from "../util/ImageDisplay";
 
 function convert_date_to_string(date) {
    const options = {
@@ -44,7 +45,7 @@ export default function Addendum(props) {
                <p>{convert_date_to_string(date_created)}</p>
                <p>{created_by}</p>
                <p>{details}</p>
-               <p>{displayImage(media_links)}</p>
+               <ImageDisplay media_links={media_links} />
             </div>
             <Button> Edit </Button>
             <Button> Delete </Button>
