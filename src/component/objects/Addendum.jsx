@@ -2,12 +2,6 @@ import React from "react";
 import {Divider, Button} from "antd";
 import "../feed/FlipCard.css";
 
-/**
- * Function element.
- * Props:
- *   - document : addendum json object to be represented
- *   - id: the documen_id
- */
 function convert_date_to_string(date) {
    const options = {
       weekday: "long",
@@ -23,6 +17,12 @@ function displayImage(media_links) {
    return media_links.map(elem => <img key={elem.url} src={elem.url}></img>);
 }
 
+/**
+ * Function element.
+ * Props:
+ *   - document : addendum json object to be represented
+ *   - id: the documen_id
+ */
 export default function Addendum(props) {
    const {created_by, date_created, details, media_links} = props.document;
 
