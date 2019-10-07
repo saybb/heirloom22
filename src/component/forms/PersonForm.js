@@ -5,7 +5,6 @@
 
 import React from "react";
 import { Form, Input, Button, DatePicker } from "antd";
-import moment from 'moment';
 const { TextArea } = Input;
 
 class PersonForm extends React.Component {
@@ -18,8 +17,9 @@ class PersonForm extends React.Component {
             if (!err) {
                 const person = {
                     name: values.name,
+                    lastname: values.lastname,
                     details: values.description || "",
-                    dob: moment(values.date).format('L'),
+                    dob: new Date(values.date),
                 }
                 // pass form data to parent
                 
@@ -34,13 +34,22 @@ class PersonForm extends React.Component {
 
         return(
             <Form onSubmit={ this.handleSubmit }>
-                <Form.Item label="Name">{getFieldDecorator('name',
+                <Form.Item label="First Name">{getFieldDecorator('name',
                     { rules : [
                         { required: true,
-                          message: "Please input this person's name."
+                          message: "Please input this person's first name."
                         }
                     ]})(
-                    <Input placeholder="What is this person's name?"/>
+                    <Input placeholder="What is this person's first name?"/>
+                )}</Form.Item>
+
+                <Form.Item label="Last Name">{getFieldDecorator('lastname',
+                    { rules : [
+                        { required: true,
+                          message: "Please input this person's last name."
+                        }
+                    ]})(
+                    <Input placeholder="What is this person's last name?"/>
                 )}</Form.Item>
 
                 <Form.Item label="Date of Birth">{getFieldDecorator('date',
@@ -70,5 +79,4 @@ class PersonForm extends React.Component {
 
 // use wrapper
 PersonForm = Form.create({name: "personForm"})(PersonForm);
-
 export default PersonForm 

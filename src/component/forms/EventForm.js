@@ -5,7 +5,6 @@
 
 import React from "react";
 import { Form, Input, Button, DatePicker } from "antd";
-import moment from 'moment';
 const { TextArea } = Input;
 
 class EventForm extends React.Component {
@@ -19,7 +18,7 @@ class EventForm extends React.Component {
                 const event = {
                     name: values.name,
                     details: values.description || "",
-                    date: moment(values.date).format('L'),
+                    date: new Date(values.date)
                 }
                 
                 // pass form data to parent
