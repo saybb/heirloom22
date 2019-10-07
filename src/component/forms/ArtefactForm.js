@@ -35,7 +35,7 @@ class ArtefactForm extends React.Component {
                             return {
                                 name: events[event_id].name,
                                 relation: values[event_id],
-                                reference: "/Events/" + event_id
+                                reference: this.props.firestore.doc("/Events/" + event_id)
                             }
                         })
                         : [],
@@ -44,7 +44,7 @@ class ArtefactForm extends React.Component {
                             return {
                                 name: people[person_id].name + " " + people[person_id].lastname,
                                 relation: values[person_id],
-                                reference: "/People/" + person_id
+                                reference: this.props.firestore.doc("/People/" + person_id)
                             }
                         })
                         : [],
