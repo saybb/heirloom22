@@ -20,7 +20,7 @@ import {deleteObj} from "../../store/Actions/userActions";
 import {ADDENDUMS} from "../../store/objectTypes";
 // components
 import Addendum from "./Addendum";
-import AddendumForm from "./AddendumForm";
+import AddendumForm from "../forms/AddendumForm";
 
 export class AddendumList extends Component {
    constructor(props) {
