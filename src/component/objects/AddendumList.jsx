@@ -26,7 +26,8 @@ export class AddendumList extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         visible: false
+         visible: false,
+         path: this.createPath(props.id)
       };
    }
 
@@ -42,9 +43,29 @@ export class AddendumList extends Component {
       });
    };
 
+   createPath(id) {
+      return "Artefacts/" + id;
+   }
+
+   // input: a list of addendum documents
+   // output: a html list of Addendums
+   generateList(list) {
+      return list.map(element => (
+         <li key={element[0]}>
+            <Addendum id={element[0]} document={element[1]} />
+         </li>
+      ));
+   }
+
    render() {
+      // grab the addendums object
       const {addendums} = this.props;
-      console.log("List of addendums", addendums);
+      // check if we received the addendums
+      if (!addendums) {
+         return <div>Loading</div>;
+      }
+      let filtered_addendumsList = this.getAddendums(addendums);
+      console.log("filtered_addendumsList", filtered_addendumsList);
       return (
          <div>
             <h2>Addendums</h2>
@@ -53,9 +74,24 @@ export class AddendumList extends Component {
                visible={this.state.visible}
                onCancel={this.handleCancel}
             />
-            <Addendum />
+            <ul>{this.generateList(filtered_addendumsList)}</ul>
          </div>
       );
+   }
+
+   // input: {doc_id:doc, ... }
+   // output: [ [document_id, document], [document_id, document], ...]
+   getAddendums(addendums) {
+      const addendumsList = Object.keys(addendums).map(key => [
+         key,
+         addendums[key]
+      ]);
+      // console.log("addendumsList", addendumsList);
+      // filter out the addendums that contains document reference to the parent object
+      let filtered_addendumsList = addendumsList.filter(
+         element => element[1].reference.path === this.state.path
+      );
+      return filtered_addendumsList;
    }
 }
 
@@ -81,7 +117,7 @@ export default compose(
    firestoreConnect(props => [
       {
          collection: ADDENDUMS,
-         where: ["Reference", "==", "Artefacts/vase_id"]
+         orderBy: ["date_created"]
       }
    ])
 )(AddendumList);

@@ -74,7 +74,7 @@ const Artefact = props => {
                title='Related Events'
                items={artefact[id].events_links}
             />
-            <AddendumList />
+            <AddendumList id={id} />
          </div>
       </div>
    );
