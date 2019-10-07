@@ -45,9 +45,9 @@ class Welcome extends Component {
       // Welcome message
       if (!auth.uid) {
          return (
-            <h2>
+            <h2 className='Title'>
                Hi {name}. Please log in to start using this application.
-               <p>
+               <p className='Description'>
                   If you don't can't login you can try (1) reset the password
                   (2) ask a family member to create a new account for you
                </p>
@@ -86,7 +86,7 @@ class Welcome extends Component {
                      <Row className='title'>Log in</Row>
                      <Row>
                         Click on
-                        <Button>
+                        <Button className='LeftRightMargin'>
                            <NavLink to='/signin'>Log in</NavLink>
                         </Button>
                         to start using this application.
@@ -109,7 +109,7 @@ class Welcome extends Component {
                   <Row className='title'>Homepage</Row>
                   <Row>
                      Click on
-                     <Button>
+                     <Button className='LeftRightMargin'>
                         <NavLink to='/'>Home</NavLink>
                      </Button>
                      to come back to this page.
@@ -124,7 +124,7 @@ class Welcome extends Component {
                   <Row className='title'>Gallery</Row>
                   <Row>
                      Click on
-                     <Button>
+                     <Button className='LeftRightMargin'>
                         <NavLink to='/feed'>List View</NavLink>
                      </Button>
                      to go to the Gallery where you can view all the artefacts
@@ -155,7 +155,7 @@ class Welcome extends Component {
                   <Row className='title'>Create new accounts</Row>
                   <Row>
                      Click on
-                     <Button>
+                     <Button className='LeftRightMargin'>
                         <NavLink to='/signup'>Sign up</NavLink>
                      </Button>
                      create new accounts for your family members.
@@ -174,7 +174,7 @@ class Welcome extends Component {
             <div className='Background'>
                <div className='Intro'>
                   <img className='logo' src={logo} alt='logo' />
-                  <h1>Welcome to Heirloom22!</h1>
+                  <h1 className='Center'>Welcome to Heirloom22!</h1>
                   {this.welcomeMessage()}.
                   <div className='Hidden'>
                      .{/* A trick to draw an "empty" box */}
