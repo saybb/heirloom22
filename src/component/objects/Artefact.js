@@ -17,6 +17,7 @@ import AddendumList from "./AddendumList.jsx";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {deleteObj} from "../../store/Actions/userActions";
 import {ARTEFACTS} from "../../store/objectTypes";
+import ImageDisplay from "../util/ImageDisplay.js";
 
 const Artefact = props => {
    const {artefact} = props;
@@ -53,9 +54,10 @@ const Artefact = props => {
       );
    }
 
-   console.log(artefact);
+   //console.log(artefact);
    return (
       <div>
+         <ImageDisplay media_links={artefact[id].media_links} />
          <div className='object-content'>
             <h2>{artefact[id].name}</h2>
             <p>{artefact[id].details}</p>
