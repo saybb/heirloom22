@@ -58,12 +58,8 @@ class ArtefactForm extends React.Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { events, people } = this.props;
-        const {
-            events_selected, people_selected,
-            events_links, people_links
-        } = this.state;
-
+        const { type } = this.props;
+        
         return(
             <Form onSubmit={ this.handleSubmit } className="CreateArtefactForm">
                 <Form.Item label="Name">{getFieldDecorator('name',
@@ -82,6 +78,25 @@ class ArtefactForm extends React.Component {
                     />
                 )}</Form.Item>
 
+                { type === "create" && <this.RelationFormItems form={getFieldDecorator}/>}
+
+                <Form.Item>
+                    <Button type="primary" htmlType="submit">Submit</Button>
+                </Form.Item>
+            </Form>
+        );
+    }
+
+    RelationFormItems = () => {
+        const { getFieldDecorator } = this.props.form;
+        const { events, people } = this.props;
+        const {
+            events_selected, people_selected,
+            events_links, people_links
+        } = this.state;
+
+        return (
+            <React.Fragment>
                 <Form.Item label="Related People">
                     {getFieldDecorator('people', {})(
                         <Select
@@ -173,11 +188,7 @@ class ArtefactForm extends React.Component {
                         )}</Form.Item>
                     )}
                 </div>
-
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">Submit</Button>
-                </Form.Item>
-            </Form>
+            </React.Fragment>
         );
     }
 };
