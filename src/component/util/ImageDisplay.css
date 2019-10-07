@@ -1,27 +1,27 @@
 .carousel-container {
-    width: 100%;
-    margin-bottom: 2em;
+   width: 100%;
+   margin-bottom: 2em;
 }
 
 .carousel-container .slick-dots li button {
-    background-color: #444444;
+   background-color: #444444;
 }
 .carousel-container .slick-dots li.slick-active button {
-    background-color: #222222;
+   background-color: #222222;
 }
 
 .carousel-image-container {
-    width: 100%;
+   width: 100%;
 }
 
 .carousel-image-container img {
-    width: 100%;
-    object-fit: contain;
+   width: 100%;
+   object-fit: contain;
 }
 
 @media screen and (min-width: 768px) {
-    /* limit how much space an image can take up on large devices */
-    .carousel-image-container img {
-        max-height: 500px;
-    }
+   /* limit how much space an image can take up on large devices */
+   .carousel-image-container img {
+      max-height: 500px;
+   }
 }

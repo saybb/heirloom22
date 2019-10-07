@@ -1,6 +1,5 @@
 import React from "react";
 import {Divider, Button} from "antd";
-import "../feed/FlipCard.css";
 import ImageDisplay from "../util/ImageDisplay";
 
 function convert_date_to_string(date) {
@@ -48,7 +47,7 @@ export default function Addendum(props) {
                <ImageDisplay media_links={media_links} />
             </div>
             <Button> Edit </Button>
-            <Button> Delete </Button>
+            <Button onClick={() => props.delete(props.id)}> Delete </Button>
             <Divider className='AddendumDivider' />
          </div>
       </React.Fragment>

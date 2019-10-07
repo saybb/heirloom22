@@ -37,6 +37,10 @@ export class AddendumList extends Component {
       });
    };
 
+   handleDelete = id => {
+      this.props.deleteObj(ADDENDUMS, id);
+   };
+
    handleCancel = () => {
       this.setState({
          visible: false
@@ -52,20 +56,59 @@ export class AddendumList extends Component {
    generateList(list) {
       return list.map(element => (
          <li key={element[0]}>
-            <Addendum id={element[0]} document={element[1]} />
+            <Addendum
+               id={element[0]}
+               document={element[1]}
+               delete={this.handleDelete}
+            />
          </li>
       ));
+   }
+
+   // input: {doc_id:doc, ... }
+   // output: [ [document_id, document], [document_id, document], ...]
+   getAddendums(addendums) {
+      const addendumsList = Object.keys(addendums).map(key => [
+         key,
+         addendums[key]
+      ]);
+      // filter out the addendums that contains document reference to the parent object
+      let filtered_addendumsList = [];
+      for (const addendum of addendumsList) {
+         // Weird thing even if you delete something, the document id still exits
+         if (addendum[1] && addendum[1].reference.path === this.state.path) {
+            filtered_addendumsList.push(addendum);
+         }
+      }
+      return filtered_addendumsList;
    }
 
    render() {
       // grab the addendums object
       const {addendums} = this.props;
+      // console.log(addendums);
+      let filtered_addendumsList = [];
       // check if we received the addendums
-      if (!addendums) {
-         return <div>Loading</div>;
+      if (addendums) {
+         filtered_addendumsList = this.getAddendums(addendums);
+         // console.log("filtered_addendumsList", filtered_addendumsList);
       }
-      let filtered_addendumsList = this.getAddendums(addendums);
-      console.log("filtered_addendumsList", filtered_addendumsList);
+      // check if there are any addendums
+      if (filtered_addendumsList.length == 0) {
+         return (
+            <div>
+               <div>
+                  <h2>Addendums</h2>
+                  <Button onClick={this.showModal}> Add an addendum </Button>
+                  <AddendumForm
+                     visible={this.state.visible}
+                     onCancel={this.handleCancel}
+                  />
+                  <p>Press add an addendum button to create addendums</p>
+               </div>
+            </div>
+         );
+      }
       return (
          <div>
             <h2>Addendums</h2>
@@ -77,21 +120,6 @@ export class AddendumList extends Component {
             <ul>{this.generateList(filtered_addendumsList)}</ul>
          </div>
       );
-   }
-
-   // input: {doc_id:doc, ... }
-   // output: [ [document_id, document], [document_id, document], ...]
-   getAddendums(addendums) {
-      const addendumsList = Object.keys(addendums).map(key => [
-         key,
-         addendums[key]
-      ]);
-      // console.log("addendumsList", addendumsList);
-      // filter out the addendums that contains document reference to the parent object
-      let filtered_addendumsList = addendumsList.filter(
-         element => element[1].reference.path === this.state.path
-      );
-      return filtered_addendumsList;
    }
 }
 
