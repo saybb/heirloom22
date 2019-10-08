@@ -6,7 +6,7 @@ import {compose} from "redux";
 
 import {createObj, editObj} from "../../store/Actions/userActions";
 import {ADDENDUMS} from "../../store/objectTypes";
-import AddendumForm from './AddendumForm';
+import AddendumForm from './AddendumForm.jsx';
 
 export class AddendumHandler extends Component {
    state = {
