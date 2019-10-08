@@ -48,15 +48,15 @@ export const signUp = (newUser) => {
 export const updateUserProfile = (info) => {
   return (dispatch, state, {auth, firestore}) => {
     var user = auth.currentUser;
-    firestore.collection('users').doc(user.uid).set({
-            name: info.name,
-            lastName: info.lastName,
-            location: info.location,
-            bio: info.bio,
+    var infoElement = ["name", "lastName", "location", "bio", "photoURL"];
+    Object.keys(info).forEach(key => {
+      if(!infoElement.includes(key)||!info[key]||info[key] === '') {delete info[key]}
+    })
+    firestore.collection('users').doc(user.uid).update({
+            ...info,
     }).then(() => {
       var user = auth.currentUser;
       user.updateProfile({ displayName: info.name});
-      console.log(auth.currentUser);
     }).catch(err => { console.log('Set up user profile ERROR')})
     .then(() => {
       dispatch({ type: 'PROFILE_UPDATE_SUCCESS'});

@@ -7,8 +7,11 @@ import React from "react";
 import {Modal, Button} from "antd";
 import {connect} from "react-redux";
 import {updateUserProfile} from "../../store/Actions/authActions";
+import {uploadFile} from "../../store/Actions/userActions";
 import UserProfile from "../profile/userProfile";
 import EditProfile from "../profile/editProfile";
+
+import {storageRef} from "../../firebase/config";
 
 class UserModal extends React.Component {
    state = {
@@ -20,7 +23,8 @@ class UserModal extends React.Component {
       lastName: "",
       location: "",
       bio: "",
-      imageUrl: ""
+      photoURL: null,
+      file: null,
    };
 
    showModal = () => {
@@ -35,18 +39,18 @@ class UserModal extends React.Component {
       });
    };
 
-   handleSubmit = e => {
-      //console.log('updating user profile');
-      this.setState({
-         loading: true,
-         editMode: false
-      });
 
-      //console.log('update: ',this.state.name, this.state.lastName, this.state.location, this.state.bio);
-      this.props.updateUserProfile(this.state);
-      setTimeout(() => {
-         this.setState({loading: false, visible: false});
-      }, 3000);
+   handleSubmit = async (e) => {
+        if(this.state.file){
+            //await this.props.uploadFile("image/" + this.props.auth.uid + "/" + this.state.file.name, this.state.file);
+            let snapshot = await storageRef.child("image/" + this.props.auth.uid + "/" + this.state.file.name).put(this.state.file);
+            this.setState({
+                photoURL: await snapshot.ref.getDownloadURL(),
+            })
+
+        }
+        this.props.updateUserProfile(this.state);
+        this.setState({loading: false, visible: false, editMode: false});
    };
 
    handleBack = () => {
@@ -67,6 +71,12 @@ class UserModal extends React.Component {
          [e.target.id]: e.target.value
       });
    };
+
+   handleFile = file => {
+       this.setState({
+           file: file
+       })
+   }
 
    render() {
       const {visible, confirmLoading} = this.state;
@@ -114,7 +124,7 @@ class UserModal extends React.Component {
                {!this.state.editMode ? (
                   <UserProfile />
                ) : (
-                  <EditProfile handleChange={this.handleChange} />
+                  <EditProfile handleChange={this.handleChange} handleFile={this.handleFile}/>
                )}
             </Modal>
          </div>
@@ -125,13 +135,15 @@ class UserModal extends React.Component {
 const mapStateToProps = state => {
    return {
       auth: state.firebase.auth,
-      profile: state.firebase.profile
+      profile: state.firebase.profile,
+      url: state.objects.downloadURL
    };
 };
 
 const mapDispatchToProps = dispatch => {
    return {
-      updateUserProfile: info => dispatch(updateUserProfile(info))
+      updateUserProfile: info => dispatch(updateUserProfile(info)),
+      uploadFile: (path, file) => dispatch(uploadFile(path, file))
    };
 };
 

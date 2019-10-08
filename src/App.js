@@ -24,6 +24,7 @@ import Person from "./component/objects/Person.js";
 import SignIn from "./component/auth/SignIn";
 import SignUp from "./component/auth/SignUp";
 import Avatar from "./component/util/Avatar";
+import ImageUpload from "./component/util/imageUpload";
 
 class App extends React.Component {
    constructor(props, context) {
@@ -78,7 +79,7 @@ class App extends React.Component {
                <Route path='/view/people/:id' component={Person} />
 
                <Route path='/signup' component={SignUp} />
-               <Route path='/upload' component={Avatar} />
+               <Route path='/upload' component={ImageUpload} />
 
                {/* default to "/" if unrecognised route. */}
                <Route render={() => <Redirect to='/' />} />
