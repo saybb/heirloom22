@@ -18,10 +18,10 @@ function displayImage(media_links) {
 }
 
 /**
- * Function element.
+ * Function component.
  * Props:
  *   - document : addendum json object to be represented
- *   - id: the documen_id
+ *   - id: the addendum documen_id
  */
 export default function Addendum(props) {
    const {created_by, date_created, details, media_links} = props.document;

@@ -22,12 +22,22 @@ import {ADDENDUMS} from "../../store/objectTypes";
 import Addendum from "./Addendum";
 import AddendumForm from "../forms/AddendumForm";
 
+// helper function
+function createPath(id) {
+   return "Artefacts/" + id;
+}
+
+/**
+ * Class component.
+ * Props:
+ *   - id: the id of the artefact
+ */
 export class AddendumList extends Component {
    constructor(props) {
       super(props);
       this.state = {
          visible: false,
-         path: this.createPath(props.id)
+         path: createPath(props.id)
       };
    }
 
@@ -46,10 +56,6 @@ export class AddendumList extends Component {
          visible: false
       });
    };
-
-   createPath(id) {
-      return "Artefacts/" + id;
-   }
 
    // input: a list of addendum documents
    // output: a html list of Addendums
@@ -94,7 +100,7 @@ export class AddendumList extends Component {
          // console.log("filtered_addendumsList", filtered_addendumsList);
       }
       // check if there are any addendums
-      if (filtered_addendumsList.length == 0) {
+      if (filtered_addendumsList.length === 0) {
          return (
             <div>
                <div>
@@ -145,6 +151,7 @@ export default compose(
    firestoreConnect(props => [
       {
          collection: ADDENDUMS,
+         // where: ["reference", "==", props.ref],
          orderBy: ["date_created"]
       }
    ])

@@ -140,7 +140,7 @@ class Welcome extends Component {
                   <Row className='title'>Log out</Row>
                   <Row>
                      Click on
-                     <Button type='danger'>
+                     <Button type='danger' className='LeftRightMargin'>
                         <NavLink to='/signup'>Log out</NavLink>
                      </Button>
                      to exit this application correctly.
