@@ -73,7 +73,7 @@ export class AddendumList extends Component {
          addendums[key]
       ]);
       // filter out the addendums that contains document reference to the parent object
-      /*
+      /* You can simply use Array.filter() instead.
       let filtered_addendumsList = [];
       for (const addendum of addendumsList) {
          // Weird thing even if you delete something, the document id still exits
