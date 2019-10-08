@@ -12,16 +12,17 @@ function convert_date_to_string(date) {
    return date.toDate().toLocaleDateString("en-AU", options);
 }
 
+/*
 function displayImage(media_links) {
    if (!media_links) return;
    return media_links.map(elem => <img key={elem.url} src={elem.url}></img>);
-}
+}*/
 
 /**
- * Function element.
+ * Function component.
  * Props:
  *   - document : addendum json object to be represented
- *   - id: the documen_id
+ *   - id: the addendum documen_id
  */
 export default function Addendum(props) {
    const {created_by, date_created, details, media_links} = props.document;
