@@ -73,14 +73,15 @@ export class AddendumList extends Component {
          addendums[key]
       ]);
       // filter out the addendums that contains document reference to the parent object
+      /*
       let filtered_addendumsList = [];
       for (const addendum of addendumsList) {
          // Weird thing even if you delete something, the document id still exits
          if (addendum[1] && addendum[1].reference.path === this.state.path) {
             filtered_addendumsList.push(addendum);
          }
-      }
-      return filtered_addendumsList;
+      }*/
+      return addendumsList.filter((addendum) => addendum[1] && addendum[1].reference.path === this.state.path);
    }
 
    render() {
@@ -94,7 +95,7 @@ export class AddendumList extends Component {
          // console.log("filtered_addendumsList", filtered_addendumsList);
       }
       // check if there are any addendums
-      if (filtered_addendumsList.length == 0) {
+      if (filtered_addendumsList.length === 0) {
          return (
             <div>
                <div>
