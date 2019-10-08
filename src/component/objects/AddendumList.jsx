@@ -20,7 +20,7 @@ import {deleteObj} from "../../store/Actions/userActions";
 import {ADDENDUMS} from "../../store/objectTypes";
 // components
 import Addendum from "./Addendum";
-import AddendumForm from "../forms/AddendumForm";
+import AddendumHandler from "../forms/AddendumHandler";
 
 export class AddendumList extends Component {
    constructor(props) {
@@ -87,7 +87,7 @@ export class AddendumList extends Component {
    render() {
       // grab the addendums object
       const {addendums} = this.props;
-      // console.log(addendums);
+      console.log(addendums);
       let filtered_addendumsList = [];
       // check if we received the addendums
       if (addendums) {
@@ -95,30 +95,23 @@ export class AddendumList extends Component {
          // console.log("filtered_addendumsList", filtered_addendumsList);
       }
       // check if there are any addendums
-      if (filtered_addendumsList.length === 0) {
-         return (
-            <div>
-               <div>
-                  <h2>Addendums</h2>
-                  <Button onClick={this.showModal}> Add an addendum </Button>
-                  <AddendumForm
-                     visible={this.state.visible}
-                     onCancel={this.handleCancel}
-                  />
-                  <p>Press add an addendum button to create addendums</p>
-               </div>
-            </div>
-         );
-      }
       return (
          <div>
             <h2>Addendums</h2>
             <Button onClick={this.showModal}> Add an addendum </Button>
-            <AddendumForm
+            <AddendumHandler
+               artefact_id={this.props.id}
                visible={this.state.visible}
                onCancel={this.handleCancel}
+               type="create"
             />
-            <ul>{this.generateList(filtered_addendumsList)}</ul>
+            {
+               filtered_addendumsList.length === 0 ?
+                  <p>Press add an addendum button to create addendums</p>
+               :
+                  <ul>{this.generateList(filtered_addendumsList)}</ul>
+            }
+               
          </div>
       );
    }
