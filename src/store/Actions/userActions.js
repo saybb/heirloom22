@@ -19,6 +19,7 @@ export const createObj = (objType, obj) => {
 
 export const editObj = (objType, docId, obj) => {
     return (dispatch, getState, { firestore }) => {
+        Object.keys(obj).forEach(key => {if (!obj[key] || (obj[key] || []).length === 0)  delete obj[key]})
         var ref = firestore.collection(objType).doc(docId)
         ref.update({
             ...obj,
