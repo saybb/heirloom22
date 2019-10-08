@@ -12,10 +12,11 @@ function convert_date_to_string(date) {
    return date.toDate().toLocaleDateString("en-AU", options);
 }
 
+/*
 function displayImage(media_links) {
    if (!media_links) return;
    return media_links.map(elem => <img key={elem.url} src={elem.url}></img>);
-}
+}*/
 
 /**
  * Function component.
