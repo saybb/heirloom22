@@ -9,6 +9,9 @@ import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { EVENTS, PEOPLE } from "../../store/objectTypes"
 import { Form, Input, Select, Button } from "antd";
+import ImageUpload from "../util/imageUpload";
+import {storageRef} from "../../firebase/config";
+
 const { TextArea } = Input;
 
 class ArtefactForm extends React.Component {
@@ -16,11 +19,28 @@ class ArtefactForm extends React.Component {
         events_selected: [],
         people_selected: [],
         events_links: {},
-        people_links: {}
+        people_links: {},
+        file: null,
+        photoURL: null,
     }
 
-    handleSubmit = e => {
+    handleFile = file => {
+        this.setState({
+            file: file
+        })
+    }
+
+    handleSubmit = async (e) => {
         e.preventDefault();
+
+        //upload file first
+        if(this.state.file){
+            //await this.props.uploadFile("image/" + this.props.auth.uid + "/" + this.state.file.name, this.state.file);
+            let snapshot = await storageRef.child("image/" + this.props.auth.uid + "/" + this.state.file.name).put(this.state.file);
+            this.setState({
+                photoURL: await snapshot.ref.getDownloadURL(),
+            })
+        }
 
         // fields must pass validation before submission
         this.props.form.validateFields((err, values) => {
@@ -48,6 +68,11 @@ class ArtefactForm extends React.Component {
                             }
                         })
                         : [],
+                    media_links: this.state.photoURL ? [{
+                        date_created: new Date(),
+                        url: this.state.photoURL
+                    }]
+                    : [],
                 }
                 
                 // pass form data to parent
@@ -61,6 +86,7 @@ class ArtefactForm extends React.Component {
         const { type } = this.props;
         
         return(
+            
             <Form onSubmit={ this.handleSubmit } className="CreateArtefactForm">
                 <Form.Item label="Name">{getFieldDecorator('name',
                     { rules : [
@@ -77,9 +103,9 @@ class ArtefactForm extends React.Component {
                         autosize={{minRows: 3}}
                     />
                 )}</Form.Item>
-
+                
                 { type === "create" && <this.RelationFormItems form={getFieldDecorator}/>}
-
+                <Form.Item><ImageUpload handleFile={this.handleFile}/></Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit">Submit</Button>
                 </Form.Item>
@@ -198,6 +224,7 @@ ArtefactForm = Form.create({name: "createArtefactForm"})(ArtefactForm);
 
 const mapStateToProps = (state) => {
     return {
+        auth: state.firebase.auth,
         events: state.firestore.data.Events,
         people: state.firestore.data.People,
     }
