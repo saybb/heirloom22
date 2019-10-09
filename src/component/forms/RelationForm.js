@@ -37,7 +37,7 @@ class RelationForm extends React.Component {
                             reference: this.props.firestore.doc("/Events/" + event),
                             relation: this.state.events_links[event]
                         }
-                        this.props.fieldAppend(EVENTS, event, 'artefact_links', artefact_link)
+                        this.props.fieldAppend(EVENTS, event, 'artefacts_links', artefact_link)
                         this.props.fieldAppend(ARTEFACTS, this.props.artefact_id, 'events_links', event_link)
                     })
                 }
