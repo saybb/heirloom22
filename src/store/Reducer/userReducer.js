@@ -52,6 +52,17 @@ const userReducer = (state = initState, action) => {
             ...state,
             errMess: 'update failed'
           }
+      
+      case 'APPEND_SUCCESS':
+          console.log('append success');
+          return state;
+      
+      case 'APPEND_ERROR':
+          console.log('append error');
+          return {
+            ...state,
+            errMess: 'Append failed'
+          }
 
       default:
         return state;

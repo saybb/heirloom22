@@ -1,3 +1,5 @@
+import firebase from '../../firebase/config'
+
 export const createObj = (objType, obj) => {
     return (dispatch, getState, { auth, firestore }) => {
         const profile = getState().firebase.profile;
@@ -60,3 +62,17 @@ export const uploadFile = (path, file) => {
     }
 }
 
+export const fieldAppend = (objType, docId, fieldName, fieldValue) => {
+    return ( dispatch, getState, { firestore }) => {
+        var ref = firestore.collection(objType).doc(docId)
+        ref.update({
+            [fieldName]:  firebase.firestore.FieldValue.arrayUnion(fieldValue)
+        })
+        .then(() => {
+            dispatch({ type: 'APPEND_SUCCESS' });
+        }).catch(err => {
+            console.log(err);
+            dispatch({ type: 'APPEND_ERROR'}, err);
+        })
+    }
+}

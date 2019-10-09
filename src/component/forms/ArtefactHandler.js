@@ -96,7 +96,7 @@ const mapDispatchToProps = dispatch => {
    return {
       createObj: (objType, artefact) => dispatch(createObj(objType, artefact)),
       editObj: (objType, id, artefact) =>
-         dispatch(editObj(objType, id, artefact))
+      dispatch(editObj(objType, id, artefact))
    };
 };
 

@@ -7,7 +7,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { Menu, Button } from "antd";
+import { Menu, Button, Icon } from "antd";
 import { signOut } from "../../store/Actions/authActions";
 import logo from "../../heirloom22_logo.svg";
 import UserModal from "../profile/UserModal.js";
@@ -85,13 +85,13 @@ class Navigation extends React.Component {
                <Menu.Item key="profile">
                   <UserModal />
                </Menu.Item>
-               <Menu.Item key="logout">
-                  <Button type="danger" onClick={signOut}>
-                     Log out
-                  </Button>
-               </Menu.Item>
                <Menu.Item key="signup">
                   <NavLink to="/signup">Sign up</NavLink>
+               </Menu.Item>
+               <Menu.Item key="logout">
+                  <Button type="link" onClick={signOut}>
+                     <Icon type="logout" style={{color: 'red'}}/>
+                  </Button>
                </Menu.Item>
             </Menu>
          );

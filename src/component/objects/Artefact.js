@@ -18,6 +18,7 @@ import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {deleteObj} from "../../store/Actions/userActions";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
+import RelationForm from "../forms/RelationForm";
 
 const Artefact = props => {
    const {artefact} = props;
@@ -30,6 +31,9 @@ const Artefact = props => {
          </Menu.Item>
          <Menu.Item key='2' onClick={handleDelete}>
             <Link to={"/feed"}>Delete</Link>
+         </Menu.Item>
+         <Menu.Item key='3'>
+            <RelationForm artefact={artefact? artefact[id]: null} artefact_id={id} />
          </Menu.Item>
       </Menu>
    );
@@ -53,7 +57,7 @@ const Artefact = props => {
          </div>
       );
    }
-
+   console.log(artefact[id]);
    //console.log(artefact);
    return (
       <div>
