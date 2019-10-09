@@ -17,7 +17,7 @@ import {NavLink} from "react-router-dom";
 
 // redux
 import {connect} from "react-redux";
-
+import {signOut} from "../../store/Actions/authActions";
 // style
 import {Button, Row, Col, Icon} from "antd";
 import "./Welcome.css";
@@ -140,8 +140,12 @@ class Welcome extends Component {
                   <Row className='title'>Log out</Row>
                   <Row>
                      Click on
-                     <Button type='danger' className='LeftRightMargin'>
-                        <NavLink to='/signup'>Log out</NavLink>
+                     <Button
+                        type='danger'
+                        onClick={this.props.signOut}
+                        className='LeftRightMargin'
+                     >
+                        Log out
                      </Button>
                      to exit this application correctly.
                   </Row>
@@ -194,4 +198,12 @@ const mapStateToProps = state => {
    };
 };
 
-export default connect(mapStateToProps)(Welcome);
+const mapDispatchToProps = dispatch => {
+   return {
+      signOut: () => dispatch(signOut())
+   };
+};
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(Welcome);
