@@ -33,7 +33,10 @@ const Artefact = props => {
             <Link to={"/feed"}>Delete</Link>
          </Menu.Item>
          <Menu.Item key='3'>
-            <RelationForm artefact={artefact? artefact[id]: null} artefact_id={id} />
+            <RelationForm
+               artefact={artefact ? artefact[id] : null}
+               artefact_id={id}
+            />
          </Menu.Item>
       </Menu>
    );
@@ -73,10 +76,12 @@ const Artefact = props => {
             </Dropdown>
             {/* ItemLinks will render links as items with names and relation descriptors */}
             <ItemLinks
+               key='related people'
                title='Related People'
                items={artefact[id].people_links}
             />
             <ItemLinks
+               key='related events'
                title='Related Events'
                items={artefact[id].events_links}
             />
