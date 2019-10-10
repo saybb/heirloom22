@@ -1,5 +1,5 @@
 // from https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
-export const makeid = (length) => {
+export const makeID = (length) => {
     var result = "";
     var characters =
        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

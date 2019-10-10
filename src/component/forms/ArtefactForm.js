@@ -10,7 +10,7 @@ import { compose } from 'redux'
 import { EVENTS, PEOPLE } from "../../store/objectTypes"
 import { Form, Input, Select, Button } from "antd";
 import ImageUpload from "../util/imageUpload";
-import { makeid } from "../util/Makeid";
+import { makeID } from "../util/makeID";
 import {storageRef} from "../../firebase/config";
 
 const { TextArea } = Input;
@@ -37,7 +37,7 @@ class ArtefactForm extends React.Component {
         //upload file first
         if(this.state.file){
             //await this.props.uploadFile("image/" + this.props.auth.uid + "/" + this.state.file.name, this.state.file);
-            let snapshot = await storageRef.child("image/" + this.props.auth.uid + "/" + makeid(10) + this.state.file.name)
+            let snapshot = await storageRef.child("image/" + this.props.auth.uid + "/" + makeID(10) + this.state.file.name)
             .put(this.state.file);
             this.setState({
                 photoURL: await snapshot.ref.getDownloadURL(),
