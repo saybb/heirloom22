@@ -4,7 +4,7 @@
  */
 
 import React from "react";
-import {Modal, Button} from "antd";
+import {Modal, Button, Icon} from "antd";
 import {connect} from "react-redux";
 import {compose} from "redux";
 
@@ -22,9 +22,12 @@ class ArtefactHandler extends React.Component {
          type: this.props.type,
          title:
             this.props.type === "create"
-               ? "Create an Artefact"
-               : "Edit Artefact",
-         docId: this.props.docId ? this.props.docId : null
+               ? "Create"
+               : "Edit",
+         docId: this.props.docId ? this.props.docId : null,
+         icon: this.props.type === "create"
+               ? "plus-square"
+               : "form"
       };
    }
 
@@ -40,24 +43,26 @@ class ArtefactHandler extends React.Component {
       });
    };
 
-   handleSubmit = artefact => {
+   handleSubmit = async (artefact) => {
       console.log(artefact);
-
+      //decide action.
       if (this.state.type === "create") {
-         this.props.createObj(ARTEFACTS, artefact);
+         await this.props.createObj(ARTEFACTS, artefact);
       } else {
-         this.props.editObj(ARTEFACTS, this.props.docId, artefact);
+         await this.props.editObj(ARTEFACTS, this.props.docId, artefact);
       }
 
-      setTimeout(() => {
-         this.setState({visible: false});
-      }, 1000);
+      // setTimeout(() => {
+      //    this.setState({visible: false});
+      // }, 1000);
+      this.setState({visible: false});
    };
 
    render() {
       return (
          <React.Fragment>
-            <Button type='primary' onClick={this.showModal}>
+            <Button type='link' onClick={this.showModal} size="large">
+            <Icon type={this.state.icon} />
                {this.state.title}
             </Button>
             <Modal

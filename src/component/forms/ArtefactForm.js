@@ -2,7 +2,6 @@
  * CreateArtefactForm :: ReactJS Component
  * Form allowing user to input relevant information to create an artefact.
  */
-
 import React from "react";
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
@@ -25,12 +24,15 @@ class ArtefactForm extends React.Component {
         photoURL: null,
     }
 
+    //get file from file uploader
     handleFile = file => {
         this.setState({
             file: file
         })
     }
 
+    /* When submit clicked, upload image (if any) => fetch download URL 
+        => construct artefact object => pass object to ArtefactHandler */
     handleSubmit = async (e) => {
         e.preventDefault();
 

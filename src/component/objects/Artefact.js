@@ -8,43 +8,22 @@ import React from "react";
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
-import {Button, Menu, Dropdown, Icon} from "antd";
-import {Link} from "react-router-dom";
 import ItemLinks from "./ItemLinks.js";
 import "./Objects.css";
 import "./Gallery.css";
 import AddendumList from "./AddendumList.jsx";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
-import {deleteObj} from "../../store/Actions/userActions";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import RelationForm from "../forms/RelationForm";
+import DelComfirmation from "../forms/DelComfirmation";
+
 
 const Artefact = props => {
    const {artefact} = props;
    const id = props.match.params.id;
 
-   const menu = (
-      <Menu>
-         <Menu.Item key='1'>
-            <ArtefactHandler docId={id} />
-         </Menu.Item>
-         <Menu.Item key='2' onClick={handleDelete}>
-            <Link to={"/feed"}>Delete</Link>
-         </Menu.Item>
-         <Menu.Item key='3'>
-            <RelationForm
-               artefact={artefact ? artefact[id] : null}
-               artefact_id={id}
-            />
-         </Menu.Item>
-      </Menu>
-   );
-
-   function handleDelete() {
-      props.deleteObj(ARTEFACTS, id);
-   }
-
+   //any result returns?
    if (!artefact) {
       return (
          <div className='object-content'>
@@ -53,6 +32,7 @@ const Artefact = props => {
       );
    }
 
+   //if result is null.
    if (artefact && !artefact[id]) {
       return (
          <div className='object-content'>
@@ -60,8 +40,7 @@ const Artefact = props => {
          </div>
       );
    }
-   console.log(artefact[id]);
-   //console.log(artefact);
+
    return (
       <div>
          <ImageDisplay media_links={artefact[id].media_links} />
@@ -69,11 +48,9 @@ const Artefact = props => {
             <h2>{artefact[id].name}</h2>
             <p>{artefact[id].details}</p>
             <p>{artefact[id].description}</p>
-            <Dropdown overlay={menu}>
-               <Button>
-                  Actions <Icon type='down' />
-               </Button>
-            </Dropdown>
+            <ArtefactHandler docId={id} />
+            <DelComfirmation docId={id} objType={ARTEFACTS} history={props.history} />
+
             {/* ItemLinks will render links as items with names and relation descriptors */}
             <ItemLinks
                key='related people'
@@ -98,16 +75,10 @@ const mapStateToProps = state => {
    };
 };
 
-const mapDispatchToProps = dispatch => {
-   return {
-      deleteObj: (objType, docId) => dispatch(deleteObj(objType, docId))
-   };
-};
-
 export default compose(
    connect(
       mapStateToProps,
-      mapDispatchToProps
+      null,
    ),
    firestoreConnect(props => [
       {
