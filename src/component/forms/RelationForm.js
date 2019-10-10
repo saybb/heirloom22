@@ -46,7 +46,7 @@ class RelationForm extends React.Component {
                     this.state.people_selected.forEach(person => {
                         const artefact_link = {
                             name: this.props.artefact.name,
-                            reference: this.props.firestore.doc("/Artefact/" + this.props.artefact_id),
+                            reference: this.props.firestore.doc("/Artefacts/" + this.props.artefact_id),
                             relation: this.state.people_links[person]
                         }
                         const person_link = {
