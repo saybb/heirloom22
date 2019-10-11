@@ -102,6 +102,7 @@ class ArtefactHandler extends React.Component {
                      relation: people_links[person]
                   }
                   this.props.fieldAppend(PEOPLE, person, 'artefacts_links', artefact_link)
+                  this.props.fieldAppend(ARTEFACTS, newArtefact.id, 'people_links', person_link)
                })
          }
 

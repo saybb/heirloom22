@@ -51,7 +51,7 @@ class ArtefactForm extends React.Component {
         // For update relation for both objects, create artefact first => update relation info
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                const { events, people } = this.props;
+                // const { events, people } = this.props;
                 // build artefact from form
                 const artefact = {
                     name: values.name,

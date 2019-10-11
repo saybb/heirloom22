@@ -8,6 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
+import { Row } from 'antd';
 
 // components
 import ArtefactListElement from "./ArtefactListElement.js";
@@ -20,7 +21,7 @@ class ArtefactList extends React.Component {
     
     render() {
         const { artefacts } = this.props;
-
+        console.log(artefacts);
         if(!artefacts){
             return (
                 <div className="container center">
@@ -37,14 +38,12 @@ class ArtefactList extends React.Component {
         }
         return(
             <React.Fragment>
-                <div className="tech-slideshow">
-                    <div className="mover-1"></div>
-                    <div className="mover-2"></div>
-                </div>
             <div className="ArtefactList">
                 <h2>Browsing your collection...</h2>
                 <ArtefactHandler type={"create"} />
-                { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
+                <Row gutter={16}>
+        { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
+                </Row>
             </div>
 
             </React.Fragment>

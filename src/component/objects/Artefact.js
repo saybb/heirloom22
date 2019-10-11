@@ -16,8 +16,8 @@ import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import DelComfirmation from "../forms/DelComfirmation";
-import {Divider, Row, Col, Card, Skeleton, Switch, Icon, Avatar} from 'antd';
-const { Meta } = Card;
+import {Divider} from 'antd';
+
 
 const Artefact = props => {
    const {artefact} = props;

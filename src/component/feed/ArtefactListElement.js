@@ -5,10 +5,11 @@
  */
 
 import React from 'react';
-import { Divider } from 'antd';
+import { Divider, Card, Col } from 'antd';
 import { Link } from 'react-router-dom';
 import "./FlipCard.css";
 
+const { Meta } = Card;
 /**
  * Function element.
  * Props:
@@ -41,20 +42,41 @@ function ArtefactListElement(props) {
      *   - excerpt of description
      */
     return(
-        <React.Fragment>
-            <div className="card">
-                <div className="ArtefactListElement">
-                    <Link to={"/view/artefacts/" + reference}>
+        // <React.Fragment>
+        //     <div className="card">
+        //         <div className="ArtefactListElement">
+        //             <Link to={"/view/artefacts/" + reference}>
 
-                        <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
-                        { // only show details section if it's not empty
-                            artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
-                        }
-                    </Link>
-                </div>
-                <Divider className="ArtefactListElementDivider" />
-            </div>
-        </React.Fragment>
+        //                 <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
+        //                 { // only show details section if it's not empty
+        //                     artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
+        //                 }
+        //             </Link>
+        //         </div>
+        //         <Divider className="ArtefactListElementDivider" />
+        //     </div>
+        // </React.Fragment>
+
+        artefact ? 
+                <Col span={8}>
+                     <Link to={"/view/artefacts/" + reference}>
+                    {(artefact.media_links||[]).length > 0 ?
+                    <Card
+                            hoverable
+                            style={{ width: 240, marginTop: 16 }}
+                            cover={<img alt="cover" src={artefact.media_links[0].url} />}
+                        >
+                            <Meta title={artefact.name} description={artefact.description} />
+                    </Card>
+                    :
+                    <Card hoverable style={{ width: 300, marginTop: 16 }}>
+                        <Meta title={artefact.name} description={artefact.description} />
+                    </Card>
+                    }
+                    </Link>             
+                </Col>
+        :
+        <p>Nothing to show</p>
     );
 }
 
