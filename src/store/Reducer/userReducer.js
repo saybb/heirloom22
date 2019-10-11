@@ -8,8 +8,10 @@ const userReducer = (state = initState, action) => {
     
       case 'CREATE_SUCCESS':
         console.log('create success');
-        return state;
-
+        return {
+          ...state,
+          doc: action.doc,
+        };
       case 'CREATE_ERROR':
           console.log('create error');
           return {

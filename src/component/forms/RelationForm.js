@@ -2,15 +2,14 @@ import React from "react";
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { EVENTS, PEOPLE, ARTEFACTS } from "../../store/objectTypes"
-import { Form, Input, Select, Button, Modal, Icon} from "antd";
+import { EVENTS, PEOPLE} from "../../store/objectTypes"
+import { Form, Input, Select} from "antd";
 import { fieldAppend } from "../../store/Actions/userActions";
 
 const { TextArea } = Input;
 
 class RelationForm extends React.Component {
     state = {
-        visible: false,
         type: this.props.type,
         title: this.props.type,
         docId: this.props.docId ? this.props.docId : null,
@@ -37,8 +36,9 @@ class RelationForm extends React.Component {
                             reference: this.props.firestore.doc("/Events/" + event),
                             relation: this.state.events_links[event]
                         }
-                        this.props.fieldAppend(EVENTS, event, 'artefacts_links', artefact_link)
-                        this.props.fieldAppend(ARTEFACTS, this.props.artefact_id, 'events_links', event_link)
+                        //this.props.fieldAppend(EVENTS, event, 'artefacts_links', artefact_link)
+                        //this.props.fieldAppend(ARTEFACTS, this.props.artefact_id, 'events_links', event_link)
+                        console.log(event_link);
                     })
                 }
 
@@ -54,30 +54,15 @@ class RelationForm extends React.Component {
                             reference: this.props.firestore.doc("/People/" + person),
                             relation: this.state.people_links[person]
                         }
-                        this.props.fieldAppend(PEOPLE, person, 'artefacts_links', artefact_link)
-                        this.props.fieldAppend(ARTEFACTS, this.props.artefact_id, 'people_links', person_link)
+                        //this.props.fieldAppend(PEOPLE, person, 'artefacts_links', artefact_link)
+                        //this.props.fieldAppend(ARTEFACTS, this.props.artefact_id, 'people_links', person_link)
+                        console.log(person_link);
                     })
 
                 }
             }
         });
-
-        setTimeout(() => {
-            this.setState({visible: false});
-         }, 1000);
     }
-
-    showModal = () => {
-        this.setState({
-           visible: true
-        });
-     };
-  
-     handleCancel = () => {
-        this.setState({
-           visible: false
-        });
-     };
 
     render(){
         const { getFieldDecorator } = this.props.form;
@@ -87,28 +72,7 @@ class RelationForm extends React.Component {
             events_links, people_links
         } = this.state;
         return(
-            <div>
-            <Button type='link' onClick={this.showModal}>
-                <Icon type="ellipsis" />
-            </Button>
-
-            <Modal
-            visible={this.state.visible}
-            title={this.state.title}
-            onCancel={this.handleCancel}
-            footer={[
-               <Button
-                  key='cancel'
-                  type='default'
-                  onClick={this.handleCancel}
-               >
-                  Cancel
-               </Button>,
-                <Button key="submit" type="primary" onClick={this.handleSubmit}>
-                    Submit
-                </Button>,
-            ]}
-            >
+            <React.Fragment>
                 <Form.Item label="Related People">
                     {getFieldDecorator('people', {})(
                         <Select
@@ -200,8 +164,7 @@ class RelationForm extends React.Component {
                         )}</Form.Item>
                     )}
                 </div>
-            </Modal>
-            </div>
+            </React.Fragment>
         )
     }
 

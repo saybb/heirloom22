@@ -18,8 +18,9 @@ class ArtefactForm extends React.Component {
     state = {
         events_selected: [],
         people_selected: [],
-        events_links: {},
         people_links: {},
+        events_links: {},
+        
         file: null,
         photoURL: null,
     }
@@ -47,6 +48,7 @@ class ArtefactForm extends React.Component {
         }
 
         // fields must pass validation before submission
+        // For update relation for both objects, create artefact first => update relation info
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 const { events, people } = this.props;
@@ -54,24 +56,6 @@ class ArtefactForm extends React.Component {
                 const artefact = {
                     name: values.name,
                     description: values.description || "",
-                    events_links: values.events ?
-                        values.events.map((event_id) => {
-                            return {
-                                name: events[event_id].name,
-                                relation: values[event_id],
-                                reference: this.props.firestore.doc("/Events/" + event_id)
-                            }
-                        })
-                        : [],
-                    people_links: values.people ?
-                        values.people.map((person_id) => {
-                            return {
-                                name: people[person_id].name + " " + people[person_id].lastname,
-                                relation: values[person_id],
-                                reference: this.props.firestore.doc("/People/" + person_id)
-                            }
-                        })
-                        : [],
                     media_links: this.state.photoURL ? [{
                         date_created: new Date(),
                         url: this.state.photoURL
@@ -88,7 +72,6 @@ class ArtefactForm extends React.Component {
     render() {
         const { getFieldDecorator } = this.props.form;
         const { type } = this.props;
-        
         return(
             
             <Form onSubmit={ this.handleSubmit } className="CreateArtefactForm">
@@ -119,10 +102,9 @@ class ArtefactForm extends React.Component {
 
     RelationFormItems = () => {
         const { getFieldDecorator } = this.props.form;
-        const { events, people } = this.props;
+        const { events, people, handleFieldChange } = this.props;
         const {
-            events_selected, people_selected,
-            events_links, people_links
+            events_selected, people_selected, people_links,events_links,
         } = this.state;
 
         return (
@@ -135,7 +117,16 @@ class ArtefactForm extends React.Component {
                             optionFilterProp={"children"}
                             filterOption={true}
                             // updates list of selected people in state to show text boxes
-                            onChange={(value) => {this.setState({people_selected: value})}}
+                            onChange={(value) => {
+                                this.setState({people_selected: value});
+                                handleFieldChange({people_selected: value});
+
+                                //update list of selected people's name
+                                const people_names = {}
+                                value.map(person => people_names[person] = people[person].name)
+                                handleFieldChange({people_names: people_names});
+                                
+                        }}
                         >
                             { people ?
                                 Object.keys(people).map( (id) =>
@@ -166,7 +157,8 @@ class ArtefactForm extends React.Component {
                                 onChange={(e) => {
                                     const new_people_links = people_links;
                                     new_people_links[person_id] = e.target.value;
-                                    this.setState({people_links: new_people_links});
+                                    //this.setState({people_links: new_people_links});
+                                    handleFieldChange({people_links: new_people_links})
                                 }}
                             />
                         )}</Form.Item>
@@ -181,7 +173,15 @@ class ArtefactForm extends React.Component {
                         optionFilterProp={"children"}
                         filterOption={true}
                         // updates list of selected events in state to show text boxes
-                        onChange={(value) => {this.setState({events_selected: value})}}
+                        onChange={(value) => {
+                            this.setState({events_selected: value});
+                            handleFieldChange({events_selected: value});
+
+                            //update list of selected people's name
+                            const events_names = {}
+                            value.map(event => events_names[event] = events[event].name)
+                            handleFieldChange({events_names: events_names});
+                        }}
                         >
                             { events ?
                                 Object.keys(events).map( (id) =>
@@ -212,7 +212,11 @@ class ArtefactForm extends React.Component {
                                 onChange={(e) => {
                                     const new_events_links = events_links;
                                     new_events_links[event_id] = e.target.value;
-                                    this.setState({events_links: new_events_links});
+                                    handleFieldChange({events_links: new_events_links})
+
+                                    var new_events_name = JSON.parse(JSON.stringify(events_links));
+                                    new_events_name[event_id] = events[event_id].name;
+                                    handleFieldChange({events_name: new_events_name});
                                 }}
                             />
                         )}</Form.Item>

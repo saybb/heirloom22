@@ -15,7 +15,6 @@ import AddendumList from "./AddendumList.jsx";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
-import RelationForm from "../forms/RelationForm";
 import DelComfirmation from "../forms/DelComfirmation";
 
 

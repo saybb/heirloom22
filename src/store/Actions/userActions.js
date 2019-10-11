@@ -2,16 +2,15 @@ import firebase from '../../firebase/config'
 
 export const createObj = (objType, obj) => {
     return (dispatch, getState, { auth, firestore }) => {
-        const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
         firestore.collection(objType).add({
             ...obj,
-            created_by: profile.name,
-            authorId: authorId,
+            created_by: authorId,
             date_created: new Date(),
             last_modified: new Date()
-        }).then(() => {
-            dispatch({ type: 'CREATE_SUCCESS' });
+        }).then((doc) => {
+            console.log(doc);
+            dispatch({ type: 'CREATE_SUCCESS' , doc: doc});
         }).catch(err => {
             console.log(err);
             dispatch({ type: 'CREATE_ERROR' }, err);

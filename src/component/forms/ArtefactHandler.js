@@ -8,8 +8,9 @@ import {Modal, Button, Icon} from "antd";
 import {connect} from "react-redux";
 import {compose} from "redux";
 
-import {createObj, editObj} from "../../store/Actions/userActions";
-import {ARTEFACTS} from "../../store/objectTypes";
+import { firestore } from "../../firebase/config"
+import {createObj, editObj, fieldAppend} from "../../store/Actions/userActions";
+import {ARTEFACTS, EVENTS, PEOPLE} from "../../store/objectTypes";
 import ArtefactForm from "./ArtefactForm.js";
 import EventHandler from "./EventHandler.js";
 import PersonHandler from "./PersonHandler.js";
@@ -27,8 +28,19 @@ class ArtefactHandler extends React.Component {
          docId: this.props.docId ? this.props.docId : null,
          icon: this.props.type === "create"
                ? "plus-square"
-               : "form"
+               : "form",
+         
+         events_selected: [],
+         people_selected: [],
+         events_links: {},
+         people_links: {},
+         events_names:{},
+         people_names:{},
       };
+   }
+
+   handleFieldChange = (field) =>{
+      this.setState(field);
    }
 
    showModal = () => {
@@ -44,17 +56,59 @@ class ArtefactHandler extends React.Component {
    };
 
    handleSubmit = async (artefact) => {
-      console.log(artefact);
+      const { type, 
+         events_selected, people_selected,
+         events_links, people_links, 
+         events_names, people_names }  = this.state;
+      const { auth } = this.props;
+
       //decide action.
-      if (this.state.type === "create") {
-         await this.props.createObj(ARTEFACTS, artefact);
+      if (type === "create") {
+         const newArtefact = await firestore.collection(ARTEFACTS).add({
+            ...artefact,
+            created_by: auth.uid,
+            date_created: new Date(),
+            last_modified: new Date(),
+         })
+         
+         //construct and update links
+         if(events_selected.length > 0){
+            events_selected.forEach(event => {
+               const artefact_link = {
+                  name: artefact.name,
+                  reference: firestore.doc("/Artefacts/" + newArtefact.id),
+                  relation: events_links[event]
+               }
+               const event_link = {
+                  name: events_names[event],
+                  reference: firestore.doc("/Events/" + event),
+                  relation: events_links[event]
+               }
+               this.props.fieldAppend(EVENTS, event, 'artefacts_links', artefact_link)
+               this.props.fieldAppend(ARTEFACTS, newArtefact.id, 'events_links', event_link)
+            })
+         }
+
+         if(people_selected.length > 0){
+               people_selected.forEach(person => {
+                  const artefact_link = {
+                     name: artefact.name,
+                     reference: firestore.doc("/Artefacts/" + newArtefact.id),
+                     relation: people_links[person]
+                  }
+                  const person_link = {
+                     name: people_names[person],
+                     reference: firestore.doc("/People/" + person),
+                     relation: people_links[person]
+                  }
+                  this.props.fieldAppend(PEOPLE, person, 'artefacts_links', artefact_link)
+               })
+         }
+
       } else {
-         await this.props.editObj(ARTEFACTS, this.props.docId, artefact);
+         this.props.editObj(ARTEFACTS, this.props.docId, artefact);
       }
 
-      // setTimeout(() => {
-      //    this.setState({visible: false});
-      // }, 1000);
       this.setState({visible: false});
    };
 
@@ -88,6 +142,7 @@ class ArtefactHandler extends React.Component {
 
                <ArtefactForm
                   handleSubmit={this.handleSubmit}
+                  handleFieldChange={this.handleFieldChange}
                   type={this.state.type}
                   docId={this.state.docId}
                />
@@ -97,17 +152,24 @@ class ArtefactHandler extends React.Component {
    }
 }
 
+const mapStateToProps = state => {
+   return {
+      auth: state.firebase.auth
+   };
+};
+
 const mapDispatchToProps = dispatch => {
    return {
       createObj: (objType, artefact) => dispatch(createObj(objType, artefact)),
       editObj: (objType, id, artefact) =>
-      dispatch(editObj(objType, id, artefact))
+      dispatch(editObj(objType, id, artefact)),
+      fieldAppend: (objType, docId,fieldName, fieldValue) => dispatch(fieldAppend(objType, docId, fieldName ,fieldValue)),
    };
 };
 
 export default compose(
    connect(
-      null,
+      mapStateToProps,
       mapDispatchToProps
    )
 )(ArtefactHandler);
