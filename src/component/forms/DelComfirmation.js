@@ -35,7 +35,7 @@ class DelComfirmation extends React.Component {
   render() {
     return (
       <div>
-        <Button type="danger" onClick={this.showModal}>
+        <Button type="danger" onClick={this.showModal} ghost size="small">
             <Icon type="delete"/> Delete
         </Button>
         <Modal

@@ -16,7 +16,8 @@ import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import DelComfirmation from "../forms/DelComfirmation";
-
+import {Divider, Row, Col, Card, Skeleton, Switch, Icon, Avatar} from 'antd';
+const { Meta } = Card;
 
 const Artefact = props => {
    const {artefact} = props;
@@ -47,8 +48,12 @@ const Artefact = props => {
             <h2>{artefact[id].name}</h2>
             <p>{artefact[id].details}</p>
             <p>{artefact[id].description}</p>
-            <ArtefactHandler docId={id} />
-            <DelComfirmation docId={id} objType={ARTEFACTS} history={props.history} />
+             <Divider/>
+            <div style={{display: 'flex', alignItems:'center'}}>
+               <ArtefactHandler docId={id} />
+               <Divider type="vertical"/>
+               <DelComfirmation docId={id} objType={ARTEFACTS} history={props.history} />
+            </div>
 
             {/* ItemLinks will render links as items with names and relation descriptors */}
             <ItemLinks

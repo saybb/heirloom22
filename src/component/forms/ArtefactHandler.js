@@ -115,7 +115,7 @@ class ArtefactHandler extends React.Component {
    render() {
       return (
          <React.Fragment>
-            <Button type='link' onClick={this.showModal} size="large">
+            <Button type='primary' onClick={this.showModal} ghost size="small">
             <Icon type={this.state.icon} />
                {this.state.title}
             </Button>
