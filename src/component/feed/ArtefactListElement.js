@@ -63,7 +63,7 @@ function ArtefactListElement(props) {
                     {(artefact.media_links||[]).length > 0 ?
                     <Card
                             hoverable
-                            style={{ width: 240, marginTop: 16 }}
+                            style={{ width: 300, marginTop: 16 }}
                             cover={<img alt="cover" src={artefact.media_links[0].url} />}
                         >
                             <Meta title={artefact.name} description={artefact.description} />
