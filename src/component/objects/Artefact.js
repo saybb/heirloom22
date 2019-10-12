@@ -16,7 +16,7 @@ import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import DelComfirmation from "../forms/DelComfirmation";
-import {Divider} from 'antd';
+import {Divider, Row, Col} from 'antd';
 
 
 const Artefact = props => {
@@ -48,13 +48,13 @@ const Artefact = props => {
             <h2>{artefact[id].name}</h2>
             <p>{artefact[id].details}</p>
             <p>{artefact[id].description}</p>
-             <Divider/>
-            <div style={{display: 'flex', alignItems:'center'}}>
+             {/* <Divider/> */}
+            <Row style={{display: 'flex', alignItems:'center'}}>
                <ArtefactHandler docId={id} />
                <Divider type="vertical"/>
                <DelComfirmation docId={id} objType={ARTEFACTS} history={props.history} />
-            </div>
-
+            </Row>
+            <Divider/>
             {/* ItemLinks will render links as items with names and relation descriptors */}
             <ItemLinks
                key='related people'
