@@ -49,9 +49,18 @@ function ItemLinks(props) {
 
     return(
         <React.Fragment>
-            <Row>
-            <h3>{title}<Divider type="vertical"/><Button type="primary" shape="circle" icon="usergroup-add" ghost/></h3>
-            </Row>
+                <h3>
+                <Row style={{display: 'flex', alignItems:'center'}}>
+                    {title}
+                    <Divider type="vertical"/>
+                    <RelationForm 
+                        title={title}
+                        artefact={artefact}
+                        artefact_id={id}
+                        iconType={iconType(title)}
+                    />
+                    </Row>
+                    </h3>
             { // generates an item for each link
                 items.map((item) => <ItemLink key={item.name} item={item}/>)
             }
