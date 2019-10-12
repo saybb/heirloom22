@@ -7,13 +7,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import {Divider, Button, Row, Icon} from 'antd';
-
+import RelationForm from '../forms/RelationForm'
 
 import './ItemLinks.css';
 import './ListCard.css'
 
 function ItemLinks(props) {
-    const {title, items} = props;
+    const {title, items, artefact, id} = props;
+    console.log(props)
     
     const iconType = (title) => {
         if( title === 'Related People') return "usergroup-add"
@@ -24,7 +25,20 @@ function ItemLinks(props) {
     if (!items) {
         return (
             <React.Fragment>
-                <h3>{title}<Divider type="vertical"/><Button type="primary" shape="circle" icon={iconType(title)} ghost/></h3>
+                
+                <h3>
+                <Row style={{display: 'flex', alignItems:'center'}}>
+                    {title}
+                    <Divider type="vertical"/>
+                    <RelationForm 
+                        title={title}
+                        artefact={artefact}
+                        artefact_id={id}
+                        iconType={iconType(title)}
+                    />
+                    </Row>
+                    </h3>
+                    
                 <div className="polaroid">
                 <div className="container">
                 <p>Ooops, you can update {title.toLowerCase()} by clicking the icon <Icon type={iconType(title)} style={{color: 'DodgerBlue'}}/> above. Your list shows up right here.</p>

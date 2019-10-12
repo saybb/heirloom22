@@ -2,15 +2,15 @@ import React from "react";
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { EVENTS, PEOPLE} from "../../store/objectTypes"
-import { Form, Input, Select} from "antd";
+import { EVENTS, PEOPLE, ARTEFACTS} from "../../store/objectTypes"
+import { Form, Input, Select, Modal, Icon, Button} from "antd";
 import { fieldAppend } from "../../store/Actions/userActions";
 
 const { TextArea } = Input;
 
 class RelationForm extends React.Component {
     state = {
-        type: this.props.type,
+        visible: false,
         title: this.props.type,
         docId: this.props.docId ? this.props.docId : null,
 
@@ -20,43 +20,60 @@ class RelationForm extends React.Component {
         people_links: {},
     }
 
+    showModal = () => {
+        this.setState({
+          visible: true,
+        });
+      };
+    
+      handleCancel = () => {
+        this.setState({ 
+            visible: false,
+        })
+      };
+
     handleSubmit = async (e) => {
         e.preventDefault();
+        const { firestore, events, people, artefact_id, fieldAppend } = this.props;
+        const artefact = this.props.artefact[artefact_id]
+        const {
+            events_selected, people_selected,
+            events_links, people_links
+        } = this.state;
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                if(this.state.events_selected.length > 0){
-                    this.state.events_selected.forEach(event => {
+                if(events_selected.length > 0){
+                    events_selected.forEach(event => {
                         const artefact_link = {
-                            name: this.props.artefact.name,
-                            reference: this.props.firestore.doc("/Artefacts/" + this.props.artefact_id),
-                            relation: this.state.events_links[event]
+                            name: artefact.name,
+                            reference: firestore.doc("/Artefacts/" + artefact_id),
+                            relation: events_links[event]
                         }
                         const event_link = {
-                            name: this.props.events[event].name,
-                            reference: this.props.firestore.doc("/Events/" + event),
-                            relation: this.state.events_links[event]
+                            name: events[event].name,
+                            reference: firestore.doc("/Events/" + event),
+                            relation: events_links[event]
                         }
-                        //this.props.fieldAppend(EVENTS, event, 'artefacts_links', artefact_link)
-                        //this.props.fieldAppend(ARTEFACTS, this.props.artefact_id, 'events_links', event_link)
-                        console.log(event_link);
+                        fieldAppend(EVENTS, event, 'artefacts_links', artefact_link)
+                        fieldAppend(ARTEFACTS, artefact_id, 'events_links', event_link)
                     })
                 }
 
-                if(this.state.people_selected.length > 0){
-                    this.state.people_selected.forEach(person => {
+                if(people_selected.length > 0){
+                    people_selected.forEach(person => {
                         const artefact_link = {
-                            name: this.props.artefact.name,
-                            reference: this.props.firestore.doc("/Artefacts/" + this.props.artefact_id),
-                            relation: this.state.people_links[person]
+                            name: artefact.name,
+                            reference: firestore.doc("/Artefacts/" + artefact_id),
+                            relation: people_links[person]
                         }
                         const person_link = {
-                            name: this.props.people[person].name,
-                            reference: this.props.firestore.doc("/People/" + person),
-                            relation: this.state.people_links[person]
+                            name: people[person].name,
+                            reference: firestore.doc("/People/" + person),
+                            relation: people_links[person]
                         }
-                        //this.props.fieldAppend(PEOPLE, person, 'artefacts_links', artefact_link)
-                        //this.props.fieldAppend(ARTEFACTS, this.props.artefact_id, 'people_links', person_link)
-                        console.log(person_link);
+                        fieldAppend(PEOPLE, person, 'artefacts_links', artefact_link)
+                        fieldAppend(ARTEFACTS, artefact_id, 'people_links', person_link)
+
                     })
 
                 }
@@ -66,12 +83,31 @@ class RelationForm extends React.Component {
 
     render(){
         const { getFieldDecorator } = this.props.form;
-        const { events, people } = this.props;
+        const { events, people, title, iconType } = this.props;
         const {
             events_selected, people_selected,
-            events_links, people_links
+            events_links, people_links, visible,
         } = this.state;
         return(
+            <div>
+            <Button type="primary" shape="circle" icon={iconType} ghost onClick={this.showModal} size="small"/>
+            <Modal
+                visible={visible}
+                title={title}
+                onCancel={this.handleCancel}
+                footer={[
+                    <Button key="back" onClick={this.handleCancel}>
+                    Return
+                    </Button>,
+                    <Button key="submit" type="primary"  onClick={this.handleSubmit}>
+                    Submit
+                    </Button>,
+                ]}
+            >
+            
+            <Form layout="vertical" hideRequiredMark>
+            
+            {title === "Related People" ?
             <React.Fragment>
                 <Form.Item label="Related People">
                     {getFieldDecorator('people', {})(
@@ -118,7 +154,9 @@ class RelationForm extends React.Component {
                         )}</Form.Item>
                     )}
                 </div>
-                
+                </React.Fragment>
+                :
+                <React.Fragment>
                 <Form.Item label="Related Events">
                     {getFieldDecorator('events', {})(
                         <Select
@@ -164,7 +202,12 @@ class RelationForm extends React.Component {
                         )}</Form.Item>
                     )}
                 </div>
-            </React.Fragment>
+                </React.Fragment>
+                }
+            
+            </Form>
+            </Modal>
+            </div>
         )
     }
 
