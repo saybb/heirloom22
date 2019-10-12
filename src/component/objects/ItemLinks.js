@@ -14,7 +14,6 @@ import './ListCard.css'
 
 function ItemLinks(props) {
     const {title, items, artefact, id} = props;
-    console.log(props)
     
     const iconType = (title) => {
         if( title === 'Related People') return "usergroup-add"
