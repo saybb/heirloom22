@@ -16,28 +16,41 @@ function ItemLinks(props) {
     const {title, items, artefact, id} = props;
     
     const iconType = (title) => {
-        if( title === 'Related People') return "usergroup-add"
+        if(title === 'Related People') return "usergroup-add"
         if(title === 'Related Events') return "file-add"
+    }
+
+    const header = (title) => {
+        if (title === 'Related Artefacts'){
+            return (
+                <h3>
+                <Row style={{display: 'flex', alignItems:'center'}}>
+                    {title}
+                </Row>
+                </h3> 
+            )
+        }
+        return(
+            <h3>
+            <Row style={{display: 'flex', alignItems:'center'}}>
+                {title}
+                <Divider type="vertical"/>
+                <RelationForm 
+                    title={title}
+                    artefact={artefact}
+                    artefact_id={id}
+                    iconType={iconType(title)}
+                />
+                </Row>
+            </h3>
+        )
     }
 
     // if no items exist then don't render anything
     if (!items) {
         return (
             <React.Fragment>
-                
-                <h3>
-                <Row style={{display: 'flex', alignItems:'center'}}>
-                    {title}
-                    <Divider type="vertical"/>
-                    <RelationForm 
-                        title={title}
-                        artefact={artefact}
-                        artefact_id={id}
-                        iconType={iconType(title)}
-                    />
-                    </Row>
-                    </h3>
-                    
+                {header(title)}
                 <div className="polaroid">
                 <div className="container">
                 <p>Ooops, you can update {title.toLowerCase()} by clicking the icon <Icon type={iconType(title)} style={{color: 'DodgerBlue'}}/> above. Your list shows up right here.</p>
@@ -49,18 +62,7 @@ function ItemLinks(props) {
 
     return(
         <React.Fragment>
-                <h3>
-                <Row style={{display: 'flex', alignItems:'center'}}>
-                    {title}
-                    <Divider type="vertical"/>
-                    <RelationForm 
-                        title={title}
-                        artefact={artefact}
-                        artefact_id={id}
-                        iconType={iconType(title)}
-                    />
-                    </Row>
-                    </h3>
+        {header(title)}
             { // generates an item for each link
                 items.map((item) => <ItemLink key={item.name} item={item}/>)
             }

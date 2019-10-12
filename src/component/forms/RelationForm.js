@@ -79,6 +79,9 @@ class RelationForm extends React.Component {
                 }
             }
         });
+        this.setState({ 
+            visible: false,
+        })
     }
 
     render(){
