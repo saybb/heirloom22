@@ -6,10 +6,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-
 import './ItemLinks.css';
-import './ListCard.css'
 
 function ItemLinks(props) {
     const {title, items} = props;

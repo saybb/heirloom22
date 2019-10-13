@@ -11,14 +11,13 @@ import {compose} from "redux";
 import {Button, Menu, Dropdown, Icon} from "antd";
 import {Link} from "react-router-dom";
 import ItemLinks from "./ItemLinks.js";
-import "./Objects.css";
-import "./Gallery.css";
 import AddendumList from "./AddendumList.jsx";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {deleteObj} from "../../store/Actions/userActions";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import RelationForm from "../forms/RelationForm";
+import "./Objects.css";
 
 const Artefact = props => {
    const {artefact} = props;

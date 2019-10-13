@@ -3,30 +3,14 @@
  * CSS styles for ItemLinks.js
  */
 
-.item-links {
+div.polaroid {
     width: 100%;
-    padding: 0em 0em 0.5em 0em;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 25px;
 }
 
-.item-link {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-
-    width: 100%;
-    padding: 0.5em 1em;
-
-    transition: 0.5s;
-}
-
-.item-link:hover {
-    background: #f8f8f8;
-}
-
-.item-link p {
-    margin: 0 0.5rem;
-}
-
-.item-divider {
-    margin: 0;
+div.container {
+    text-align: center;
+    padding: 10px 100px;
 }

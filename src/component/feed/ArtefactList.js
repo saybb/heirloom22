@@ -14,7 +14,6 @@ import ArtefactListElement from "./ArtefactListElement.js";
 import './ArtefactList.css';
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import { ARTEFACTS } from "../../store/objectTypes";
-import './FlipCard.css'
 
 class ArtefactList extends React.Component {
     
