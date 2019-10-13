@@ -90,7 +90,7 @@ export class AddendumList extends Component {
       }
       // check if there are any addendums
       return (
-         <div>
+         <div className="addendum-list">
             <h2>Addendums</h2>
             <AddendumHandler
                artefact_id={this.props.id}
