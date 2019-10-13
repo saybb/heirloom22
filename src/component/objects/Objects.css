@@ -10,12 +10,13 @@
 
     width: 100%;
 
-    margin: 0 1em;
+    margin: 2em 1rem 0rem 1rem;
 }
 
 @media screen and (min-width: 768px) {
     /* on larger screens, remove extra margin whitespace for content, since we already have some */
     .object-content {
-        margin: 0;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
