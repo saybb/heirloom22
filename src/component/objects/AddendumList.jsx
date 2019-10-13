@@ -11,7 +11,7 @@
  */
 
 import React, {Component} from "react";
-import {Button} from "antd";
+import {Button, Icon, Divider, Row} from "antd";
 // connect to backend
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
@@ -61,13 +61,12 @@ export class AddendumList extends Component {
    // output: a html list of Addendums
    generateList(list) {
       return list.map(element => (
-         <li key={element[0]}>
-            <Addendum
-               id={element[0]}
-               document={element[1]}
-               delete={this.handleDelete}
-            />
-         </li>
+         <Addendum
+            key={element[0]}
+            id={element[0]}
+            document={element[1]}
+            delete={this.handleDelete}
+         />
       ));
    }
 
@@ -93,6 +92,26 @@ export class AddendumList extends Component {
       );
    }
 
+   // return the title of the List
+   header = title => {
+      return (
+         <h3>
+            <Row style={{display: "flex", alignItems: "center"}}>
+               {title}
+               <Divider type='vertical' />
+               <Button
+                  type='primary'
+                  shape='circle'
+                  icon={"file-add"}
+                  ghost
+                  onClick={this.showModal}
+                  size='small'
+               />
+            </Row>
+         </h3>
+      );
+   };
+
    render() {
       // grab the addendums object
       const {addendums} = this.props;
@@ -106,8 +125,7 @@ export class AddendumList extends Component {
       // check if there are any addendums
       return (
          <div>
-            <h2>Addendums</h2>
-            <Button onClick={this.showModal}> Add an addendum </Button>
+            {this.header("Addendums")}
             <AddendumHandler
                artefact_id={this.props.id}
                visible={this.state.visible}
@@ -117,7 +135,7 @@ export class AddendumList extends Component {
             {filtered_addendumsList.length === 0 ? (
                <p>Press add an addendum button to create addendums</p>
             ) : (
-               <ul>{this.generateList(filtered_addendumsList)}</ul>
+               this.generateList(filtered_addendumsList)
             )}
          </div>
       );

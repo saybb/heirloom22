@@ -11,13 +11,13 @@ import {compose} from "redux";
 import ItemLinks from "./ItemLinks.js";
 import "./Objects.css";
 import "./Gallery.css";
+import "./List.css";
 import AddendumList from "./AddendumList.jsx";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import DelComfirmation from "../forms/DelComfirmation";
-import {Divider, Row, Col} from 'antd';
-
+import {Divider, Row, Col} from "antd";
 
 const Artefact = props => {
    const {artefact} = props;
@@ -48,29 +48,35 @@ const Artefact = props => {
             <h2>{artefact[id].name}</h2>
             <p>{artefact[id].details}</p>
             <p>{artefact[id].description}</p>
-             {/* <Divider/> */}
-            <Row style={{display: 'flex', alignItems:'center'}}>
+            {/* <Divider/> */}
+            <Row style={{display: "flex", alignItems: "center"}}>
                <ArtefactHandler docId={id} />
-               <Divider type="vertical"/>
-               <DelComfirmation docId={id} objType={ARTEFACTS} history={props.history} />
+               <Divider type='vertical' />
+               <DelComfirmation
+                  docId={id}
+                  objType={ARTEFACTS}
+                  history={props.history}
+               />
             </Row>
-            <Divider/>
+            <Divider />
             {/* ItemLinks will render links as items with names and relation descriptors */}
-            <ItemLinks
-               key='related people'
-               title='Related People'
-               items={artefact[id].people_links}
-               artefact={artefact}
-               id={id}
-            />
-            <ItemLinks
-               key='related events'
-               title='Related Events'
-               items={artefact[id].events_links}
-               artefact={artefact}
-               id={id}
-            />
-            <AddendumList id={id} />
+            <div className='List'>
+               <ItemLinks
+                  key='related people'
+                  title='Related People'
+                  items={artefact[id].people_links}
+                  artefact={artefact}
+                  id={id}
+               />
+               <ItemLinks
+                  key='related events'
+                  title='Related Events'
+                  items={artefact[id].events_links}
+                  artefact={artefact}
+                  id={id}
+               />
+               <AddendumList id={id} />
+            </div>
          </div>
       </div>
    );
@@ -86,7 +92,7 @@ const mapStateToProps = state => {
 export default compose(
    connect(
       mapStateToProps,
-      null,
+      null
    ),
    firestoreConnect(props => [
       {
