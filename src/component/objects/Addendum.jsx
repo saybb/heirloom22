@@ -1,6 +1,7 @@
 import React from "react";
 import {Divider, Button} from "antd";
 import ImageDisplay from "../util/ImageDisplay";
+import AddendumHandler from "../forms/AddendumHandler.jsx";
 
 function convert_date_to_string(date) {
    const options = {
@@ -25,8 +26,8 @@ function displayImage(media_links) {
  *   - id: the addendum documen_id
  */
 export default function Addendum(props) {
-   const {created_by, date_created, details, media_links} = props.document;
-
+   const {created_by, date_created, details, media_links, reference} = props.document;
+   
    /**
     * For the list, we intend to show:
     * Data:
@@ -45,10 +46,12 @@ export default function Addendum(props) {
                <p>{convert_date_to_string(date_created)}</p>
                <p>{created_by}</p>
                <p>{details}</p>
-               <ImageDisplay media_links={media_links} />
+               { media_links && media_links.length ? <ImageDisplay media_links={media_links} /> : null}
             </div>
-            <Button> Edit </Button>
-            <Button onClick={() => props.delete(props.id)}> Delete </Button>
+            <div className="AddendumMenu">
+               <AddendumHandler docId={props.id} artefact_id={reference.id} type="edit" />
+               <Button onClick={() => props.delete(props.id)}> Delete </Button>
+            </div>
             <Divider className='AddendumDivider' />
          </div>
       </React.Fragment>

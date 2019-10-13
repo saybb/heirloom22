@@ -11,7 +11,6 @@
  */
 
 import React, {Component} from "react";
-import {Button} from "antd";
 // connect to backend
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
@@ -21,6 +20,8 @@ import {ADDENDUMS} from "../../store/objectTypes";
 // components
 import Addendum from "./Addendum";
 import AddendumHandler from "../forms/AddendumHandler";
+
+import "./AddendumList.css"
 
 // helper function
 function createPath(id) {
@@ -33,28 +34,12 @@ function createPath(id) {
  *   - id: the id of the artefact
  */
 export class AddendumList extends Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         visible: false,
-         path: createPath(props.id)
-      };
-   }
-
-   showModal = () => {
-      this.setState({
-         visible: true
-      });
+   state = {
+      path: createPath(this.props.id)
    };
 
    handleDelete = id => {
       this.props.deleteObj(ADDENDUMS, id);
-   };
-
-   handleCancel = () => {
-      this.setState({
-         visible: false
-      });
    };
 
    // input: a list of addendum documents
@@ -96,7 +81,7 @@ export class AddendumList extends Component {
    render() {
       // grab the addendums object
       const {addendums} = this.props;
-      console.log(addendums);
+      //console.log(addendums);
       let filtered_addendumsList = [];
       // check if we received the addendums
       if (addendums) {
@@ -107,11 +92,8 @@ export class AddendumList extends Component {
       return (
          <div>
             <h2>Addendums</h2>
-            <Button onClick={this.showModal}> Add an addendum </Button>
             <AddendumHandler
                artefact_id={this.props.id}
-               visible={this.state.visible}
-               onCancel={this.handleCancel}
                type='create'
             />
             {filtered_addendumsList.length === 0 ? (

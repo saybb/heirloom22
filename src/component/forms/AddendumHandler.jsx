@@ -10,10 +10,23 @@ import AddendumForm from "./AddendumForm.jsx";
 
 export class AddendumHandler extends Component {
    state = {
+      visible: false,
       type: this.props.type,
       title:
          this.props.type === "create" ? "Create an Addendum" : "Edit Addendum",
       docId: this.props.docId ? this.props.docId : null
+   };
+
+   showModal = () => {
+      this.setState({
+         visible: true
+      });
+   };
+
+   handleCancel = () => {
+      this.setState({
+         visible: false
+      });
    };
 
    handleSubmit = addendum => {
@@ -23,7 +36,7 @@ export class AddendumHandler extends Component {
       );
 
       console.log(addendum);
-
+      console.log(this.props.docId)
       if (this.state.type === "create") {
          this.props.createObj(ADDENDUMS, addendum);
       } else {
@@ -32,23 +45,22 @@ export class AddendumHandler extends Component {
 
       setTimeout(() => {
          this.setState({visible: false});
-         // visibile needs to be propogated to the parent
-         this.props.onCancel();
       }, 1000);
    };
 
    render() {
       return (
          <div>
+            <Button onClick={this.showModal}> {this.state.title} </Button>
             <Modal
-               visible={this.props.visible}
-               onCancel={this.props.onCancel}
+               visible={this.state.visible}
+               onCancel={this.handleCancel}
                title={this.state.title}
                footer={[
                   <Button
                      key='cancel'
                      type='default'
-                     onClick={this.props.onCancel}
+                     onClick={this.handleCancel}
                   >
                      Cancel
                   </Button>
