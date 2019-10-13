@@ -9,7 +9,7 @@ import { compose } from 'redux'
 import { EVENTS, PEOPLE } from "../../store/objectTypes"
 import { Form, Input, Select, Button } from "antd";
 import ImageUpload from "../util/imageUpload";
-import { makeID } from "../util/makeID";
+import { makeID } from "../util/Makeid";
 import {storageRef} from "../../firebase/config";
 
 const { TextArea } = Input;
