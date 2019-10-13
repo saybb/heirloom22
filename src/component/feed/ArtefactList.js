@@ -36,19 +36,11 @@ class ArtefactList extends React.Component {
             )
         }
         return(
-            <React.Fragment>
-                <div className="tech-slideshow">
-                    <div className="mover-1"></div>
-                    <div className="mover-2"></div>
-                </div>
             <div className="ArtefactList">
                 <h2>Browsing your collection...</h2>
                 <ArtefactHandler type={"create"} />
                 { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
             </div>
-
-            </React.Fragment>
-
         )
     }
 }
