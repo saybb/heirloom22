@@ -7,7 +7,6 @@
 import React from 'react';
 import { Divider, Card, Col } from 'antd';
 import { Link } from 'react-router-dom';
-import "./FlipCard.css";
 
 const { Meta } = Card;
 /**

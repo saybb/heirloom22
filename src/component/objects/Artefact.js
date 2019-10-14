@@ -9,16 +9,13 @@ import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
 import ItemLinks from "./ItemLinks.js";
-import "./Objects.css";
-import "./Gallery.css";
-import "./List.css";
 import AddendumList from "./AddendumList.jsx";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import DelComfirmation from "../forms/DelComfirmation";
 import {Divider, Row} from 'antd';
-
+import "./Objects.css";
 
 const Artefact = props => {
    const {artefact} = props;

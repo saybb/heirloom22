@@ -6,11 +6,9 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Divider, Button, Row, Icon} from 'antd';
+import {Divider, Row, Icon} from 'antd';
 import RelationForm from '../forms/RelationForm'
-
 import './ItemLinks.css';
-import './ListCard.css'
 
 function ItemLinks(props) {
     const {title, items, artefact, id} = props;

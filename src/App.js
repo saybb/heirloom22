@@ -23,7 +23,6 @@ import Event from "./component/objects/Event.js";
 import Person from "./component/objects/Person.js";
 import SignIn from "./component/auth/SignIn";
 import SignUp from "./component/auth/SignUp";
-import Avatar from "./component/util/Avatar";
 import ImageUpload from "./component/util/imageUpload";
 
 class App extends React.Component {

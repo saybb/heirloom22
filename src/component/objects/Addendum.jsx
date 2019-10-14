@@ -6,6 +6,7 @@ import "./ListCard.css";
 import {capitalize} from "../util/Text";
 import {Icon, Button, Divider} from "antd";
 import ImageDisplay from "../util/ImageDisplay";
+import AddendumHandler from "../forms/AddendumHandler.jsx";
 
 function convert_date_to_string(date) {
    const options = {
@@ -58,7 +59,8 @@ export default class Addendum extends React.Component {
          created_by,
          date_created,
          details,
-         media_links
+         media_links,
+         reference
       } = this.props.document;
       const docId = this.props.id;
       return (
@@ -67,13 +69,10 @@ export default class Addendum extends React.Component {
                <h4>{convert_date_to_string(date_created)}</h4>
                <p style={{color: "#1890ff"}}>By: {capitalize(created_by)}</p>
                <p>{details}</p>
-               <ImageDisplay media_links={media_links} />
+               { media_links && media_links.length ? <ImageDisplay media_links={media_links} /> : null}
             </div>
             <div className='left-align'>
-               <Button size='small'>
-                  <Icon type='edit' />
-                  Edit
-               </Button>
+               <AddendumHandler docId={this.props.id} artefact_id={reference.id} type="edit" />
                <Divider type='vertical' />
                <Button onClick={this.showModal} size='small'>
                   <Icon type='delete' /> Delete

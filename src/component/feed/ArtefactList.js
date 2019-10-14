@@ -15,7 +15,6 @@ import ArtefactListElement from "./ArtefactListElement.js";
 import './ArtefactList.css';
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import { ARTEFACTS } from "../../store/objectTypes";
-import './FlipCard.css'
 
 class ArtefactList extends React.Component {
     
@@ -37,17 +36,13 @@ class ArtefactList extends React.Component {
             )
         }
         return(
-            <React.Fragment>
             <div className="ArtefactList">
                 <h2>Browsing your collection...</h2>
                 <ArtefactHandler type={"create"} />
                 <Row gutter={16}>
-        { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
+                    { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
                 </Row>
             </div>
-
-            </React.Fragment>
-
         )
     }
 }
