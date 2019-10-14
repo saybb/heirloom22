@@ -36,12 +36,14 @@ class ArtefactList extends React.Component {
             )
         }
         return(
-            <div className="ArtefactList">
-                <h2>Browsing your collection...</h2>
-                <ArtefactHandler type={"create"} />
-                <Row gutter={16}>
+            <div className="artefact-list-wrapper">
+                <div className="artefact-list-header">
+                    <h2>Browsing your collection...</h2>
+                    <ArtefactHandler type={"create"} />
+                </div>
+                <div className="artefact-list">
                     { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
-                </Row>
+                </div>
             </div>
         )
     }

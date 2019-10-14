@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { Divider, Card, Col } from 'antd';
+import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
@@ -41,41 +41,26 @@ function ArtefactListElement(props) {
      *   - excerpt of description
      */
     return(
-        // <React.Fragment>
-        //     <div className="card">
-        //         <div className="ArtefactListElement">
-        //             <Link to={"/view/artefacts/" + reference}>
-
-        //                 <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
-        //                 { // only show details section if it's not empty
-        //                     artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
-        //                 }
-        //             </Link>
-        //         </div>
-        //         <Divider className="ArtefactListElementDivider" />
-        //     </div>
-        // </React.Fragment>
-
-        artefact ? 
-                <Col span={8}>
-                     <Link to={"/view/artefacts/" + reference}>
-                    {(artefact.media_links||[]).length > 0 ?
+        artefact
+        ? 
+            <div>
+                <Link to={"/view/artefacts/" + reference}>
                     <Card
-                            hoverable
-                            style={{ width: 300, marginTop: 16 }}
-                            cover={<img alt="cover" src={artefact.media_links[0].url} />}
-                        >
-                            <Meta title={artefact.name} description={artefact.description} />
+                        hoverable
+                        className="artefact-list-element"
+                        cover={(artefact.media_links||[]).length > 0
+                            ? <img alt="cover" src={artefact.media_links[0].url} />
+                            : null
+                        }
+                    >
+                        <Meta
+                            title={excerpt(artefact.name, TITLE_LENGTH)}
+                            description={artefact.description && excerpt(artefact.description, DESC_LENGTH)}
+                        />
                     </Card>
-                    :
-                    <Card hoverable style={{ width: 300, marginTop: 16 }}>
-                        <Meta title={artefact.name} description={artefact.description} />
-                    </Card>
-                    }
-                    </Link>             
-                </Col>
-        :
-        <p>Nothing to show</p>
+                </Link>             
+            </div>
+        : <p>Nothing to show</p>
     );
 }
 
