@@ -39,14 +39,14 @@ class DelComfirmation extends React.Component {
             <Icon type="delete"/> Delete
         </Button>
         <Modal
-          title="DELETE"
+          title="You are about to Delete something!"
           visible={this.state.visible}
           onOk={this.handleConfirm}
           onCancel={this.hideModal}
           okText="Confirm"
           cancelText="Cancel"
         >
-          <p><Icon type="question-circle-o" style={{ color: 'red' }} />  Are you sure you want to delete this?</p>
+          <p><Icon type="question-circle-o" style={{ color: 'red' }} />{" Are you sure you want to delete this? This cannot be undone."}</p>
         </Modal>
       </div>
     );
