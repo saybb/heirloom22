@@ -77,6 +77,7 @@ class RelationForm extends React.Component {
                     })
 
                 }
+                this.props.form.resetFields();
             }
         });
         this.setState({ 

@@ -43,9 +43,7 @@ export class AddendumHandler extends Component {
          this.props.editObj(ADDENDUMS, this.props.docId, addendum);
       }
 
-      setTimeout(() => {
-         this.setState({visible: false});
-      }, 1000);
+      this.setState({visible: false});
    };
 
    render() {
