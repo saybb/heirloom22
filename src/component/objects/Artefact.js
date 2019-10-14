@@ -62,16 +62,19 @@ const Artefact = props => {
                <ItemLinks
                   key='related people'
                   title='Related People'
+                  fieldName='people_links'
                   items={artefact[id].people_links}
-                  artefact={artefact}
-                  id={id}
+                  objType={ARTEFACTS}
+                  obj={artefact}
+                  docId={id}
                />
                <ItemLinks
                   key='related events'
                   title='Related Events'
+                  fieldName='events_links'
                   items={artefact[id].events_links}
-                  artefact={artefact}
-                  id={id}
+                  objType={ARTEFACTS}
+                  docId={id}
                />
                <AddendumList id={id} />
             </div>

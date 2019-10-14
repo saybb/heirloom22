@@ -9,6 +9,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
+import { PEOPLE } from '../../store/objectTypes.js';
 
 const Person = (props) => {
     const { person } = props;
@@ -36,7 +37,13 @@ const Person = (props) => {
             <h2>{person[id].name + " " + person[id].lastname}</h2>
             <p>{"Born: " + person[id].dob.toDate().toLocaleDateString("en-AU", options)}</p>
             <p>{person[id].details}</p>
-            <ItemLinks title="Related Artefacts" items={person[id].artefacts_links}/>
+            <ItemLinks 
+                title="Related Artefacts" 
+                fieldName='artefacts_links'
+                items={person[id].artefacts_links}
+                objType={PEOPLE}
+                docId={id}
+                />
         </div>
     );
 } 

@@ -6,13 +6,13 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Divider, Row, Icon} from 'antd';
+import {Divider, Row, Icon, Button} from 'antd';
 import RelationForm from '../forms/RelationForm'
+import DeleteRelation from '../util/DeleteRelation';
 import './ItemLinks.css';
 
 function ItemLinks(props) {
-    const {title, items, artefact, id} = props;
-    
+    const {title, items, objType, obj, docId, fieldName} = props;
     const iconType = (title) => {
         if(title === 'Related People') return "usergroup-add"
         if(title === 'Related Events') return "file-add"
@@ -35,8 +35,8 @@ function ItemLinks(props) {
                 <Divider type="vertical"/>
                 <RelationForm 
                     title={title}
-                    artefact={artefact}
-                    artefact_id={id}
+                    artefact={obj}
+                    artefact_id={docId}
                     iconType={iconType(title)}
                 />
                 </Row>
@@ -45,7 +45,7 @@ function ItemLinks(props) {
     }
 
     // if no items exist then don't render anything
-    if (!items) {
+    if (!items || items.length === 0) {
         return (
             <React.Fragment>
                 {header(title)}
@@ -57,30 +57,37 @@ function ItemLinks(props) {
             </React.Fragment>
         )
     }
-
     return(
         <React.Fragment>
         {header(title)}
             { // generates an item for each link
-                items.map((item) => <ItemLink key={item.name} item={item}/>)
+            items.map((item) => <ItemLink 
+            key={item.name} 
+            item={item} 
+            fieldName={fieldName}
+            objType={objType} 
+            docId={docId}
+            />)
             }
         </React.Fragment>
     );
 }
 
 function ItemLink(props) {
-    const {item} = props;
-
+    const {item, objType, docId, fieldName} = props;
     return(
         <div className="polaroid">
             <div className="container">
                 <Link to={"/view/" + item.reference.path}>
-                        <h4>{item.name} 
-                        <Divider type="vertical"/>
-                        <Icon type="close-circle" style={{color:'red'}}/>
-                        </h4>
-                        <p>{item.relation}</p>
-                </Link>
+                <h4>{item.name}</h4></Link>
+                <p>{item.relation}</p>
+                <DeleteRelation 
+                    item={item}
+                    objType={objType}
+                    docId={docId}
+                    fieldName={fieldName}
+                />
+                
             </div>
         </div>
     );

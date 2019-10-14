@@ -20,7 +20,6 @@ class ArtefactList extends React.Component {
     
     render() {
         const { artefacts } = this.props;
-        console.log(artefacts);
         if(!artefacts){
             return (
                 <div className="container center">

@@ -10,6 +10,8 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 
+import {EVENTS} from "../../store/objectTypes"
+
 const Event = props => {
    const { event } = props;
    const id = props.match.params.id;
@@ -48,7 +50,10 @@ const Event = props => {
          <p>{event[id].details}</p>
          <ItemLinks
             title="Related Artefacts"
+            fieldName='artefacts_links'
+            objType={EVENTS}
             items={event[id].artefacts_links}
+            docId={id}
          />
       </div>
    );

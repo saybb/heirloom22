@@ -9,7 +9,6 @@ export const createObj = (objType, obj) => {
             date_created: new Date(),
             last_modified: new Date()
         }).then((doc) => {
-            console.log(doc);
             dispatch({ type: 'CREATE_SUCCESS' , doc: doc});
         }).catch(err => {
             console.log(err);
@@ -34,10 +33,35 @@ export const editObj = (objType, docId, obj) => {
     }
 }
 
+// export const deleteObj = (objType, docId) => {
+//     return (dispatch, getState, { firestore }) => {
+//         const ref = firestore.collection(objType).doc(docId)
+//         ref.delete()
+//         .then(() => {
+//             dispatch({ type: 'DELETE_SUCCESS' });
+//         }).catch(err => {
+//             console.log(err);
+//             dispatch({ type: 'DELETE_ERROR'}, err);
+//         })
+//     }
+// }
+
 export const deleteObj = (objType, docId) => {
-    return (dispatch, getState, { firestore }) => {
-        firestore.collection(objType).doc(docId)
-        .delete()
+    return async (dispatch, getState, { firestore }) => {
+        const ref = firestore.collection(objType).doc(docId)
+        const snapshot = await ref.get();
+        console.log(snapshot.data());
+        const doc = snapshot.data();
+        if(doc.artefacts_links){
+            doc.artefacts_links.forEach(item => {dispatch(deleteRelation(objType, docId, item.reference, "artefacts_links"))})
+        }
+        if(doc.people_links){
+            doc.people_links.forEach((item) => {dispatch(deleteRelation(objType, docId, item.reference, "people_links"))})
+        }
+        if(doc.events_links){
+            doc.events_links.forEach(item => {dispatch(deleteRelation(objType, docId, item.reference, "events_links"))})
+        }
+        ref.delete()
         .then(() => {
             dispatch({ type: 'DELETE_SUCCESS' });
         }).catch(err => {
@@ -74,4 +98,43 @@ export const fieldAppend = (objType, docId, fieldName, fieldValue) => {
             dispatch({ type: 'APPEND_ERROR'}, err);
         })
     }
+}
+
+export const deleteRelation = (objType, docId, targetRef, fieldName) => {
+    return async (dispatch, getState, { firestore }) => {        
+        try{
+            console.log(objType, docId, targetRef, fieldName);
+            const objRef = await firestore.doc(objType+'/'+docId)
+            console.log(objRef);
+            const snapshot_1 = await objRef.get();
+            if(snapshot_1.data()){
+                const obj = DeleteRelationField(snapshot_1.data(), fieldName, targetRef);
+                await objRef.update({
+                    ...obj,
+                    last_modified: new Date()
+                })
+            }
+            
+            const snapshot_2 = await targetRef.get();
+            if(snapshot_2.data()){
+                const targetObj = DeleteRelationField(snapshot_2.data(), `${objType.toLowerCase()}_links`, objRef);
+                await targetRef.update({
+                    ...targetObj,
+                    last_modified: new Date()
+                })
+            }
+        } catch(err){
+            console.log(err);
+        }
+    }
+}
+
+function DeleteRelationField(obj, field, reference){
+    if((obj[field]||[]).length > 0){
+        var new_field = obj[field].filter((link) => {
+            return link.reference.id !== reference.id
+        })
+        obj[field] = new_field
+    }
+    return obj;
 }
