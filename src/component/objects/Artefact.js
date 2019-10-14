@@ -16,7 +16,7 @@ import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import DelComfirmation from "../forms/DelComfirmation";
-import {Divider, Row, Col} from 'antd';
+import {Divider, Row} from 'antd';
 
 
 const Artefact = props => {

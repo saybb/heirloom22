@@ -77,7 +77,10 @@ function ItemLink(props) {
         <div className="polaroid">
             <div className="container">
                 <Link to={"/view/" + item.reference.path}>
-                        <h4>{item.name}</h4>
+                        <h4>{item.name} 
+                        <Divider type="vertical"/>
+                        <Icon type="close-circle" style={{color:'red'}}/>
+                        </h4>
                         <p>{item.relation}</p>
                 </Link>
             </div>
