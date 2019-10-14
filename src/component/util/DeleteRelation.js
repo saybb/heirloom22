@@ -16,16 +16,14 @@ const DeleteRelation = (props) => {
     
     return(
         <Popconfirm
-        title="Are you sure you want to remove this relation？"
-        icon={<Icon type="question-circle-o" style={{ color: 'red' }}/>}
-        okType={"danger"}
-        okText="DELETE"
-        onConfirm={handleDelete}
-      >
-        <Button type="danger" ghost size='small'>
-            Delete
-        </Button>
-      </Popconfirm>
+            title="Are you sure you want to remove this relation？"
+            icon={<Icon type="question-circle-o" style={{ color: 'red' }}/>}
+            okType={"danger"}
+            okText="DELETE"
+            onConfirm={handleDelete}
+        >
+        <Icon type="close-circle" style={{color:'red'}}/>   
+        </Popconfirm>
     )
 }
 

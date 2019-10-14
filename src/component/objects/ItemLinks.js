@@ -80,7 +80,12 @@ function ItemLink(props) {
             <h4>
                 <Link to={"/view/" + item.reference.path}>{item.name}</Link>
                 <Divider type="vertical"/>
-                <Icon type="close-circle" style={{color:'red'}}/>
+                <DeleteRelation
+                    item={item}
+                    objType={objType}	
+                    docId={docId}	
+                    fieldName={fieldName}	
+                />
             </h4>
             <p>{item.relation}</p>
         </div>
