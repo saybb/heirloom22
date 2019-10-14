@@ -23,10 +23,18 @@ class ArtefactHandler extends React.Component {
          type: this.props.type,
          title:
             this.props.type === "create"
-               ? "Create"
+               ? "Create an Artefact"
+               : "Edit Artefact",
+         buttonText:
+            this.props.type === "create"
+               ? "Create an Artefact"
                : "Edit",
-         docId: this.props.docId ? this.props.docId : null,
-         icon: this.props.type === "create"
+         docId:
+            this.props.docId
+               ? this.props.docId
+               : null,
+         icon:
+            this.props.type === "create"
                ? "plus-square"
                : "form",
          
@@ -117,9 +125,9 @@ class ArtefactHandler extends React.Component {
       return (
          <React.Fragment>
             <Button type='primary' onClick={this.showModal} ghost size="small">
-            <Icon type={this.state.icon} />
-               {this.state.title}
+               <Icon type={this.state.icon} />{this.state.buttonText}
             </Button>
+
             <Modal
                visible={this.state.visible}
                title={this.state.title}
