@@ -11,7 +11,7 @@
  */
 
 import React, {Component} from "react";
-import {Button, Icon, Divider, Row} from "antd";
+import {Divider, Row} from "antd";
 // connect to backend
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
@@ -83,13 +83,9 @@ export class AddendumList extends Component {
             <Row style={{display: "flex", alignItems: "center"}}>
                {title}
                <Divider type='vertical' />
-               <Button
-                  type='primary'
-                  shape='circle'
-                  icon={"file-add"}
-                  ghost
-                  onClick={this.showModal}
-                  size='small'
+               <AddendumHandler
+               artefact_id={this.props.id}
+               type='create'
                />
             </Row>
          </h3>
@@ -99,21 +95,17 @@ export class AddendumList extends Component {
    render() {
       // grab the addendums object
       const {addendums} = this.props;
-      //console.log(addendums);
-      let filtered_addendumsList = [];
+
       // check if we received the addendums
+      let filtered_addendumsList = [];
       if (addendums) {
          filtered_addendumsList = this.getAddendums(addendums);
-         // console.log("filtered_addendumsList", filtered_addendumsList);
       }
+
       // check if there are any addendums
       return (
          <div>
             {this.header("Addendums")}
-            <AddendumHandler
-               artefact_id={this.props.id}
-               type='create'
-            />
             {filtered_addendumsList.length === 0 ? (
                <p>Press add an addendum button to create addendums</p>
             ) : (

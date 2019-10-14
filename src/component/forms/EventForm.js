@@ -23,6 +23,7 @@ class EventForm extends React.Component {
                 
                 // pass form data to parent
                 this.props.handleSubmit(event);
+                this.props.form.resetFields();
             }
         });
     }
@@ -60,7 +61,7 @@ class EventForm extends React.Component {
                 )}</Form.Item>
 
                 <Form.Item>
-                    <Button type="primary" htmlType="submit">Submit</Button>
+                    <Button type="primary" ghost htmlType="submit">Submit</Button>
                 </Form.Item>
             </Form>
         );

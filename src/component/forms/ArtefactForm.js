@@ -25,6 +25,18 @@ class ArtefactForm extends React.Component {
         photoURL: null,
     }
 
+    resetState = () => {
+        this.setState({
+            events_selected: [],
+            people_selected: [],
+            people_links: {},
+            events_links: {},
+            
+            file: null,
+            photoURL: null,
+        })
+    }
+
     //get file from file uploader
     handleFile = file => {
         this.setState({
@@ -65,6 +77,9 @@ class ArtefactForm extends React.Component {
                 
                 // pass form data to parent
                 this.props.handleSubmit(artefact);
+
+                this.resetState();
+                this.props.form.resetFields();
             }
         });
     }
@@ -94,7 +109,7 @@ class ArtefactForm extends React.Component {
                 { type === "create" && <this.RelationFormItems form={getFieldDecorator}/>}
                 <Form.Item><ImageUpload handleFile={this.handleFile}/></Form.Item>
                 <Form.Item>
-                    <Button type="primary" htmlType="submit">Submit</Button>
+                    <Button type="primary" ghost htmlType="submit">Submit</Button>
                 </Form.Item>
             </Form>
         );

@@ -1,12 +1,12 @@
 import React, {Component} from "react";
-import {Modal, Button} from "antd";
+import {Modal, Button, Icon} from "antd";
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
 
 import {createObj, editObj} from "../../store/Actions/userActions";
 import {ADDENDUMS} from "../../store/objectTypes";
-import AddendumForm from "./AddendumForm.jsx";
+import AddendumForm from "./AddendumForm.jsx";;
 
 export class AddendumHandler extends Component {
    state = {
@@ -43,15 +43,31 @@ export class AddendumHandler extends Component {
          this.props.editObj(ADDENDUMS, this.props.docId, addendum);
       }
 
-      setTimeout(() => {
-         this.setState({visible: false});
-      }, 1000);
+      this.setState({visible: false});
    };
 
    render() {
       return (
          <React.Fragment>
-            <Button size={this.props.size ? this.props.size : "default"} onClick={this.showModal}> {this.state.title} </Button>
+            {/* Choose button based on edit vs create */}
+            { this.state.type === "create"
+               ?  <Button
+                     type='primary'
+                     shape='circle'
+                     icon={"file-add"}
+                     ghost
+                     onClick={this.showModal}
+                     size='small'
+                  />
+               :  <Button
+                     size="small"
+                     onClick={this.showModal}
+                  >
+                     <Icon type="form"/>{"Edit"}
+                  </Button>
+            }
+            
+
             <Modal
                visible={this.state.visible}
                onCancel={this.handleCancel}

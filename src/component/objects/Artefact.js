@@ -46,7 +46,6 @@ const Artefact = props => {
             <h2>{artefact[id].name}</h2>
             <p>{artefact[id].details}</p>
             <p>{artefact[id].description}</p>
-            {/* <Divider/> */}
             <Row style={{display: "flex", alignItems: "center"}}>
                <ArtefactHandler docId={id} />
                <Divider type='vertical' />
@@ -59,6 +58,7 @@ const Artefact = props => {
             <Divider />
             {/* ItemLinks will render links as items with names and relation descriptors */}
             <div className='List'>
+               <AddendumList id={id} />
                <ItemLinks
                   key='related people'
                   title='Related People'
@@ -76,7 +76,6 @@ const Artefact = props => {
                   objType={ARTEFACTS}
                   docId={id}
                />
-               <AddendumList id={id} />
             </div>
          </div>
       </div>

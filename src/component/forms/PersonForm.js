@@ -24,6 +24,7 @@ class PersonForm extends React.Component {
                 // pass form data to parent
                 
                 this.props.handleSubmit(person);
+                this.props.form.resetFields();
             }
         });
     }
@@ -70,7 +71,7 @@ class PersonForm extends React.Component {
                 )}</Form.Item>
 
                 <Form.Item>
-                    <Button type="primary" htmlType="submit">Submit</Button>
+                    <Button type="primary" ghost htmlType="submit">Submit</Button>
                 </Form.Item>
             </Form>
         );
