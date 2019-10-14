@@ -46,6 +46,10 @@ export const editObj = (objType, docId, obj) => {
 //     }
 // }
 
+/*
+    remove all relations that this object is currently having,
+    and clean up all relations in other objects before deleting.
+*/
 export const deleteObj = (objType, docId) => {
     return async (dispatch, getState, { firestore }) => {
         const ref = firestore.collection(objType).doc(docId)
@@ -100,12 +104,18 @@ export const fieldAppend = (objType, docId, fieldName, fieldValue) => {
     }
 }
 
+/* 
+deleteRelation: set up a relation for an object (which launches a set up relation request)
+     and target object. It works for both sides.
+
+targetRef: the referece pointing to the target object
+fieldName: a particular field that target object holds the relations of this object type.
+*/
+
 export const deleteRelation = (objType, docId, targetRef, fieldName) => {
     return async (dispatch, getState, { firestore }) => {        
         try{
-            console.log(objType, docId, targetRef, fieldName);
             const objRef = await firestore.doc(objType+'/'+docId)
-            console.log(objRef);
             const snapshot_1 = await objRef.get();
             if(snapshot_1.data()){
                 const obj = DeleteRelationField(snapshot_1.data(), fieldName, targetRef);
@@ -129,6 +139,7 @@ export const deleteRelation = (objType, docId, targetRef, fieldName) => {
     }
 }
 
+//remove selected relation from an object
 function DeleteRelationField(obj, field, reference){
     if((obj[field]||[]).length > 0){
         var new_field = obj[field].filter((link) => {
