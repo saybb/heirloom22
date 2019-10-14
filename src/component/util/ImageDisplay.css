@@ -1,6 +1,10 @@
+.image-displayer {
+   display: flex;
+   flex-direction: row;
+}
+
 .carousel-container {
    width: 100%;
-   /*margin-bottom: 2em;*/
 }
 
 .carousel-container .slick-dots li button {
