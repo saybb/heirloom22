@@ -50,8 +50,8 @@ export class AddendumHandler extends Component {
 
    render() {
       return (
-         <div>
-            <Button onClick={this.showModal}> {this.state.title} </Button>
+         <React.Fragment>
+            <Button size={this.props.size ? this.props.size : "default"} onClick={this.showModal}> {this.state.title} </Button>
             <Modal
                visible={this.state.visible}
                onCancel={this.handleCancel}
@@ -68,7 +68,7 @@ export class AddendumHandler extends Component {
             >
                <AddendumForm handleSubmit={this.handleSubmit} />
             </Modal>
-         </div>
+         </React.Fragment>
       );
    }
 }

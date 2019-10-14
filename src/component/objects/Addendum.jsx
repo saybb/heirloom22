@@ -2,11 +2,11 @@ import React from "react";
 // connect to backend module for delete
 import GeneralDelComfirmation from "../forms/GeneralDelComfirmation";
 // style
-import "./ListCard.css";
 import {capitalize} from "../util/Text";
 import {Icon, Button, Divider} from "antd";
 import ImageDisplay from "../util/ImageDisplay";
 import AddendumHandler from "../forms/AddendumHandler.jsx";
+import "./List.css";
 
 function convert_date_to_string(date) {
    const options = {
@@ -71,8 +71,8 @@ export default class Addendum extends React.Component {
                <p>{details}</p>
                { media_links && media_links.length ? <ImageDisplay media_links={media_links} /> : null}
             </div>
-            <div className='left-align'>
-               <AddendumHandler docId={this.props.id} artefact_id={reference.id} type="edit" />
+            <div className='addendum-list left-align'>
+               <AddendumHandler size="small" docId={this.props.id} artefact_id={reference.id} type="edit" />
                <Divider type='vertical' />
                <Button onClick={this.showModal} size='small'>
                   <Icon type='delete' /> Delete

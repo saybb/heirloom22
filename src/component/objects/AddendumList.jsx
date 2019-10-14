@@ -22,8 +22,6 @@ import {ADDENDUMS} from "../../store/objectTypes";
 import Addendum from "./Addendum";
 import AddendumHandler from "../forms/AddendumHandler";
 
-import "./AddendumList.css"
-
 // helper function
 function createPath(id) {
    return "Artefacts/" + id;
