@@ -72,16 +72,13 @@ function ItemLink(props) {
     const {item} = props;
 
     return(
-        <div className="polaroid">
-            <div className="container">
-                <Link to={"/view/" + item.reference.path}>
-                        <h4>{item.name} 
-                        <Divider type="vertical"/>
-                        <Icon type="close-circle" style={{color:'red'}}/>
-                        </h4>
-                        <p>{item.relation}</p>
-                </Link>
-            </div>
+        <div className="polaroid container">
+            <h4>
+                <Link to={"/view/" + item.reference.path}>{item.name}</Link>
+                <Divider type="vertical"/>
+                <Icon type="close-circle" style={{color:'red'}}/>
+            </h4>
+            <p>{item.relation}</p>
         </div>
     );
 }
