@@ -6,8 +6,11 @@ import {compose} from "redux";
 
 import {createObj, editObj} from "../../store/Actions/userActions";
 import {ADDENDUMS} from "../../store/objectTypes";
-import AddendumForm from "./AddendumForm.jsx";;
+import AddendumForm from "./AddendumForm.jsx";
 
+/**
+ * Handles edit, delete, create
+ */
 export class AddendumHandler extends Component {
    state = {
       visible: false,
@@ -36,7 +39,7 @@ export class AddendumHandler extends Component {
       );
 
       console.log(addendum);
-      console.log(this.props.docId)
+      console.log(this.props.docId);
       if (this.state.type === "create") {
          this.props.createObj(ADDENDUMS, addendum);
       } else {
@@ -50,23 +53,21 @@ export class AddendumHandler extends Component {
       return (
          <React.Fragment>
             {/* Choose button based on edit vs create */}
-            { this.state.type === "create"
-               ?  <Button
-                     type='primary'
-                     shape='circle'
-                     icon={"file-add"}
-                     ghost
-                     onClick={this.showModal}
-                     size='small'
-                  />
-               :  <Button
-                     size="small"
-                     onClick={this.showModal}
-                  >
-                     <Icon type="form"/>{"Edit"}
-                  </Button>
-            }
-            
+            {this.state.type === "create" ? (
+               <Button
+                  type='primary'
+                  shape='circle'
+                  icon={"file-add"}
+                  ghost
+                  onClick={this.showModal}
+                  size='small'
+               />
+            ) : (
+               <Button size='small' onClick={this.showModal}>
+                  <Icon type='form' />
+                  {"Edit"}
+               </Button>
+            )}
 
             <Modal
                visible={this.state.visible}

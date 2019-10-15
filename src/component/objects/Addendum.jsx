@@ -67,12 +67,21 @@ export default class Addendum extends React.Component {
          <div className='polaroid'>
             <div className='container'>
                <h4>{convert_date_to_string(date_created)}</h4>
-               <p style={{color: "#1890ff"}}>By: {capitalize(created_by)}</p>
+               <p style={{color: "#1890ff"}}>
+                  By: {created_by ? capitalize(created_by) : "Anonymous"}
+               </p>
                <p>{details}</p>
-               { media_links && media_links.length ? <ImageDisplay media_links={media_links} /> : null}
+               {media_links && media_links.length ? (
+                  <ImageDisplay media_links={media_links} />
+               ) : null}
             </div>
             <div className='addendum-list left-align'>
-               <AddendumHandler size="small" docId={this.props.id} artefact_id={reference.id} type="edit" />
+               <AddendumHandler
+                  size='small'
+                  docId={this.props.id}
+                  artefact_id={reference.id}
+                  type='edit'
+               />
                <Divider type='vertical' />
                <Button onClick={this.showModal} size='small'>
                   <Icon type='delete' /> Delete
