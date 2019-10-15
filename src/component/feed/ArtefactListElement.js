@@ -7,7 +7,6 @@
 import React from 'react';
 import { Divider } from 'antd';
 import { Link } from 'react-router-dom';
-import "./FlipCard.css";
 
 /**
  * Function element.
@@ -18,13 +17,13 @@ function ArtefactListElement(props) {
     const { artefact, reference } = props;
     const TITLE_LENGTH = 50;       // maximum length of title in chars
     const DESC_LENGTH = 100;       // maximum length of description in chars
-    
+
 
     /**
      * Simple function that shortens a string if it's longer than given length
      * and adds "...".
-     * @param {String} str 
-     * @param {Int} n 
+     * @param {String} str
+     * @param {Int} n
      */
     function excerpt(str, n) {
         if (str.length > n) {

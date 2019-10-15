@@ -14,10 +14,9 @@ import ArtefactListElement from "./ArtefactListElement.js";
 import './ArtefactList.css';
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import { ARTEFACTS } from "../../store/objectTypes";
-import './FlipCard.css'
 
 class ArtefactList extends React.Component {
-    
+
     render() {
         const { artefacts } = this.props;
 
@@ -44,7 +43,7 @@ class ArtefactList extends React.Component {
             <div className="ArtefactList">
                 <h2>Browsing your collection...</h2>
                 <ArtefactHandler type={"create"} />
-                { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
+                { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}
             </div>
 
             </React.Fragment>
@@ -60,7 +59,7 @@ const mapStateToProps = (state) => {
       // profile: state.firebase.profile,
     }
 }
-  
+
 export default compose(
     connect(mapStateToProps),
     firestoreConnect(() => [{
