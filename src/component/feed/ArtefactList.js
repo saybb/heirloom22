@@ -8,7 +8,6 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { Row } from 'antd';
 
 // components
 import ArtefactListElement from "./ArtefactListElement.js";

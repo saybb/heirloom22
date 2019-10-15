@@ -8,13 +8,14 @@ import React from "react";
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
+import moment from 'moment';
 import ItemLinks from "./ItemLinks.js";
 import AddendumList from "./AddendumList.jsx";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import DelComfirmation from "../forms/DelComfirmation";
-import {Divider, Row} from 'antd';
+import {Divider, Row, PageHeader, Descriptions} from 'antd';
 import "./Objects.css";
 
 const Artefact = props => {
@@ -38,15 +39,31 @@ const Artefact = props => {
          </div>
       );
    }
-
    return (
       <div>
+            <PageHeader
+               onBack={() => window.history.back()}
+               title={artefact[id].name}
+            >
+               <Descriptions size="small" column={2}>
+               <Descriptions.Item label="Created by">{artefact[id].created_by}</Descriptions.Item>
+                  <Descriptions.Item label="Created at">
+                     {moment(artefact[id].date_created.toDate()).format('LL')}
+                  </Descriptions.Item>
+                  
+                  {artefact[id].last_modified ?
+                  <Descriptions.Item label="Last Modified">
+                   {moment(artefact[id].last_modified.toDate()).calendar()}
+                  </Descriptions.Item>
+                  :
+                  null
+                  }
+               </Descriptions>
+            </PageHeader>
          <ImageDisplay media_links={artefact[id].media_links} />
          <div className='object-content'>
-            <h2>{artefact[id].name}</h2>
-            <p>{artefact[id].details}</p>
             <p>{artefact[id].description}</p>
-            <Row style={{display: "flex", alignItems: "center"}}>
+            <Row className="contentLink" type="flex">
                <ArtefactHandler docId={id} />
                <Divider type='vertical' />
                <DelComfirmation
@@ -55,7 +72,7 @@ const Artefact = props => {
                   history={props.history}
                />
             </Row>
-            <Divider />
+
             {/* ItemLinks will render links as items with names and relation descriptors */}
             <div className='List'>
                <AddendumList id={id} />

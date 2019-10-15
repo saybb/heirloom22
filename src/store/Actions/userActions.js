@@ -2,10 +2,10 @@ import firebase from '../../firebase/config'
 
 export const createObj = (objType, obj) => {
     return (dispatch, getState, { auth, firestore }) => {
-        const authorId = getState().firebase.auth.uid;
         firestore.collection(objType).add({
             ...obj,
-            created_by: authorId,
+            authroId: auth.currentUser.uid,
+            created_by: auth.currentUser.displayName,
             date_created: new Date(),
             last_modified: new Date()
         }).then((doc) => {

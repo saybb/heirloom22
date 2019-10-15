@@ -6,7 +6,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Divider, Row, Icon, Button} from 'antd';
+import {Divider, Row, Icon} from 'antd';
 import RelationForm from '../forms/RelationForm'
 import DeleteRelation from '../util/DeleteRelation';
 import './ItemLinks.css';

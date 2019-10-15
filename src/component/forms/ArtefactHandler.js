@@ -74,7 +74,8 @@ class ArtefactHandler extends React.Component {
       if (type === "create") {
          const newArtefact = await firestore.collection(ARTEFACTS).add({
             ...artefact,
-            created_by: auth.uid,
+            authorId: auth.uid,
+            created_by: auth.displayName,
             date_created: new Date(),
             last_modified: new Date(),
          })
