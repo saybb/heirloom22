@@ -8,7 +8,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
-import { PageHeader, Tag } from 'antd';
+import { PageHeader, Tag, Spin } from 'antd';
 
 // components
 import ArtefactListElement from "./ArtefactListElement.js";
@@ -23,7 +23,7 @@ class ArtefactList extends React.Component {
         if(!artefacts){
             return (
                 <div className="container center">
-                    <h2>Loading artefacts...</h2>
+                    <Spin tip="Loading artefacts..." size="large" />
                 </div>
             )
         }

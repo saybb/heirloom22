@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { EVENTS, PEOPLE } from "../../store/objectTypes"
-import { Form, Input, Select, Button } from "antd";
+import { Form, Input, Select, Button, Icon, Spin, Divider } from "antd";
 import ImageUpload from "../util/imageUpload";
 import { makeID } from "../util/Makeid";
 import {storageRef} from "../../firebase/config";
@@ -16,6 +16,7 @@ const { TextArea } = Input;
 
 class ArtefactForm extends React.Component {
     state = {
+        loading: false,
         events_selected: [],
         people_selected: [],
         people_links: {},
@@ -25,8 +26,13 @@ class ArtefactForm extends React.Component {
         photoURL: null,
     }
 
+    toggle = () => {
+        this.setState({ loading: true });
+      };
+
     resetState = () => {
         this.setState({
+            loading: false,
             events_selected: [],
             people_selected: [],
             people_links: {},
@@ -49,21 +55,20 @@ class ArtefactForm extends React.Component {
     handleSubmit = async (e) => {
         e.preventDefault();
 
-        //upload file first
-        if(this.state.file){
-            //await this.props.uploadFile("image/" + this.props.auth.uid + "/" + this.state.file.name, this.state.file);
-            let snapshot = await storageRef.child("image/" + this.props.auth.uid + "/" + makeID(10) + this.state.file.name)
-            .put(this.state.file);
-            this.setState({
-                photoURL: await snapshot.ref.getDownloadURL(),
-            })
-        }
-
         // fields must pass validation before submission
         // For update relation for both objects, create artefact first => update relation info
-        this.props.form.validateFields((err, values) => {
+        this.props.form.validateFields(async (err, values) => {
             if (!err) {
-                // const { events, people } = this.props;
+                this.toggle();
+                //upload file first
+                if(this.state.file){
+                    //await this.props.uploadFile("image/" + this.props.auth.uid + "/" + this.state.file.name, this.state.file);
+                    let snapshot = await storageRef.child("image/" + this.props.auth.uid + "/" + makeID(10) + this.state.file.name)
+                    .put(this.state.file);
+                    this.setState({
+                        photoURL: await snapshot.ref.getDownloadURL(),
+                    })
+                }
                 // build artefact from form
                 const artefact = {
                     name: values.name,
@@ -86,9 +91,10 @@ class ArtefactForm extends React.Component {
 
     render() {
         const { getFieldDecorator } = this.props.form;
-        const { type } = this.props;
+        const { type, handleCancel } = this.props;
+        const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
         return(
-            
+            <Spin spinning={this.state.loading} indicator={antIcon} tip="uploading" size="large">
             <Form onSubmit={ this.handleSubmit } className="CreateArtefactForm">
                 <Form.Item label="Name">{getFieldDecorator('name',
                     { rules : [
@@ -107,11 +113,17 @@ class ArtefactForm extends React.Component {
                 )}</Form.Item>
                 
                 { type === "create" && <this.RelationFormItems form={getFieldDecorator}/>}
-                <Form.Item><ImageUpload handleFile={this.handleFile}/></Form.Item>
-                <Form.Item>
-                    <Button type="primary" ghost htmlType="submit">Submit</Button>
+                <Form.Item label="Photo (JPG or PNG format only, file size must be less than 5M)">
+                    <ImageUpload handleFile={this.handleFile}/>
                 </Form.Item>
             </Form>
+            <Divider type='horizontal' />
+            <div type="flex" align="right">
+                    <Button type="default" onClick={handleCancel}>Cancel</Button>
+                    <Divider type='vertical' />
+                    <Button type="primary" ghost onClick={this.handleSubmit}>Submit</Button>
+            </div>
+            </Spin>
         );
     }
 

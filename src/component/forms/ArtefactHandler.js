@@ -130,18 +130,11 @@ class ArtefactHandler extends React.Component {
             </Button>
 
             <Modal
+               style={{ top: 20 }}
                visible={this.state.visible}
                title={this.state.title}
                onCancel={this.handleCancel}
-               footer={[
-                  <Button
-                     key='cancel'
-                     type='default'
-                     onClick={this.handleCancel}
-                  >
-                     Cancel
-                  </Button>
-               ]}
+               footer={null}
             >
                {this.state.type === "create" ? (
                   <React.Fragment>
@@ -155,6 +148,7 @@ class ArtefactHandler extends React.Component {
                   handleFieldChange={this.handleFieldChange}
                   type={this.state.type}
                   docId={this.state.docId}
+                  handleCancel={this.handleCancel}
                />
             </Modal>
          </React.Fragment>

@@ -63,12 +63,11 @@ export default class Addendum extends React.Component {
          reference
       } = this.props.document;
       const docId = this.props.id;
-      console.log(this.props.document);
       return (
          <div className='polaroid'>
             <div className='container'>
                <h4>{convert_date_to_string(date_created)}</h4>
-               <p style={{color: "#1890ff"}}>By: {created_by? capitalize(created_by) : null}</p>
+               <p style={{color: "#1890ff"}}>By: {created_by? capitalize(created_by) : "unknown"}</p>
                <p>{details}</p>
                { media_links && media_links.length ? <ImageDisplay media_links={media_links} /> : null}
             </div>

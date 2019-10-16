@@ -9,7 +9,7 @@ import "./Objects.css";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
-import {PageHeader, Descriptions} from 'antd';
+import {PageHeader, Descriptions, Spin} from 'antd';
 import moment from 'moment';
 
 import {EVENTS} from "../../store/objectTypes"
@@ -27,7 +27,7 @@ const Event = props => {
    if (!event) {
       return (
          <div className="object-content">
-            <h2>Event is loading...</h2>
+            <Spin tip="Loading..." size="large"/>
          </div>
       );
    }
@@ -39,8 +39,6 @@ const Event = props => {
          </div>
       );
    }
-
-   console.log(event);
 
    return (
       <div>
