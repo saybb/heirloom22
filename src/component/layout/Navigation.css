@@ -62,11 +62,6 @@
    font-weight: bold;
 }
 
-.nav-bar li:active {
-   background-color: #e6f7ff;
-   color: #096dd9;
-   font-weight: bold;
-}
 
 /* overwrite the change in color */
 .main-menu .logo:hover {

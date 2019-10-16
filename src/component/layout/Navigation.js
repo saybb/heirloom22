@@ -6,17 +6,39 @@
 
 import React from "react";
 import {connect} from "react-redux";
-import {NavLink} from "react-router-dom";
+import {NavLink, withRouter} from "react-router-dom";
 import {Affix, Button} from "antd";
 import {signOut} from "../../store/Actions/authActions";
 import logo from "../../heirloom22_logo.svg";
 import UserModal from "../profile/UserModal.js";
 import "./Navigation.css";
 
+// dynamic style
+const active_style = {
+   backgroundColor: "#e6f7ff",
+   color: " #096dd9",
+   fontWeight: "bold"
+};
+
 // menu for site navigation
 // returns an unordered list of links
-const MainMenu = props => {
-   const {auth, className} = props;
+const WithoutRouterMainMenu = props => {
+   const {auth, className, location} = props;
+
+   // check which page we are on
+   let current_position = location.pathname;
+   const Gallery = "/feed";
+   const Home = "/";
+
+   let gallery_style = {};
+   let home_style = {};
+
+   if (current_position == Gallery) {
+      gallery_style = active_style;
+   }
+   if (current_position == Home) {
+      home_style = active_style;
+   }
 
    // default class name
    if (!className) className = "main-menu";
@@ -30,10 +52,10 @@ const MainMenu = props => {
                   <img src={logo} alt='logo' />
                </NavLink>
             </li>
-            <li key='home'>
+            <li key='home' style={home_style}>
                <NavLink to='/'>Home</NavLink>
             </li>
-            <li key='list'>
+            <li key='list' style={gallery_style}>
                <NavLink to='/feed'>Gallery</NavLink>
             </li>
          </ul>
@@ -53,6 +75,7 @@ const MainMenu = props => {
       );
    }
 };
+const MainMenu = withRouter(WithoutRouterMainMenu);
 
 const HamburgerButton = props => {
    let {onClick, className} = props;
