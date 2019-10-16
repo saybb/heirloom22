@@ -6,7 +6,9 @@
 
 /* define color variables */
 :root {
-   --theme-color: aliceblue;
+   --theme-color: #f3f3f3;
+   --hover-color: aliceblue;
+   --bold-color: #096dd9;
 }
 
 /* make reference more clickable */
@@ -33,7 +35,6 @@
    /* font size */
    font-size: 1.2rem;
    background-color: var(--theme-color);
-   border-radius: 30px 0 0 30px;
 }
 
 .main-menu,
@@ -57,11 +58,14 @@
 }
 
 .nav-bar li:hover {
-   background-color: #e6f7ff;
-   color: #096dd9;
+   background-color: var(--hover-color);
+   color: var(--bold-color);
    font-weight: bold;
 }
 
+#gallery:hover {
+   background-color: white;
+}
 
 /* overwrite the change in color */
 .main-menu .logo:hover {
@@ -100,7 +104,7 @@
 }
 
 /* a css query that runs if the max width condition is meet */
-@media (max-width: 600px) {
+@media (max-width: 700px) {
    /* display the toggle-button */
    .toggle-button {
       display: flex;

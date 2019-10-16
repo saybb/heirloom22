@@ -7,18 +7,11 @@
 import React from "react";
 import {connect} from "react-redux";
 import {NavLink, withRouter} from "react-router-dom";
-import {Affix, Button} from "antd";
+import {Button} from "antd";
 import {signOut} from "../../store/Actions/authActions";
 import logo from "../../heirloom22_logo.svg";
 import UserModal from "../profile/UserModal.js";
 import "./Navigation.css";
-
-// dynamic style
-const active_style = {
-   backgroundColor: "#e6f7ff",
-   color: " #096dd9",
-   fontWeight: "bold"
-};
 
 // menu for site navigation
 // returns an unordered list of links
@@ -29,15 +22,27 @@ const WithoutRouterMainMenu = props => {
    let current_position = location.pathname;
    const Gallery = "/feed";
    const Home = "/";
-
+   console.log(current_position);
+   // dynamic style
    let gallery_style = {};
    let home_style = {};
+   const gallery_style_active = {
+      backgroundColor: "white",
+      color: " #096dd9",
+      fontWeight: "bold"
+   };
+
+   const home_style_active = {
+      backgroundColor: "aliceblue",
+      color: " #096dd9",
+      fontWeight: "bold"
+   };
 
    if (current_position == Gallery) {
-      gallery_style = active_style;
+      gallery_style = gallery_style_active;
    }
    if (current_position == Home) {
-      home_style = active_style;
+      home_style = home_style_active;
    }
 
    // default class name
@@ -55,7 +60,7 @@ const WithoutRouterMainMenu = props => {
             <li key='home' style={home_style}>
                <NavLink to='/'>Home</NavLink>
             </li>
-            <li key='list' style={gallery_style}>
+            <li key='list' style={gallery_style} id='gallery'>
                <NavLink to='/feed'>Gallery</NavLink>
             </li>
          </ul>
@@ -83,7 +88,7 @@ const HamburgerButton = props => {
    if (!className) className = "hamburger-button";
    return (
       <Button type='primary' className={className} onClick={onClick}>
-         <p id='button-text'>More Information</p>
+         <p id='button-text'>Account</p>
       </Button>
    );
 };
@@ -172,17 +177,15 @@ class Navigation extends React.Component {
       const {auth, signOut} = this.props;
 
       return (
-         <Affix>
-            <div className='nav-bar'>
-               <MainMenu auth={this.props.auth} className='main-menu' />
+         <div className='nav-bar'>
+            <MainMenu auth={this.props.auth} className='main-menu' />
 
-               <UserMenu
-                  auth={auth}
-                  signOutHandler={signOut}
-                  className='user-menu'
-               />
-            </div>
-         </Affix>
+            <UserMenu
+               auth={auth}
+               signOutHandler={signOut}
+               className='user-menu'
+            />
+         </div>
       );
    }
 }
