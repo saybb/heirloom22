@@ -49,7 +49,10 @@ class App extends React.Component {
          <Router>
             <Layout style={{backgroundColor: "white"}}>
                <Navigation />
-               <Content className='App' style={{width: this.state.width}}>
+               <Content
+                  className='App'
+                  style={{width: this.state.width, backgroundColor: "white"}}
+               >
                   <this.HomeRoutes />
                </Content>
                <Footer
