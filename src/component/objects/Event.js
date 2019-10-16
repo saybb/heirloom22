@@ -9,6 +9,10 @@ import "./Objects.css";
 import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
+import {PageHeader, Descriptions, Spin} from 'antd';
+import moment from 'moment';
+
+import {EVENTS} from "../../store/objectTypes"
 
 const Event = props => {
    const { event } = props;
@@ -23,7 +27,7 @@ const Event = props => {
    if (!event) {
       return (
          <div className="object-content">
-            <h2>Event is loading...</h2>
+            <Spin tip="Loading..." size="large"/>
          </div>
       );
    }
@@ -36,20 +40,38 @@ const Event = props => {
       );
    }
 
-   console.log(event);
-
    return (
+      <div>
+            <PageHeader
+               onBack={() => window.history.back()}
+               title={event[id].name}
+               subTitle={'Occured on: '+ event[id].date.toDate().toLocaleDateString("en-AU", options)}
+            >
+               <Descriptions size="small" column={2}>
+               <Descriptions.Item label="Created by">{event[id].created_by}</Descriptions.Item>
+                  <Descriptions.Item label="Created at">
+                     {moment(event[id].date_created.toDate()).format('LL')}
+                  </Descriptions.Item>
+                  
+                  {event[id].last_modified ?
+                  <Descriptions.Item label="Last Modified">
+                   {moment(event[id].last_modified.toDate()).calendar()}
+                  </Descriptions.Item>
+                  :
+                  null
+                  }
+               </Descriptions>
+            </PageHeader>
       <div className="object-content">
-         <h2>{event[id].name}</h2>
-         <p>
-            Occurred on:{" "}
-            {event[id].date.toDate().toLocaleDateString("en-AU", options)}
-         </p>
          <p>{event[id].details}</p>
          <ItemLinks
             title="Related Artefacts"
+            fieldName='artefacts_links'
+            objType={EVENTS}
             items={event[id].artefacts_links}
+            docId={id}
          />
+      </div>
       </div>
    );
 };

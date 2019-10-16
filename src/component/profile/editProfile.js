@@ -2,9 +2,12 @@ import React, { Fragment} from 'react'
 import { connect } from 'react-redux'
 import { Form, Input } from 'antd';
 
-const EditProfile = ({handleChange, state}) => {
+import ImageUpload from "../util/imageUpload";
+
+const EditProfile = ({handleChange, handleFile}) => {
     return (
       <Fragment>
+        <ImageUpload handleFile={handleFile}/>
         <Form >
         <Form.Item >
             <Input id="name" placeholder="first name" onChange={handleChange}/>

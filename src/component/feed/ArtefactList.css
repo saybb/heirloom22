@@ -3,19 +3,39 @@
  * CSS styles for ArtefactList.js
  */
 
-.ArtefactList {
-    margin: 0 auto;
+.artefact-list-wrapper {
+    margin: 2rem auto 0 auto;
 }
 
-.ArtefactListElement {
-    padding: 1.25em 0.5em;
-    transition: 0.5s;
+.artefact-list {
+    margin: 1rem 0;
+    line-height: 0;
+    -moz-column-count:    1;
+    -webkit-column-count: 1;
+    column-count:         1;
 }
 
-.ArtefactListElement:hover {
-    background: #f8f8f8;
+@media screen and (min-width: 768px) {
+    .artefact-list {
+        -moz-column-count:    2;
+        -webkit-column-count: 2;
+        column-count:         2;
+    }
 }
 
-.ArtefactListElementDivider {
-    margin: 0;
+@media screen and (min-width: 1268px) {
+    .artefact-list {
+        -moz-column-count:    3;
+        -webkit-column-count: 3;
+        column-count:         3;
+    }
+}
+
+.artefact-list-element {
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+
+    margin-bottom: 1em;
+    width: auto;
 }

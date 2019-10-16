@@ -11,7 +11,7 @@
  */
 
 import React, {Component} from "react";
-import {Button} from "antd";
+import {Divider, Row} from "antd";
 // connect to backend
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
@@ -33,41 +33,24 @@ function createPath(id) {
  *   - id: the id of the artefact
  */
 export class AddendumList extends Component {
-   constructor(props) {
-      super(props);
-      this.state = {
-         visible: false,
-         path: createPath(props.id)
-      };
-   }
-
-   showModal = () => {
-      this.setState({
-         visible: true
-      });
+   state = {
+      path: createPath(this.props.id)
    };
 
    handleDelete = id => {
       this.props.deleteObj(ADDENDUMS, id);
    };
 
-   handleCancel = () => {
-      this.setState({
-         visible: false
-      });
-   };
-
    // input: a list of addendum documents
    // output: a html list of Addendums
    generateList(list) {
       return list.map(element => (
-         <li key={element[0]}>
-            <Addendum
-               id={element[0]}
-               document={element[1]}
-               delete={this.handleDelete}
-            />
-         </li>
+         <Addendum
+            key={element[0]}
+            id={element[0]}
+            document={element[1]}
+            delete={this.handleDelete}
+         />
       ));
    }
 
@@ -93,31 +76,40 @@ export class AddendumList extends Component {
       );
    }
 
+   // return the title of the List
+   header = title => {
+      return (
+         <h3>
+            <Row style={{display: "flex", alignItems: "center"}}>
+               {title}
+               <Divider type='vertical' />
+               <AddendumHandler
+               artefact_id={this.props.id}
+               type='create'
+               />
+            </Row>
+         </h3>
+      );
+   };
+
    render() {
       // grab the addendums object
       const {addendums} = this.props;
-      console.log(addendums);
-      let filtered_addendumsList = [];
+
       // check if we received the addendums
+      let filtered_addendumsList = [];
       if (addendums) {
          filtered_addendumsList = this.getAddendums(addendums);
-         // console.log("filtered_addendumsList", filtered_addendumsList);
       }
+
       // check if there are any addendums
       return (
          <div>
-            <h2>Addendums</h2>
-            <Button onClick={this.showModal}> Add an addendum </Button>
-            <AddendumHandler
-               artefact_id={this.props.id}
-               visible={this.state.visible}
-               onCancel={this.handleCancel}
-               type='create'
-            />
+            {this.header("Addendums")}
             {filtered_addendumsList.length === 0 ? (
                <p>Press add an addendum button to create addendums</p>
             ) : (
-               <ul>{this.generateList(filtered_addendumsList)}</ul>
+               this.generateList(filtered_addendumsList)
             )}
          </div>
       );

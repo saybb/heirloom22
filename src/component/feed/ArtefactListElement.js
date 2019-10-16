@@ -5,9 +5,10 @@
  */
 
 import React from 'react';
-import { Divider } from 'antd';
+import { Card } from 'antd';
 import { Link } from 'react-router-dom';
 
+const { Meta } = Card;
 /**
  * Function element.
  * Props:
@@ -40,20 +41,26 @@ function ArtefactListElement(props) {
      *   - excerpt of description
      */
     return(
-        <React.Fragment>
-            <div className="card">
-                <div className="ArtefactListElement">
-                    <Link to={"/view/artefacts/" + reference}>
-
-                        <b>{ excerpt(artefact.name, TITLE_LENGTH) }</b>
-                        { // only show details section if it's not empty
-                            artefact.details && " | " + excerpt(artefact.details, DESC_LENGTH)
+        artefact
+        ? 
+            <div>
+                <Link to={"/view/artefacts/" + reference}>
+                    <Card
+                        hoverable
+                        className="artefact-list-element"
+                        cover={(artefact.media_links||[]).length > 0
+                            ? <img alt="cover" src={artefact.media_links[0].url} />
+                            : null
                         }
-                    </Link>
-                </div>
-                <Divider className="ArtefactListElementDivider" />
+                    >
+                        <Meta
+                            title={excerpt(artefact.name, TITLE_LENGTH)}
+                            description={artefact.description && excerpt(artefact.description, DESC_LENGTH)}
+                        />
+                    </Card>
+                </Link>             
             </div>
-        </React.Fragment>
+        : <p>Nothing to show</p>
     );
 }
 

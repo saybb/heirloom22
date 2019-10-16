@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Modal, Button} from "antd";
+import {Modal, Button, Icon} from "antd";
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
@@ -8,12 +8,28 @@ import {createObj, editObj} from "../../store/Actions/userActions";
 import {ADDENDUMS} from "../../store/objectTypes";
 import AddendumForm from "./AddendumForm.jsx";
 
+/**
+ * Handles edit, delete, create
+ */
 export class AddendumHandler extends Component {
    state = {
+      visible: false,
       type: this.props.type,
       title:
          this.props.type === "create" ? "Create an Addendum" : "Edit Addendum",
       docId: this.props.docId ? this.props.docId : null
+   };
+
+   showModal = () => {
+      this.setState({
+         visible: true
+      });
+   };
+
+   handleCancel = () => {
+      this.setState({
+         visible: false
+      });
    };
 
    handleSubmit = addendum => {
@@ -23,32 +39,45 @@ export class AddendumHandler extends Component {
       );
 
       console.log(addendum);
-
+      console.log(this.props.docId);
       if (this.state.type === "create") {
          this.props.createObj(ADDENDUMS, addendum);
       } else {
          this.props.editObj(ADDENDUMS, this.props.docId, addendum);
       }
 
-      setTimeout(() => {
-         this.setState({visible: false});
-         // visibile needs to be propogated to the parent
-         this.props.onCancel();
-      }, 1000);
+      this.setState({visible: false});
    };
 
    render() {
       return (
-         <div>
+         <React.Fragment>
+            {/* Choose button based on edit vs create */}
+            {this.state.type === "create" ? (
+               <Button
+                  type='primary'
+                  shape='circle'
+                  icon={"file-add"}
+                  ghost
+                  onClick={this.showModal}
+                  size='small'
+               />
+            ) : (
+               <Button size='small' onClick={this.showModal}>
+                  <Icon type='form' />
+                  {"Edit"}
+               </Button>
+            )}
+
             <Modal
-               visible={this.props.visible}
-               onCancel={this.props.onCancel}
+               visible={this.state.visible}
+               onCancel={this.handleCancel}
                title={this.state.title}
                footer={[
                   <Button
                      key='cancel'
                      type='default'
-                     onClick={this.props.onCancel}
+                     onClick={this.handleCancel}
                   >
                      Cancel
                   </Button>
@@ -56,7 +85,7 @@ export class AddendumHandler extends Component {
             >
                <AddendumForm handleSubmit={this.handleSubmit} />
             </Modal>
-         </div>
+         </React.Fragment>
       );
    }
 }

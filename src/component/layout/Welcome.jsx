@@ -17,8 +17,9 @@ import {NavLink} from "react-router-dom";
 
 // redux
 import {connect} from "react-redux";
-
+import {signOut} from "../../store/Actions/authActions";
 // style
+import {capitalize} from "../util/Text";
 import {Button, Row, Col, Icon} from "antd";
 import "./Welcome.css";
 import logo from "../../heirloom22_logo.svg";
@@ -28,11 +29,6 @@ class Welcome extends Component {
       textAlign: "center"
    };
 
-   capitalize(string) {
-      // https://paulund.co.uk/index.php/how-to-capitalize-the-first-letter-of-a-string-in-javascript
-      return string.charAt(0).toUpperCase() + string.slice(1);
-   }
-
    welcomeMessage = () => {
       // the profile information
       const {profile, auth} = this.props;
@@ -40,7 +36,7 @@ class Welcome extends Component {
       if (auth && auth.displayName) name = auth.displayName;
       else if (profile && profile.name) name = profile.name;
       else name = "Visiter";
-      name = this.capitalize(name);
+      name = capitalize(name);
 
       // Welcome message
       if (!auth.uid) {
@@ -140,8 +136,11 @@ class Welcome extends Component {
                   <Row className='title'>Log out</Row>
                   <Row>
                      Click on
-                     <Button type='danger' className='LeftRightMargin'>
-                        <NavLink to='/signup'>Log out</NavLink>
+                     <Button
+                        onClick={this.props.signOut}
+                        className='LeftRightMargin'
+                     >
+                        Log out
                      </Button>
                      to exit this application correctly.
                   </Row>
@@ -194,4 +193,12 @@ const mapStateToProps = state => {
    };
 };
 
-export default connect(mapStateToProps)(Welcome);
+const mapDispatchToProps = dispatch => {
+   return {
+      signOut: () => dispatch(signOut())
+   };
+};
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(Welcome);

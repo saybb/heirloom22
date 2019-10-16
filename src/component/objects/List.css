@@ -1,0 +1,18 @@
+/* A list style that applies to all list elements
+   1. List of related events
+   2. List of related people
+   3. List of Addendums
+*/
+.List {
+   width: 100%;
+}
+
+.right-align {
+   text-align: right;
+   padding: 10px;
+}
+
+.left-align {
+   text-align: left;
+   padding: 10px;
+}

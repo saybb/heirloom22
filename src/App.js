@@ -13,6 +13,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import "./App.css";
 import "antd/dist/antd.css";
+import {Layout, Affix} from "antd";
 
 /* Components */
 import Navigation from "./component/layout/Navigation.js";
@@ -23,7 +24,9 @@ import Event from "./component/objects/Event.js";
 import Person from "./component/objects/Person.js";
 import SignIn from "./component/auth/SignIn";
 import SignUp from "./component/auth/SignUp";
-import Avatar from "./component/util/Avatar";
+import ImageUpload from "./component/util/imageUpload";
+
+const {Content, Footer} = Layout;
 
 class App extends React.Component {
    constructor(props, context) {
@@ -44,10 +47,17 @@ class App extends React.Component {
    render() {
       return (
          <Router>
-            <Navigation />
-            <div className='App' style={{width: this.state.width}}>
-               <this.HomeRoutes />
-            </div>
+            <Layout style={{backgroundColor: "white"}}>
+               <Navigation />
+               <Content className='App' style={{width: this.state.width}}>
+                  <this.HomeRoutes />
+               </Content>
+               <Footer
+                  style={{textAlign: "center", backgroundColor: "aliceblue"}}
+               >
+                  CALL ©2019
+               </Footer>
+            </Layout>
          </Router>
       );
    }
@@ -78,7 +88,7 @@ class App extends React.Component {
                <Route path='/view/people/:id' component={Person} />
 
                <Route path='/signup' component={SignUp} />
-               <Route path='/upload' component={Avatar} />
+               <Route path='/upload' component={ImageUpload} />
 
                {/* default to "/" if unrecognised route. */}
                <Route render={() => <Redirect to='/' />} />

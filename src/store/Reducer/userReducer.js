@@ -8,8 +8,10 @@ const userReducer = (state = initState, action) => {
     
       case 'CREATE_SUCCESS':
         console.log('create success');
-        return state;
-
+        return {
+          ...state,
+          doc: action.doc,
+        };
       case 'CREATE_ERROR':
           console.log('create error');
           return {
@@ -51,6 +53,17 @@ const userReducer = (state = initState, action) => {
           return {
             ...state,
             errMess: 'update failed'
+          }
+      
+      case 'APPEND_SUCCESS':
+          console.log('append success');
+          return state;
+      
+      case 'APPEND_ERROR':
+          console.log('append error');
+          return {
+            ...state,
+            errMess: 'Append failed'
           }
 
       default:

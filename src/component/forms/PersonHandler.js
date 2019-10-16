@@ -4,7 +4,7 @@
  */
  
 import React from "react";
-import { Modal, Button } from "antd";
+import { Modal, Button, Icon } from "antd";
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 
@@ -18,7 +18,7 @@ class PersonHandler extends React.Component {
         this.state = {
             visible: false,
             type: this.props.type,
-            title: this.props.type === "create" ? "Create an Event" : "Edit Event",
+            title: this.props.type === "create" ? "Create a Person" : "Edit Person",
             docId: this.props.docId ? this.props.docId : null
         }
     }
@@ -41,15 +41,13 @@ class PersonHandler extends React.Component {
         } else {
             this.props.editObj(PEOPLE, this.props.docId, person)
         }
-        setTimeout(() => {
-            this.setState({ visible: false });
-          }, 1000);
+        this.setState({ visible: false });
     }
 
     render() {
         return (
             <React.Fragment>
-                <Button type="primary" onClick={this.showModal}>Create Person</Button>
+                <Button type="primary" ghost onClick={this.showModal} style={{margin: "0 1rem"}}><Icon type="plus-square"/>{this.state.title}</Button>
                 <Modal
                     visible={this.state.visible}
                     title="Create a new Person"

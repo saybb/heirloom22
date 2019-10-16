@@ -4,65 +4,77 @@
  * Requests for relevant content will be made from this component.
  */
 
-import React from 'react';
-import { connect } from 'react-redux'
-import { firestoreConnect } from 'react-redux-firebase'
-import { compose } from 'redux'
+import React from "react";
+import {connect} from "react-redux";
+import {firestoreConnect} from "react-redux-firebase";
+import {compose} from "redux";
+import {PageHeader, Tag, Spin, Affix} from "antd";
 
 // components
 import ArtefactListElement from "./ArtefactListElement.js";
-import './ArtefactList.css';
+import "./ArtefactList.css";
 import ArtefactHandler from "../forms/ArtefactHandler.js";
-import { ARTEFACTS } from "../../store/objectTypes";
+import {ARTEFACTS} from "../../store/objectTypes";
 
 class ArtefactList extends React.Component {
-
-    render() {
-        const { artefacts } = this.props;
-
-        if(!artefacts){
-            return (
-                <div className="container center">
-                    <h2>Loading artefacts...</h2>
-                </div>
-            )
-        }
-        if(artefacts && !Object.keys(artefacts)){
-            return (
-                <div className="container center">
-                    <h2>No artefact found.</h2>
-                </div>
-            )
-        }
-        return(
-            <React.Fragment>
-                <div className="tech-slideshow">
-                    <div className="mover-1"></div>
-                    <div className="mover-2"></div>
-                </div>
-            <div className="ArtefactList">
-                <h2>Browsing your collection...</h2>
-                <ArtefactHandler type={"create"} />
-                { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}
+   render() {
+      const {artefacts, profile} = this.props;
+      if (!artefacts) {
+         return (
+            <div className='container center'>
+               <Spin tip='Loading artefacts...' size='large' />
             </div>
-
-            </React.Fragment>
-
-        )
-    }
+         );
+      }
+      if (artefacts && !Object.keys(artefacts)) {
+         return (
+            <div className='container center'>
+               <h2>No artefact found.</h2>
+            </div>
+         );
+      }
+      return (
+         <React.Fragment>
+            <Affix>
+               <PageHeader
+                  onBack={() => window.history.back()}
+                  title='Browsing your collection'
+                  tags={<Tag color='blue'>{profile.name}</Tag>}
+                  extra={[<ArtefactHandler type={"create"} />]}
+                  avatar={{src: profile.photoURL}}
+                  style={{backgroundColor: "white", borderBottom: "solid"}}
+               ></PageHeader>
+            </Affix>
+            <div className='artefact-list-wrapper'>
+               <div className='artefact-list'>
+                  {artefacts &&
+                     Object.entries(artefacts).map(([id, artefact]) => (
+                        <ArtefactListElement
+                           key={id}
+                           reference={id}
+                           artefact={artefact}
+                        />
+                     ))}
+               </div>
+            </div>
+         </React.Fragment>
+      );
+   }
 }
 
-const mapStateToProps = (state) => {
-    return {
+const mapStateToProps = state => {
+   return {
       artefacts: state.firestore.data.Artefacts,
       auth: state.firebase.auth,
-      // profile: state.firebase.profile,
-    }
-}
+      profile: state.firebase.profile
+   };
+};
 
 export default compose(
-    connect(mapStateToProps),
-    firestoreConnect(() => [{
-        collection: ARTEFACTS,
-    }])
-)(ArtefactList)
+   connect(mapStateToProps),
+   firestoreConnect(() => [
+      {
+         collection: ARTEFACTS
+      }
+   ])
+)(ArtefactList);

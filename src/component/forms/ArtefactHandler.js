@@ -4,12 +4,13 @@
  */
 
 import React from "react";
-import {Modal, Button} from "antd";
+import {Modal, Button, Icon} from "antd";
 import {connect} from "react-redux";
 import {compose} from "redux";
 
-import {createObj, editObj} from "../../store/Actions/userActions";
-import {ARTEFACTS} from "../../store/objectTypes";
+import { firestore } from "../../firebase/config"
+import {createObj, editObj, fieldAppend} from "../../store/Actions/userActions";
+import {ARTEFACTS, EVENTS, PEOPLE} from "../../store/objectTypes";
 import ArtefactForm from "./ArtefactForm.js";
 import EventHandler from "./EventHandler.js";
 import PersonHandler from "./PersonHandler.js";
@@ -24,8 +25,30 @@ class ArtefactHandler extends React.Component {
             this.props.type === "create"
                ? "Create an Artefact"
                : "Edit Artefact",
-         docId: this.props.docId ? this.props.docId : null
+         buttonText:
+            this.props.type === "create"
+               ? "Create an Artefact"
+               : "Edit",
+         docId:
+            this.props.docId
+               ? this.props.docId
+               : null,
+         icon:
+            this.props.type === "create"
+               ? "plus-square"
+               : "form",
+         
+         events_selected: [],
+         people_selected: [],
+         events_links: {},
+         people_links: {},
+         events_names:{},
+         people_names:{},
       };
+   }
+
+   handleFieldChange = (field) =>{
+      this.setState(field);
    }
 
    showModal = () => {
@@ -40,39 +63,78 @@ class ArtefactHandler extends React.Component {
       });
    };
 
-   handleSubmit = artefact => {
-      console.log(artefact);
+   handleSubmit = async (artefact) => {
+      const { type, 
+         events_selected, people_selected,
+         events_links, people_links, 
+         events_names, people_names }  = this.state;
+      const { auth } = this.props;
 
-      if (this.state.type === "create") {
-         this.props.createObj(ARTEFACTS, artefact);
+      //decide action.
+      if (type === "create") {
+         const newArtefact = await firestore.collection(ARTEFACTS).add({
+            ...artefact,
+            authorId: auth.uid,
+            created_by: auth.displayName,
+            date_created: new Date(),
+            last_modified: new Date(),
+         })
+         
+         //construct and update links
+         if(events_selected.length > 0){
+            events_selected.forEach(event => {
+               const artefact_link = {
+                  name: artefact.name,
+                  reference: firestore.doc("/Artefacts/" + newArtefact.id),
+                  relation: events_links[event]
+               }
+               const event_link = {
+                  name: events_names[event],
+                  reference: firestore.doc("/Events/" + event),
+                  relation: events_links[event]
+               }
+               this.props.fieldAppend(EVENTS, event, 'artefacts_links', artefact_link)
+               this.props.fieldAppend(ARTEFACTS, newArtefact.id, 'events_links', event_link)
+            })
+         }
+
+         if(people_selected.length > 0){
+               people_selected.forEach(person => {
+                  const artefact_link = {
+                     name: artefact.name,
+                     reference: firestore.doc("/Artefacts/" + newArtefact.id),
+                     relation: people_links[person]
+                  }
+                  const person_link = {
+                     name: people_names[person],
+                     reference: firestore.doc("/People/" + person),
+                     relation: people_links[person]
+                  }
+                  this.props.fieldAppend(PEOPLE, person, 'artefacts_links', artefact_link)
+                  this.props.fieldAppend(ARTEFACTS, newArtefact.id, 'people_links', person_link)
+               })
+         }
+
       } else {
          this.props.editObj(ARTEFACTS, this.props.docId, artefact);
       }
 
-      setTimeout(() => {
-         this.setState({visible: false});
-      }, 1000);
+      this.setState({visible: false});
    };
 
    render() {
       return (
          <React.Fragment>
-            <Button type='primary' onClick={this.showModal}>
-               {this.state.title}
+            <Button type='primary' onClick={this.showModal} ghost size="small">
+               <Icon type={this.state.icon} />{this.state.buttonText}
             </Button>
+
             <Modal
+               style={{ top: 20 }}
                visible={this.state.visible}
                title={this.state.title}
                onCancel={this.handleCancel}
-               footer={[
-                  <Button
-                     key='cancel'
-                     type='default'
-                     onClick={this.handleCancel}
-                  >
-                     Cancel
-                  </Button>
-               ]}
+               footer={null}
             >
                {this.state.type === "create" ? (
                   <React.Fragment>
@@ -83,8 +145,10 @@ class ArtefactHandler extends React.Component {
 
                <ArtefactForm
                   handleSubmit={this.handleSubmit}
+                  handleFieldChange={this.handleFieldChange}
                   type={this.state.type}
                   docId={this.state.docId}
+                  handleCancel={this.handleCancel}
                />
             </Modal>
          </React.Fragment>
@@ -92,17 +156,24 @@ class ArtefactHandler extends React.Component {
    }
 }
 
+const mapStateToProps = state => {
+   return {
+      auth: state.firebase.auth
+   };
+};
+
 const mapDispatchToProps = dispatch => {
    return {
       createObj: (objType, artefact) => dispatch(createObj(objType, artefact)),
       editObj: (objType, id, artefact) =>
-         dispatch(editObj(objType, id, artefact))
+      dispatch(editObj(objType, id, artefact)),
+      fieldAppend: (objType, docId,fieldName, fieldValue) => dispatch(fieldAppend(objType, docId, fieldName ,fieldValue)),
    };
 };
 
 export default compose(
    connect(
-      null,
+      mapStateToProps,
       mapDispatchToProps
    )
 )(ArtefactHandler);

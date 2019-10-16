@@ -7,8 +7,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import {PageHeader, Descriptions,Spin} from 'antd';
+import moment from 'moment';
+
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
+import { PEOPLE } from '../../store/objectTypes.js';
 
 const Person = (props) => {
     const { person } = props;
@@ -18,7 +22,7 @@ const Person = (props) => {
     if (!person){
         return (
             <div className="object-content">
-                <h2>Person is loading...</h2>
+                <Spin tip="Loading..." size="large"/>
             </div>
         )
     }
@@ -32,11 +36,37 @@ const Person = (props) => {
     }
         
     return(
-        <div className="object-content">
-            <h2>{person[id].name + " " + person[id].lastname}</h2>
-            <p>{"Born: " + person[id].dob.toDate().toLocaleDateString("en-AU", options)}</p>
-            <p>{person[id].details}</p>
-            <ItemLinks title="Related Artefacts" items={person[id].artefacts_links}/>
+        <div>
+            <PageHeader
+               onBack={() => window.history.back()}
+               title={person[id].name + " " + person[id].lastname}
+               subTitle={'Born: '+ person[id].dob.toDate().toLocaleDateString("en-AU", options)}
+            >
+               <Descriptions size="small" column={2}>
+               <Descriptions.Item label="Created by">{person[id].created_by}</Descriptions.Item>
+                  <Descriptions.Item label="Created at">
+                     {moment(person[id].date_created.toDate()).format('LL')}
+                  </Descriptions.Item>
+                  
+                  {person[id].last_modified ?
+                  <Descriptions.Item label="Last Modified">
+                   {moment(person[id].last_modified.toDate()).calendar()}
+                  </Descriptions.Item>
+                  :
+                  null
+                  }
+               </Descriptions>
+            </PageHeader>
+            <div className="object-content">
+                <p>{person[id].details}</p>
+                <ItemLinks 
+                    title="Related Artefacts" 
+                    fieldName='artefacts_links'
+                    items={person[id].artefacts_links}
+                    objType={PEOPLE}
+                    docId={id}
+                    />
+            </div>
         </div>
     );
 } 
