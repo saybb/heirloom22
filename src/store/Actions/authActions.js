@@ -30,12 +30,11 @@ export const signUp = (newUser) => {
       newUser.password
     ).then(resp => {
       delete newUser['password'];
-      console.log(newUser);
+      newUser.photoURL = "https://firebasestorage.googleapis.com/v0/b/testing-e1ec1.appspot.com/o/No%20profile%20photo.png?alt=media&token=23fa70a3-c8a7-409d-bd73-0d38ed8772d6";
       return firestore.collection('users').doc(resp.user.uid).set(newUser)
       .then(() => {
         var user = auth.currentUser;
         user.updateProfile({ displayName: newUser.name});
-        console.log(auth.currentUser);
       }).catch(err => { console.log('Set up user profile ERROR')});
     }).then(() => {
       dispatch({ type: 'SIGNUP_SUCCESS' });

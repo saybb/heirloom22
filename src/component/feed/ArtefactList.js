@@ -35,7 +35,7 @@ class ArtefactList extends React.Component {
             )
         }
         return(
-            <div>
+            <React.Fragment>
                 <PageHeader
                     onBack={() => window.history.back()}
                     title="Browsing your collection"
@@ -51,7 +51,7 @@ class ArtefactList extends React.Component {
                         { artefacts && Object.entries(artefacts).map(([id, artefact]) => <ArtefactListElement key={id} reference={id} artefact={artefact}/>)}  
                     </div>
                 </div>
-            </div>
+            </React.Fragment>
         )
     }
 }
