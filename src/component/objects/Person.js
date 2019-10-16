@@ -7,7 +7,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import {PageHeader, Descriptions} from 'antd';
+import {PageHeader, Descriptions,Spin} from 'antd';
 import moment from 'moment';
 
 import ItemLinks from './ItemLinks.js';
@@ -22,7 +22,7 @@ const Person = (props) => {
     if (!person){
         return (
             <div className="object-content">
-                <h2>Person is loading...</h2>
+                <Spin tip="Loading..." size="large"/>
             </div>
         )
     }

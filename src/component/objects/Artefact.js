@@ -15,7 +15,7 @@ import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import DelComfirmation from "../forms/DelComfirmation";
-import {Divider, Row, PageHeader, Descriptions} from "antd";
+import {Divider, Row, PageHeader, Descriptions, Spin} from "antd";
 import "./Objects.css";
 
 const Artefact = props => {
@@ -26,7 +26,7 @@ const Artefact = props => {
    if (!artefact) {
       return (
          <div className='object-content'>
-            <h2>loading...</h2>
+            <Spin tip='Loading...' size='large' />
          </div>
       );
    }
@@ -63,7 +63,10 @@ const Artefact = props => {
          <ImageDisplay media_links={artefact[id].media_links} />
          <div className='object-content'>
             <p>{artefact[id].description}</p>
-            <Row className='contentLink' type='flex'>
+            <Row
+               className='contentLink'
+               style={{display: "flex", alignItems: "center"}}
+            >
                <ArtefactHandler docId={id} />
                <Divider type='vertical' />
                <DelComfirmation

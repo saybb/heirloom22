@@ -68,7 +68,7 @@ export default class Addendum extends React.Component {
             <div className='container'>
                <h4>{convert_date_to_string(date_created)}</h4>
                <p style={{color: "#1890ff"}}>
-                  By: {created_by ? capitalize(created_by) : "Anonymous"}
+                  By: {created_by ? capitalize(created_by) : "unknown"}
                </p>
                <p>{details}</p>
                {media_links && media_links.length ? (
