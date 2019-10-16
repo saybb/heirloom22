@@ -1,17 +1,17 @@
 import React, { Fragment, useState} from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Icon, Spin } from 'antd';
+import { Icon, Spin, Descriptions } from 'antd';
 
 const UserProfile = (props) => {
     const [loaded, setLoaded] = useState(false);
     const { auth, profile } = props;
     const loadingIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />
     if (!auth.uid) { return <Redirect to='/signin' /> }
-    
+
     return (
         <Fragment>
-            <div>
+            <div style={{textAlign: "center"}}>
             {loaded ? null :
             <Spin indicator={loadingIcon} />
             }
@@ -25,11 +25,15 @@ const UserProfile = (props) => {
                         verticalAlign: 'middle'}}
                         onLoad={() => setLoaded(true)}/>
             </div>
-            <p> {auth.email}</p>
-            <p>{profile.name}  {profile.lastName} </p>
-            <p>{profile.email}</p>
-            <p>{profile.location? profile.location : '(Please add your location)'}</p>
-            <p>{profile.bio? profile.bio : '(Please edit your bio)'}</p>
+              <Descriptions title="User Info" column={1}>
+                <Descriptions.Item label="UserName">{profile.name}  {profile.lastName}</Descriptions.Item>
+                <Descriptions.Item label="Email">{auth.email}</Descriptions.Item>
+                <Descriptions.Item label="Live">{profile.location? profile.location : '(Please add your location)'}</Descriptions.Item>
+                <Descriptions.Item label="Bio">
+                    {profile.bio? profile.bio : '(Please edit your bio)'}
+                </Descriptions.Item>
+            </Descriptions>
+
         </Fragment>
     )
 }
