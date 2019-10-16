@@ -36,6 +36,10 @@
    display: inline-block;
 }
 
+.Tutorial {
+   padding: 0 0 30px 20px;
+}
+
 .Hidden {
    background-color: white;
    font-size: 30px;

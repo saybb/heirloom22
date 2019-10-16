@@ -1,20 +1,135 @@
 /**
  * Navigation :: CSS
  * Stylesheet for the navigation bar.
+ * color design https://ant.design/docs/spec/colors
  */
 
+/* define color variables */
+:root {
+   --theme-color: aliceblue;
+}
+
+/* make reference more clickable */
+/* trick from https://stackoverflow.com/questions/11078509/how-to-increase-the-clickable-area-of-a-a-tag-button/20327676#20327676 */
+.nav-bar a {
+   display: inline-block;
+   position: relative;
+   z-index: 1;
+   padding: 1em;
+   margin: -1em;
+}
+
 .nav-bar {
+   /* flex box to display side by side  */
    display: flex;
    flex-direction: row;
-   justify-content: flex-start;
+   justify-content: space-between;
+   align-items: center;
    width: 100%;
-   margin: 0 auto 0 auto;
+   height: 100%;
+   /* remove all margins and padding */
+   margin: 0;
+   padding: 0;
+   /* font size */
+   font-size: 1.2rem;
+   background-color: var(--theme-color);
+   border-radius: 30px 0 0 30px;
 }
 
-.nav-logo {
-   margin: 0.25em;
+.main-menu,
+.user-menu {
+   margin: 0;
+   padding: 0;
+   display: flex;
+   height: 100%;
 }
 
-.menu-main {
-   width: 100%;
+.nav-bar li,
+.logo {
+   /* remove the dots */
+   list-style: none;
+   padding: 1rem;
+   display: block;
+   margin: 0%;
+   width: auto;
+   /* relative position */
+   position: relative;
+}
+
+.nav-bar li:hover {
+   background-color: #e6f7ff;
+   color: #096dd9;
+   font-weight: bold;
+}
+
+.nav-bar li:active {
+   background-color: #e6f7ff;
+   color: #096dd9;
+   font-weight: bold;
+}
+
+/* overwrite the change in color */
+.main-menu .logo:hover {
+   background-color: var(--theme-color);
+   border-radius: 30px 0 0 30px;
+}
+
+.nav-bar .main-menu li {
+   font-size: 1.4rem;
+   text-align: center;
+   margin: 0rem 3rem 0rem 0rem;
+}
+
+.user-menu {
+   padding: 0;
+   margin: 0;
+   border: 0;
+}
+
+#button-text {
+   padding: 0.3rem;
+}
+
+.toggle-button {
+   /* want it to be the right */
+   position: absolute;
+   right: 1rem;
+   top: 1.2rem;
+   text-align: center;
+   /* default don't display anything */
+   display: none;
+   /* to top of each other */
+   flex-direction: column;
+   /* evenly spaced out */
+   justify-content: space-between;
+}
+
+/* a css query that runs if the max width condition is meet */
+@media (max-width: 600px) {
+   /* display the toggle-button */
+   .toggle-button {
+      display: flex;
+   }
+   /* show user menu below the menu */
+   .nav-bar {
+      flex-direction: column;
+   }
+   /* show user menu items one ontop of the other */
+   .user-menu {
+      flex-direction: column;
+      width: 100%;
+      display: none;
+      background-color: transparent;
+   }
+   .user-menu li {
+      text-align: right;
+      padding: 0.5rem 1rem;
+   }
+   .main-menu {
+      width: 100%;
+   }
+   /* use active class to toggle the user menu*/
+   .user-menu.active {
+      display: flex;
+   }
 }

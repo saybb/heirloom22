@@ -137,7 +137,6 @@ class Welcome extends Component {
                   <Row>
                      Click on
                      <Button
-                        type='danger'
                         onClick={this.props.signOut}
                         className='LeftRightMargin'
                      >

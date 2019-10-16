@@ -7,104 +7,161 @@
 import React from "react";
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
-import {Menu, Button, Icon} from "antd";
+import {Affix, Button} from "antd";
 import {signOut} from "../../store/Actions/authActions";
 import logo from "../../heirloom22_logo.svg";
 import UserModal from "../profile/UserModal.js";
 import "./Navigation.css";
 
-class Navigation extends React.Component {
-   render() {
+// menu for site navigation
+// returns an unordered list of links
+const MainMenu = props => {
+   const {auth, className} = props;
+
+   // default class name
+   if (!className) className = "main-menu";
+
+   // use auth.uid to check if we can show the signup page
+   if (auth.uid) {
       return (
-         <nav className='nav-bar'>
-            <this.MainMenu />
-            <this.UserMenu />
-         </nav>
+         <ul className={className}>
+            <li key='logo' className='logo'>
+               <NavLink to='/'>
+                  <img src={logo} alt='logo' />
+               </NavLink>
+            </li>
+            <li key='home'>
+               <NavLink to='/'>Home</NavLink>
+            </li>
+            <li key='list'>
+               <NavLink to='/feed'>Gallery</NavLink>
+            </li>
+         </ul>
+      );
+   } else {
+      return (
+         <ul className={className}>
+            <li key='logo'>
+               <NavLink to='/'>
+                  <img className='nav-logo' src={logo} alt='logo' />
+               </NavLink>
+            </li>
+            <li key='home'>
+               <NavLink to='/'>Home</NavLink>
+            </li>
+         </ul>
       );
    }
+};
 
-   // menu for site navigation
-   MainMenu = () => {
-      const {auth} = this.props;
+const HamburgerButton = props => {
+   let {onClick, className} = props;
+   // default class name
+   if (!className) className = "hamburger-button";
+   return (
+      <Button type='primary' className={className} onClick={onClick}>
+         <p id='button-text'>More Information</p>
+      </Button>
+   );
+};
 
-      // use auth.uid to check if we can show the signup page
+// menu for account-related functions
+// return an unordered list of user actions
+class UserMenu extends React.Component {
+   // active means button has been pressed
+   // then show the user menu
+   state = {active: false};
+
+   clickHandler = () => {
+      this.setState({active: !this.state.active});
+      console.log("clicked", this.state.active);
+   };
+
+   render() {
+      let {auth, signOutHandler, className} = this.props; // default class name
+      if (!className) className = "user-menu";
+      // change the css class name depending if it is active
+      if (this.state.active) {
+         className += " active";
+      }
+
       if (auth.uid) {
          return (
-            <Menu className='menu-main' mode='horizontal'>
-               <Menu.Item key='logo'>
-                  <NavLink to='/'>
-                     <img className='nav-logo' src={logo} alt='logo' />
-                  </NavLink>
-               </Menu.Item>
-               <Menu.Item key='home'>
-                  <NavLink to='/'>Home</NavLink>
-               </Menu.Item>
-               <Menu.Item key='list'>
-                  <NavLink to='/feed'>List View</NavLink>
-               </Menu.Item>
-               <Menu.Item key='artefact'>
-                  <NavLink to='/view/artefacts/family_crest_monument_id'>
-                     Sample Artefact View
-                  </NavLink>
-               </Menu.Item>
-               <Menu.Item key='event'>
-                  <NavLink to='/view/events/making_crest_id'>
-                     Sample Event View
-                  </NavLink>
-               </Menu.Item>
-               <Menu.Item key='person'>
-                  <NavLink to='/view/people/john_gilbert_id'>
-                     Sample Person View
-                  </NavLink>
-               </Menu.Item>
-            </Menu>
+            <React.Fragment>
+               <HamburgerButton
+                  className='toggle-button'
+                  onClick={this.clickHandler}
+               />
+               <ul className={className}>
+                  <li key='profile'>
+                     <UserModal />
+                  </li>
+                  <li key='signup'>
+                     <NavLink to='/signup'>Sign up</NavLink>
+                  </li>
+                  <li key='logout'>
+                     <NavLink to='/' onClick={signOutHandler}>
+                        Logout
+                     </NavLink>
+                  </li>
+               </ul>
+            </React.Fragment>
          );
       } else {
          return (
-            <Menu className='menu-main' mode='horizontal'>
-               <Menu.Item key='logo'>
-                  <NavLink to='/'>
-                     <img className='nav-logo' src={logo} alt='logo' />
-                  </NavLink>
-               </Menu.Item>
-               <Menu.Item key='home'>
-                  <NavLink to='/'>Home</NavLink>
-               </Menu.Item>
-            </Menu>
+            <ul className={className}>
+               <li key='login'>
+                  <NavLink to='/signin'>Log in</NavLink>
+               </li>
+            </ul>
          );
       }
-   };
+   }
+}
 
-   // menu for account-related functions
-   UserMenu = () => {
+/**
+ * A naviation bar
+ * split into two parts that whose behavior is deteremed by authenticaion
+ *
+ * Condition: User not signed in
+ * 1. Main Menu:
+ *    - Logo
+ *    - Home
+ * 2. User Menu:
+ *    - Login
+ *
+ * Condition: User signed in
+ * 1. <MainMenu/>:
+ *    - Logo
+ *    - Home
+ *    - Gallery
+ *
+ * 2. <UserMenu/>:
+ *    - Username
+ *    - <User Modal/>
+ *    - Signup
+ *    - Logout
+ * @class Navigation
+ * @extends {React.Component}
+ */
+class Navigation extends React.Component {
+   render() {
       const {auth, signOut} = this.props;
 
-      if (auth.uid) {
-         return (
-            <Menu className='menu-user' mode='horizontal'>
-               <Menu.Item key='profile'>
-                  <UserModal />
-               </Menu.Item>
-               <Menu.Item key='signup'>
-                  <NavLink to='/signup'>Sign up</NavLink>
-               </Menu.Item>
-               <Menu.Item key='logout'>
-                  <Button type='link' onClick={signOut}>
-                     <Icon type='logout' style={{color: "red"}} />
-                  </Button>
-               </Menu.Item>
-            </Menu>
-         );
-      } else {
-         return (
-            <Menu className='menu-user' mode='horizontal'>
-               <Menu.Item key='login'>
-                  <NavLink to='/signin'>Log in</NavLink>
-               </Menu.Item>
-            </Menu>
-         );
-      }
-   };
+      return (
+         <Affix>
+            <div className='nav-bar'>
+               <MainMenu auth={this.props.auth} className='main-menu' />
+
+               <UserMenu
+                  auth={auth}
+                  signOutHandler={signOut}
+                  className='user-menu'
+               />
+            </div>
+         </Affix>
+      );
+   }
 }
 
 const mapStateToProps = state => {
