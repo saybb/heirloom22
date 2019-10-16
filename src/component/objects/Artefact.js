@@ -15,7 +15,7 @@ import ArtefactHandler from "../forms/ArtefactHandler.js";
 import {ARTEFACTS} from "../../store/objectTypes";
 import ImageDisplay from "../util/ImageDisplay.js";
 import DelComfirmation from "../forms/DelComfirmation";
-import {Divider, Row, PageHeader, Descriptions, Spin} from "antd";
+import {Divider, Row, PageHeader, Descriptions, Spin, Affix} from "antd";
 import "./Objects.css";
 
 const Artefact = props => {
@@ -41,25 +41,27 @@ const Artefact = props => {
    }
    return (
       <div>
-         <PageHeader
-            onBack={() => window.history.back()}
-            title={artefact[id].name}
-         >
-            <Descriptions size='small' column={2}>
-               <Descriptions.Item label='Created by'>
-                  {artefact[id].created_by}
-               </Descriptions.Item>
-               <Descriptions.Item label='Created at'>
-                  {moment(artefact[id].date_created.toDate()).format("LL")}
-               </Descriptions.Item>
+         <Affix>
+            <PageHeader
+               onBack={() => window.history.back()}
+               title={artefact[id].name}
+               style={{backgroundColor: "white", borderBottom: "solid"}}
+            ></PageHeader>
+         </Affix>
+         <Descriptions size='small' column={2}>
+            <Descriptions.Item label='Created by'>
+               {artefact[id].created_by}
+            </Descriptions.Item>
+            <Descriptions.Item label='Created at'>
+               {moment(artefact[id].date_created.toDate()).format("LL")}
+            </Descriptions.Item>
 
-               {artefact[id].last_modified ? (
-                  <Descriptions.Item label='Last Modified'>
-                     {moment(artefact[id].last_modified.toDate()).calendar()}
-                  </Descriptions.Item>
-               ) : null}
-            </Descriptions>
-         </PageHeader>
+            {artefact[id].last_modified ? (
+               <Descriptions.Item label='Last Modified'>
+                  {moment(artefact[id].last_modified.toDate()).calendar()}
+               </Descriptions.Item>
+            ) : null}
+         </Descriptions>
          <ImageDisplay media_links={artefact[id].media_links} />
          <div className='object-content'>
             <p>{artefact[id].description}</p>
