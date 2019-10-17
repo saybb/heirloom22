@@ -4,7 +4,7 @@
  * Shows the item name and its relation.
  */
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import {Divider, Row, Icon} from 'antd';
 import RelationForm from '../forms/RelationForm'
@@ -75,10 +75,19 @@ function ItemLinks(props) {
 
 function ItemLink(props) {
     const {item, objType, docId, fieldName} = props;
+    const [itemDetails, setDetails] = useState({});
+
+    useEffect(() => {
+        item.reference.get()
+        .then( snapshot => {
+            setDetails(snapshot.data());
+        })
+      }, []);
+
     return(
         <div className="polaroid container">
             <h4>
-                <Link to={"/view/" + item.reference.path}>{item.name}</Link>
+                <Link to={"/view/" + item.reference.path}>{itemDetails ? itemDetails.name : null}</Link>
                 <Divider type="vertical"/>
                 <DeleteRelation
                     item={item}

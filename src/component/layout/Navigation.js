@@ -22,7 +22,6 @@ const WithoutRouterMainMenu = props => {
    let current_position = location.pathname;
    const Gallery = "/feed";
    const Home = "/";
-   console.log(current_position);
    // dynamic style
    let gallery_style = {};
    let home_style = {};

@@ -70,7 +70,6 @@ export const deleteObj = (objType, docId) => {
    return async (dispatch, getState, {firestore}) => {
       const ref = firestore.collection(objType).doc(docId);
       const snapshot = await ref.get();
-      console.log(snapshot.data());
       const doc = snapshot.data();
       if (doc.artefacts_links) {
          doc.artefacts_links.forEach(item => {
