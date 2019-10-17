@@ -16,8 +16,8 @@ import "./Navigation.css";
 // menu for site navigation
 // returns an unordered list of links
 const WithoutRouterMainMenu = props => {
-   const {auth, className, location} = props;
-
+   const {auth, location} = props;
+   let {className} = props;
    // check which page we are on
    let current_position = location.pathname;
    const Gallery = "/feed";
@@ -38,10 +38,10 @@ const WithoutRouterMainMenu = props => {
       fontWeight: "bold"
    };
 
-   if (current_position == Gallery) {
+   if (current_position === Gallery) {
       gallery_style = gallery_style_active;
    }
-   if (current_position == Home) {
+   if (current_position === Home) {
       home_style = home_style_active;
    }
 

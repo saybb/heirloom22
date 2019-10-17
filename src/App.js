@@ -13,7 +13,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import "./App.css";
 import "antd/dist/antd.css";
-import {Layout, Affix} from "antd";
+import {Layout} from "antd";
 
 /* Components */
 import Navigation from "./component/layout/Navigation.js";

@@ -1,5 +1,5 @@
 import React from "react";
-import {Modal, Button, Icon} from "antd";
+import {Modal, Icon} from "antd";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {deleteObj} from "../../store/Actions/userActions";
