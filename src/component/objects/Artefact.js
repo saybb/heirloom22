@@ -80,6 +80,7 @@ const Artefact = props => {
 
             {/* ItemLinks will render links as items with names and relation descriptors */}
             <div className='List'>
+               <AddendumList id={id} />
                <ItemLinks
                   key='related people'
                   title='Related People'
@@ -98,7 +99,6 @@ const Artefact = props => {
                   docId={id}
                   obj={artefact}
                />
-               <AddendumList id={id} />
             </div>
          </div>
       </div>
