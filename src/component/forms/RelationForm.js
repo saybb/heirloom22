@@ -32,6 +32,12 @@ class RelationForm extends React.Component {
         })
       };
 
+    /*
+      async handle relation submit function:
+        - construct related_links for each Objects
+        - append relation to corresponding fields.
+        - close the modal
+    */
     handleSubmit = async (e) => {
         e.preventDefault();
         const { firestore, events, people, artefact_id, fieldAppend } = this.props;

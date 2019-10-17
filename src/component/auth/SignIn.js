@@ -9,6 +9,7 @@ class SignIn extends Component {
     email: '',
     password: ''
   }
+
   handleChange = (e) => {
     this.setState({
       [e.target.id]: e.target.value
@@ -43,6 +44,7 @@ class SignIn extends Component {
   }
 }
 
+//authError is detrived from state.user that is a payload data and is pre-defined in root reducer.
 const mapStateToProps = (state) => {
   return{
     authError: state.user.authError,

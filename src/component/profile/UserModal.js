@@ -39,7 +39,9 @@ class UserModal extends React.Component {
       });
    };
 
-
+   /*
+        upload profile photo => fetch download URL => update user profile
+   */
    handleSubmit = async (e) => {
         if(this.state.file){
             //await this.props.uploadFile("image/" + this.props.auth.uid + "/" + this.state.file.name, this.state.file);

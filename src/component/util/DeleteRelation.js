@@ -5,12 +5,13 @@ import {compose} from "redux";
 
 import {deleteRelation} from '../../store/Actions/userActions'
 
-
+/*
+    Delete relation with pop confirm.
+*/
 const DeleteRelation = (props) => {
     const {item, objType, docId, fieldName} = props
     
     const handleDelete = e => {
-        //console.log(objType, docId, item.reference)
         props.deleteRelation(objType, docId, item.reference, fieldName);
     }
     

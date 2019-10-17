@@ -41,25 +41,26 @@ function ArtefactListElement(props) {
      *   - excerpt of description
      */
     return(
+        // check if null artefact as a safeguard to prevent crash.
         artefact
         ? 
-            <div>
-                <Link to={"/view/artefacts/" + reference}>
-                    <Card
-                        hoverable
-                        className="artefact-list-element"
-                        cover={(artefact.media_links||[]).length > 0
-                            ? <img alt="cover" src={artefact.media_links[0].url} />
-                            : null
-                        }
-                    >
-                        <Meta
-                            title={excerpt(artefact.name, TITLE_LENGTH)}
-                            description={artefact.description && excerpt(artefact.description, DESC_LENGTH)}
-                        />
-                    </Card>
-                </Link>             
-            </div>
+        <div>
+            <Link to={"/view/artefacts/" + reference}>
+                <Card
+                    hoverable
+                    className="artefact-list-element"
+                    cover={(artefact.media_links||[]).length > 0
+                        ? <img alt="cover" src={artefact.media_links[0].url} />
+                        : null
+                    }
+                >
+                    <Meta
+                        title={excerpt(artefact.name, TITLE_LENGTH)}
+                        description={artefact.description && excerpt(artefact.description, DESC_LENGTH)}
+                    />
+                </Card>
+            </Link>             
+        </div>
         : <p>Nothing to show</p>
     );
 }
