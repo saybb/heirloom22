@@ -9,7 +9,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import {PageHeader, Descriptions,Spin} from 'antd';
 import moment from 'moment';
-
+import DelComfirmation from "../forms/DelComfirmation";
 import ItemLinks from './ItemLinks.js';
 import "./Objects.css";
 import { PEOPLE } from '../../store/objectTypes.js';
@@ -57,6 +57,11 @@ const Person = (props) => {
                   }
                </Descriptions>
             </PageHeader>
+            <DelComfirmation
+                  docId={id}
+                  objType={PEOPLE}
+                  history={props.history}
+               />
             <div className="object-content">
                 <p>{person[id].details}</p>
                 <ItemLinks 

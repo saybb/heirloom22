@@ -11,7 +11,7 @@ import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import {PageHeader, Descriptions, Spin} from 'antd';
 import moment from 'moment';
-
+import DelComfirmation from "../forms/DelComfirmation";
 import {EVENTS} from "../../store/objectTypes"
 
 const Event = props => {
@@ -62,6 +62,11 @@ const Event = props => {
                   }
                </Descriptions>
             </PageHeader>
+            <DelComfirmation
+                  docId={id}
+                  objType={EVENTS}
+                  history={props.history}
+               />
       <div className="object-content">
          <p>{event[id].details}</p>
          <ItemLinks
