@@ -32,27 +32,26 @@ class App extends React.Component {
    constructor(props, context) {
       super(props, context);
       this.state = {
-         width: "65%"
+         style: {backgroundColor: "white"}
       };
    }
 
    // Rational:
    // I want to customize the style of App.js contain based on the component
    remove_width_constraint_handler = () => {
-      this.setState({width: "100%"});
+      this.setState({
+         style: {width: "100%", backgroundColor: "white"}
+      });
    };
    reset_width_constraint_handler = () => {
-      this.setState({width: "65%"});
+      this.setState({style: {backgroundColor: "white"}});
    };
    render() {
       return (
          <Router>
             <Layout style={{backgroundColor: "white"}}>
                <Navigation />
-               <Content
-                  className='App'
-                  style={{width: this.state.width, backgroundColor: "white"}}
-               >
+               <Content className='App' style={this.state.style}>
                   <this.HomeRoutes />
                </Content>
                <Footer
