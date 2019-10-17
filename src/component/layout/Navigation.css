@@ -17,8 +17,15 @@
    display: inline-block;
    position: relative;
    z-index: 1;
-   padding: 1em;
-   margin: -1em;
+   margin: -1rem;
+}
+
+.nav-bar .main-menu a {
+   padding: 1rem 3rem;
+}
+
+.nav-bar .user-menu a {
+   padding: 1rem 1rem;
 }
 
 .nav-bar {
@@ -76,7 +83,6 @@
 .nav-bar .main-menu li {
    font-size: 1.4rem;
    text-align: center;
-   margin: 0rem 3rem 0rem 0rem;
 }
 
 .user-menu {
@@ -104,7 +110,7 @@
 }
 
 /* a css query that runs if the max width condition is meet */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
    /* display the toggle-button */
    .toggle-button {
       display: flex;
@@ -130,5 +136,9 @@
    /* use active class to toggle the user menu*/
    .user-menu.active {
       display: flex;
+   }
+   /* reduce the padding */
+   .nav-bar .main-menu a {
+      padding: 1rem 1rem;
    }
 }
