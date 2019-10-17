@@ -92,6 +92,7 @@ const Artefact = props => {
                   items={artefact[id].events_links}
                   objType={ARTEFACTS}
                   docId={id}
+                  obj={artefact}
                />
             </div>
          </div>
