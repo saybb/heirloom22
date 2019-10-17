@@ -85,7 +85,7 @@ class UserModal extends React.Component {
       return (
          <div>
             <Button type='primary' onClick={this.showModal} icon="user">
-                {!auth.displayName ? profile.name : auth.displayName}
+                {profile.name ? profile.name : auth.displayName}
             </Button>
             <Modal
                title='Profile'
