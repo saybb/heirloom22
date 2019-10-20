@@ -121,7 +121,7 @@ class Welcome extends Component {
                   <Row>
                      Click on
                      <Button className='LeftRightMargin'>
-                        <NavLink to='/feed'>List View</NavLink>
+                        <NavLink to='/feed'>Gallery</NavLink>
                      </Button>
                      to go to the Gallery where you can view all the artefacts
                      and its related people and events.

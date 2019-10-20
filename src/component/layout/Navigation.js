@@ -107,18 +107,21 @@ class UserMenu extends React.Component {
    render() {
       let {auth, signOutHandler, className} = this.props; // default class name
       if (!className) className = "user-menu";
+      let buttonName = "toggle-button";
       // change the css class name depending if it is active
       if (this.state.active) {
+         buttonName += " active";
          className += " active";
       }
 
       if (auth.uid) {
          return (
             <React.Fragment>
-               <HamburgerButton
-                  className='toggle-button'
-                  onClick={this.clickHandler}
-               />
+               <li className={buttonName}>
+                  <Button type='primary' onClick={this.clickHandler}>
+                     <p id='button-text'>Account</p>
+                  </Button>
+               </li>
                <ul className={className}>
                   <li key='profile'>
                      <UserModal />

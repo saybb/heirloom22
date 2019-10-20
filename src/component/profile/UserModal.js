@@ -24,7 +24,7 @@ class UserModal extends React.Component {
       location: "",
       bio: "",
       photoURL: null,
-      file: null,
+      file: null
    };
 
    showModal = () => {
@@ -42,17 +42,18 @@ class UserModal extends React.Component {
    /*
         upload profile photo => fetch download URL => update user profile
    */
-   handleSubmit = async (e) => {
-        if(this.state.file){
-            //await this.props.uploadFile("image/" + this.props.auth.uid + "/" + this.state.file.name, this.state.file);
-            let snapshot = await storageRef.child("image/" + this.props.auth.uid + "/" + this.state.file.name).put(this.state.file);
-            this.setState({
-                photoURL: await snapshot.ref.getDownloadURL(),
-            })
-
-        }
-        this.props.updateUserProfile(this.state);
-        this.setState({loading: false, visible: false, editMode: false});
+   handleSubmit = async e => {
+      if (this.state.file) {
+         //await this.props.uploadFile("image/" + this.props.auth.uid + "/" + this.state.file.name, this.state.file);
+         let snapshot = await storageRef
+            .child("image/" + this.props.auth.uid + "/" + this.state.file.name)
+            .put(this.state.file);
+         this.setState({
+            photoURL: await snapshot.ref.getDownloadURL()
+         });
+      }
+      this.props.updateUserProfile(this.state);
+      this.setState({loading: false, visible: false, editMode: false});
    };
 
    handleBack = () => {
@@ -75,10 +76,10 @@ class UserModal extends React.Component {
    };
 
    handleFile = file => {
-       this.setState({
-           file: file
-       })
-   }
+      this.setState({
+         file: file
+      });
+   };
 
    render() {
       const {visible, confirmLoading} = this.state;
@@ -86,8 +87,8 @@ class UserModal extends React.Component {
 
       return (
          <div>
-            <Button type='primary' onClick={this.showModal} icon="user">
-                {profile.name ? profile.name : auth.displayName}
+            <Button onClick={this.showModal} icon='user'>
+               {profile.name ? profile.name : auth.displayName}
             </Button>
             <Modal
                title='Profile'
@@ -126,7 +127,10 @@ class UserModal extends React.Component {
                {!this.state.editMode ? (
                   <UserProfile />
                ) : (
-                  <EditProfile handleChange={this.handleChange} handleFile={this.handleFile}/>
+                  <EditProfile
+                     handleChange={this.handleChange}
+                     handleFile={this.handleFile}
+                  />
                )}
             </Modal>
          </div>
