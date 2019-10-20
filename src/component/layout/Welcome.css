@@ -22,16 +22,15 @@
 }
 
 .Intro {
-   min-width: 500px;
    padding: 30px 0 0 0;
-   width: 65%;
+   width: 90%;
    display: inline-block;
 }
 
 .Tutorial,
 .Hidden {
    padding: 0 0 0 20px;
-   width: 480px;
+   width: 90%;
    align-self: center;
    display: inline-block;
 }
@@ -77,4 +76,14 @@
 .LeftRightMargin {
    padding: 0 5px;
    margin: 0 5px;
+}
+
+@media screen and (min-width: 768px) {
+   .Intro {
+      width: 500px;
+   }
+   .Tutorial,
+   .Hidden {
+      width: 480px;
+   }
 }

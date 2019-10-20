@@ -19,6 +19,8 @@ import {ARTEFACTS} from "../../store/objectTypes";
 class ArtefactList extends React.Component {
    render() {
       const {artefacts, profile} = this.props;
+
+      // check if on loaded
       if (!artefacts) {
          return (
             <div className='container center'>
@@ -26,6 +28,11 @@ class ArtefactList extends React.Component {
             </div>
          );
       }
+
+      /*
+        firebase returns an object with id as key, but null in value.
+        To check if artefacts exist, see if null value.
+      */
       if (artefacts && !Object.keys(artefacts)) {
          return (
             <div className='container center'>
@@ -33,6 +40,8 @@ class ArtefactList extends React.Component {
             </div>
          );
       }
+
+      // artefacts is on loaded.
       return (
          <React.Fragment>
             <Affix>

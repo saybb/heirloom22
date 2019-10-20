@@ -4,7 +4,7 @@
  * Shows the item name and its relation.
  */
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import {Divider, Row, Icon} from 'antd';
 import RelationForm from '../forms/RelationForm'
@@ -13,6 +13,7 @@ import './ItemLinks.css';
 
 function ItemLinks(props) {
     const {title, items, objType, obj, docId, fieldName} = props;
+    // set icon style
     const iconType = (title) => {
         if(title === 'Related People') return "usergroup-add"
         if(title === 'Related Events') return "file-add"
@@ -75,10 +76,29 @@ function ItemLinks(props) {
 
 function ItemLink(props) {
     const {item, objType, docId, fieldName} = props;
+    /*
+        update state from reference. 
+        this.state and this.setState return from useState hooks in functional component.
+    */
+    const [itemDetails, setDetails] = useState({});
+
+
+    /* 
+        useEffect function can replace both componentDidMount and componentDidupdate
+        in functional componment
+    */
+
+    useEffect(() => {
+        item.reference.get()
+        .then( snapshot => {
+            setDetails(snapshot.data());
+        })
+      }, []);
+
     return(
         <div className="polaroid container">
             <h4>
-                <Link to={"/view/" + item.reference.path}>{item.name}</Link>
+                <Link to={"/view/" + item.reference.path}>{itemDetails ? itemDetails.name : null}</Link>
                 <Divider type="vertical"/>
                 <DeleteRelation
                     item={item}

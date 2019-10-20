@@ -66,7 +66,6 @@
 }
 
 .nav-bar li:hover {
-   background-color: var(--hover-color);
    color: var(--bold-color);
    font-weight: bold;
 }
@@ -96,11 +95,11 @@
    padding: 0.3rem;
 }
 
-.toggle-button {
+.nav-bar .toggle-button {
    /* want it to be the right */
    position: absolute;
-   right: 1rem;
-   top: 1.2rem;
+   right: 0rem;
+   top: 0rem;
    text-align: center;
    /* default don't display anything */
    display: none;
@@ -113,8 +112,9 @@
 /* a css query that runs if the max width condition is meet */
 @media (max-width: 768px) {
    /* display the toggle-button */
-   .toggle-button {
+   .nav-bar .toggle-button {
       display: flex;
+      background-color: var(--theme-color);
    }
    /* show user menu below the menu */
    .nav-bar {
@@ -135,11 +135,20 @@
       width: 100%;
    }
    /* use active class to toggle the user menu*/
-   .user-menu.active {
+   .user-menu.active,
+   .nav-bar .toggle-button.active {
       display: flex;
+      background: #e2f2ff;
    }
    /* reduce the padding */
    .nav-bar .main-menu a {
       padding: 1rem 1rem;
+   }
+}
+
+@media (max-width: 400px) {
+   /* hide logo */
+   li.logo {
+      display: none;
    }
 }
