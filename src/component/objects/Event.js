@@ -26,7 +26,7 @@ const Event = props => {
 
    if (!event) {
       return (
-         <div className="object-content">
+         <div className='container center'>
             <Spin tip="Loading..." size="large"/>
          </div>
       );

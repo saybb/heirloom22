@@ -4,11 +4,11 @@
  * Requests for relevant content will be made from this component.
  */
 
-import React from "react";
+import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
-import {PageHeader, Tag, Spin, Affix} from "antd";
+import {PageHeader, Spin, Affix} from "antd";
 
 // components
 import ArtefactListElement from "./ArtefactListElement.js";
@@ -20,12 +20,27 @@ class ArtefactList extends React.Component {
    render() {
       const {artefacts, profile} = this.props;
 
+      const header = (
+        <Affix>
+            <PageHeader
+                onBack={() => window.history.back()}
+                title='Browsing your collection'
+                extra={[<ArtefactHandler type={"create"} />]}
+                avatar={{src: profile.photoURL}}
+                style={{backgroundColor: "white", borderBottom: "solid"}}
+            />
+        </Affix>
+      )
+
       // check if on loaded
       if (!artefacts) {
          return (
-            <div className='container center'>
-               <Spin tip='Loading artefacts...' size='large' />
-            </div>
+            <Fragment>
+                {header}
+                 <div className='container center'>
+                    <Spin tip='Loading artefacts...' size='large' />
+                </div>
+            </Fragment>
          );
       }
 
@@ -35,25 +50,19 @@ class ArtefactList extends React.Component {
       */
       if (artefacts && !Object.keys(artefacts)) {
          return (
-            <div className='container center'>
-               <h2>No artefact found.</h2>
-            </div>
+            <Fragment>
+                {header}
+                <div className='container center'>
+                    <h2>No artefact found.</h2>
+                </div>
+            </Fragment>
          );
       }
 
       // artefacts is on loaded.
       return (
-         <React.Fragment>
-            <Affix>
-               <PageHeader
-                  onBack={() => window.history.back()}
-                  title='Browsing your collection'
-                  tags={<Tag color='blue'>{profile.name}</Tag>}
-                  extra={[<ArtefactHandler type={"create"} />]}
-                  avatar={{src: profile.photoURL}}
-                  style={{backgroundColor: "white", borderBottom: "solid"}}
-               ></PageHeader>
-            </Affix>
+         <Fragment>
+            {header}
             <div className='artefact-list-wrapper'>
                <div className='artefact-list'>
                   {artefacts &&
@@ -66,7 +75,7 @@ class ArtefactList extends React.Component {
                      ))}
                </div>
             </div>
-         </React.Fragment>
+         </Fragment>
       );
    }
 }
