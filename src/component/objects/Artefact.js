@@ -25,7 +25,7 @@ const Artefact = props => {
    //any result returns?
    if (!artefact) {
       return (
-         <div className='object-content'>
+         <div className='container center'>
             <Spin tip='Loading...' size='large' />
          </div>
       );

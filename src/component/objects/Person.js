@@ -21,7 +21,7 @@ const Person = (props) => {
     
     if (!person){
         return (
-            <div className="object-content">
+            <div className='container center'>
                 <Spin tip="Loading..." size="large"/>
             </div>
         )

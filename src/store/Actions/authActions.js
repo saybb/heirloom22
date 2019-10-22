@@ -1,3 +1,5 @@
+import { USERS } from '../../store/objectTypes';
+
 export const signIn = (credentials) => {
     return (dispatch, state, {auth}) => {
             
@@ -31,7 +33,7 @@ export const signUp = (newUser) => {
     ).then(resp => {
       delete newUser['password'];
       newUser.photoURL = "https://firebasestorage.googleapis.com/v0/b/testing-e1ec1.appspot.com/o/No%20profile%20photo.png?alt=media&token=23fa70a3-c8a7-409d-bd73-0d38ed8772d6";
-      return firestore.collection('users').doc(resp.user.uid).set(newUser)
+      return firestore.collection(USERS).doc(resp.user.uid).set(newUser)
       .then(() => {
         var user = auth.currentUser;
         user.updateProfile({ displayName: newUser.name});
@@ -51,7 +53,7 @@ export const updateUserProfile = (info) => {
     Object.keys(info).forEach(key => {
       if(!infoElement.includes(key)||!info[key]||info[key] === '') {delete info[key]}
     })
-    firestore.collection('users').doc(user.uid).update({
+    firestore.collection(USERS).doc(user.uid).update({
             ...info,
     }).then(() => {
       var user = auth.currentUser;

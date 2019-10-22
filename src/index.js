@@ -11,11 +11,12 @@ import logger from 'redux-logger'
 import { Provider } from 'react-redux'
 import rootReducer from './store/Reducer/rootReducer'
 import config, {auth, firestore, storageRef} from './firebase/config'
+import { USERS } from './store/objectTypes'
 
 const store = createStore(rootReducer,
     compose(
       applyMiddleware(thunk.withExtraArgument({auth, firestore, storageRef})),
-      reactReduxFirebase(config, {userProfile: 'users', useFirestoreForProfile: true, attachAuthIsReady: true}, logger),
+      reactReduxFirebase(config, {userProfile: USERS, useFirestoreForProfile: true, attachAuthIsReady: true}, logger),
       reduxFirestore(config) // redux bindings for firestore
     )
   );
