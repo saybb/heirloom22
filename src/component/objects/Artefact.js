@@ -35,7 +35,7 @@ const Artefact = props => {
    if (artefact && !artefact[id]) {
       return (
          <div className='object-content'>
-            <h2>Artefact is NOT FOUND</h2>
+            <h2>Artefact not found. Are you sure the url is correct?</h2>
          </div>
       );
    }
@@ -49,10 +49,7 @@ const Artefact = props => {
             ></PageHeader>
          </Affix>
          <Descriptions size='small' column={2}>
-            <Descriptions.Item label='Created by'>
-               {artefact[id].created_by}
-            </Descriptions.Item>
-            <Descriptions.Item label='Created at'>
+            <Descriptions.Item label='Created on'>
                {moment(artefact[id].date_created.toDate()).format("LL")}
             </Descriptions.Item>
 

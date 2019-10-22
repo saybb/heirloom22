@@ -35,7 +35,7 @@ const Event = props => {
    if (event && !event[id]) {
       return (
          <div className="object-content">
-            <h2>Event is NOT FOUND</h2>
+            <h2>Event not found. Are you sure the url is correct?</h2>
          </div>
       );
    }
@@ -48,8 +48,7 @@ const Event = props => {
                subTitle={'Occured on: '+ event[id].date.toDate().toLocaleDateString("en-AU", options)}
             >
                <Descriptions size="small" column={2}>
-               <Descriptions.Item label="Created by">{event[id].created_by}</Descriptions.Item>
-                  <Descriptions.Item label="Created at">
+                  <Descriptions.Item label="Created on">
                      {moment(event[id].date_created.toDate()).format('LL')}
                   </Descriptions.Item>
                   

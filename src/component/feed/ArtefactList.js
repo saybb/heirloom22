@@ -53,7 +53,7 @@ class ArtefactList extends React.Component {
             <Fragment>
                 {header}
                 <div className='container center'>
-                    <h2>No artefact found.</h2>
+                    <h2>No artefacts found.</h2>
                 </div>
             </Fragment>
          );
