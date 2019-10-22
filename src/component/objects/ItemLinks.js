@@ -52,7 +52,7 @@ function ItemLinks(props) {
                 {header(title)}
                 <div className="polaroid">
                 <div className="container">
-                <p>No {header(title)} to show. Use the <Icon type={iconType(title)} style={{color: 'DodgerBlue'}}/> icon to add a relation!</p>
+                <p>No {title} to show. Use the <Icon type={iconType(title)} style={{color: 'DodgerBlue'}}/> icon to add a relation!</p>
                 </div>
                 </div>
             </React.Fragment>
