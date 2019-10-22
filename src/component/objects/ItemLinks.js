@@ -52,7 +52,7 @@ function ItemLinks(props) {
                 {header(title)}
                 <div className="polaroid">
                 <div className="container">
-                <p>Ooops, you can update {title.toLowerCase()} by clicking the icon <Icon type={iconType(title)} style={{color: 'DodgerBlue'}}/> above. Your list shows up right here.</p>
+                <p>No {header(title)} to show. Use the <Icon type={iconType(title)} style={{color: 'DodgerBlue'}}/> icon to add a relation!</p>
                 </div>
                 </div>
             </React.Fragment>

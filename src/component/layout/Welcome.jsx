@@ -42,10 +42,9 @@ class Welcome extends Component {
       if (!auth.uid) {
          return (
             <h2 className='Title'>
-               Hi {name}. Please log in to start using this application.
+               Hi! Please log in to start using this application.
                <p className='Description'>
-                  If you don't can't login you can try (1) reset the password
-                  (2) ask a family member to create a new account for you
+                  If you don't have an account, ask a family member to create a new account for you.
                </p>
             </h2>
          );
@@ -53,7 +52,7 @@ class Welcome extends Component {
       return (
          <h2>
             Hi {name}. Here is an overview of how you can navigate through your
-            family artefacts and find out more about your family history
+            family artefacts and find out more about your family history.
          </h2>
       );
    };
@@ -85,7 +84,7 @@ class Welcome extends Component {
                         <Button className='LeftRightMargin'>
                            <NavLink to='/signin'>Log in</NavLink>
                         </Button>
-                        to start using this application.
+                        to log in and start using this application.
                      </Row>
                   </Col>
                </Row>
@@ -123,7 +122,7 @@ class Welcome extends Component {
                      <Button className='LeftRightMargin'>
                         <NavLink to='/feed'>Gallery</NavLink>
                      </Button>
-                     to go to the Gallery where you can view all the artefacts
+                     to go to the Gallery, where you can view your family artefacts
                      and its related people and events.
                   </Row>
                </Col>
@@ -142,7 +141,7 @@ class Welcome extends Component {
                      >
                         Log out
                      </Button>
-                     to exit this application correctly.
+                     to log out of the application.
                   </Row>
                </Col>
             </Row>

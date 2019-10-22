@@ -30,7 +30,7 @@ const Person = (props) => {
     if (person && !person[id]) {
         return(
             <div className="object-content">
-                <h2>Person is NOT FOUND</h2>
+                <h2>Person not found. Are you sure the url is correct?</h2>
             </div>
         );
     }
@@ -43,8 +43,7 @@ const Person = (props) => {
                subTitle={'Born: '+ person[id].dob.toDate().toLocaleDateString("en-AU", options)}
             >
                <Descriptions size="small" column={2}>
-               <Descriptions.Item label="Created by">{person[id].created_by}</Descriptions.Item>
-                  <Descriptions.Item label="Created at">
+                  <Descriptions.Item label="Created on">
                      {moment(person[id].date_created.toDate()).format('LL')}
                   </Descriptions.Item>
                   
