@@ -23,23 +23,23 @@ function ItemLinks(props) {
         if (title === 'Related Artefacts'){
             return (
                 <h3>
-                <Row style={{display: 'flex', alignItems:'center'}}>
-                    {title}
-                </Row>
+                    <Row style={{display: 'flex', alignItems:'center'}}>
+                        {title}
+                    </Row>
                 </h3> 
             )
         }
         return(
             <h3>
-            <Row style={{display: 'flex', alignItems:'center'}}>
-                {title}
-                <Divider type="vertical"/>
-                <RelationForm 
-                    title={title}
-                    artefact={obj}
-                    artefact_id={docId}
-                    iconType={iconType(title)}
-                />
+                <Row style={{display: 'flex', alignItems:'center'}}>
+                    {title}
+                    <Divider type="vertical"/>
+                    <RelationForm 
+                        title={title}
+                        artefact={obj}
+                        artefact_id={docId}
+                        iconType={iconType(title)}
+                    />
                 </Row>
             </h3>
         )
@@ -51,25 +51,25 @@ function ItemLinks(props) {
             <React.Fragment>
                 {header(title)}
                 <div className="polaroid">
-                <div className="container">
-                <p>No {title} to show. Use the <Icon type={iconType(title)} style={{color: 'DodgerBlue'}}/> icon to add a relation!</p>
-                </div>
+                    <div className="container">
+                        <p>No {title} to show. Use the <Icon type={iconType(title)} style={{color: 'DodgerBlue'}}/> icon to add a relation!</p>
+                    </div>
                 </div>
             </React.Fragment>
         )
     }
     return(
         <React.Fragment>
-        {header(title)}
-            { // generates an item for each link
-            items.map((item) => <ItemLink 
-            key={item.name} 
-            item={item} 
-            fieldName={fieldName}
-            objType={objType} 
-            docId={docId}
-            />)
-            }
+            {header(title)}
+                { // generates an item for each link
+                items.map((item) => <ItemLink 
+                key={item.name} 
+                item={item} 
+                fieldName={fieldName}
+                objType={objType} 
+                docId={docId}
+                />)
+                }
         </React.Fragment>
     );
 }
@@ -87,13 +87,12 @@ function ItemLink(props) {
         useEffect function can replace both componentDidMount and componentDidupdate
         in functional componment
     */
-
     useEffect(() => {
         item.reference.get()
-        .then( snapshot => {
-            setDetails(snapshot.data());
-        })
-      }, []);
+            .then( snapshot => {
+                setDetails(snapshot.data());
+            })
+    });
 
     return(
         <div className="polaroid container">

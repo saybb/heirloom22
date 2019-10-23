@@ -81,6 +81,7 @@ const WithoutRouterMainMenu = props => {
 };
 const MainMenu = withRouter(WithoutRouterMainMenu);
 
+/*
 const HamburgerButton = props => {
    let {onClick, className} = props;
    // default class name
@@ -90,7 +91,7 @@ const HamburgerButton = props => {
          <p id='button-text'>Account</p>
       </Button>
    );
-};
+};*/
 
 // menu for account-related functions
 // return an unordered list of user actions

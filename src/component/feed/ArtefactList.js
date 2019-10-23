@@ -8,7 +8,7 @@ import React, {Fragment} from "react";
 import {connect} from "react-redux";
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
-import {PageHeader, Spin, Affix} from "antd";
+import {Spin, Affix} from "antd";
 
 // components
 import ArtefactListElement from "./ArtefactListElement.js";
@@ -18,17 +18,14 @@ import {ARTEFACTS} from "../../store/objectTypes";
 
 class ArtefactList extends React.Component {
    render() {
-      const {artefacts, profile} = this.props;
+      const {artefacts} = this.props;
 
       const header = (
         <Affix>
-            <PageHeader
-                onBack={() => window.history.back()}
-                title='Browsing your collection'
-                extra={[<ArtefactHandler type={"create"} />]}
-                avatar={{src: profile.photoURL}}
-                style={{backgroundColor: "white", borderBottom: "solid"}}
-            />
+            <div className="header">
+               <p className="ant-page-header-heading-title">Browsing your collection</p>
+               <ArtefactHandler type={"create"} />
+            </div>
         </Affix>
       )
 
