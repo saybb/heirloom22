@@ -36,7 +36,7 @@ export const signUp = (newUser) => {
       return firestore.collection(USERS).doc(resp.user.uid).set(newUser)
       .then(() => {
         var user = auth.currentUser;
-        user.updateProfile({ displayName: newUser.name});
+        user.updateProfile({ displayName: newUser.name + " " + newUser.lastName});
       }).catch(err => { console.log('Set up user profile ERROR')});
     }).then(() => {
       dispatch({ type: 'SIGNUP_SUCCESS' });
@@ -57,7 +57,7 @@ export const updateUserProfile = (info) => {
             ...info,
     }).then(() => {
       var user = auth.currentUser;
-      user.updateProfile({ displayName: info.name});
+      user.updateProfile({ displayName: info.name + " " + info.lastName});
     }).catch(err => { console.log('Set up user profile ERROR')})
     .then(() => {
       dispatch({ type: 'PROFILE_UPDATE_SUCCESS'});
