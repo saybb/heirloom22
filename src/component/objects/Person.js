@@ -41,28 +41,33 @@ const Person = (props) => {
                onBack={() => window.history.back()}
                title={person[id].name + " " + person[id].lastname}
                subTitle={'Born: '+ person[id].dob.toDate().toLocaleDateString("en-AU", options)}
-            >
-               <Descriptions size="small" column={2}>
-                  <Descriptions.Item label="Created on">
-                     {moment(person[id].date_created.toDate()).format('LL')}
-                  </Descriptions.Item>
-                  
-                  {person[id].last_modified ?
-                  <Descriptions.Item label="Last Modified">
-                   {moment(person[id].last_modified.toDate()).calendar()}
-                  </Descriptions.Item>
-                  :
-                  null
-                  }
-               </Descriptions>
-            </PageHeader>
-            <DelComfirmation
-                  docId={id}
-                  objType={PEOPLE}
-                  history={props.history}
-               />
+            />
+
             <div className="object-content">
                 <p>{person[id].details}</p>
+            </div>
+
+            <div className="object-content">
+                <Descriptions size="small" column={2}>
+                    <Descriptions.Item label="Created on">
+                        {moment(person[id].date_created.toDate()).format('LL')}
+                    </Descriptions.Item>
+                    
+                    {person[id].last_modified ?
+                        <Descriptions.Item label="Last Modified">
+                            {moment(person[id].last_modified.toDate()).calendar()}
+                        </Descriptions.Item>
+                    : null }
+                </Descriptions>
+               
+                <DelComfirmation
+                    docId={id}
+                    objType={PEOPLE}
+                    history={props.history}
+                />
+            </div>
+            
+            <div className="object-content">
                 <ItemLinks 
                     title="Related Artefacts" 
                     fieldName='artefacts_links'

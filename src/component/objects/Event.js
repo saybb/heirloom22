@@ -42,40 +42,46 @@ const Event = props => {
 
    return (
       <div>
-            <PageHeader
-               onBack={() => window.history.back()}
-               title={event[id].name}
-               subTitle={'Occured on: '+ event[id].date.toDate().toLocaleDateString("en-AU", options)}
-            >
-               <Descriptions size="small" column={2}>
-                  <Descriptions.Item label="Created on">
-                     {moment(event[id].date_created.toDate()).format('LL')}
-                  </Descriptions.Item>
-                  
-                  {event[id].last_modified ?
-                  <Descriptions.Item label="Last Modified">
-                   {moment(event[id].last_modified.toDate()).calendar()}
-                  </Descriptions.Item>
-                  :
-                  null
-                  }
-               </Descriptions>
-            </PageHeader>
-            <DelComfirmation
-                  docId={id}
-                  objType={EVENTS}
-                  history={props.history}
-               />
-      <div className="object-content">
-         <p>{event[id].details}</p>
-         <ItemLinks
-            title="Related Artefacts"
-            fieldName='artefacts_links'
-            objType={EVENTS}
-            items={event[id].artefacts_links}
-            docId={id}
+         <PageHeader
+            onBack={() => window.history.back()}
+            title={event[id].name}
+            subTitle={'Occured on: '+ event[id].date.toDate().toLocaleDateString("en-AU", options)}
          />
-      </div>
+         <div className="object-content">
+            <p>{event[id].details}</p>
+         </div>
+
+         <div className="object-content">
+            <Descriptions size="small" column={2}>
+               <Descriptions.Item label="Created on">
+                  {moment(event[id].date_created.toDate()).format('LL')}
+               </Descriptions.Item>
+               
+               {event[id].last_modified ?
+               <Descriptions.Item label="Last Modified">
+                  {moment(event[id].last_modified.toDate()).calendar()}
+               </Descriptions.Item>
+               :
+               null
+               }
+            </Descriptions>
+
+            <DelComfirmation
+               docId={id}
+               objType={EVENTS}
+               history={props.history}
+            />
+         </div>
+         
+         <div className="object-content">
+            <ItemLinks
+               title="Related Artefacts"
+               fieldName='artefacts_links'
+               objType={EVENTS}
+               items={event[id].artefacts_links}
+               docId={id}
+            />
+         </div>
       </div>
    );
 };

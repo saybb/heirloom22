@@ -7,16 +7,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
     width: 100%;
-
-    margin: 2em 1rem 0rem 1rem;
-}
-
-@media screen and (min-width: 768px) {
-    /* on larger screens, remove extra margin whitespace for content, since we already have some */
-    .object-content {
-        margin-left: 0;
-        margin-right: 0;
-    }
+    padding: 0em 1rem 2rem 1rem;
 }

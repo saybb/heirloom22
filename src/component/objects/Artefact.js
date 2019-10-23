@@ -46,22 +46,26 @@ const Artefact = props => {
                onBack={() => window.history.back()}
                title={artefact[id].name}
                style={{backgroundColor: "white", borderBottom: "solid"}}
-            ></PageHeader>
+            />
          </Affix>
-         <Descriptions size='small' column={2}>
-            <Descriptions.Item label='Created on'>
-               {moment(artefact[id].date_created.toDate()).format("LL")}
-            </Descriptions.Item>
-
-            {artefact[id].last_modified ? (
-               <Descriptions.Item label='Last Modified'>
-                  {moment(artefact[id].last_modified.toDate()).calendar()}
-               </Descriptions.Item>
-            ) : null}
-         </Descriptions>
+         
          <ImageDisplay media_links={artefact[id].media_links} />
          <div className='object-content'>
             <p>{artefact[id].description}</p>
+         </div>
+
+         <div className="object-content">
+            <Descriptions size='small' column={2}>
+               <Descriptions.Item label='Created on'>
+                  {moment(artefact[id].date_created.toDate()).format("LL")}
+               </Descriptions.Item>
+
+               {artefact[id].last_modified ? (
+                  <Descriptions.Item label='Last Modified'>
+                     {moment(artefact[id].last_modified.toDate()).calendar()}
+                  </Descriptions.Item>
+               ) : null}
+            </Descriptions>
             <Row
                className='contentLink'
                style={{display: "flex", alignItems: "center"}}
@@ -74,7 +78,9 @@ const Artefact = props => {
                   history={props.history}
                />
             </Row>
-
+         </div>
+         
+         <div className='object-content'>
             {/* ItemLinks will render links as items with names and relation descriptors */}
             <div className='List'>
                <AddendumList id={id} />

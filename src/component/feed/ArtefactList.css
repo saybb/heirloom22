@@ -3,6 +3,16 @@
  * CSS styles for ArtefactList.js
  */
 
+.header {
+    border-bottom: solid;
+    padding: 1em 1.8em 0.5em 1.8em;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    white-space: nowrap;
+
+}
+
 .artefact-list-wrapper {
     margin: 2rem auto 0 auto;
 }
