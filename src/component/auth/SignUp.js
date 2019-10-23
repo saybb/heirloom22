@@ -50,29 +50,31 @@ class SignUp extends Component {
         }
 
         return (
-            <Form onSubmit={this.handleSubmit}>
-                <Form.Field>
-                    <label>First Name</label>
-                    <input type="text" placeholder='First Name' id='name' onChange={this.handleChange} />
-                </Form.Field>
+            <div style={{width: "100%", padding: "1em 1em 2em 1em"}}>
+                <Form onSubmit={this.handleSubmit}>
+                    <Form.Field>
+                        <label>First Name</label>
+                        <input type="text" placeholder='First Name' id='name' onChange={this.handleChange} />
+                    </Form.Field>
 
-                <Form.Field>
-                    <label>Last Name</label>
-                    <input type="text" placeholder='Last Name' id='lastName' onChange={this.handleChange} />
-                </Form.Field>
+                    <Form.Field>
+                        <label>Last Name</label>
+                        <input type="text" placeholder='Last Name' id='lastName' onChange={this.handleChange} />
+                    </Form.Field>
 
-                <Form.Field>
-                    <label>Email</label>
-                    <input type="email" placeholder='email' id='email' onChange={this.handleChange} />
-                </Form.Field>
+                    <Form.Field>
+                        <label>Email</label>
+                        <input type="email" placeholder='email' id='email' onChange={this.handleChange} />
+                    </Form.Field>
 
-                <Form.Field>
-                    <label>Password</label>
-                    <input type="password" placeholder='password' id='password' onChange={this.handleChange} />
-                </Form.Field>
+                    <Form.Field>
+                        <label>Password</label>
+                        <input type="password" placeholder='password' id='password' onChange={this.handleChange} />
+                    </Form.Field>
 
-                <Button type='submit'>Submit</Button>
-            </Form>
+                    <Button type='submit'>Submit</Button>
+                </Form>
+                </div>
         )
     }
 }

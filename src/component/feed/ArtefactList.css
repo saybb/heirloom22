@@ -10,11 +10,13 @@
     justify-content: space-between;
     flex-wrap: wrap;
     white-space: nowrap;
-
+    background-color: white;
 }
 
 .artefact-list-wrapper {
     margin: 2rem auto 0 auto;
+    padding: 0em 1rem 2rem 1rem;
+    width: 100%;
 }
 
 .artefact-list {
@@ -26,6 +28,9 @@
 }
 
 @media screen and (min-width: 768px) {
+    .header {
+        padding-bottom: 0;
+    }
     .artefact-list {
         -moz-column-count:    2;
         -webkit-column-count: 2;

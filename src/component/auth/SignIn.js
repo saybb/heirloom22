@@ -23,6 +23,7 @@ class SignIn extends Component {
     const { auth, authError } = this.props;
     if (auth.uid) return <Redirect to='/' /> 
     return (
+      <div style={{width: "100%", padding: "1em 1em 2em 1em"}}>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field>
             <label>Email</label>
@@ -40,6 +41,7 @@ class SignIn extends Component {
               { authError ? <p>{authError}</p> : null }
           </div>
         </Form>
+      </div>
     )
   }
 }
