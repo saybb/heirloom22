@@ -72,7 +72,7 @@ We created the github link
 
 ### Week5: sprint 1 retrospective
 
-[Sprint 1 retrospective](./Sprint 1 Retrospective.pdf)
+[Sprint 1 retrospective](./Sprint%201%20Retrospective.pdf)
 
 ### Week6: requirement
 
@@ -80,11 +80,11 @@ The two documents below report on requirements phase, including background, scop
 
 [Requirements](./Requirements.pdf)
 
-[Use Cases](./Use Cases.pdf)
+[Use Cases](./Use%20Cases.pdf)
 
 ### Week7: architecture
 
-[Database Schema](./databaseDv1.pdf)
+[Database Schema](./databaseDv1.pdf) (download the pdf for higher definition)
 
 [Database Schema Updated](./databaseDv2.pdf)
 
@@ -96,18 +96,18 @@ We showed our app to our demonstrator Savan
 
 ### Week9: sprint 2 retrospective
 
-[Sprint 2 retrospective](./Sprint 2 Retrospective.pdf)
+[Sprint 2 retrospective](./Sprint%202%20Retrospective.pdf)
 
 ### Week10: testing
 
 Acceptance Criteria and Tests for some of the use cases we implemented. We did not make one for every use case, however, as some were not critical.
 
-[Acceptance Criteria and Acceptance Testing](./Acceptance Criteria and Acceptance Testing.pdf)
+[Acceptance Criteria and Acceptance Testing](./Acceptance%20Criteria%20and%20Acceptance%20Testing.pdf)
 
 ### Week11: sprint 3 retrospective
 
-[Sprint 3 retrospective](./Sprint 3 Retrospective.pdf)
+[Sprint 3 retrospective](./Sprint%203%20Retrospective.pdf)
 
 ### Week12: Presentation
 
-[Presentation Resources](./Presentation Resources/)
+[Presentation Resources](./Presentation%20Resources/)
