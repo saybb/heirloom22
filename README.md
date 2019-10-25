@@ -1,7 +1,15 @@
 UNIMELB COMP30022 IT Project 2019
 # Heirloom22 Project!
-this project is developed using [ReactJs](https://reactjs.org/), [Redux](https://redux.js.org/) & [Firebase](https://firebase.google.com).
-Below you will find some information on how to perform common tasks.
+
+Created by Chuanyuan, Lawson, Luoming, and Anqi
+
+This project is developed using [ReactJs](https://reactjs.org/), [Redux](https://redux.js.org/) & [Firebase](https://firebase.google.com).
+
+## Documentation
+
+All documentations are stored in `./documentation` folder
+
+[Click here to redirect to the documentation](./documentation/README.md)
 
 ## Table of Contents
 - [Updates](#updates)
