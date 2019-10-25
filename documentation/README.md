@@ -2,6 +2,8 @@
 
 TEAM C.A.L.L
 
+
+
 ## Important Links:
 
 Live Website:
@@ -20,27 +22,31 @@ Github (DB testing and tools):
 https://github.com/ChuanyuanLiu/DatabaseDev
 
 Other Links:
+Lucid Chart (Diagrams)
+https://www.lucidchart.com/invitations/accept/9292a119-3e71-4b8a-8454-e41d3cd3bc0d
+
 Figma (Prototype Front-End Design):
 https://www.figma.com/file/nJ1hLeWPqFHr1sCNEVU8Hw/Untitled?node-id=0%3A1
 
 
 
-## Location of files 
+## File History
 
-| File or Folder                             | Description                                                  |
-| ------------------------------------------ | ------------------------------------------------------------ |
-| [versions/](./versions/)                   | Previous versions of documentation, or older reports and collections  of information that were later gathered into another document. |
-| Acceptance Criteria and Acceptance Testing | Acceptance Criteria and Tests for some of the use cases we  implemented. We did not make one for every use case, however, as some were  not critical. |
-| App Component Diagram                      | Early app component diagram created to communicate the React  front-end architecture among the team. |
-| Back-End Diagrams                          |                                                              |
-| Database Schema                            |                                                              |
-| Goal-Based Model                           | Simple goal-based model that helped guide us during early  requirements phase. |
-| heirloom22logo                             | Logo for the website.                                        |
-| Requirements                               | Report on requirements phase, including background, scope, goals,  notes from client interviews, personas and use cases. Use cases however, were  moved into their own file. |
-| Sprint Retrospective 1, 2, 3               |                                                              |
-| Use Cases                                  | Use Cases and User Stories                                   |
+Previous versions of documentation, or older reports and collections of information that were later gathered into another document.
 
- 
+[Click here to go to the folder that tracked file versions](./versions/)  
+
+
+
+## Goal Model
+
+Here is the simple goal-based model that helped guide us during the early requirements phase.
+
+![goal based model v1](images/goal based model v1.png)
+
+After more client interviews we removed some non-critical requirements and here is the final version of our goal model
+
+![goal based model v2](images/goal based model v2.png)
 
 ## Weekly submissions
 
@@ -54,11 +60,13 @@ Created the team name CALL
 
 We had a conversation with the client and decided to create a Web Application
 
-We then decided to use tools that we are familiar with (React and Redux). 
+We then decided to use tools that we are familiar with (React and Redux).
 
 We chose Firebase as the backend because it is easy to use.
 
 ### Week3: project scope
+
+This week we focused on created user stories. Based on the user stoires we were able to narrow down our scope.
 
 [2019.08.12 Client Interview 2](./versions/2019.08.12 Client Interview 2.pdf)
 
@@ -72,11 +80,13 @@ We chose Firebase as the backend because it is easy to use.
 
 We created the github link
 
-### Week5: sprint 1 restrospective
+### Week5: sprint 1 retrospective
 
 [Sprint 1 retrospective](./Sprint 1 Retrospective.pdf)
 
 ### Week6: requirement
+
+The two documents below report on requirements phase, including background, scope, goals, notes from client interviews, personas and use cases. 
 
 [Requirements](./Requirements.pdf)
 
@@ -84,24 +94,26 @@ We created the github link
 
 ### Week7: architecture
 
-[Architecture](./Architecture.md  )
+[Architecture](./Architecture.md)
 
 ### Week8: coding check
 
 We showed our app to our demonstrator Savan
 
-### Week9: sprint 2 restrospective
+### Week9: sprint 2 retrospective
 
 [Sprint 2 retrospective](./Sprint 2 Retrospective.pdf)
 
 ### Week10: testing
 
+Acceptance Criteria and Tests for some of the use cases we implemented. We did not make one for every use case, however, as some were not critical.
+
 [Acceptance Criteria and Acceptance Testing](./Acceptance Criteria and Acceptance Testing.pdf)
 
-### Week11: sprint 3 restrospective
+### Week11: sprint 3 retrospective
 
 [Sprint 3 retrospective](./Sprint 3 Retrospective.pdf)
 
 ### Week12: Presentation
 
-[Presentation Resources](./Presentation Resources/) 
+[Presentation Resources](./Presentation Resources/)
