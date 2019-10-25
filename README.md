@@ -12,8 +12,8 @@ Live Website:
 https://heirloom22-2b4a8.firebaseapp.com/
 
 Login using
-username: admin@admin.com
-password: password
+username: teacher@unimelb.com
+password: teacher
 
 ## Agile Process Documentation
 

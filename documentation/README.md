@@ -2,12 +2,13 @@
 
 TEAM C.A.L.L
 
-
-
 ## Important Links:
 
 Live Website:
 https://heirloom22-2b4a8.firebaseapp.com/
+Login using
+username: teacher@unimelb.com
+password: teacher
 
 Google Drive:
 https://drive.google.com/drive/u/0/folders/1OZy--8NsonDcfPiWP7fkbLGNUpv57fas
@@ -22,21 +23,17 @@ Github (DB testing and tools):
 https://github.com/ChuanyuanLiu/DatabaseDev
 
 Other Links:
-Lucid Chart (Diagrams)
-https://www.lucidchart.com/invitations/accept/9292a119-3e71-4b8a-8454-e41d3cd3bc0d
 
-Figma (Prototype Front-End Design):
-https://www.figma.com/file/nJ1hLeWPqFHr1sCNEVU8Hw/Untitled?node-id=0%3A1
-
-
+-  Lucid Chart (Diagrams)
+   https://www.lucidchart.com/invitations/accept/9292a119-3e71-4b8a-8454-e41d3cd3bc0d
+-  Figma (Prototype Front-End Design):
+   https://www.figma.com/file/nJ1hLeWPqFHr1sCNEVU8Hw/Untitled?node-id=0%3A1
 
 ## File History
 
 Previous versions of documentation, or older reports and collections of information that were later gathered into another document.
 
-[Click here to go to the folder that tracked file versions](./versions/)  
-
-
+[Click here to go to the folder that tracked file versions](./versions/)
 
 ## Weekly submissions
 
@@ -76,7 +73,7 @@ We created the github link
 
 ### Week6: requirement
 
-The two documents below report on requirements phase, including background, scope, goals, notes from client interviews, personas and use cases. 
+The two documents below report on requirements phase, including background, scope, goals, notes from client interviews, personas and use cases.
 
 [Requirements](./Requirements.pdf)
 
