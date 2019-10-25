@@ -38,23 +38,13 @@ Previous versions of documentation, or older reports and collections of informat
 
 
 
-## Goal Model
-
-Here is the simple goal-based model that helped guide us during the early requirements phase.
-
-![goal based model v1](images/goal based model v1.png)
-
-After more client interviews we removed some non-critical requirements and here is the final version of our goal model
-
-![goal based model v2](images/goal based model v2.png)
-
 ## Weekly submissions
 
 ### Week1: Finalize team
 
 Created the team name CALL
 
-[2019.08.01 Client Interview 1](./versions/2019.08.01 Client Interview 1.pdf)
+[2019.08.01 Client Interview 1](./versions/2019.08.01%20Client%20Interview%201.pdf)
 
 ### Week2: Discussion of tools
 
@@ -68,13 +58,13 @@ We chose Firebase as the backend because it is easy to use.
 
 This week we focused on created user stories. Based on the user stoires we were able to narrow down our scope.
 
-[2019.08.12 Client Interview 2](./versions/2019.08.12 Client Interview 2.pdf)
+[2019.08.12 Client Interview 2](./versions/2019.08.12%20Client%20Interview%202.pdf)
 
-[2019.08.14 Requirements Report](./versions/2019.08.14 Requirements Report.pdf)
+[2019.08.14 Requirements Report](./versions/2019.08.14%20Requirements%20Report.pdf)
 
-[Early User Stories](./versions/Early User Stories.pdf)
+[Early User Stories](./versions/Early%20User%20Stories.pdf)
 
-[Personas v1](./versions/Personas v1.pdf)
+[Personas v1](./versions/Personas%20v1.pdf)
 
 ### Week4: Github setup
 
@@ -94,7 +84,11 @@ The two documents below report on requirements phase, including background, scop
 
 ### Week7: architecture
 
-[Architecture](./Architecture.md)
+[Database Schema](./databaseDv1.pdf)
+
+[Database Schema Updated](./databaseDv2.pdf)
+
+[Architecture](./architecture.md)
 
 ### Week8: coding check
 
