@@ -6,6 +6,22 @@ Created by Chuanyuan, Lawson, Luoming, and Anqi
 
 This project is developed using [ReactJs](https://reactjs.org/), [Redux](https://redux.js.org/) & [Firebase](https://firebase.google.com). For Design we used [AntDesign](https://ant.design).
 
+## Location of files
+
+| File or Folder                             | Description                                                  |
+| ------------------------------------------ | ------------------------------------------------------------ |
+| versions/                                  | Previous versions of documentation, or older reports and collections  of information that were later gathered into another document. |
+| Presentation Resources/                    | Slides and planning materials for the presentation           |
+| Acceptance Criteria and Acceptance Testing | Acceptance Criteria and Tests for some of the use cases we  implemented. We did not make one for every use case, however, as some were  not critical. |
+| App Component Diagram                      | Early app component diagram created to communicate the React  front-end architecture among the team. |
+| Back-End Diagrams                          | A visualization of all the technologies used in this project and how they react with each other. |
+| Database Schema                            | An explaination of the database structure and some sample data. |
+| Goal-Based Model                           | Simple goal-based model that helped guide us during early  requirements phase. |
+| heirloom22logo                             | Logo for the website.                                        |
+| Requirements                               | Report on requirements phase, including background, scope, goals,  notes from client interviews, personas and use cases. Use cases however, were  moved into their own file. |
+| Sprint Retrospective 1, 2, 3               | A summary of what have happened in each sprint. The good, the bad, and how we will improve. |
+| Use Cases                                  | Use Cases and User Stories                                   |
+
 ## Get started!
 
 Live Website:
