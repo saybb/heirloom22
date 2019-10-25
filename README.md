@@ -6,7 +6,16 @@ Created by Chuanyuan, Lawson, Luoming, and Anqi
 
 This project is developed using [ReactJs](https://reactjs.org/), [Redux](https://redux.js.org/) & [Firebase](https://firebase.google.com). For Design we used [AntDesign](https://ant.design).
 
-## Documentation
+## Get started!
+
+Live Website:
+https://heirloom22-2b4a8.firebaseapp.com/
+
+Login using
+username: admin@admin.com
+password: password
+
+## Agile Process Documentation
 
 All documentations are stored in `./documentation` folder
 
